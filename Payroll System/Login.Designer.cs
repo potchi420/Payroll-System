@@ -31,18 +31,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1 = new Panel();
+            button1 = new Button();
+            textBox2 = new TextBox();
+            label5 = new Label();
             label4 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
             gradientPanel1 = new GradientPanel();
-            label2 = new Label();
             pictureBox1 = new PictureBox();
+            label2 = new Label();
             label1 = new Label();
             PCU = new Label();
             gradientPanel2 = new GradientPanel();
-            label5 = new Label();
-            textBox2 = new TextBox();
-            button1 = new Button();
             panel1.SuspendLayout();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -52,7 +52,6 @@
             // 
             panel1.AutoSize = true;
             panel1.BackColor = Color.White;
-            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(button1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label5);
@@ -65,6 +64,38 @@
             panel1.Size = new Size(808, 374);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
+            // 
+            // button1
+            // 
+            button1.ForeColor = Color.Black;
+            button1.Location = new Point(589, 263);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 27);
+            button1.TabIndex = 6;
+            button1.Text = "Login";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(528, 212);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(197, 23);
+            textBox2.TabIndex = 5;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.DimGray;
+            label5.Location = new Point(528, 182);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 18);
+            label5.TabIndex = 4;
+            label5.Text = "Password";
+            label5.Click += label5_Click;
             // 
             // label4
             // 
@@ -111,6 +142,20 @@
             gradientPanel1.Size = new Size(447, 374);
             gradientPanel1.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Image = Properties.Resources.clouds_upright_2x;
+            pictureBox1.Location = new Point(364, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(123, 374);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click_1;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -123,21 +168,6 @@
             label2.TabIndex = 3;
             label2.Text = "Payroll System";
             label2.Click += label2_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
-            pictureBox1.Image = Properties.Resources.clouds_upright_2x;
-            pictureBox1.Location = new Point(364, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(123, 374);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click_1;
             // 
             // label1
             // 
@@ -173,38 +203,6 @@
             gradientPanel2.Name = "gradientPanel2";
             gradientPanel2.Size = new Size(8, 8);
             gradientPanel2.TabIndex = 2;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.White;
-            label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(528, 182);
-            label5.Name = "label5";
-            label5.Size = new Size(78, 18);
-            label5.TabIndex = 4;
-            label5.Text = "Password";
-            label5.Click += label5_Click;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(528, 212);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(197, 23);
-            textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged;
-            // 
-            // button1
-            // 
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(589, 263);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 27);
-            button1.TabIndex = 6;
-            button1.Text = "Login";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
             // 
             // Login
             // 
