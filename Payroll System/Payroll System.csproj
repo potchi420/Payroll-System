@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="ImageProcessor" Version="2.9.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
   <ItemGroup>

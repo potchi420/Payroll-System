@@ -32,10 +32,10 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel1 = new Panel();
             button1 = new Button();
-            textBox2 = new TextBox();
+            password = new TextBox();
             label5 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
+            username = new TextBox();
             label3 = new Label();
             gradientPanel1 = new GradientPanel();
             pictureBox1 = new PictureBox();
@@ -53,10 +53,10 @@
             panel1.AutoSize = true;
             panel1.BackColor = Color.White;
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(password);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(username);
             panel1.Controls.Add(label3);
             panel1.ForeColor = Color.DarkBlue;
             panel1.Location = new Point(186, 118);
@@ -76,13 +76,13 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click_1;
             // 
-            // textBox2
+            // password
             // 
-            textBox2.Location = new Point(528, 212);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(197, 23);
-            textBox2.TabIndex = 5;
-            textBox2.TextChanged += textBox2_TextChanged;
+            password.Location = new Point(528, 212);
+            password.Name = "password";
+            password.Size = new Size(197, 23);
+            password.TabIndex = 5;
+            password.TextChanged += textBox2_TextChanged;
             // 
             // label5
             // 
@@ -109,12 +109,13 @@
             label4.TabIndex = 4;
             label4.Text = "Username";
             // 
-            // textBox1
+            // username
             // 
-            textBox1.Location = new Point(528, 137);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(197, 23);
-            textBox1.TabIndex = 3;
+            username.Location = new Point(528, 137);
+            username.Name = "username";
+            username.Size = new Size(197, 23);
+            username.TabIndex = 3;
+            username.TextChanged += textBox1_TextChanged;
             // 
             // label3
             // 
@@ -230,17 +231,18 @@
 
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Panel panel1;
+        private Button button1;
         private GradientPanel gradientPanel1;
         private Label PCU;
         private Label label1;
         private PictureBox pictureBox1;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox username;
         private GradientPanel gradientPanel2;
         private Label label4;
         private Label label5;
-        private TextBox textBox2;
-        private Button button1;
+        private TextBox password;
+        private Button login;
     }
 }
