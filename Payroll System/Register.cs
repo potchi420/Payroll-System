@@ -17,22 +17,14 @@ namespace Payroll_System
             InitializeComponent();
         }
 
-        private void gradientPanel3_Paint(object sender, PaintEventArgs e)
+        private void register_btn_Click(object sender, EventArgs e)
         {
-
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }

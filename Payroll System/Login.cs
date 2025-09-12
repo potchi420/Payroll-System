@@ -41,5 +41,17 @@ namespace Payroll_System
         {
 
         }
+
+        private void login_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void register_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Register register = new Register();
+            register.Show();
+            this.Hide();
+        }
     }
 }
