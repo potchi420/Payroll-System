@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             login_btn = new Button();
             password = new TextBox();
@@ -100,6 +99,14 @@
             label3.TabIndex = 2;
             label3.Text = "Username";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
             // label2
             // 
             label2.Location = new Point(0, 0);
@@ -138,11 +145,11 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Calisto MT", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.ControlLightLight;
             label7.Location = new Point(123, 370);
             label7.Name = "label7";
-            label7.Size = new Size(310, 55);
+            label7.Size = new Size(319, 55);
             label7.TabIndex = 10;
             label7.Text = "Payroll Sytem";
             label7.TextAlign = ContentAlignment.TopCenter;
@@ -151,11 +158,11 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Font = new Font("Calisto MT", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.ControlLightLight;
             label6.Location = new Point(218, 291);
             label6.Name = "label6";
-            label6.Size = new Size(117, 37);
+            label6.Size = new Size(119, 37);
             label6.TabIndex = 9;
             label6.Text = "To The";
             label6.TextAlign = ContentAlignment.TopCenter;
@@ -164,11 +171,11 @@
             // 
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Calisto MT", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlLightLight;
             label4.Location = new Point(165, 177);
             label4.Name = "label4";
-            label4.Size = new Size(220, 55);
+            label4.Size = new Size(224, 55);
             label4.TabIndex = 8;
             label4.Text = "Welcome\r\n";
             label4.TextAlign = ContentAlignment.TopCenter;
@@ -178,7 +185,7 @@
             pictureBox2.BackColor = Color.Transparent;
             pictureBox2.ErrorImage = null;
             pictureBox2.Image = Properties.Resources.clouds_upright_2x;
-            pictureBox2.Location = new Point(504, 0);
+            pictureBox2.Location = new Point(503, -2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(168, 645);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -190,7 +197,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1190, 641);
+            ClientSize = new Size(1190, 688);
             Controls.Add(login_btn);
             Controls.Add(gradientPanel3);
             Controls.Add(password);
