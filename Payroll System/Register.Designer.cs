@@ -198,11 +198,11 @@
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.Transparent;
-            label7.Font = new Font("Calisto MT", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Calisto MT", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(104, 197);
+            label7.Location = new Point(130, 136);
             label7.Name = "label7";
-            label7.Size = new Size(271, 41);
+            label7.Size = new Size(212, 32);
             label7.TabIndex = 10;
             label7.Text = "Create Account";
             label7.TextAlign = ContentAlignment.TopCenter;
@@ -211,9 +211,9 @@
             // 
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(117, 215);
+            pictureBox3.Location = new Point(83, 155);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(244, 181);
+            pictureBox3.Size = new Size(305, 197);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 12;
             pictureBox3.TabStop = false;
@@ -260,5 +260,6 @@
         private Label label9;
         private Label label7;
         private PictureBox pictureBox3;
+        private Label label8;
     }
 }
