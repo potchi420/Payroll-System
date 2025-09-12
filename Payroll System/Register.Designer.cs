@@ -94,7 +94,7 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(674, 214);
+            label3.Location = new Point(674, 191);
             label3.Name = "label3";
             label3.Size = new Size(80, 18);
             label3.TabIndex = 9;
@@ -103,7 +103,7 @@
             // register_btn
             // 
             register_btn.ForeColor = Color.Black;
-            register_btn.Location = new Point(741, 401);
+            register_btn.Location = new Point(738, 398);
             register_btn.Name = "register_btn";
             register_btn.Size = new Size(75, 27);
             register_btn.TabIndex = 14;
@@ -113,7 +113,7 @@
             // 
             // register_username
             // 
-            register_username.Location = new Point(674, 235);
+            register_username.Location = new Point(674, 212);
             register_username.Name = "register_username";
             register_username.Size = new Size(197, 23);
             register_username.TabIndex = 13;
@@ -124,7 +124,7 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(676, 333);
+            label5.Location = new Point(676, 310);
             label5.Name = "label5";
             label5.Size = new Size(78, 18);
             label5.TabIndex = 12;
@@ -132,7 +132,7 @@
             // 
             // register_email
             // 
-            register_email.Location = new Point(676, 292);
+            register_email.Location = new Point(676, 269);
             register_email.Name = "register_email";
             register_email.Size = new Size(197, 23);
             register_email.TabIndex = 11;
@@ -143,7 +143,7 @@
             label2.BackColor = Color.White;
             label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(674, 271);
+            label2.Location = new Point(674, 248);
             label2.Name = "label2";
             label2.Size = new Size(48, 18);
             label2.TabIndex = 15;
@@ -151,7 +151,7 @@
             // 
             // register_password
             // 
-            register_password.Location = new Point(674, 354);
+            register_password.Location = new Point(674, 331);
             register_password.Name = "register_password";
             register_password.Size = new Size(197, 23);
             register_password.TabIndex = 16;
