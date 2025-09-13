@@ -45,9 +45,17 @@
             label8 = new Label();
             label4 = new Label();
             register_link = new LinkLabel();
+            pictureBox4 = new PictureBox();
+            gradientPanel3 = new GradientPanel();
+            label6 = new Label();
+            pictureBox5 = new PictureBox();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            gradientPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -82,21 +90,19 @@
             // login_btn
             // 
             login_btn.ForeColor = Color.Black;
-            login_btn.Location = new Point(834, 521);
-            login_btn.Margin = new Padding(3, 4, 3, 4);
+            login_btn.Location = new Point(730, 391);
             login_btn.Name = "login_btn";
-            login_btn.Size = new Size(86, 36);
+            login_btn.Size = new Size(75, 27);
             login_btn.TabIndex = 12;
             login_btn.Text = "Login";
             login_btn.UseVisualStyleBackColor = true;
             // 
             // password
             // 
-            password.Location = new Point(775, 412);
-            password.Margin = new Padding(3, 4, 3, 4);
+            password.Location = new Point(678, 309);
             password.Name = "password";
             password.PasswordChar = '*';
-            password.Size = new Size(225, 27);
+            password.Size = new Size(197, 23);
             password.TabIndex = 11;
             // 
             // label5
@@ -105,18 +111,17 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(775, 372);
+            label5.Location = new Point(678, 279);
             label5.Name = "label5";
-            label5.Size = new Size(98, 23);
+            label5.Size = new Size(78, 18);
             label5.TabIndex = 10;
             label5.Text = "Password";
             // 
             // username
             // 
-            username.Location = new Point(775, 312);
-            username.Margin = new Padding(3, 4, 3, 4);
+            username.Location = new Point(678, 234);
             username.Name = "username";
-            username.Size = new Size(225, 27);
+            username.Size = new Size(197, 23);
             username.TabIndex = 9;
             // 
             // label3
@@ -125,9 +130,9 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(775, 273);
+            label3.Location = new Point(678, 205);
             label3.Name = "label3";
-            label3.Size = new Size(99, 23);
+            label3.Size = new Size(80, 18);
             label3.TabIndex = 8;
             label3.Text = "Username";
             // 
@@ -186,9 +191,9 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(64, 64, 64);
-            label8.Location = new Point(701, 141);
+            label8.Location = new Point(613, 106);
             label8.Name = "label8";
-            label8.Size = new Size(406, 31);
+            label8.Size = new Size(316, 24);
             label8.TabIndex = 14;
             label8.Text = "SIGN IN TO YOUR ACCOUNT";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -199,10 +204,10 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Calisto MT", 8F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(778, 457);
+            label4.Location = new Point(681, 343);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(158, 16);
+            label4.Size = new Size(124, 13);
             label4.TabIndex = 15;
             label4.Text = "Don't Have An Account?";
             label4.TextAlign = ContentAlignment.TopCenter;
@@ -214,21 +219,84 @@
             register_link.BackColor = Color.Transparent;
             register_link.Font = new Font("Calisto MT", 8F);
             register_link.LinkColor = Color.FromArgb(33, 145, 245);
-            register_link.Location = new Point(920, 457);
+            register_link.Location = new Point(805, 343);
             register_link.Margin = new Padding(0);
             register_link.Name = "register_link";
-            register_link.Size = new Size(88, 16);
+            register_link.Size = new Size(70, 13);
             register_link.TabIndex = 16;
             register_link.TabStop = true;
             register_link.Text = "Register Now";
             register_link.LinkClicked += register_link_LinkClicked;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.ErrorImage = null;
+            pictureBox4.Image = Properties.Resources.clouds_upright_2x;
+            pictureBox4.Location = new Point(439, 0);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(168, 617);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 0;
+            pictureBox4.TabStop = false;
+            // 
+            // gradientPanel3
+            // 
+            gradientPanel3.Controls.Add(label6);
+            gradientPanel3.Controls.Add(pictureBox4);
+            gradientPanel3.Controls.Add(pictureBox5);
+            gradientPanel3.Controls.Add(label10);
+            gradientPanel3.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel3.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel3.Location = new Point(0, -2);
+            gradientPanel3.Name = "gradientPanel3";
+            gradientPanel3.Size = new Size(570, 617);
+            gradientPanel3.TabIndex = 18;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Calisto MT", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.ControlLightLight;
+            label6.Location = new Point(117, 398);
+            label6.Name = "label6";
+            label6.Size = new Size(247, 22);
+            label6.TabIndex = 20;
+            label6.Text = "Streamlined Payroll Solutions";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.Image = Properties.Resources.icon;
+            pictureBox5.Location = new Point(101, 139);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(274, 258);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 21;
+            pictureBox5.TabStop = false;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Calisto MT", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.ForeColor = SystemColors.ControlLightLight;
+            label10.Location = new Point(117, 100);
+            label10.Name = "label10";
+            label10.Size = new Size(258, 32);
+            label10.TabIndex = 19;
+            label10.Text = "PCU Payroll Sytem";
+            label10.TextAlign = ContentAlignment.TopCenter;
+            // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1226, 815);
+            ClientSize = new Size(1073, 611);
+            Controls.Add(gradientPanel3);
             Controls.Add(register_link);
             Controls.Add(label4);
             Controls.Add(label8);
@@ -238,15 +306,17 @@
             Controls.Add(username);
             Controls.Add(label3);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            WindowState = FormWindowState.Maximized;
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            gradientPanel3.ResumeLayout(false);
+            gradientPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -274,5 +344,9 @@
         private PictureBox pictureBox3;
         private Label label4;
         private LinkLabel register_link;
+        private PictureBox pictureBox4;
+        private Label label6;
+        private PictureBox pictureBox5;
+        private Label label10;
     }
 }
