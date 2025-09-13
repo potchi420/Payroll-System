@@ -32,12 +32,12 @@ namespace Payroll_System
 
         }
 
-        private void register_username_TextChanged(object sender, EventArgs e)
+        public void register_username_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void register_password_TextChanged(object sender, EventArgs e)
+        public void Register_password_TextChanged(object sender, EventArgs e)
         {
 
         }

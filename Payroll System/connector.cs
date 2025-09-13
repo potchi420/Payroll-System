@@ -16,18 +16,23 @@ namespace Payroll_System
 
         public void connection()
         {
-            con = new("Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=payroll_db;Integrated Security=True;Trust Server Certificate=True");
+            sql = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=payroll_db;Integrated Security=True;Trust Server Certificate=True";
+            con = new SqlConnection(sql);
             con.Open();
         }
 
         public void dataSend()
         {
             connection();
+          
             SqlDataAdapter adap = new SqlDataAdapter();
-            sql = "insert into demo values(register_username=@username,register_password=@password)";
+
+            sql = "insert into user(register_username.Text,Register_password.Text)";
             cmd = new SqlCommand(sql, con);
             adap.InsertCommand = new SqlCommand(sql, con);
             adap.InsertCommand.ExecuteNonQuery();
+
+         
             cmd.Dispose();
             con.Close();
         }
