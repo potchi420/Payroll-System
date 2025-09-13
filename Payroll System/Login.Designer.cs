@@ -39,7 +39,6 @@
             username = new TextBox();
             label3 = new Label();
             pictureBox2 = new PictureBox();
-            gradientPanel3 = new GradientPanel();
             label9 = new Label();
             pictureBox3 = new PictureBox();
             label7 = new Label();
@@ -48,7 +47,6 @@
             register_link = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            gradientPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
@@ -84,18 +82,21 @@
             // login_btn
             // 
             login_btn.ForeColor = Color.Black;
-            login_btn.Location = new Point(730, 391);
+            login_btn.Location = new Point(834, 521);
+            login_btn.Margin = new Padding(3, 4, 3, 4);
             login_btn.Name = "login_btn";
-            login_btn.Size = new Size(75, 27);
+            login_btn.Size = new Size(86, 36);
             login_btn.TabIndex = 12;
             login_btn.Text = "Login";
             login_btn.UseVisualStyleBackColor = true;
             // 
             // password
             // 
-            password.Location = new Point(678, 309);
+            password.Location = new Point(775, 412);
+            password.Margin = new Padding(3, 4, 3, 4);
             password.Name = "password";
-            password.Size = new Size(197, 23);
+            password.PasswordChar = '*';
+            password.Size = new Size(225, 27);
             password.TabIndex = 11;
             // 
             // label5
@@ -104,17 +105,18 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(678, 279);
+            label5.Location = new Point(775, 372);
             label5.Name = "label5";
-            label5.Size = new Size(78, 18);
+            label5.Size = new Size(98, 23);
             label5.TabIndex = 10;
             label5.Text = "Password";
             // 
             // username
             // 
-            username.Location = new Point(678, 234);
+            username.Location = new Point(775, 312);
+            username.Margin = new Padding(3, 4, 3, 4);
             username.Name = "username";
-            username.Size = new Size(197, 23);
+            username.Size = new Size(225, 27);
             username.TabIndex = 9;
             // 
             // label3
@@ -123,9 +125,9 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(678, 205);
+            label3.Location = new Point(775, 273);
             label3.Name = "label3";
-            label3.Size = new Size(80, 18);
+            label3.Size = new Size(99, 23);
             label3.TabIndex = 8;
             label3.Text = "Username";
             // 
@@ -140,19 +142,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
-            // 
-            // gradientPanel3
-            // 
-            gradientPanel3.Controls.Add(label9);
-            gradientPanel3.Controls.Add(pictureBox3);
-            gradientPanel3.Controls.Add(label7);
-            gradientPanel3.Controls.Add(pictureBox2);
-            gradientPanel3.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel3.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel3.Location = new Point(0, 0);
-            gradientPanel3.Name = "gradientPanel3";
-            gradientPanel3.Size = new Size(574, 646);
-            gradientPanel3.TabIndex = 13;
             // 
             // label9
             // 
@@ -197,9 +186,9 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(64, 64, 64);
-            label8.Location = new Point(613, 106);
+            label8.Location = new Point(701, 141);
             label8.Name = "label8";
-            label8.Size = new Size(316, 24);
+            label8.Size = new Size(406, 31);
             label8.TabIndex = 14;
             label8.Text = "SIGN IN TO YOUR ACCOUNT";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -210,10 +199,10 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Calisto MT", 8F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(681, 343);
+            label4.Location = new Point(778, 457);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(124, 13);
+            label4.Size = new Size(158, 16);
             label4.TabIndex = 15;
             label4.Text = "Don't Have An Account?";
             label4.TextAlign = ContentAlignment.TopCenter;
@@ -225,10 +214,10 @@
             register_link.BackColor = Color.Transparent;
             register_link.Font = new Font("Calisto MT", 8F);
             register_link.LinkColor = Color.FromArgb(33, 145, 245);
-            register_link.Location = new Point(805, 343);
+            register_link.Location = new Point(920, 457);
             register_link.Margin = new Padding(0);
             register_link.Name = "register_link";
-            register_link.Size = new Size(70, 13);
+            register_link.Size = new Size(88, 16);
             register_link.TabIndex = 16;
             register_link.TabStop = true;
             register_link.Text = "Register Now";
@@ -236,10 +225,10 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1014, 611);
+            ClientSize = new Size(1226, 815);
             Controls.Add(register_link);
             Controls.Add(label4);
             Controls.Add(label8);
@@ -248,15 +237,15 @@
             Controls.Add(label5);
             Controls.Add(username);
             Controls.Add(label3);
-            Controls.Add(gradientPanel3);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
+            WindowState = FormWindowState.Maximized;
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            gradientPanel3.ResumeLayout(false);
-            gradientPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Payroll_System
@@ -6,29 +7,15 @@ namespace Payroll_System
     {
 
 
-        SqlConnections con = new SqlConnections("Data Source=COI-LAB8-20\\SQLEXPRESS;Initial Catalog=db_payroll;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
-        SqlCommand com;
-        public Login()
-        {
-            InitializeComponent();
-        }
-
         private void Login_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         [Obsolete]
         private void button1_Click_1(object sender, EventArgs e)
         {
-            /*
-            con.Open();
-            com = new SqlCommand("INSERT into StudentInfo VALUES(@Username,@Password,)", con);
-            com.Parameters.AddWithValue("@StudentNumber", (username.Text));
-            com.Parameters.AddWithValue("@Firstname", (password.Text));
-            com.ExecuteNonQuery();
-            con.Close();
-            */
+
         }
 
 
