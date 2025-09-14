@@ -9,11 +9,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=R3NZ\\SQLEXPRESS;" +
-                        "Initial Catalog=Payroll_db;" +
-                        "Integrated Security=True;" +
-                        "Encrypt=True;" +
-                        "TrustServerCertificate=True;";
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             try
             {
@@ -33,13 +29,14 @@ namespace Payroll_System
         {
             try
             {
-                connection();  // open connection
+                connection(); 
 
-                string sql = "INSERT INTO [user] (username, password) VALUES (@register_username, @register_password)";
+                string sql = "INSERT INTO [login] (username, password) VALUES (@register_username, @register_password)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@register_username", username);
                     cmd.Parameters.AddWithValue("@register_password", password);
+                   
                     cmd.ExecuteNonQuery();
                 }
 
