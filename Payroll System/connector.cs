@@ -1,40 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Payroll_System
 {
-    internal class connector
+    internal class Connector
     {
-        public SqlConnection con;
-        public SqlCommand cmd;
-        public SqlDataAdapter sda;
-        public string sql;
+        private SqlConnection con;
 
         public void connection()
         {
-            sql = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=payroll_db;Integrated Security=True;Trust Server Certificate=True";
-            con = new SqlConnection(sql);
-            con.Open();
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;" +
+                        "Initial Catalog=Payroll_db;" +
+                        "Integrated Security=True;" +
+                        "Encrypt=True;" +
+                        "TrustServerCertificate=True;";
+
+            try
+            {
+                con = new SqlConnection(cs);
+                con.Open();
+                MessageBox.Show("Connection successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection failed: " + ex.Message);
+            }
         }
 
-        public void dataSend()
+
+
+        public void dataSend(string username, string password)
         {
-            connection();
-          
-            SqlDataAdapter adap = new SqlDataAdapter();
+            try
+            {
+                connection();  // open connection
 
-            sql = "insert into user(register_username.Text,Register_password.Text)";
-            cmd = new SqlCommand(sql, con);
-            adap.InsertCommand = new SqlCommand(sql, con);
-            adap.InsertCommand.ExecuteNonQuery();
+                string sql = "INSERT INTO [user] (username, password) VALUES (@register_username, @register_password)";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@register_username", username);
+                    cmd.Parameters.AddWithValue("@register_password", password);
+                    cmd.ExecuteNonQuery();
+                }
 
-         
-            cmd.Dispose();
-            con.Close();
+                MessageBox.Show("Registration successful!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (con != null && con.State == System.Data.ConnectionState.Open)
+                    con.Close();
+            }
         }
 
 

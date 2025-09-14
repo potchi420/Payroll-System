@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,13 +20,14 @@ namespace Payroll_System
 
         private void register_btn_Click(object sender, EventArgs e)
         {
+            Connector conn = new Connector();
+            conn.dataSend(register_username.Text, register_password.Text);
 
-            connector conn = new connector();
-            conn.dataSend();
             Login login = new Login();
             login.Show();
             this.Hide();
         }
+
 
         private void label9_Click(object sender, EventArgs e)
         {
