@@ -50,6 +50,8 @@
             label6 = new Label();
             pictureBox5 = new PictureBox();
             label10 = new Label();
+            btn = new Button();
+            btnblogin = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -89,14 +91,10 @@
             // 
             // login_btn
             // 
-            login_btn.ForeColor = Color.Black;
-            login_btn.Location = new Point(834, 521);
-            login_btn.Margin = new Padding(3, 4, 3, 4);
+            login_btn.Location = new Point(0, 0);
             login_btn.Name = "login_btn";
-            login_btn.Size = new Size(86, 36);
-            login_btn.TabIndex = 12;
-            login_btn.Text = "Login";
-            login_btn.UseVisualStyleBackColor = true;
+            login_btn.Size = new Size(75, 23);
+            login_btn.TabIndex = 19;
             // 
             // password
             // 
@@ -296,12 +294,31 @@
             label10.Text = "PCU Payroll Sytem";
             label10.TextAlign = ContentAlignment.TopCenter;
             // 
+            // btn
+            // 
+            btn.Location = new Point(0, 0);
+            btn.Name = "btn";
+            btn.Size = new Size(75, 23);
+            btn.TabIndex = 0;
+            // 
+            // btnblogin
+            // 
+            btnblogin.Location = new Point(823, 514);
+            btnblogin.Name = "btnblogin";
+            btnblogin.Size = new Size(113, 42);
+            btnblogin.TabIndex = 20;
+            btnblogin.Text = "Login";
+            btnblogin.UseVisualStyleBackColor = true;
+            btnblogin.Click += btnblogin_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1218, 815);
+            Controls.Add(btnblogin);
+            Controls.Add(btn);
             Controls.Add(gradientPanel3);
             Controls.Add(register_link);
             Controls.Add(label4);
@@ -355,5 +372,7 @@
         private Label label6;
         private PictureBox pictureBox5;
         private Label label10;
+        private Button btn;
+        private Button btnblogin;
     }
 }

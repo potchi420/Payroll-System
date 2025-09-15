@@ -39,7 +39,7 @@ namespace Payroll_System
 
         }
 
-        public void Register_password_TextChanged(object sender, EventArgs e)
+        public void register_password_TextChanged(object sender, EventArgs e)
         {
 
         }

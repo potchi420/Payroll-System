@@ -140,7 +140,7 @@
             register_password.PasswordChar = '*';
             register_password.Size = new Size(225, 27);
             register_password.TabIndex = 16;
-            register_password.TextChanged += Register_password_TextChanged;
+            register_password.TextChanged += register_password_TextChanged;
             // 
             // pictureBox1
             // 
