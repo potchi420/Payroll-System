@@ -16,5 +16,45 @@ namespace Payroll_System
         {
             InitializeComponent();
         }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnemployee_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblsystem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnreportside_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnpayrollcenter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlside_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
