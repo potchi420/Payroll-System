@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             pnltop = new Panel();
+            lblsystem = new Label();
             pnlside = new Panel();
+            btnreportside = new Button();
+            btnpayrollside = new Button();
+            btnemployeeside = new Button();
             btnhome = new Button();
             pnlcenter = new Panel();
+            btnsettings = new Button();
+            btnbenefits = new Button();
+            btntax = new Button();
+            btnreportscenter = new Button();
             btnpayrollcenter = new Button();
             btnemployeecenter = new Button();
-            btnreportscenter = new Button();
-            btntax = new Button();
-            btnbenefits = new Button();
-            btnsettings = new Button();
-            btnemployeeside = new Button();
-            btnpayrollside = new Button();
-            btnreportside = new Button();
-            lblsystem = new Label();
             pnltop.SuspendLayout();
             pnlside.SuspendLayout();
             pnlcenter.SuspendLayout();
@@ -57,6 +57,16 @@
             pnltop.TabIndex = 1;
             pnltop.Paint += panel2_Paint;
             // 
+            // lblsystem
+            // 
+            lblsystem.AutoSize = true;
+            lblsystem.Location = new Point(721, 29);
+            lblsystem.Name = "lblsystem";
+            lblsystem.Size = new Size(110, 15);
+            lblsystem.TabIndex = 0;
+            lblsystem.Text = "PCU Payroll System";
+            lblsystem.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // pnlside
             // 
             pnlside.BackColor = SystemColors.GradientInactiveCaption;
@@ -69,6 +79,41 @@
             pnlside.Size = new Size(170, 539);
             pnlside.TabIndex = 2;
             pnlside.Paint += pnlside_Paint;
+            // 
+            // btnreportside
+            // 
+            btnreportside.BackColor = SystemColors.Control;
+            btnreportside.ForeColor = SystemColors.InfoText;
+            btnreportside.Location = new Point(0, 185);
+            btnreportside.Name = "btnreportside";
+            btnreportside.Size = new Size(170, 54);
+            btnreportside.TabIndex = 3;
+            btnreportside.Text = "Reports";
+            btnreportside.UseVisualStyleBackColor = false;
+            btnreportside.Click += btnreportside_Click;
+            // 
+            // btnpayrollside
+            // 
+            btnpayrollside.BackColor = SystemColors.Control;
+            btnpayrollside.ForeColor = SystemColors.InfoText;
+            btnpayrollside.Location = new Point(0, 129);
+            btnpayrollside.Name = "btnpayrollside";
+            btnpayrollside.Size = new Size(170, 50);
+            btnpayrollside.TabIndex = 2;
+            btnpayrollside.Text = "Payroll";
+            btnpayrollside.UseVisualStyleBackColor = false;
+            btnpayrollside.Click += button1_Click;
+            // 
+            // btnemployeeside
+            // 
+            btnemployeeside.BackColor = SystemColors.Control;
+            btnemployeeside.ForeColor = SystemColors.InfoText;
+            btnemployeeside.Location = new Point(0, 73);
+            btnemployeeside.Name = "btnemployeeside";
+            btnemployeeside.Size = new Size(170, 50);
+            btnemployeeside.TabIndex = 1;
+            btnemployeeside.Text = "Employees";
+            btnemployeeside.UseVisualStyleBackColor = false;
             // 
             // btnhome
             // 
@@ -95,9 +140,54 @@
             pnlcenter.Size = new Size(1232, 539);
             pnlcenter.TabIndex = 3;
             // 
+            // btnsettings
+            // 
+            btnsettings.BackColor = SystemColors.ActiveCaption;
+            btnsettings.Location = new Point(907, 264);
+            btnsettings.Name = "btnsettings";
+            btnsettings.Size = new Size(218, 209);
+            btnsettings.TabIndex = 5;
+            btnsettings.Text = "Settings\r\n\r\n";
+            btnsettings.TextAlign = ContentAlignment.BottomCenter;
+            btnsettings.UseVisualStyleBackColor = false;
+            // 
+            // btnbenefits
+            // 
+            btnbenefits.BackColor = SystemColors.ActiveCaption;
+            btnbenefits.Location = new Point(496, 264);
+            btnbenefits.Name = "btnbenefits";
+            btnbenefits.Size = new Size(218, 209);
+            btnbenefits.TabIndex = 4;
+            btnbenefits.Text = "Benefits\r\nAdministration\r\n\r\n";
+            btnbenefits.TextAlign = ContentAlignment.BottomCenter;
+            btnbenefits.UseVisualStyleBackColor = false;
+            // 
+            // btntax
+            // 
+            btntax.BackColor = SystemColors.ActiveCaption;
+            btntax.Location = new Point(91, 264);
+            btntax.Name = "btntax";
+            btntax.Size = new Size(218, 209);
+            btntax.TabIndex = 3;
+            btntax.Text = "Tax Filings\r\n\r\n";
+            btntax.TextAlign = ContentAlignment.BottomCenter;
+            btntax.UseVisualStyleBackColor = false;
+            // 
+            // btnreportscenter
+            // 
+            btnreportscenter.BackColor = SystemColors.ActiveCaption;
+            btnreportscenter.Location = new Point(907, 30);
+            btnreportscenter.Name = "btnreportscenter";
+            btnreportscenter.Size = new Size(218, 209);
+            btnreportscenter.TabIndex = 2;
+            btnreportscenter.Text = "Reports\r\n\r\n";
+            btnreportscenter.TextAlign = ContentAlignment.BottomCenter;
+            btnreportscenter.UseVisualStyleBackColor = false;
+            // 
             // btnpayrollcenter
             // 
             btnpayrollcenter.BackColor = SystemColors.ActiveCaption;
+            btnpayrollcenter.Cursor = Cursors.Hand;
             btnpayrollcenter.Location = new Point(496, 30);
             btnpayrollcenter.Name = "btnpayrollcenter";
             btnpayrollcenter.Size = new Size(218, 209);
@@ -118,95 +208,6 @@
             btnemployeecenter.TextAlign = ContentAlignment.BottomCenter;
             btnemployeecenter.UseVisualStyleBackColor = false;
             btnemployeecenter.Click += btnemployee_Click;
-            // 
-            // btnreportscenter
-            // 
-            btnreportscenter.BackColor = SystemColors.ActiveCaption;
-            btnreportscenter.Location = new Point(907, 30);
-            btnreportscenter.Name = "btnreportscenter";
-            btnreportscenter.Size = new Size(218, 209);
-            btnreportscenter.TabIndex = 2;
-            btnreportscenter.Text = "Reports\r\n\r\n";
-            btnreportscenter.TextAlign = ContentAlignment.BottomCenter;
-            btnreportscenter.UseVisualStyleBackColor = false;
-            // 
-            // btntax
-            // 
-            btntax.BackColor = SystemColors.ActiveCaption;
-            btntax.Location = new Point(91, 264);
-            btntax.Name = "btntax";
-            btntax.Size = new Size(218, 209);
-            btntax.TabIndex = 3;
-            btntax.Text = "Tax Filings\r\n\r\n";
-            btntax.TextAlign = ContentAlignment.BottomCenter;
-            btntax.UseVisualStyleBackColor = false;
-            // 
-            // btnbenefits
-            // 
-            btnbenefits.BackColor = SystemColors.ActiveCaption;
-            btnbenefits.Location = new Point(496, 264);
-            btnbenefits.Name = "btnbenefits";
-            btnbenefits.Size = new Size(218, 209);
-            btnbenefits.TabIndex = 4;
-            btnbenefits.Text = "Benefits\r\nAdministration\r\n\r\n";
-            btnbenefits.TextAlign = ContentAlignment.BottomCenter;
-            btnbenefits.UseVisualStyleBackColor = false;
-            // 
-            // btnsettings
-            // 
-            btnsettings.BackColor = SystemColors.ActiveCaption;
-            btnsettings.Location = new Point(907, 264);
-            btnsettings.Name = "btnsettings";
-            btnsettings.Size = new Size(218, 209);
-            btnsettings.TabIndex = 5;
-            btnsettings.Text = "Settings\r\n\r\n";
-            btnsettings.TextAlign = ContentAlignment.BottomCenter;
-            btnsettings.UseVisualStyleBackColor = false;
-            // 
-            // btnemployeeside
-            // 
-            btnemployeeside.BackColor = SystemColors.Control;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(170, 50);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Employees";
-            btnemployeeside.UseVisualStyleBackColor = false;
-            // 
-            // btnpayrollside
-            // 
-            btnpayrollside.BackColor = SystemColors.Control;
-            btnpayrollside.ForeColor = SystemColors.InfoText;
-            btnpayrollside.Location = new Point(0, 129);
-            btnpayrollside.Name = "btnpayrollside";
-            btnpayrollside.Size = new Size(170, 50);
-            btnpayrollside.TabIndex = 2;
-            btnpayrollside.Text = "Payroll";
-            btnpayrollside.UseVisualStyleBackColor = false;
-            btnpayrollside.Click += button1_Click;
-            // 
-            // btnreportside
-            // 
-            btnreportside.BackColor = SystemColors.Control;
-            btnreportside.ForeColor = SystemColors.InfoText;
-            btnreportside.Location = new Point(0, 185);
-            btnreportside.Name = "btnreportside";
-            btnreportside.Size = new Size(170, 54);
-            btnreportside.TabIndex = 3;
-            btnreportside.Text = "Reports";
-            btnreportside.UseVisualStyleBackColor = false;
-            btnreportside.Click += btnreportside_Click;
-            // 
-            // lblsystem
-            // 
-            lblsystem.AutoSize = true;
-            lblsystem.Location = new Point(721, 29);
-            lblsystem.Name = "lblsystem";
-            lblsystem.Size = new Size(110, 15);
-            lblsystem.TabIndex = 0;
-            lblsystem.Text = "PCU Payroll System";
-            lblsystem.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dashboard
             // 

@@ -49,7 +49,9 @@ namespace Payroll_System
 
         private void btnpayrollcenter_Click(object sender, EventArgs e)
         {
-
+            Payroll_process payroll_process = new Payroll_process();
+            payroll_process.Show();
+            this.Show();
         }
 
         private void pnlside_Paint(object sender, PaintEventArgs e)
