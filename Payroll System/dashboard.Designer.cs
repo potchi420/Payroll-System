@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
             pnltop = new Panel();
             lblsystem = new Label();
             pnlside = new Panel();
-            btnreportside = new Button();
-            btnpayrollside = new Button();
+            button7 = new Button();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             btnemployeeside = new Button();
             btnhome = new Button();
             pnlcenter = new Panel();
@@ -66,12 +72,18 @@
             lblsystem.TabIndex = 0;
             lblsystem.Text = "PCU Payroll System";
             lblsystem.TextAlign = ContentAlignment.MiddleCenter;
+            lblsystem.Click += lblsystem_Click_1;
             // 
             // pnlside
             // 
             pnlside.BackColor = SystemColors.GradientInactiveCaption;
-            pnlside.Controls.Add(btnreportside);
-            pnlside.Controls.Add(btnpayrollside);
+            pnlside.Controls.Add(button7);
+            pnlside.Controls.Add(button6);
+            pnlside.Controls.Add(button5);
+            pnlside.Controls.Add(button4);
+            pnlside.Controls.Add(button3);
+            pnlside.Controls.Add(button2);
+            pnlside.Controls.Add(button1);
             pnlside.Controls.Add(btnemployeeside);
             pnlside.Controls.Add(btnhome);
             pnlside.Location = new Point(9, 108);
@@ -80,29 +92,82 @@
             pnlside.TabIndex = 2;
             pnlside.Paint += pnlside_Paint;
             // 
-            // btnreportside
+            // button7
             // 
-            btnreportside.BackColor = SystemColors.Control;
-            btnreportside.ForeColor = SystemColors.InfoText;
-            btnreportside.Location = new Point(0, 185);
-            btnreportside.Name = "btnreportside";
-            btnreportside.Size = new Size(170, 54);
-            btnreportside.TabIndex = 3;
-            btnreportside.Text = "Reports";
-            btnreportside.UseVisualStyleBackColor = false;
-            btnreportside.Click += btnreportside_Click;
+            button7.BackColor = SystemColors.Control;
+            button7.ForeColor = SystemColors.InfoText;
+            button7.Location = new Point(0, 400);
+            button7.Name = "button7";
+            button7.Size = new Size(170, 36);
+            button7.TabIndex = 8;
+            button7.Text = "Log Out";
+            button7.UseVisualStyleBackColor = false;
             // 
-            // btnpayrollside
+            // button6
             // 
-            btnpayrollside.BackColor = SystemColors.Control;
-            btnpayrollside.ForeColor = SystemColors.InfoText;
-            btnpayrollside.Location = new Point(0, 129);
-            btnpayrollside.Name = "btnpayrollside";
-            btnpayrollside.Size = new Size(170, 50);
-            btnpayrollside.TabIndex = 2;
-            btnpayrollside.Text = "Payroll";
-            btnpayrollside.UseVisualStyleBackColor = false;
-            btnpayrollside.Click += button1_Click;
+            button6.BackColor = SystemColors.Control;
+            button6.ForeColor = SystemColors.InfoText;
+            button6.Location = new Point(0, 350);
+            button6.Name = "button6";
+            button6.Size = new Size(170, 36);
+            button6.TabIndex = 7;
+            button6.Text = "Change Password";
+            button6.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = SystemColors.Control;
+            button5.ForeColor = SystemColors.InfoText;
+            button5.Location = new Point(0, 301);
+            button5.Name = "button5";
+            button5.Size = new Size(170, 36);
+            button5.TabIndex = 6;
+            button5.Text = "Early Report";
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = SystemColors.Control;
+            button4.ForeColor = SystemColors.InfoText;
+            button4.Location = new Point(0, 254);
+            button4.Name = "button4";
+            button4.Size = new Size(170, 36);
+            button4.TabIndex = 5;
+            button4.Text = "Monthly Report";
+            button4.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = SystemColors.Control;
+            button3.ForeColor = SystemColors.InfoText;
+            button3.Location = new Point(0, 208);
+            button3.Name = "button3";
+            button3.Size = new Size(170, 36);
+            button3.TabIndex = 4;
+            button3.Text = "Salary Report";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.Control;
+            button2.ForeColor = SystemColors.InfoText;
+            button2.Location = new Point(0, 162);
+            button2.Name = "button2";
+            button2.Size = new Size(170, 36);
+            button2.TabIndex = 3;
+            button2.Text = "Employee Report";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Control;
+            button1.ForeColor = SystemColors.InfoText;
+            button1.Location = new Point(0, 117);
+            button1.Name = "button1";
+            button1.Size = new Size(170, 36);
+            button1.TabIndex = 2;
+            button1.Text = "Add Employees";
+            button1.UseVisualStyleBackColor = false;
             // 
             // btnemployeeside
             // 
@@ -110,10 +175,11 @@
             btnemployeeside.ForeColor = SystemColors.InfoText;
             btnemployeeside.Location = new Point(0, 73);
             btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(170, 50);
+            btnemployeeside.Size = new Size(170, 36);
             btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Employees";
+            btnemployeeside.Text = "Add Category";
             btnemployeeside.UseVisualStyleBackColor = false;
+            btnemployeeside.Click += btnemployeeside_Click;
             // 
             // btnhome
             // 
@@ -142,7 +208,8 @@
             // 
             // btnsettings
             // 
-            btnsettings.BackColor = SystemColors.ActiveCaption;
+            btnsettings.BackColor = SystemColors.ButtonFace;
+            btnsettings.Image = (Image)resources.GetObject("btnsettings.Image");
             btnsettings.Location = new Point(907, 264);
             btnsettings.Name = "btnsettings";
             btnsettings.Size = new Size(218, 209);
@@ -153,7 +220,8 @@
             // 
             // btnbenefits
             // 
-            btnbenefits.BackColor = SystemColors.ActiveCaption;
+            btnbenefits.BackColor = SystemColors.ButtonFace;
+            btnbenefits.Image = (Image)resources.GetObject("btnbenefits.Image");
             btnbenefits.Location = new Point(496, 264);
             btnbenefits.Name = "btnbenefits";
             btnbenefits.Size = new Size(218, 209);
@@ -164,7 +232,8 @@
             // 
             // btntax
             // 
-            btntax.BackColor = SystemColors.ActiveCaption;
+            btntax.BackColor = SystemColors.ButtonFace;
+            btntax.Image = (Image)resources.GetObject("btntax.Image");
             btntax.Location = new Point(91, 264);
             btntax.Name = "btntax";
             btntax.Size = new Size(218, 209);
@@ -175,7 +244,8 @@
             // 
             // btnreportscenter
             // 
-            btnreportscenter.BackColor = SystemColors.ActiveCaption;
+            btnreportscenter.BackColor = SystemColors.ButtonFace;
+            btnreportscenter.Image = (Image)resources.GetObject("btnreportscenter.Image");
             btnreportscenter.Location = new Point(907, 30);
             btnreportscenter.Name = "btnreportscenter";
             btnreportscenter.Size = new Size(218, 209);
@@ -186,8 +256,9 @@
             // 
             // btnpayrollcenter
             // 
-            btnpayrollcenter.BackColor = SystemColors.ActiveCaption;
+            btnpayrollcenter.BackColor = SystemColors.ButtonFace;
             btnpayrollcenter.Cursor = Cursors.Hand;
+            btnpayrollcenter.Image = (Image)resources.GetObject("btnpayrollcenter.Image");
             btnpayrollcenter.Location = new Point(496, 30);
             btnpayrollcenter.Name = "btnpayrollcenter";
             btnpayrollcenter.Size = new Size(218, 209);
@@ -199,7 +270,8 @@
             // 
             // btnemployeecenter
             // 
-            btnemployeecenter.BackColor = SystemColors.ActiveCaption;
+            btnemployeecenter.BackColor = SystemColors.ButtonFace;
+            btnemployeecenter.Image = (Image)resources.GetObject("btnemployeecenter.Image");
             btnemployeecenter.Location = new Point(91, 30);
             btnemployeecenter.Name = "btnemployeecenter";
             btnemployeecenter.Size = new Size(218, 209);
@@ -213,7 +285,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
+            ClientSize = new Size(1370, 651);
             Controls.Add(pnlcenter);
             Controls.Add(pnlside);
             Controls.Add(pnltop);
@@ -239,8 +311,13 @@
         private Button btnsettings;
         private Button btnbenefits;
         private Button btnemployeeside;
-        private Button btnpayrollside;
-        private Button btnreportside;
         private Label lblsystem;
+        private Button button2;
+        private Button button1;
+        private Button button5;
+        private Button button4;
+        private Button button3;
+        private Button button7;
+        private Button button6;
     }
 }

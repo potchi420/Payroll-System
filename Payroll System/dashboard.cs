@@ -58,5 +58,15 @@ namespace Payroll_System
         {
 
         }
+
+        private void lblsystem_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnemployeeside_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
