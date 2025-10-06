@@ -28,13 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnltop = new Panel();
-            lblsystem = new Label();
-            btnreportside = new Button();
-            btnpayrollside = new Button();
-            btnemployeeside = new Button();
-            btnhome = new Button();
-            pnlside = new Panel();
             panel2 = new Panel();
             deductions_box = new GroupBox();
             pagibig_value = new Label();
@@ -66,8 +59,19 @@
             generate_payslip_btn = new Button();
             payroll_breakdown_box = new GroupBox();
             dataGridView1 = new DataGridView();
-            pnltop.SuspendLayout();
-            pnlside.SuspendLayout();
+            pictureBox5 = new PictureBox();
+            label8 = new Label();
+            gradientPanel1 = new GradientPanel();
+            btnhome = new Button();
+            btnemployeeside = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            pnlside = new Panel();
             deductions_box.SuspendLayout();
             load_employee_box.SuspendLayout();
             payroll_computation_box.SuspendLayout();
@@ -75,82 +79,10 @@
             actions_box.SuspendLayout();
             payroll_breakdown_box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            gradientPanel1.SuspendLayout();
+            pnlside.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnltop
-            // 
-            pnltop.BackColor = SystemColors.Highlight;
-            pnltop.Controls.Add(lblsystem);
-            pnltop.Location = new Point(13, 15);
-            pnltop.Name = "pnltop";
-            pnltop.Size = new Size(1405, 75);
-            pnltop.TabIndex = 3;
-            // 
-            // lblsystem
-            // 
-            lblsystem.AutoSize = true;
-            lblsystem.Location = new Point(721, 29);
-            lblsystem.Name = "lblsystem";
-            lblsystem.Size = new Size(110, 15);
-            lblsystem.TabIndex = 0;
-            lblsystem.Text = "PCU Payroll System";
-            lblsystem.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnreportside
-            // 
-            btnreportside.BackColor = SystemColors.Control;
-            btnreportside.ForeColor = SystemColors.InfoText;
-            btnreportside.Location = new Point(0, 185);
-            btnreportside.Name = "btnreportside";
-            btnreportside.Size = new Size(170, 54);
-            btnreportside.TabIndex = 3;
-            btnreportside.Text = "Reports";
-            btnreportside.UseVisualStyleBackColor = false;
-            // 
-            // btnpayrollside
-            // 
-            btnpayrollside.BackColor = SystemColors.Control;
-            btnpayrollside.ForeColor = SystemColors.InfoText;
-            btnpayrollside.Location = new Point(0, 129);
-            btnpayrollside.Name = "btnpayrollside";
-            btnpayrollside.Size = new Size(170, 50);
-            btnpayrollside.TabIndex = 2;
-            btnpayrollside.Text = "Payroll";
-            btnpayrollside.UseVisualStyleBackColor = false;
-            // 
-            // btnemployeeside
-            // 
-            btnemployeeside.BackColor = SystemColors.Control;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(170, 50);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Employees";
-            btnemployeeside.UseVisualStyleBackColor = false;
-            // 
-            // btnhome
-            // 
-            btnhome.BackColor = SystemColors.Highlight;
-            btnhome.ForeColor = SystemColors.Menu;
-            btnhome.Location = new Point(0, 3);
-            btnhome.Name = "btnhome";
-            btnhome.Size = new Size(170, 64);
-            btnhome.TabIndex = 0;
-            btnhome.Text = "Home";
-            btnhome.UseVisualStyleBackColor = false;
-            // 
-            // pnlside
-            // 
-            pnlside.BackColor = SystemColors.GradientInactiveCaption;
-            pnlside.Controls.Add(btnreportside);
-            pnlside.Controls.Add(btnpayrollside);
-            pnlside.Controls.Add(btnemployeeside);
-            pnlside.Controls.Add(btnhome);
-            pnlside.Location = new Point(10, 96);
-            pnlside.Name = "pnlside";
-            pnlside.Size = new Size(170, 539);
-            pnlside.TabIndex = 4;
             // 
             // panel2
             // 
@@ -471,11 +403,164 @@
             dataGridView1.Size = new Size(213, 410);
             dataGridView1.TabIndex = 0;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.Image = Properties.Resources.icon;
+            pictureBox5.Location = new Point(0, 3);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(76, 75);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 22;
+            pictureBox5.TabStop = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(pictureBox5);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(2, 1);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1425, 76);
+            gradientPanel1.TabIndex = 20;
+            // 
+            // btnhome
+            // 
+            btnhome.BackColor = SystemColors.Control;
+            btnhome.ForeColor = SystemColors.InfoText;
+            btnhome.Location = new Point(0, 3);
+            btnhome.Name = "btnhome";
+            btnhome.Size = new Size(176, 64);
+            btnhome.TabIndex = 0;
+            btnhome.Text = "Home";
+            btnhome.UseVisualStyleBackColor = false;
+            // 
+            // btnemployeeside
+            // 
+            btnemployeeside.BackColor = Color.Transparent;
+            btnemployeeside.ForeColor = SystemColors.InfoText;
+            btnemployeeside.Location = new Point(0, 73);
+            btnemployeeside.Name = "btnemployeeside";
+            btnemployeeside.Size = new Size(176, 36);
+            btnemployeeside.TabIndex = 1;
+            btnemployeeside.Text = "Add Category";
+            btnemployeeside.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = SystemColors.Control;
+            button1.ForeColor = SystemColors.InfoText;
+            button1.Location = new Point(0, 117);
+            button1.Name = "button1";
+            button1.Size = new Size(176, 36);
+            button1.TabIndex = 2;
+            button1.Text = "Add Employees";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.Control;
+            button2.ForeColor = SystemColors.InfoText;
+            button2.Location = new Point(0, 162);
+            button2.Name = "button2";
+            button2.Size = new Size(176, 36);
+            button2.TabIndex = 3;
+            button2.Text = "Employee Report";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = SystemColors.Control;
+            button3.ForeColor = SystemColors.InfoText;
+            button3.Location = new Point(0, 208);
+            button3.Name = "button3";
+            button3.Size = new Size(176, 36);
+            button3.TabIndex = 4;
+            button3.Text = "Salary Report";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = SystemColors.Control;
+            button4.ForeColor = SystemColors.InfoText;
+            button4.Location = new Point(0, 254);
+            button4.Name = "button4";
+            button4.Size = new Size(176, 36);
+            button4.TabIndex = 5;
+            button4.Text = "Monthly Report";
+            button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = SystemColors.Control;
+            button5.ForeColor = SystemColors.InfoText;
+            button5.Location = new Point(0, 301);
+            button5.Name = "button5";
+            button5.Size = new Size(176, 36);
+            button5.TabIndex = 6;
+            button5.Text = "Early Report";
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            button6.BackColor = SystemColors.Control;
+            button6.ForeColor = SystemColors.InfoText;
+            button6.Location = new Point(0, 350);
+            button6.Name = "button6";
+            button6.Size = new Size(176, 36);
+            button6.TabIndex = 7;
+            button6.Text = "Change Password";
+            button6.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            button7.BackColor = SystemColors.Control;
+            button7.ForeColor = SystemColors.InfoText;
+            button7.Location = new Point(0, 400);
+            button7.Name = "button7";
+            button7.Size = new Size(176, 36);
+            button7.TabIndex = 8;
+            button7.Text = "Log Out";
+            button7.UseVisualStyleBackColor = false;
+            // 
+            // pnlside
+            // 
+            pnlside.BackColor = SystemColors.GradientInactiveCaption;
+            pnlside.Controls.Add(button7);
+            pnlside.Controls.Add(button6);
+            pnlside.Controls.Add(button5);
+            pnlside.Controls.Add(button4);
+            pnlside.Controls.Add(button3);
+            pnlside.Controls.Add(button2);
+            pnlside.Controls.Add(button1);
+            pnlside.Controls.Add(btnemployeeside);
+            pnlside.Controls.Add(btnhome);
+            pnlside.Location = new Point(2, 75);
+            pnlside.Name = "pnlside";
+            pnlside.Size = new Size(176, 575);
+            pnlside.TabIndex = 19;
+            // 
             // Payroll_process
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1429, 651);
+            Controls.Add(gradientPanel1);
+            Controls.Add(pnlside);
             Controls.Add(payroll_breakdown_box);
             Controls.Add(actions_box);
             Controls.Add(payroll_summary_box);
@@ -483,13 +568,8 @@
             Controls.Add(load_employee_box);
             Controls.Add(deductions_box);
             Controls.Add(panel2);
-            Controls.Add(pnltop);
-            Controls.Add(pnlside);
             Name = "Payroll_process";
             Text = "Payroll_process";
-            pnltop.ResumeLayout(false);
-            pnltop.PerformLayout();
-            pnlside.ResumeLayout(false);
             deductions_box.ResumeLayout(false);
             deductions_box.PerformLayout();
             load_employee_box.ResumeLayout(false);
@@ -501,18 +581,14 @@
             actions_box.ResumeLayout(false);
             payroll_breakdown_box.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            pnlside.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnltop;
-        private Label lblsystem;
-        private Button btnreportside;
-        private Button btnpayrollside;
-        private Button btnemployeeside;
-        private Button btnhome;
-        private Panel pnlside;
         private Panel panel2;
         private GroupBox deductions_box;
         private GroupBox load_employee_box;
@@ -545,5 +621,18 @@
         private Label overtime_value;
         private Label basic_salary_value;
         private DataGridView dataGridView1;
+        private PictureBox pictureBox5;
+        private Label label8;
+        private GradientPanel gradientPanel1;
+        private Button btnhome;
+        private Button btnemployeeside;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Panel pnlside;
     }
 }

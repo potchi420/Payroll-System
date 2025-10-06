@@ -33,5 +33,10 @@ namespace Payroll_System
             // should make a function to load employee data from database
             // make some changes to the labels and textboxes to display employee data, salary, etc.
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
