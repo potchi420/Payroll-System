@@ -59,9 +59,6 @@
             generate_payslip_btn = new Button();
             payroll_breakdown_box = new GroupBox();
             dataGridView1 = new DataGridView();
-            pictureBox5 = new PictureBox();
-            label8 = new Label();
-            gradientPanel1 = new GradientPanel();
             btnhome = new Button();
             btnemployeeside = new Button();
             button1 = new Button();
@@ -72,6 +69,9 @@
             button6 = new Button();
             button7 = new Button();
             pnlside = new Panel();
+            pictureBox5 = new PictureBox();
+            label8 = new Label();
+            gradientPanel1 = new GradientPanel();
             deductions_box.SuspendLayout();
             load_employee_box.SuspendLayout();
             payroll_computation_box.SuspendLayout();
@@ -79,9 +79,9 @@
             actions_box.SuspendLayout();
             payroll_breakdown_box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            pnlside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             gradientPanel1.SuspendLayout();
-            pnlside.SuspendLayout();
             SuspendLayout();
             // 
             // panel2
@@ -264,9 +264,9 @@
             overtime_label.AutoSize = true;
             overtime_label.Location = new Point(22, 67);
             overtime_label.Name = "overtime_label";
-            overtime_label.Size = new Size(76, 17);
+            overtime_label.Size = new Size(157, 17);
             overtime_label.TabIndex = 3;
-            overtime_label.Text = "Overtime: ";
+            overtime_label.Text = "Overtime and Benefits:";
             // 
             // basic_salary_label
             // 
@@ -403,41 +403,6 @@
             dataGridView1.Size = new Size(213, 410);
             dataGridView1.TabIndex = 0;
             // 
-            // pictureBox5
-            // 
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.Image = Properties.Resources.icon;
-            pictureBox5.Location = new Point(0, 3);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(76, 75);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 22;
-            pictureBox5.TabStop = false;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Transparent;
-            label8.Location = new Point(82, 30);
-            label8.Name = "label8";
-            label8.Size = new Size(258, 24);
-            label8.TabIndex = 23;
-            label8.Text = "PCU PAYROLL SYSTEM";
-            label8.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(2, 1);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1425, 76);
-            gradientPanel1.TabIndex = 20;
-            // 
             // btnhome
             // 
             btnhome.BackColor = SystemColors.Control;
@@ -555,6 +520,41 @@
             pnlside.Size = new Size(176, 575);
             pnlside.TabIndex = 19;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.Transparent;
+            pictureBox5.Image = Properties.Resources.icon;
+            pictureBox5.Location = new Point(0, 3);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(76, 75);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 22;
+            pictureBox5.TabStop = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(pictureBox5);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(2, 1);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1425, 76);
+            gradientPanel1.TabIndex = 20;
+            // 
             // Payroll_process
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -582,10 +582,10 @@
             actions_box.ResumeLayout(false);
             payroll_breakdown_box.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            pnlside.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
-            pnlside.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -622,9 +622,6 @@
         private Label overtime_value;
         private Label basic_salary_value;
         private DataGridView dataGridView1;
-        private PictureBox pictureBox5;
-        private Label label8;
-        private GradientPanel gradientPanel1;
         private Button btnhome;
         private Button btnemployeeside;
         private Button button1;
@@ -635,5 +632,8 @@
         private Button button6;
         private Button button7;
         private Panel pnlside;
+        private PictureBox pictureBox5;
+        private Label label8;
+        private GradientPanel gradientPanel1;
     }
 }

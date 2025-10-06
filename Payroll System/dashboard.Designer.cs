@@ -165,6 +165,7 @@
             // btnhome
             // 
             btnhome.BackColor = Color.FromArgb(33, 145, 245);
+            btnhome.Cursor = Cursors.Hand;
             btnhome.ForeColor = SystemColors.InfoText;
             btnhome.Location = new Point(0, 3);
             btnhome.Name = "btnhome";
@@ -191,6 +192,7 @@
             // btnsettings
             // 
             btnsettings.BackColor = SystemColors.ButtonFace;
+            btnsettings.Cursor = Cursors.Hand;
             btnsettings.Image = (Image)resources.GetObject("btnsettings.Image");
             btnsettings.Location = new Point(907, 264);
             btnsettings.Name = "btnsettings";
@@ -203,6 +205,7 @@
             // btnbenefits
             // 
             btnbenefits.BackColor = SystemColors.ButtonFace;
+            btnbenefits.Cursor = Cursors.Hand;
             btnbenefits.Image = (Image)resources.GetObject("btnbenefits.Image");
             btnbenefits.Location = new Point(496, 264);
             btnbenefits.Name = "btnbenefits";
@@ -215,6 +218,7 @@
             // btntax
             // 
             btntax.BackColor = SystemColors.ButtonFace;
+            btntax.Cursor = Cursors.Hand;
             btntax.Image = (Image)resources.GetObject("btntax.Image");
             btntax.Location = new Point(91, 264);
             btntax.Name = "btntax";
@@ -227,6 +231,7 @@
             // btnreportscenter
             // 
             btnreportscenter.BackColor = SystemColors.ButtonFace;
+            btnreportscenter.Cursor = Cursors.Hand;
             btnreportscenter.Image = (Image)resources.GetObject("btnreportscenter.Image");
             btnreportscenter.Location = new Point(907, 30);
             btnreportscenter.Name = "btnreportscenter";
@@ -253,6 +258,7 @@
             // btnemployeecenter
             // 
             btnemployeecenter.BackColor = SystemColors.ButtonFace;
+            btnemployeecenter.Cursor = Cursors.Hand;
             btnemployeecenter.Image = (Image)resources.GetObject("btnemployeecenter.Image");
             btnemployeecenter.Location = new Point(91, 30);
             btnemployeecenter.Name = "btnemployeecenter";

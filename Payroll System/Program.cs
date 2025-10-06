@@ -7,13 +7,13 @@ namespace Payroll_System
         /// </summary>
         [STAThread]
         
-        static void Main(
+        static void Main()
         {
             ApplicationConfiguration.Initialize();
 
             try
             {
-                Application.Run(new Login());
+                Application.Run(new dashboard());
             }
             catch (Exception ex)
             {
