@@ -24,7 +24,10 @@ namespace Payroll_System
 
         private void btnemployee_Click(object sender, EventArgs e)
         {
-
+            Employeedashboard employeedashboard = new Employeedashboard();
+            employeedashboard.Show();
+            this.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace Payroll_System
             Payroll_process payroll_process = new Payroll_process();
             payroll_process.Show();
             this.Show();
+            this.Hide();
         }
 
         private void pnlside_Paint(object sender, PaintEventArgs e)
@@ -67,6 +71,14 @@ namespace Payroll_System
         private void btnemployeeside_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnhome_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
         }
     }
 }

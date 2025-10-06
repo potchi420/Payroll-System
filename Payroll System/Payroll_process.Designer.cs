@@ -448,6 +448,7 @@
             btnhome.TabIndex = 0;
             btnhome.Text = "Home";
             btnhome.UseVisualStyleBackColor = false;
+            btnhome.Click += btnhome_Click_1;
             // 
             // btnemployeeside
             // 

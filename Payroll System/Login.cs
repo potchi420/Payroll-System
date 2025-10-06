@@ -29,7 +29,6 @@ namespace Payroll_System
         {
             Register register = new Register();
             register.Show();
-            this.Hide();
         }
 
         private void btnblogin_Click(object sender, EventArgs e)

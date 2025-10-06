@@ -7,7 +7,7 @@ namespace Payroll_System
         /// </summary>
         [STAThread]
         
-        static void Main()
+        static void Main(
         {
             ApplicationConfiguration.Initialize();
 
