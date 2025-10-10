@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gradientPanel1 = new GradientPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BenefitsAdministration));
             label8 = new Label();
             pictureBox5 = new PictureBox();
             pnlside = new Panel();
@@ -41,27 +41,28 @@
             button1 = new Button();
             btnemployeeside = new Button();
             btnhome = new Button();
-            gradientPanel1.SuspendLayout();
+            panel1 = new Panel();
+            label1 = new Label();
+            button8 = new Button();
+            panel2 = new Panel();
+            label2 = new Label();
+            button9 = new Button();
+            panel3 = new Panel();
+            label3 = new Label();
+            button10 = new Button();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             pnlside.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(2, 1);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1425, 76);
-            gradientPanel1.TabIndex = 22;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Transparent;
             label8.Location = new Point(82, 30);
             label8.Name = "label8";
@@ -197,20 +198,143 @@
             btnhome.Text = "Home";
             btnhome.UseVisualStyleBackColor = false;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(button8);
+            panel1.Location = new Point(271, 120);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(662, 106);
+            panel1.TabIndex = 22;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(107, 57);
+            label1.Name = "label1";
+            label1.Size = new Size(522, 17);
+            label1.TabIndex = 26;
+            label1.Text = "a comprehensive list or guide that outlines the perks, services, and rewards available";
+            // 
+            // button8
+            // 
+            button8.BackColor = SystemColors.Control;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.ImageAlign = ContentAlignment.MiddleLeft;
+            button8.Location = new Point(0, 0);
+            button8.Name = "button8";
+            button8.Padding = new Padding(30, 0, 0, 0);
+            button8.Size = new Size(662, 106);
+            button8.TabIndex = 24;
+            button8.Text = "                  Benefit Catalog\r\n\r\n";
+            button8.TextAlign = ContentAlignment.MiddleLeft;
+            button8.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(button9);
+            panel2.Location = new Point(271, 252);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(662, 106);
+            panel2.TabIndex = 25;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(107, 57);
+            label2.Name = "label2";
+            label2.Size = new Size(527, 17);
+            label2.TabIndex = 27;
+            label2.Text = "the process of allocating specific perks, rewards, or entitlements to eligible employees";
+            // 
+            // button9
+            // 
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.ImageAlign = ContentAlignment.MiddleLeft;
+            button9.Location = new Point(0, 0);
+            button9.Name = "button9";
+            button9.Padding = new Padding(30, 0, 0, 0);
+            button9.Size = new Size(662, 106);
+            button9.TabIndex = 24;
+            button9.Text = "                               \r\n                  Assign Benefits\r\n\r\n\r\n";
+            button9.TextAlign = ContentAlignment.MiddleLeft;
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(button10);
+            panel3.Location = new Point(271, 383);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(700, 106);
+            panel3.TabIndex = 25;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(107, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(583, 17);
+            label3.TabIndex = 28;
+            label3.Text = "a concise overview of the key details, coverage, and value of the benefits offered to employees";
+            // 
+            // button10
+            // 
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button10.Image = (Image)resources.GetObject("button10.Image");
+            button10.ImageAlign = ContentAlignment.MiddleLeft;
+            button10.Location = new Point(0, 0);
+            button10.Name = "button10";
+            button10.Padding = new Padding(30, 0, 0, 0);
+            button10.Size = new Size(700, 106);
+            button10.TabIndex = 24;
+            button10.Text = "                               \r\n                 Benefit Summary\r\n\r\n\r\n";
+            button10.TextAlign = ContentAlignment.MiddleLeft;
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click_1;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(271, 75);
+            label4.Name = "label4";
+            label4.Size = new Size(270, 32);
+            label4.TabIndex = 26;
+            label4.Text = "Benefits Administration";
+            label4.Click += label4_Click;
+            // 
             // BenefitsAdministration
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
-            Controls.Add(gradientPanel1);
+            ClientSize = new Size(1066, 535);
+            Controls.Add(label4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(pnlside);
             Name = "BenefitsAdministration";
-            Text = "BenefitsAdministration";
-            gradientPanel1.ResumeLayout(false);
-            gradientPanel1.PerformLayout();
+            Text = "           BenefitsAdministration";
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             pnlside.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -228,5 +352,15 @@
         private Button button1;
         private Button btnemployeeside;
         private Button btnhome;
+        private Panel panel1;
+        private Button button8;
+        private Panel panel2;
+        private Button button9;
+        private Panel panel3;
+        private Button button10;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
     }
 }
