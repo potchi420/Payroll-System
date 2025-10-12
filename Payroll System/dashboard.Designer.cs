@@ -240,6 +240,7 @@
             btnreportscenter.Text = "Reports\r\n\r\n";
             btnreportscenter.TextAlign = ContentAlignment.BottomCenter;
             btnreportscenter.UseVisualStyleBackColor = false;
+            btnreportscenter.Click += btnreportscenter_Click;
             // 
             // btnpayrollcenter
             // 

@@ -30,6 +30,22 @@ namespace Payroll_System
             this.Hide();
         }
 
+        private void btnpayrollcenter_Click(object sender, EventArgs e)
+        {
+            Payroll_process payroll_process = new Payroll_process();
+            payroll_process.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void btnreportscenter_Click(object sender, EventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.Show();
+            this.Show();
+            this.Hide();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -43,19 +59,6 @@ namespace Payroll_System
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnreportside_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnpayrollcenter_Click(object sender, EventArgs e)
-        {
-            Payroll_process payroll_process = new Payroll_process();
-            payroll_process.Show();
-            this.Show();
-            this.Hide();
         }
 
         private void pnlside_Paint(object sender, PaintEventArgs e)
@@ -80,5 +83,7 @@ namespace Payroll_System
             this.Show();
             this.Hide();
         }
+
+        
     }
 }
