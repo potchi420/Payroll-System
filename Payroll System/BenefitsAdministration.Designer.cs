@@ -204,7 +204,7 @@
             panel1.Controls.Add(button8);
             panel1.Location = new Point(271, 120);
             panel1.Name = "panel1";
-            panel1.Size = new Size(662, 106);
+            panel1.Size = new Size(700, 106);
             panel1.TabIndex = 22;
             // 
             // label1
@@ -227,11 +227,12 @@
             button8.Location = new Point(0, 0);
             button8.Name = "button8";
             button8.Padding = new Padding(30, 0, 0, 0);
-            button8.Size = new Size(662, 106);
+            button8.Size = new Size(700, 106);
             button8.TabIndex = 24;
             button8.Text = "                  Benefit Catalog\r\n\r\n";
             button8.TextAlign = ContentAlignment.MiddleLeft;
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click_1;
             // 
             // panel2
             // 
@@ -239,7 +240,7 @@
             panel2.Controls.Add(button9);
             panel2.Location = new Point(271, 252);
             panel2.Name = "panel2";
-            panel2.Size = new Size(662, 106);
+            panel2.Size = new Size(700, 106);
             panel2.TabIndex = 25;
             // 
             // label2
@@ -261,7 +262,7 @@
             button9.Location = new Point(0, 0);
             button9.Name = "button9";
             button9.Padding = new Padding(30, 0, 0, 0);
-            button9.Size = new Size(662, 106);
+            button9.Size = new Size(700, 106);
             button9.TabIndex = 24;
             button9.Text = "                               \r\n                  Assign Benefits\r\n\r\n\r\n";
             button9.TextAlign = ContentAlignment.MiddleLeft;
