@@ -27,7 +27,7 @@ namespace Payroll_System
 
             // Accent line for PhilHealth panel
             // Accent line for PhilHealth panel – split into yellow and green
-            int accentWidth = 5;
+            int accentWidth = 4;
             int halfWidth = accentWidth / 2;
 
             // Yellow half
@@ -54,6 +54,16 @@ namespace Payroll_System
             pagibigAccent.BackColor = Color.DarkBlue;
             this.Controls.Add(pagibigAccent);
             pagibigAccent.BringToFront();
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
 
         }
     }
