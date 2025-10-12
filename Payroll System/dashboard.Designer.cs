@@ -194,7 +194,7 @@
             btnsettings.BackColor = SystemColors.ButtonFace;
             btnsettings.Cursor = Cursors.Hand;
             btnsettings.Image = (Image)resources.GetObject("btnsettings.Image");
-            btnsettings.Location = new Point(907, 264);
+            btnsettings.Location = new Point(860, 264);
             btnsettings.Name = "btnsettings";
             btnsettings.Size = new Size(218, 209);
             btnsettings.TabIndex = 5;
@@ -207,13 +207,14 @@
             btnbenefits.BackColor = SystemColors.ButtonFace;
             btnbenefits.Cursor = Cursors.Hand;
             btnbenefits.Image = (Image)resources.GetObject("btnbenefits.Image");
-            btnbenefits.Location = new Point(496, 264);
+            btnbenefits.Location = new Point(485, 264);
             btnbenefits.Name = "btnbenefits";
             btnbenefits.Size = new Size(218, 209);
             btnbenefits.TabIndex = 4;
             btnbenefits.Text = "Benefits\r\nAdministration\r\n\r\n";
             btnbenefits.TextAlign = ContentAlignment.BottomCenter;
             btnbenefits.UseVisualStyleBackColor = false;
+            btnbenefits.Click += btnbenefits_Click;
             // 
             // btntax
             // 
@@ -233,7 +234,7 @@
             btnreportscenter.BackColor = SystemColors.ButtonFace;
             btnreportscenter.Cursor = Cursors.Hand;
             btnreportscenter.Image = (Image)resources.GetObject("btnreportscenter.Image");
-            btnreportscenter.Location = new Point(907, 30);
+            btnreportscenter.Location = new Point(860, 30);
             btnreportscenter.Name = "btnreportscenter";
             btnreportscenter.Size = new Size(218, 209);
             btnreportscenter.TabIndex = 2;
@@ -247,7 +248,7 @@
             btnpayrollcenter.BackColor = SystemColors.ButtonFace;
             btnpayrollcenter.Cursor = Cursors.Hand;
             btnpayrollcenter.Image = (Image)resources.GetObject("btnpayrollcenter.Image");
-            btnpayrollcenter.Location = new Point(496, 30);
+            btnpayrollcenter.Location = new Point(485, 30);
             btnpayrollcenter.Name = "btnpayrollcenter";
             btnpayrollcenter.Size = new Size(218, 209);
             btnpayrollcenter.TabIndex = 1;
@@ -300,9 +301,9 @@
             gradientPanel1.Controls.Add(pictureBox5);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(3, -2);
+            gradientPanel1.Location = new Point(-3, -2);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1425, 76);
+            gradientPanel1.Size = new Size(1431, 76);
             gradientPanel1.TabIndex = 4;
             // 
             // dashboard

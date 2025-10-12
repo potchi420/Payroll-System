@@ -232,7 +232,6 @@
             button8.Text = "                  Benefit Catalog\r\n\r\n";
             button8.TextAlign = ContentAlignment.MiddleLeft;
             button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click_1;
             // 
             // panel2
             // 
@@ -266,7 +265,6 @@
             button9.TabIndex = 24;
             button9.Text = "                               \r\n                  Assign Benefits\r\n\r\n\r\n";
             button9.TextAlign = ContentAlignment.MiddleLeft;
-            button9.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -318,7 +316,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1066, 535);
+            ClientSize = new Size(1174, 651);
             Controls.Add(label4);
             Controls.Add(panel3);
             Controls.Add(panel2);

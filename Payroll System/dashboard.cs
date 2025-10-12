@@ -84,6 +84,12 @@ namespace Payroll_System
             this.Hide();
         }
 
-        
+        private void btnbenefits_Click(object sender, EventArgs e)
+        {
+            BenefitsAdministration benefits = new BenefitsAdministration();
+            benefits.Show();
+            this.Show();
+            this.Hide();
+        }
     }
 }
