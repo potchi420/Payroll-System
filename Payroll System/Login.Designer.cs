@@ -33,7 +33,6 @@
             label2 = new Label();
             label1 = new Label();
             PCU = new Label();
-            login_btn = new Button();
             password = new TextBox();
             label5 = new Label();
             username = new TextBox();
@@ -85,14 +84,6 @@
             PCU.Name = "PCU";
             PCU.Size = new Size(100, 23);
             PCU.TabIndex = 0;
-            // 
-            // login_btn
-            // 
-            login_btn.Location = new Point(0, 0);
-            login_btn.Margin = new Padding(3, 2, 3, 2);
-            login_btn.Name = "login_btn";
-            login_btn.Size = new Size(66, 17);
-            login_btn.TabIndex = 19;
             // 
             // password
             // 
@@ -283,7 +274,7 @@
             gradientPanel3.Controls.Add(label10);
             gradientPanel3.gradientBottom = Color.Empty;
             gradientPanel3.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel3.Location = new Point(0, -2);
+            gradientPanel3.Location = new Point(-2, 0);
             gradientPanel3.Name = "gradientPanel3";
             gradientPanel3.Size = new Size(539, 617);
             gradientPanel3.TabIndex = 18;
@@ -299,7 +290,6 @@
             Controls.Add(register_link);
             Controls.Add(label4);
             Controls.Add(label8);
-            Controls.Add(login_btn);
             Controls.Add(password);
             Controls.Add(label5);
             Controls.Add(username);
@@ -329,7 +319,6 @@
         private Label label2;
         private GradientPanel gradientPanel2;
         private Button login;
-        private Button login_btn;
         private TextBox password;
         private Label label5;
         private TextBox username;
