@@ -41,5 +41,13 @@ namespace Payroll_System
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
     }
 }
