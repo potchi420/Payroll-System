@@ -57,8 +57,7 @@
             print_payslip_btn = new Button();
             export_btn = new Button();
             generate_payslip_btn = new Button();
-            payroll_breakdown_box = new GroupBox();
-            dataGridView1 = new DataGridView();
+            pay_period_box = new GroupBox();
             btnhome = new Button();
             btnemployeeside = new Button();
             button1 = new Button();
@@ -72,13 +71,18 @@
             pictureBox5 = new PictureBox();
             label8 = new Label();
             gradientPanel1 = new GradientPanel();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            payperiod = new DateTimePicker();
+            label1 = new Label();
+            label3 = new Label();
+            dateTimePicker1 = new DateTimePicker();
             deductions_box.SuspendLayout();
             load_employee_box.SuspendLayout();
             payroll_computation_box.SuspendLayout();
             payroll_summary_box.SuspendLayout();
             actions_box.SuspendLayout();
-            payroll_breakdown_box.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            pay_period_box.SuspendLayout();
             pnlside.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             gradientPanel1.SuspendLayout();
@@ -382,26 +386,20 @@
             generate_payslip_btn.Text = "Generate Payslip";
             generate_payslip_btn.UseVisualStyleBackColor = true;
             // 
-            // payroll_breakdown_box
+            // pay_period_box
             // 
-            payroll_breakdown_box.Controls.Add(dataGridView1);
-            payroll_breakdown_box.Font = new Font("Arial", 11F);
-            payroll_breakdown_box.Location = new Point(1105, 107);
-            payroll_breakdown_box.Name = "payroll_breakdown_box";
-            payroll_breakdown_box.Size = new Size(301, 528);
-            payroll_breakdown_box.TabIndex = 18;
-            payroll_breakdown_box.TabStop = false;
-            payroll_breakdown_box.Text = "Payroll Breakdown";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(50, 74);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(213, 410);
-            dataGridView1.TabIndex = 0;
+            pay_period_box.Controls.Add(label3);
+            pay_period_box.Controls.Add(dateTimePicker1);
+            pay_period_box.Controls.Add(label1);
+            pay_period_box.Controls.Add(payperiod);
+            pay_period_box.Controls.Add(groupBox1);
+            pay_period_box.Font = new Font("Arial", 11F);
+            pay_period_box.Location = new Point(1105, 107);
+            pay_period_box.Name = "pay_period_box";
+            pay_period_box.Size = new Size(301, 202);
+            pay_period_box.TabIndex = 18;
+            pay_period_box.TabStop = false;
+            pay_period_box.Text = "Pay Period";
             // 
             // btnhome
             // 
@@ -556,14 +554,67 @@
             gradientPanel1.Size = new Size(1425, 76);
             gradientPanel1.TabIndex = 20;
             // 
+            // groupBox1
+            // 
+            groupBox1.Font = new Font("Arial", 11F);
+            groupBox1.Location = new Point(6, 269);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(301, 274);
+            groupBox1.TabIndex = 21;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Payroll Breakdown";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Font = new Font("Arial", 11F);
+            groupBox2.Location = new Point(1105, 329);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(301, 306);
+            groupBox2.TabIndex = 21;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Payroll Breakdown";
+            // 
+            // payperiod
+            // 
+            payperiod.Location = new Point(50, 64);
+            payperiod.Name = "payperiod";
+            payperiod.Size = new Size(200, 24);
+            payperiod.TabIndex = 22;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(50, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 17);
+            label1.TabIndex = 23;
+            label1.Text = "Pay Period Start:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(50, 118);
+            label3.Name = "label3";
+            label3.Size = new Size(113, 17);
+            label3.TabIndex = 25;
+            label3.Text = "Pay Period End:";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(50, 145);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 24);
+            dateTimePicker1.TabIndex = 24;
+            // 
             // Payroll_process
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1429, 651);
+            Controls.Add(groupBox2);
             Controls.Add(gradientPanel1);
             Controls.Add(pnlside);
-            Controls.Add(payroll_breakdown_box);
+            Controls.Add(pay_period_box);
             Controls.Add(actions_box);
             Controls.Add(payroll_summary_box);
             Controls.Add(payroll_computation_box);
@@ -581,8 +632,8 @@
             payroll_summary_box.ResumeLayout(false);
             payroll_summary_box.PerformLayout();
             actions_box.ResumeLayout(false);
-            payroll_breakdown_box.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            pay_period_box.ResumeLayout(false);
+            pay_period_box.PerformLayout();
             pnlside.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             gradientPanel1.ResumeLayout(false);
@@ -601,7 +652,7 @@
         private ComboBox comboBox1;
         private Label employee_label;
         private Button load_employee_btn;
-        private GroupBox payroll_breakdown_box;
+        private GroupBox pay_period_box;
         private Button generate_payslip_btn;
         private Button print_payslip_btn;
         private Button export_btn;
@@ -622,7 +673,6 @@
         private Label gross_pay_value;
         private Label overtime_value;
         private Label basic_salary_value;
-        private DataGridView dataGridView1;
         private Button btnhome;
         private Button btnemployeeside;
         private Button button1;
@@ -636,5 +686,11 @@
         private PictureBox pictureBox5;
         private Label label8;
         private GradientPanel gradientPanel1;
+        private Label label1;
+        private DateTimePicker payperiod;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private Label label3;
+        private DateTimePicker dateTimePicker1;
     }
 }
