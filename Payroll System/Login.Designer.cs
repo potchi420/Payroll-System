@@ -106,11 +106,11 @@
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.White;
-            label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 12F);
             label5.ForeColor = Color.DimGray;
             label5.Location = new Point(678, 279);
             label5.Name = "label5";
-            label5.Size = new Size(78, 18);
+            label5.Size = new Size(76, 21);
             label5.TabIndex = 10;
             label5.Text = "Password";
             // 
@@ -125,11 +125,11 @@
             // 
             label3.AutoSize = true;
             label3.BackColor = Color.White;
-            label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI", 12F);
             label3.ForeColor = Color.DimGray;
             label3.Location = new Point(678, 205);
             label3.Name = "label3";
-            label3.Size = new Size(80, 18);
+            label3.Size = new Size(81, 21);
             label3.TabIndex = 8;
             label3.Text = "Username";
             // 

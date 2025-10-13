@@ -45,6 +45,12 @@
             label5 = new Label();
             label6 = new Label();
             panel6 = new Panel();
+            total_deduction_value = new Label();
+            linkLabel2 = new LinkLabel();
+            total_benefits_value = new Label();
+            label17 = new Label();
+            total_tax_value = new Label();
+            label15 = new Label();
             label1 = new Label();
             btnhome = new Button();
             btnemployeeside = new Button();
@@ -67,12 +73,6 @@
             label12 = new Label();
             overtime_label = new Label();
             basic_salary_label = new Label();
-            total_tax_value = new Label();
-            label15 = new Label();
-            total_benefits_value = new Label();
-            label17 = new Label();
-            linkLabel2 = new LinkLabel();
-            total_deduction_value = new Label();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             sss_panel.SuspendLayout();
@@ -154,7 +154,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial Narrow", 15F);
             label3.Location = new Point(163, 26);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
@@ -165,7 +165,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Arial", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial", 26.25F);
             label2.Location = new Point(206, 102);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
@@ -210,7 +210,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Arial Narrow", 15F);
             label9.Location = new Point(154, 30);
             label9.Margin = new Padding(0);
             label9.Name = "label9";
@@ -242,7 +242,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Arial Narrow", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Font = new Font("Arial Narrow", 15F);
             label6.Location = new Point(151, 30);
             label6.Margin = new Padding(0);
             label6.Name = "label6";
@@ -264,10 +264,73 @@
             panel6.Size = new Size(582, 167);
             panel6.TabIndex = 33;
             // 
+            // total_deduction_value
+            // 
+            total_deduction_value.AutoSize = true;
+            total_deduction_value.Font = new Font("Arial", 14.25F);
+            total_deduction_value.Location = new Point(502, 123);
+            total_deduction_value.Name = "total_deduction_value";
+            total_deduction_value.Size = new Size(61, 22);
+            total_deduction_value.TabIndex = 31;
+            total_deduction_value.Text = "₱0.00";
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.ActiveLinkColor = Color.Transparent;
+            linkLabel2.AutoSize = true;
+            linkLabel2.ForeColor = Color.FromArgb(133, 133, 133);
+            linkLabel2.LinkColor = Color.Gray;
+            linkLabel2.Location = new Point(25, 102);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(538, 15);
+            linkLabel2.TabIndex = 30;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "                                                                                                                                                                                 ";
+            // 
+            // total_benefits_value
+            // 
+            total_benefits_value.AutoSize = true;
+            total_benefits_value.Font = new Font("Arial", 14.25F);
+            total_benefits_value.Location = new Point(502, 70);
+            total_benefits_value.Name = "total_benefits_value";
+            total_benefits_value.Size = new Size(61, 22);
+            total_benefits_value.TabIndex = 16;
+            total_benefits_value.Text = "₱0.00";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Arial", 14.25F);
+            label17.Location = new Point(25, 70);
+            label17.Name = "label17";
+            label17.Size = new Size(80, 22);
+            label17.TabIndex = 15;
+            label17.Text = "Benefits";
+            // 
+            // total_tax_value
+            // 
+            total_tax_value.AutoSize = true;
+            total_tax_value.Font = new Font("Arial", 14.25F);
+            total_tax_value.Location = new Point(502, 33);
+            total_tax_value.Name = "total_tax_value";
+            total_tax_value.Size = new Size(61, 22);
+            total_tax_value.TabIndex = 14;
+            total_tax_value.Text = "₱0.00";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial", 14.25F);
+            label15.Location = new Point(25, 33);
+            label15.Name = "label15";
+            label15.Size = new Size(39, 22);
+            label15.TabIndex = 13;
+            label15.Text = "Tax";
+            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 15.75F);
             label1.Location = new Point(206, 184);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
@@ -394,7 +457,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new Font("Arial", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.Font = new Font("Arial", 15.75F);
             label10.Location = new Point(206, 422);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
@@ -405,7 +468,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Arial", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Font = new Font("Arial", 15.75F);
             label11.Location = new Point(810, 422);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
@@ -508,69 +571,6 @@
             basic_salary_label.Size = new Size(114, 17);
             basic_salary_label.TabIndex = 9;
             basic_salary_label.Text = "Food Allowance:";
-            // 
-            // total_tax_value
-            // 
-            total_tax_value.AutoSize = true;
-            total_tax_value.Font = new Font("Arial", 14.25F);
-            total_tax_value.Location = new Point(502, 33);
-            total_tax_value.Name = "total_tax_value";
-            total_tax_value.Size = new Size(61, 22);
-            total_tax_value.TabIndex = 14;
-            total_tax_value.Text = "₱0.00";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Arial", 14.25F);
-            label15.Location = new Point(25, 33);
-            label15.Name = "label15";
-            label15.Size = new Size(39, 22);
-            label15.TabIndex = 13;
-            label15.Text = "Tax";
-            // 
-            // total_benefits_value
-            // 
-            total_benefits_value.AutoSize = true;
-            total_benefits_value.Font = new Font("Arial", 14.25F);
-            total_benefits_value.Location = new Point(502, 70);
-            total_benefits_value.Name = "total_benefits_value";
-            total_benefits_value.Size = new Size(61, 22);
-            total_benefits_value.TabIndex = 16;
-            total_benefits_value.Text = "₱0.00";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Arial", 14.25F);
-            label17.Location = new Point(25, 70);
-            label17.Name = "label17";
-            label17.Size = new Size(80, 22);
-            label17.TabIndex = 15;
-            label17.Text = "Benefits";
-            // 
-            // linkLabel2
-            // 
-            linkLabel2.ActiveLinkColor = Color.Transparent;
-            linkLabel2.AutoSize = true;
-            linkLabel2.ForeColor = Color.FromArgb(133, 133, 133);
-            linkLabel2.LinkColor = Color.Gray;
-            linkLabel2.Location = new Point(25, 102);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(538, 15);
-            linkLabel2.TabIndex = 30;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "                                                                                                                                                                                 ";
-            // 
-            // total_deduction_value
-            // 
-            total_deduction_value.AutoSize = true;
-            total_deduction_value.Font = new Font("Arial", 14.25F);
-            total_deduction_value.Location = new Point(502, 123);
-            total_deduction_value.Name = "total_deduction_value";
-            total_deduction_value.Size = new Size(61, 22);
-            total_deduction_value.TabIndex = 31;
-            total_deduction_value.Text = "₱0.00";
             // 
             // Reports
             // 
