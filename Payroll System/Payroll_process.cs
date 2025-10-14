@@ -34,25 +34,33 @@ namespace Payroll_System
             // make some changes to the labels and textboxes to display employee data, salary, etc.
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnhome_Click_1(object sender, EventArgs e)
-        {
-            dashboard db = new dashboard();
-            db.Show();
-            this.Show();
-            this.Hide();
-        }
-
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             dashboard db = new dashboard();
             db.Show();
             this.Show();
             this.Hide();
+        }
+
+        private void logo_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void home_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

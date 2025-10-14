@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
-            gradientPanel1 = new GradientPanel();
-            label8 = new Label();
-            pictureBox5 = new PictureBox();
             sss_panel = new Panel();
             dataGridView1 = new DataGridView();
             label4 = new Label();
@@ -52,16 +49,6 @@
             total_tax_value = new Label();
             label15 = new Label();
             label1 = new Label();
-            btnhome = new Button();
-            btnemployeeside = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            panel1 = new Panel();
             label10 = new Label();
             label11 = new Label();
             panel5 = new Panel();
@@ -73,51 +60,20 @@
             label12 = new Label();
             overtime_label = new Label();
             basic_salary_label = new Label();
-            gradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            gradientPanel1 = new GradientPanel();
+            home = new Label();
+            logout = new Label();
+            label8 = new Label();
+            logo = new PictureBox();
             sss_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pagibig_panel.SuspendLayout();
             philhealth_panel.SuspendLayout();
             panel6.SuspendLayout();
-            panel1.SuspendLayout();
             panel5.SuspendLayout();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(176, 1);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1251, 76);
-            gradientPanel1.TabIndex = 26;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Transparent;
-            label8.Location = new Point(82, 30);
-            label8.Name = "label8";
-            label8.Size = new Size(258, 24);
-            label8.TabIndex = 23;
-            label8.Text = "PCU PAYROLL SYSTEM";
-            label8.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.Image = Properties.Resources.icon;
-            pictureBox5.Location = new Point(0, 3);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(76, 75);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 22;
-            pictureBox5.TabStop = false;
             // 
             // sss_panel
             // 
@@ -125,7 +81,7 @@
             sss_panel.Controls.Add(dataGridView1);
             sss_panel.Controls.Add(label4);
             sss_panel.Controls.Add(label3);
-            sss_panel.Location = new Point(206, 228);
+            sss_panel.Location = new Point(9, 235);
             sss_panel.Name = "sss_panel";
             sss_panel.Size = new Size(376, 169);
             sss_panel.TabIndex = 27;
@@ -166,7 +122,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 26.25F);
-            label2.Location = new Point(206, 102);
+            label2.Location = new Point(9, 109);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(137, 40);
@@ -179,9 +135,9 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(203, 148);
+            linkLabel1.Location = new Point(6, 155);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1189, 15);
+            linkLabel1.Size = new Size(1057, 15);
             linkLabel1.TabIndex = 29;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
@@ -191,7 +147,7 @@
             pagibig_panel.BorderStyle = BorderStyle.FixedSingle;
             pagibig_panel.Controls.Add(label7);
             pagibig_panel.Controls.Add(label9);
-            pagibig_panel.Location = new Point(1013, 228);
+            pagibig_panel.Location = new Point(816, 235);
             pagibig_panel.Name = "pagibig_panel";
             pagibig_panel.Size = new Size(376, 169);
             pagibig_panel.TabIndex = 30;
@@ -223,7 +179,7 @@
             philhealth_panel.BorderStyle = BorderStyle.FixedSingle;
             philhealth_panel.Controls.Add(label5);
             philhealth_panel.Controls.Add(label6);
-            philhealth_panel.Location = new Point(612, 228);
+            philhealth_panel.Location = new Point(415, 235);
             philhealth_panel.Name = "philhealth_panel";
             philhealth_panel.Size = new Size(376, 169);
             philhealth_panel.TabIndex = 31;
@@ -259,7 +215,7 @@
             panel6.Controls.Add(label17);
             panel6.Controls.Add(total_tax_value);
             panel6.Controls.Add(label15);
-            panel6.Location = new Point(810, 464);
+            panel6.Location = new Point(613, 471);
             panel6.Name = "panel6";
             panel6.Size = new Size(582, 167);
             panel6.TabIndex = 33;
@@ -331,134 +287,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(206, 184);
+            label1.Location = new Point(9, 191);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(179, 24);
             label1.TabIndex = 26;
             label1.Text = "Total Tax Withheld";
             // 
-            // btnhome
-            // 
-            btnhome.BackColor = SystemColors.Control;
-            btnhome.ForeColor = SystemColors.InfoText;
-            btnhome.Location = new Point(0, 3);
-            btnhome.Name = "btnhome";
-            btnhome.Size = new Size(176, 64);
-            btnhome.TabIndex = 0;
-            btnhome.Text = "Home";
-            btnhome.UseVisualStyleBackColor = false;
-            // 
-            // btnemployeeside
-            // 
-            btnemployeeside.BackColor = Color.Transparent;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(176, 36);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Add Category";
-            btnemployeeside.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.Control;
-            button1.ForeColor = SystemColors.InfoText;
-            button1.Location = new Point(0, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 36);
-            button1.TabIndex = 2;
-            button1.Text = "Add Employees";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.Control;
-            button2.ForeColor = SystemColors.InfoText;
-            button2.Location = new Point(0, 162);
-            button2.Name = "button2";
-            button2.Size = new Size(176, 36);
-            button2.TabIndex = 3;
-            button2.Text = "Employee Report";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = SystemColors.Control;
-            button3.ForeColor = SystemColors.InfoText;
-            button3.Location = new Point(0, 208);
-            button3.Name = "button3";
-            button3.Size = new Size(176, 36);
-            button3.TabIndex = 4;
-            button3.Text = "Salary Report";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = SystemColors.Control;
-            button4.ForeColor = SystemColors.InfoText;
-            button4.Location = new Point(0, 254);
-            button4.Name = "button4";
-            button4.Size = new Size(176, 36);
-            button4.TabIndex = 5;
-            button4.Text = "Monthly Report";
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = SystemColors.Control;
-            button5.ForeColor = SystemColors.InfoText;
-            button5.Location = new Point(0, 301);
-            button5.Name = "button5";
-            button5.Size = new Size(176, 36);
-            button5.TabIndex = 6;
-            button5.Text = "Early Report";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            button6.BackColor = SystemColors.Control;
-            button6.ForeColor = SystemColors.InfoText;
-            button6.Location = new Point(0, 350);
-            button6.Name = "button6";
-            button6.Size = new Size(176, 36);
-            button6.TabIndex = 7;
-            button6.Text = "Change Password";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = SystemColors.Control;
-            button7.ForeColor = SystemColors.InfoText;
-            button7.Location = new Point(0, 400);
-            button7.Name = "button7";
-            button7.Size = new Size(176, 36);
-            button7.TabIndex = 8;
-            button7.Text = "Log Out";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.GradientInactiveCaption;
-            panel1.Controls.Add(button7);
-            panel1.Controls.Add(button6);
-            panel1.Controls.Add(button5);
-            panel1.Controls.Add(button4);
-            panel1.Controls.Add(button3);
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(btnemployeeside);
-            panel1.Controls.Add(btnhome);
-            panel1.Location = new Point(2, 1);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(176, 649);
-            panel1.TabIndex = 25;
-            // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial", 15.75F);
-            label10.Location = new Point(206, 422);
+            label10.Location = new Point(9, 429);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(219, 24);
@@ -469,7 +309,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 15.75F);
-            label11.Location = new Point(810, 422);
+            label11.Location = new Point(613, 429);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(247, 24);
@@ -487,7 +327,7 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(overtime_label);
             panel5.Controls.Add(basic_salary_label);
-            panel5.Location = new Point(206, 464);
+            panel5.Location = new Point(9, 471);
             panel5.Name = "panel5";
             panel5.Size = new Size(582, 167);
             panel5.TabIndex = 32;
@@ -572,11 +412,81 @@
             basic_salary_label.TabIndex = 9;
             basic_salary_label.Text = "Food Allowance:";
             // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(logo);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1206, 76);
+            gradientPanel1.TabIndex = 36;
+            // 
+            // home
+            // 
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1038, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += home_Click;
+            // 
+            // logout
+            // 
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1110, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logo
+            // 
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += logo_Click;
+            // 
             // Reports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
+            ClientSize = new Size(1201, 651);
+            Controls.Add(gradientPanel1);
             Controls.Add(label11);
             Controls.Add(label10);
             Controls.Add(label1);
@@ -587,13 +497,8 @@
             Controls.Add(linkLabel1);
             Controls.Add(label2);
             Controls.Add(sss_panel);
-            Controls.Add(gradientPanel1);
-            Controls.Add(panel1);
             Name = "Reports";
             Text = " ";
-            gradientPanel1.ResumeLayout(false);
-            gradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             sss_panel.ResumeLayout(false);
             sss_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -603,18 +508,16 @@
             philhealth_panel.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private GradientPanel gradientPanel1;
-        private Label label8;
-        private PictureBox pictureBox5;
         private Panel sss_panel;
         private Label label2;
         private LinkLabel linkLabel1;
@@ -628,16 +531,6 @@
         private Label label9;
         private Label label5;
         private Label label6;
-        private Button btnhome;
-        private Button btnemployeeside;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Panel panel1;
         private DataGridView dataGridView1;
         private Label label10;
         private Label label11;
@@ -656,5 +549,10 @@
         private Label label17;
         private Label total_tax_value;
         private Label label15;
+        private GradientPanel gradientPanel1;
+        private Label home;
+        private Label logout;
+        private Label label8;
+        private PictureBox logo;
     }
 }

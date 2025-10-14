@@ -58,34 +58,25 @@
             export_btn = new Button();
             generate_payslip_btn = new Button();
             pay_period_box = new GroupBox();
-            btnhome = new Button();
-            btnemployeeside = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            pnlside = new Panel();
-            pictureBox5 = new PictureBox();
-            label8 = new Label();
-            gradientPanel1 = new GradientPanel();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
-            payperiod = new DateTimePicker();
-            label1 = new Label();
             label3 = new Label();
             dateTimePicker1 = new DateTimePicker();
+            label1 = new Label();
+            payperiod = new DateTimePicker();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            gradientPanel1 = new GradientPanel();
+            home = new Label();
+            logout = new Label();
+            label8 = new Label();
+            logo = new PictureBox();
             deductions_box.SuspendLayout();
             load_employee_box.SuspendLayout();
             payroll_computation_box.SuspendLayout();
             payroll_summary_box.SuspendLayout();
             actions_box.SuspendLayout();
             pay_period_box.SuspendLayout();
-            pnlside.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
             // 
             // panel2
@@ -105,7 +96,7 @@
             deductions_box.Controls.Add(sss_label);
             deductions_box.FlatStyle = FlatStyle.Flat;
             deductions_box.Font = new Font("Arial", 11F);
-            deductions_box.Location = new Point(665, 331);
+            deductions_box.Location = new Point(461, 326);
             deductions_box.Name = "deductions_box";
             deductions_box.Size = new Size(403, 141);
             deductions_box.TabIndex = 14;
@@ -174,7 +165,7 @@
             load_employee_box.Controls.Add(comboBox1);
             load_employee_box.Controls.Add(employee_label);
             load_employee_box.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            load_employee_box.Location = new Point(216, 107);
+            load_employee_box.Location = new Point(12, 102);
             load_employee_box.Name = "load_employee_box";
             load_employee_box.Size = new Size(852, 202);
             load_employee_box.TabIndex = 15;
@@ -220,7 +211,7 @@
             payroll_computation_box.Controls.Add(overtime_label);
             payroll_computation_box.Controls.Add(basic_salary_label);
             payroll_computation_box.Font = new Font("Arial", 11F);
-            payroll_computation_box.Location = new Point(216, 331);
+            payroll_computation_box.Location = new Point(12, 326);
             payroll_computation_box.Name = "payroll_computation_box";
             payroll_computation_box.Size = new Size(403, 141);
             payroll_computation_box.TabIndex = 16;
@@ -288,7 +279,7 @@
             payroll_summary_box.Controls.Add(total_deductions_label);
             payroll_summary_box.Controls.Add(netpay_label);
             payroll_summary_box.Font = new Font("Arial", 11F);
-            payroll_summary_box.Location = new Point(216, 494);
+            payroll_summary_box.Location = new Point(12, 489);
             payroll_summary_box.Name = "payroll_summary_box";
             payroll_summary_box.Size = new Size(403, 141);
             payroll_summary_box.TabIndex = 15;
@@ -338,7 +329,7 @@
             actions_box.Controls.Add(export_btn);
             actions_box.Controls.Add(generate_payslip_btn);
             actions_box.Font = new Font("Arial", 11F);
-            actions_box.Location = new Point(665, 494);
+            actions_box.Location = new Point(461, 489);
             actions_box.Name = "actions_box";
             actions_box.Size = new Size(403, 141);
             actions_box.TabIndex = 17;
@@ -394,165 +385,44 @@
             pay_period_box.Controls.Add(payperiod);
             pay_period_box.Controls.Add(groupBox1);
             pay_period_box.Font = new Font("Arial", 11F);
-            pay_period_box.Location = new Point(1105, 107);
+            pay_period_box.Location = new Point(901, 102);
             pay_period_box.Name = "pay_period_box";
-            pay_period_box.Size = new Size(301, 202);
+            pay_period_box.Size = new Size(271, 202);
             pay_period_box.TabIndex = 18;
             pay_period_box.TabStop = false;
             pay_period_box.Text = "Pay Period";
             // 
-            // btnhome
+            // label3
             // 
-            btnhome.BackColor = SystemColors.Control;
-            btnhome.ForeColor = SystemColors.InfoText;
-            btnhome.Location = new Point(0, 3);
-            btnhome.Name = "btnhome";
-            btnhome.Size = new Size(176, 64);
-            btnhome.TabIndex = 0;
-            btnhome.Text = "Home";
-            btnhome.UseVisualStyleBackColor = false;
-            btnhome.Click += btnhome_Click_1;
+            label3.AutoSize = true;
+            label3.Location = new Point(40, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(113, 17);
+            label3.TabIndex = 25;
+            label3.Text = "Pay Period End:";
             // 
-            // btnemployeeside
+            // dateTimePicker1
             // 
-            btnemployeeside.BackColor = Color.Transparent;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(176, 36);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Add Category";
-            btnemployeeside.UseVisualStyleBackColor = false;
+            dateTimePicker1.Location = new Point(40, 153);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 24);
+            dateTimePicker1.TabIndex = 24;
             // 
-            // button1
+            // label1
             // 
-            button1.BackColor = SystemColors.Control;
-            button1.ForeColor = SystemColors.InfoText;
-            button1.Location = new Point(0, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 36);
-            button1.TabIndex = 2;
-            button1.Text = "Add Employees";
-            button1.UseVisualStyleBackColor = false;
+            label1.AutoSize = true;
+            label1.Location = new Point(40, 41);
+            label1.Name = "label1";
+            label1.Size = new Size(118, 17);
+            label1.TabIndex = 23;
+            label1.Text = "Pay Period Start:";
             // 
-            // button2
+            // payperiod
             // 
-            button2.BackColor = SystemColors.Control;
-            button2.ForeColor = SystemColors.InfoText;
-            button2.Location = new Point(0, 162);
-            button2.Name = "button2";
-            button2.Size = new Size(176, 36);
-            button2.TabIndex = 3;
-            button2.Text = "Employee Report";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = SystemColors.Control;
-            button3.ForeColor = SystemColors.InfoText;
-            button3.Location = new Point(0, 208);
-            button3.Name = "button3";
-            button3.Size = new Size(176, 36);
-            button3.TabIndex = 4;
-            button3.Text = "Salary Report";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = SystemColors.Control;
-            button4.ForeColor = SystemColors.InfoText;
-            button4.Location = new Point(0, 254);
-            button4.Name = "button4";
-            button4.Size = new Size(176, 36);
-            button4.TabIndex = 5;
-            button4.Text = "Monthly Report";
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = SystemColors.Control;
-            button5.ForeColor = SystemColors.InfoText;
-            button5.Location = new Point(0, 301);
-            button5.Name = "button5";
-            button5.Size = new Size(176, 36);
-            button5.TabIndex = 6;
-            button5.Text = "Early Report";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            button6.BackColor = SystemColors.Control;
-            button6.ForeColor = SystemColors.InfoText;
-            button6.Location = new Point(0, 350);
-            button6.Name = "button6";
-            button6.Size = new Size(176, 36);
-            button6.TabIndex = 7;
-            button6.Text = "Change Password";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            button7.BackColor = SystemColors.Control;
-            button7.ForeColor = SystemColors.InfoText;
-            button7.Location = new Point(0, 400);
-            button7.Name = "button7";
-            button7.Size = new Size(176, 36);
-            button7.TabIndex = 8;
-            button7.Text = "Log Out";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // pnlside
-            // 
-            pnlside.BackColor = SystemColors.GradientInactiveCaption;
-            pnlside.Controls.Add(button7);
-            pnlside.Controls.Add(button6);
-            pnlside.Controls.Add(button5);
-            pnlside.Controls.Add(button4);
-            pnlside.Controls.Add(button3);
-            pnlside.Controls.Add(button2);
-            pnlside.Controls.Add(button1);
-            pnlside.Controls.Add(btnemployeeside);
-            pnlside.Controls.Add(btnhome);
-            pnlside.Location = new Point(2, 75);
-            pnlside.Name = "pnlside";
-            pnlside.Size = new Size(176, 575);
-            pnlside.TabIndex = 19;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.Image = Properties.Resources.icon;
-            pictureBox5.Location = new Point(0, 3);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(76, 75);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 22;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.Transparent;
-            label8.Location = new Point(82, 30);
-            label8.Name = "label8";
-            label8.Size = new Size(258, 24);
-            label8.TabIndex = 23;
-            label8.Text = "PCU PAYROLL SYSTEM";
-            label8.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(2, 1);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1425, 76);
-            gradientPanel1.TabIndex = 20;
+            payperiod.Location = new Point(40, 72);
+            payperiod.Name = "payperiod";
+            payperiod.Size = new Size(200, 24);
+            payperiod.TabIndex = 22;
             // 
             // groupBox1
             // 
@@ -567,53 +437,89 @@
             // groupBox2
             // 
             groupBox2.Font = new Font("Arial", 11F);
-            groupBox2.Location = new Point(1105, 329);
+            groupBox2.Location = new Point(901, 324);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(301, 306);
+            groupBox2.Size = new Size(271, 306);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Payroll Breakdown";
             // 
-            // payperiod
+            // gradientPanel1
             // 
-            payperiod.Location = new Point(50, 64);
-            payperiod.Name = "payperiod";
-            payperiod.Size = new Size(200, 24);
-            payperiod.TabIndex = 22;
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(logo);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 22;
             // 
-            // label1
+            // home
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(50, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(118, 17);
-            label1.TabIndex = 23;
-            label1.Text = "Pay Period Start:";
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1018, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += home_Click;
             // 
-            // label3
+            // logout
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(50, 118);
-            label3.Name = "label3";
-            label3.Size = new Size(113, 17);
-            label3.TabIndex = 25;
-            label3.Text = "Pay Period End:";
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1090, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
             // 
-            // dateTimePicker1
+            // label8
             // 
-            dateTimePicker1.Location = new Point(50, 145);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 24);
-            dateTimePicker1.TabIndex = 24;
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logo
+            // 
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += logo_Click;
             // 
             // Payroll_process
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
-            Controls.Add(groupBox2);
+            ClientSize = new Size(1184, 651);
             Controls.Add(gradientPanel1);
-            Controls.Add(pnlside);
+            Controls.Add(groupBox2);
             Controls.Add(pay_period_box);
             Controls.Add(actions_box);
             Controls.Add(payroll_summary_box);
@@ -634,10 +540,9 @@
             actions_box.ResumeLayout(false);
             pay_period_box.ResumeLayout(false);
             pay_period_box.PerformLayout();
-            pnlside.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);
         }
 
@@ -673,24 +578,16 @@
         private Label gross_pay_value;
         private Label overtime_value;
         private Label basic_salary_value;
-        private Button btnhome;
-        private Button btnemployeeside;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Panel pnlside;
-        private PictureBox pictureBox5;
-        private Label label8;
-        private GradientPanel gradientPanel1;
         private Label label1;
         private DateTimePicker payperiod;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private Label label3;
         private DateTimePicker dateTimePicker1;
+        private GradientPanel gradientPanel1;
+        private Label home;
+        private Label logout;
+        private Label label8;
+        private PictureBox logo;
     }
 }

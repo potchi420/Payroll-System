@@ -37,12 +37,12 @@ namespace Payroll_System
 
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button9_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void logo_Click(object sender, EventArgs e)
         {
             dashboard db = new dashboard();
             db.Show();
@@ -50,9 +50,17 @@ namespace Payroll_System
             this.Hide();
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void home_Click(object sender, EventArgs e)
         {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
 
+        private void logout_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

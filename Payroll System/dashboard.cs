@@ -76,7 +76,15 @@ namespace Payroll_System
 
         }
 
-        private void btnhome_Click(object sender, EventArgs e)
+        private void btnbenefits_Click(object sender, EventArgs e)
+        {
+            BenefitsAdministration benefits = new BenefitsAdministration();
+            benefits.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logo_Click(object sender, EventArgs e)
         {
             dashboard db = new dashboard();
             db.Show();
@@ -84,10 +92,15 @@ namespace Payroll_System
             this.Hide();
         }
 
-        private void btnbenefits_Click(object sender, EventArgs e)
+        private void logout_Click(object sender, EventArgs e)
         {
-            BenefitsAdministration benefits = new BenefitsAdministration();
-            benefits.Show();
+            Application.Exit();
+        }
+
+        private void btnsettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Show();
             this.Show();
             this.Hide();
         }

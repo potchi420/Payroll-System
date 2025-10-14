@@ -29,187 +29,110 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dashboard));
-            pnlside = new Panel();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            btnemployeeside = new Button();
-            btnhome = new Button();
             pnlcenter = new Panel();
+            panel4 = new Panel();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            panel1 = new Panel();
+            dataGridView1 = new DataGridView();
             btnsettings = new Button();
             btnbenefits = new Button();
             btntax = new Button();
             btnreportscenter = new Button();
             btnpayrollcenter = new Button();
             btnemployeecenter = new Button();
-            pictureBox5 = new PictureBox();
+            logo = new PictureBox();
             label8 = new Label();
+            logout = new Label();
+            home = new Label();
             gradientPanel1 = new GradientPanel();
-            pnlside.SuspendLayout();
             pnlcenter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             gradientPanel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlside
-            // 
-            pnlside.BackColor = SystemColors.GradientInactiveCaption;
-            pnlside.Controls.Add(button7);
-            pnlside.Controls.Add(button6);
-            pnlside.Controls.Add(button5);
-            pnlside.Controls.Add(button4);
-            pnlside.Controls.Add(button3);
-            pnlside.Controls.Add(button2);
-            pnlside.Controls.Add(button1);
-            pnlside.Controls.Add(btnemployeeside);
-            pnlside.Controls.Add(btnhome);
-            pnlside.Location = new Point(3, 72);
-            pnlside.Name = "pnlside";
-            pnlside.Size = new Size(176, 575);
-            pnlside.TabIndex = 2;
-            pnlside.Paint += pnlside_Paint;
-            // 
-            // button7
-            // 
-            button7.BackColor = SystemColors.Control;
-            button7.ForeColor = SystemColors.InfoText;
-            button7.Location = new Point(0, 400);
-            button7.Name = "button7";
-            button7.Size = new Size(176, 36);
-            button7.TabIndex = 8;
-            button7.Text = "Log Out";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            button6.BackColor = SystemColors.Control;
-            button6.ForeColor = SystemColors.InfoText;
-            button6.Location = new Point(0, 350);
-            button6.Name = "button6";
-            button6.Size = new Size(176, 36);
-            button6.TabIndex = 7;
-            button6.Text = "Change Password";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = SystemColors.Control;
-            button5.ForeColor = SystemColors.InfoText;
-            button5.Location = new Point(0, 301);
-            button5.Name = "button5";
-            button5.Size = new Size(176, 36);
-            button5.TabIndex = 6;
-            button5.Text = "Early Report";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = SystemColors.Control;
-            button4.ForeColor = SystemColors.InfoText;
-            button4.Location = new Point(0, 254);
-            button4.Name = "button4";
-            button4.Size = new Size(176, 36);
-            button4.TabIndex = 5;
-            button4.Text = "Monthly Report";
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = SystemColors.Control;
-            button3.ForeColor = SystemColors.InfoText;
-            button3.Location = new Point(0, 208);
-            button3.Name = "button3";
-            button3.Size = new Size(176, 36);
-            button3.TabIndex = 4;
-            button3.Text = "Salary Report";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.Control;
-            button2.ForeColor = SystemColors.InfoText;
-            button2.Location = new Point(0, 162);
-            button2.Name = "button2";
-            button2.Size = new Size(176, 36);
-            button2.TabIndex = 3;
-            button2.Text = "Employee Report";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.Control;
-            button1.ForeColor = SystemColors.InfoText;
-            button1.Location = new Point(0, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 36);
-            button1.TabIndex = 2;
-            button1.Text = "Add Employees";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // btnemployeeside
-            // 
-            btnemployeeside.BackColor = SystemColors.Control;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(176, 36);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Add Category";
-            btnemployeeside.UseVisualStyleBackColor = false;
-            btnemployeeside.Click += btnemployeeside_Click;
-            // 
-            // btnhome
-            // 
-            btnhome.BackColor = Color.FromArgb(33, 145, 245);
-            btnhome.Cursor = Cursors.Hand;
-            btnhome.ForeColor = SystemColors.InfoText;
-            btnhome.Location = new Point(0, 3);
-            btnhome.Name = "btnhome";
-            btnhome.Size = new Size(176, 64);
-            btnhome.TabIndex = 0;
-            btnhome.Text = "Home";
-            btnhome.UseVisualStyleBackColor = false;
-            btnhome.Click += btnhome_Click;
             // 
             // pnlcenter
             // 
             pnlcenter.BackColor = SystemColors.Control;
+            pnlcenter.Controls.Add(panel4);
+            pnlcenter.Controls.Add(panel3);
+            pnlcenter.Controls.Add(panel2);
+            pnlcenter.Controls.Add(panel1);
+            pnlcenter.Controls.Add(dataGridView1);
             pnlcenter.Controls.Add(btnsettings);
             pnlcenter.Controls.Add(btnbenefits);
             pnlcenter.Controls.Add(btntax);
             pnlcenter.Controls.Add(btnreportscenter);
             pnlcenter.Controls.Add(btnpayrollcenter);
             pnlcenter.Controls.Add(btnemployeecenter);
-            pnlcenter.Location = new Point(185, 80);
+            pnlcenter.Location = new Point(-3, 69);
             pnlcenter.Name = "pnlcenter";
-            pnlcenter.Size = new Size(1232, 567);
+            pnlcenter.Size = new Size(1420, 589);
             pnlcenter.TabIndex = 3;
+            // 
+            // panel4
+            // 
+            panel4.Location = new Point(622, 24);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(242, 145);
+            panel4.TabIndex = 9;
+            // 
+            // panel3
+            // 
+            panel3.Location = new Point(930, 24);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(242, 145);
+            panel3.TabIndex = 8;
+            // 
+            // panel2
+            // 
+            panel2.Location = new Point(316, 24);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(242, 145);
+            panel2.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            panel1.Location = new Point(15, 24);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(242, 145);
+            panel1.TabIndex = 7;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(15, 219);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(543, 351);
+            dataGridView1.TabIndex = 6;
             // 
             // btnsettings
             // 
             btnsettings.BackColor = SystemColors.ButtonFace;
             btnsettings.Cursor = Cursors.Hand;
+            btnsettings.Font = new Font("Arial", 9F);
             btnsettings.Image = (Image)resources.GetObject("btnsettings.Image");
-            btnsettings.Location = new Point(860, 264);
+            btnsettings.Location = new Point(1002, 400);
+            btnsettings.Margin = new Padding(10);
             btnsettings.Name = "btnsettings";
-            btnsettings.Size = new Size(218, 209);
+            btnsettings.Size = new Size(170, 170);
             btnsettings.TabIndex = 5;
             btnsettings.Text = "Settings\r\n\r\n";
             btnsettings.TextAlign = ContentAlignment.BottomCenter;
             btnsettings.UseVisualStyleBackColor = false;
+            btnsettings.Click += btnsettings_Click;
             // 
             // btnbenefits
             // 
             btnbenefits.BackColor = SystemColors.ButtonFace;
             btnbenefits.Cursor = Cursors.Hand;
+            btnbenefits.Font = new Font("Arial", 9F);
             btnbenefits.Image = (Image)resources.GetObject("btnbenefits.Image");
-            btnbenefits.Location = new Point(485, 264);
+            btnbenefits.Location = new Point(812, 400);
+            btnbenefits.Margin = new Padding(10);
             btnbenefits.Name = "btnbenefits";
-            btnbenefits.Size = new Size(218, 209);
+            btnbenefits.Size = new Size(170, 170);
             btnbenefits.TabIndex = 4;
             btnbenefits.Text = "Benefits\r\nAdministration\r\n\r\n";
             btnbenefits.TextAlign = ContentAlignment.BottomCenter;
@@ -220,10 +143,12 @@
             // 
             btntax.BackColor = SystemColors.ButtonFace;
             btntax.Cursor = Cursors.Hand;
+            btntax.Font = new Font("Arial", 9F);
             btntax.Image = (Image)resources.GetObject("btntax.Image");
-            btntax.Location = new Point(91, 264);
+            btntax.Location = new Point(622, 400);
+            btntax.Margin = new Padding(10);
             btntax.Name = "btntax";
-            btntax.Size = new Size(218, 209);
+            btntax.Size = new Size(170, 170);
             btntax.TabIndex = 3;
             btntax.Text = "Tax Filings\r\n\r\n";
             btntax.TextAlign = ContentAlignment.BottomCenter;
@@ -233,10 +158,12 @@
             // 
             btnreportscenter.BackColor = SystemColors.ButtonFace;
             btnreportscenter.Cursor = Cursors.Hand;
+            btnreportscenter.Font = new Font("Arial", 9F);
             btnreportscenter.Image = (Image)resources.GetObject("btnreportscenter.Image");
-            btnreportscenter.Location = new Point(860, 30);
+            btnreportscenter.Location = new Point(1002, 219);
+            btnreportscenter.Margin = new Padding(10);
             btnreportscenter.Name = "btnreportscenter";
-            btnreportscenter.Size = new Size(218, 209);
+            btnreportscenter.Size = new Size(170, 170);
             btnreportscenter.TabIndex = 2;
             btnreportscenter.Text = "Reports\r\n\r\n";
             btnreportscenter.TextAlign = ContentAlignment.BottomCenter;
@@ -247,10 +174,12 @@
             // 
             btnpayrollcenter.BackColor = SystemColors.ButtonFace;
             btnpayrollcenter.Cursor = Cursors.Hand;
+            btnpayrollcenter.Font = new Font("Arial", 9F);
             btnpayrollcenter.Image = (Image)resources.GetObject("btnpayrollcenter.Image");
-            btnpayrollcenter.Location = new Point(485, 30);
+            btnpayrollcenter.Location = new Point(812, 219);
+            btnpayrollcenter.Margin = new Padding(10);
             btnpayrollcenter.Name = "btnpayrollcenter";
-            btnpayrollcenter.Size = new Size(218, 209);
+            btnpayrollcenter.Size = new Size(170, 170);
             btnpayrollcenter.TabIndex = 1;
             btnpayrollcenter.Text = "Payroll\r\nProcessing\r\n\r\n";
             btnpayrollcenter.TextAlign = ContentAlignment.BottomCenter;
@@ -261,26 +190,30 @@
             // 
             btnemployeecenter.BackColor = SystemColors.ButtonFace;
             btnemployeecenter.Cursor = Cursors.Hand;
+            btnemployeecenter.Font = new Font("Arial", 9F);
             btnemployeecenter.Image = (Image)resources.GetObject("btnemployeecenter.Image");
-            btnemployeecenter.Location = new Point(91, 30);
+            btnemployeecenter.Location = new Point(622, 219);
+            btnemployeecenter.Margin = new Padding(10);
             btnemployeecenter.Name = "btnemployeecenter";
-            btnemployeecenter.Size = new Size(218, 209);
+            btnemployeecenter.Size = new Size(170, 170);
             btnemployeecenter.TabIndex = 0;
             btnemployeecenter.Text = "Employee \r\nManagement\r\n\r\n";
             btnemployeecenter.TextAlign = ContentAlignment.BottomCenter;
             btnemployeecenter.UseVisualStyleBackColor = false;
             btnemployeecenter.Click += btnemployee_Click;
             // 
-            // pictureBox5
+            // logo
             // 
-            pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.Image = Properties.Resources.icon;
-            pictureBox5.Location = new Point(0, 3);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(76, 75);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 22;
-            pictureBox5.TabStop = false;
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += logo_Click;
             // 
             // label8
             // 
@@ -295,38 +228,66 @@
             label8.Text = "PCU PAYROLL SYSTEM";
             label8.TextAlign = ContentAlignment.TopCenter;
             // 
+            // logout
+            // 
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1090, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
+            // 
+            // home
+            // 
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1018, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            // 
             // gradientPanel1
             // 
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
             gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
+            gradientPanel1.Controls.Add(logo);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, -2);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1431, 76);
+            gradientPanel1.Size = new Size(1191, 76);
             gradientPanel1.TabIndex = 4;
             // 
             // dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
+            ClientSize = new Size(1184, 651);
             Controls.Add(gradientPanel1);
             Controls.Add(pnlcenter);
-            Controls.Add(pnlside);
             Name = "dashboard";
             Text = "dashboard";
-            pnlside.ResumeLayout(false);
             pnlcenter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Panel pnlside;
-        private Button btnhome;
         private Panel pnlcenter;
         private Button btnpayrollcenter;
         private Button btnemployeecenter;
@@ -334,16 +295,15 @@
         private Button btntax;
         private Button btnsettings;
         private Button btnbenefits;
-        private Button btnemployeeside;
-        private Button button2;
-        private Button button1;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button7;
-        private Button button6;
+        private Panel panel4;
+        private Panel panel3;
+        private Panel panel2;
+        private Panel panel1;
+        private DataGridView dataGridView1;
+        private PictureBox logo;
         private Label label8;
-        private PictureBox pictureBox5;
+        private Label logout;
+        private Label home;
         private GradientPanel gradientPanel1;
     }
 }

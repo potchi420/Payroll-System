@@ -29,174 +29,82 @@
         private void InitializeComponent()
         {
             gradientPanel1 = new GradientPanel();
-            label5 = new Label();
-            pictureBox1 = new PictureBox();
-            pnlside = new Panel();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            btnemployeeside = new Button();
-            btnhome = new Button();
+            home = new Label();
+            logout = new Label();
+            label8 = new Label();
+            logo = new PictureBox();
             gradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            pnlside.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
             // 
             // gradientPanel1
             // 
-            gradientPanel1.Controls.Add(label5);
-            gradientPanel1.Controls.Add(pictureBox1);
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(logo);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(-8, 6);
+            gradientPanel1.Location = new Point(-3, 0);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1431, 76);
-            gradientPanel1.TabIndex = 30;
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 5;
             // 
-            // label5
+            // home
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Transparent;
-            label5.Location = new Point(82, 30);
-            label5.Name = "label5";
-            label5.Size = new Size(258, 24);
-            label5.TabIndex = 23;
-            label5.Text = "PCU PAYROLL SYSTEM";
-            label5.TextAlign = ContentAlignment.TopCenter;
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1018, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += this.home_Click;
             // 
-            // pictureBox1
+            // logout
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.icon;
-            pictureBox1.Location = new Point(0, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(76, 75);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 22;
-            pictureBox1.TabStop = false;
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1090, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
             // 
-            // pnlside
+            // label8
             // 
-            pnlside.BackColor = SystemColors.GradientInactiveCaption;
-            pnlside.Controls.Add(button7);
-            pnlside.Controls.Add(button6);
-            pnlside.Controls.Add(button5);
-            pnlside.Controls.Add(button4);
-            pnlside.Controls.Add(button3);
-            pnlside.Controls.Add(button2);
-            pnlside.Controls.Add(button1);
-            pnlside.Controls.Add(btnemployeeside);
-            pnlside.Controls.Add(btnhome);
-            pnlside.Location = new Point(-2, 80);
-            pnlside.Name = "pnlside";
-            pnlside.Size = new Size(176, 575);
-            pnlside.TabIndex = 29;
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
             // 
-            // button7
+            // logo
             // 
-            button7.BackColor = SystemColors.Control;
-            button7.ForeColor = SystemColors.InfoText;
-            button7.Location = new Point(0, 400);
-            button7.Name = "button7";
-            button7.Size = new Size(176, 36);
-            button7.TabIndex = 8;
-            button7.Text = "Log Out";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            button6.BackColor = SystemColors.Control;
-            button6.ForeColor = SystemColors.InfoText;
-            button6.Location = new Point(0, 350);
-            button6.Name = "button6";
-            button6.Size = new Size(176, 36);
-            button6.TabIndex = 7;
-            button6.Text = "Change Password";
-            button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            button5.BackColor = SystemColors.Control;
-            button5.ForeColor = SystemColors.InfoText;
-            button5.Location = new Point(0, 301);
-            button5.Name = "button5";
-            button5.Size = new Size(176, 36);
-            button5.TabIndex = 6;
-            button5.Text = "Early Report";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            button4.BackColor = SystemColors.Control;
-            button4.ForeColor = SystemColors.InfoText;
-            button4.Location = new Point(0, 254);
-            button4.Name = "button4";
-            button4.Size = new Size(176, 36);
-            button4.TabIndex = 5;
-            button4.Text = "Monthly Report";
-            button4.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = SystemColors.Control;
-            button3.ForeColor = SystemColors.InfoText;
-            button3.Location = new Point(0, 208);
-            button3.Name = "button3";
-            button3.Size = new Size(176, 36);
-            button3.TabIndex = 4;
-            button3.Text = "Salary Report";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = SystemColors.Control;
-            button2.ForeColor = SystemColors.InfoText;
-            button2.Location = new Point(0, 162);
-            button2.Name = "button2";
-            button2.Size = new Size(176, 36);
-            button2.TabIndex = 3;
-            button2.Text = "Employee Report";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = SystemColors.Control;
-            button1.ForeColor = SystemColors.InfoText;
-            button1.Location = new Point(0, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(176, 36);
-            button1.TabIndex = 2;
-            button1.Text = "Add Employees";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // btnemployeeside
-            // 
-            btnemployeeside.BackColor = SystemColors.Control;
-            btnemployeeside.ForeColor = SystemColors.InfoText;
-            btnemployeeside.Location = new Point(0, 73);
-            btnemployeeside.Name = "btnemployeeside";
-            btnemployeeside.Size = new Size(176, 36);
-            btnemployeeside.TabIndex = 1;
-            btnemployeeside.Text = "Add Category";
-            btnemployeeside.UseVisualStyleBackColor = false;
-            // 
-            // btnhome
-            // 
-            btnhome.BackColor = Color.FromArgb(33, 145, 245);
-            btnhome.Cursor = Cursors.Hand;
-            btnhome.ForeColor = SystemColors.InfoText;
-            btnhome.Location = new Point(0, 3);
-            btnhome.Name = "btnhome";
-            btnhome.Size = new Size(176, 64);
-            btnhome.TabIndex = 0;
-            btnhome.Text = "Home";
-            btnhome.UseVisualStyleBackColor = false;
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += this.logo_Click;
             // 
             // DataUpdates
             // 
@@ -204,31 +112,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
             Controls.Add(gradientPanel1);
-            Controls.Add(pnlside);
             Name = "DataUpdates";
             Text = "DataUpdates";
-            Load += DataUpdates_Load;
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            pnlside.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private GradientPanel gradientPanel1;
-        private Label label5;
-        private PictureBox pictureBox1;
-        private Panel pnlside;
-        private Button button7;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
-        private Button btnemployeeside;
-        private Button btnhome;
+        private Label home;
+        private Label logout;
+        private Label label8;
+        private PictureBox logo;
     }
 }
