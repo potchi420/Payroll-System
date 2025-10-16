@@ -36,8 +36,18 @@
             logo = new PictureBox();
             benefits_administration_label = new Label();
             linkLabel1 = new LinkLabel();
+            dataGridView1 = new DataGridView();
+            curved_panel = new GradientPanel();
+            search_lb = new Label();
+            textBox1 = new TextBox();
+            button2 = new Button();
+            button5 = new Button();
+            button1 = new Button();
+            button3 = new Button();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            curved_panel.SuspendLayout();
             SuspendLayout();
             // 
             // gradientPanel1
@@ -132,11 +142,96 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
             // 
+            // dataGridView1
+            // 
+            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(36, 66);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(596, 259);
+            dataGridView1.TabIndex = 0;
+            // 
+            // curved_panel
+            // 
+            curved_panel.BorderStyle = BorderStyle.FixedSingle;
+            curved_panel.Controls.Add(button3);
+            curved_panel.Controls.Add(button1);
+            curved_panel.Controls.Add(button2);
+            curved_panel.Controls.Add(textBox1);
+            curved_panel.Controls.Add(search_lb);
+            curved_panel.Controls.Add(dataGridView1);
+            curved_panel.gradientBottom = Color.Empty;
+            curved_panel.gradientTop = Color.Empty;
+            curved_panel.Location = new Point(154, 191);
+            curved_panel.Name = "curved_panel";
+            curved_panel.Size = new Size(886, 351);
+            curved_panel.TabIndex = 44;
+            // 
+            // search_lb
+            // 
+            search_lb.AutoSize = true;
+            search_lb.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            search_lb.Location = new Point(36, 27);
+            search_lb.Name = "search_lb";
+            search_lb.Size = new Size(123, 16);
+            search_lb.TabIndex = 29;
+            search_lb.Text = "Employee Search:";
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(165, 25);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(201, 21);
+            textBox1.TabIndex = 30;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Arial", 11.25F);
+            button2.Location = new Point(703, 66);
+            button2.Name = "button2";
+            button2.Size = new Size(130, 43);
+            button2.TabIndex = 31;
+            button2.Text = "Add Benefit";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Font = new Font("Arial", 11.25F);
+            button5.Location = new Point(858, 558);
+            button5.Name = "button5";
+            button5.Size = new Size(130, 43);
+            button5.TabIndex = 35;
+            button5.Text = "Save";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Arial", 11.25F);
+            button1.Location = new Point(703, 128);
+            button1.Name = "button1";
+            button1.Size = new Size(130, 43);
+            button1.TabIndex = 32;
+            button1.Text = "Edit Benefit";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Arial", 11.25F);
+            button3.Location = new Point(703, 189);
+            button3.Name = "button3";
+            button3.Size = new Size(130, 43);
+            button3.TabIndex = 33;
+            button3.Text = "Remove Benefit";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // AssignBenefits
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(button5);
+            Controls.Add(curved_panel);
             Controls.Add(linkLabel1);
             Controls.Add(benefits_administration_label);
             Controls.Add(gradientPanel1);
@@ -145,6 +240,9 @@
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            curved_panel.ResumeLayout(false);
+            curved_panel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +256,13 @@
         private PictureBox logo;
         private Label benefits_administration_label;
         private LinkLabel linkLabel1;
+        private DataGridView dataGridView1;
+        private GradientPanel curved_panel;
+        private Button button2;
+        private TextBox textBox1;
+        private Label search_lb;
+        private Button button5;
+        private Button button3;
+        private Button button1;
     }
 }
