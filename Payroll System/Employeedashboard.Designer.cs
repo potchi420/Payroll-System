@@ -49,6 +49,7 @@
             // btnaddemployee
             // 
             btnaddemployee.BackColor = SystemColors.MenuHighlight;
+            btnaddemployee.Cursor = Cursors.Hand;
             btnaddemployee.Font = new Font("Arial", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnaddemployee.ForeColor = SystemColors.HighlightText;
             btnaddemployee.Location = new Point(57, 171);
@@ -84,7 +85,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(878, 239);
+            comboBox1.Location = new Point(1026, 234);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(109, 23);
             comboBox1.TabIndex = 26;
@@ -93,7 +94,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(816, 241);
+            label1.Location = new Point(964, 236);
             label1.Name = "label1";
             label1.Size = new Size(56, 16);
             label1.TabIndex = 27;
@@ -115,7 +116,7 @@
             dataGridViewEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewEmployees.Location = new Point(57, 284);
             dataGridViewEmployees.Name = "dataGridViewEmployees";
-            dataGridViewEmployees.Size = new Size(930, 212);
+            dataGridViewEmployees.Size = new Size(1078, 259);
             dataGridViewEmployees.TabIndex = 29;
             // 
             // gradientPanel1
