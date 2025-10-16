@@ -1,0 +1,162 @@
+﻿namespace Payroll_System
+{
+    partial class AssignBenefits
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssignBenefits));
+            gradientPanel1 = new GradientPanel();
+            home = new Label();
+            logout = new Label();
+            label5 = new Label();
+            logo = new PictureBox();
+            benefits_administration_label = new Label();
+            linkLabel1 = new LinkLabel();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
+            SuspendLayout();
+            // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
+            gradientPanel1.Controls.Add(label5);
+            gradientPanel1.Controls.Add(logo);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 28;
+            // 
+            // home
+            // 
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1018, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += home_Click;
+            // 
+            // logout
+            // 
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1090, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Transparent;
+            label5.Location = new Point(82, 30);
+            label5.Name = "label5";
+            label5.Size = new Size(258, 24);
+            label5.TabIndex = 23;
+            label5.Text = "PCU PAYROLL SYSTEM";
+            label5.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logo
+            // 
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += logo_Click;
+            // 
+            // benefits_administration_label
+            // 
+            benefits_administration_label.AutoSize = true;
+            benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            benefits_administration_label.Location = new Point(60, 105);
+            benefits_administration_label.Name = "benefits_administration_label";
+            benefits_administration_label.Size = new Size(194, 29);
+            benefits_administration_label.TabIndex = 31;
+            benefits_administration_label.Text = "Assign Benefits";
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Transparent;
+            linkLabel1.AutoSize = true;
+            linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
+            linkLabel1.LinkColor = Color.Gray;
+            linkLabel1.Location = new Point(63, 134);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(1078, 15);
+            linkLabel1.TabIndex = 38;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = resources.GetString("linkLabel1.Text");
+            // 
+            // AssignBenefits
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1184, 651);
+            Controls.Add(linkLabel1);
+            Controls.Add(benefits_administration_label);
+            Controls.Add(gradientPanel1);
+            Name = "AssignBenefits";
+            Text = "AssignBenefits";
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private GradientPanel gradientPanel1;
+        private Label home;
+        private Label logout;
+        private Label label5;
+        private PictureBox logo;
+        private Label benefits_administration_label;
+        private LinkLabel linkLabel1;
+    }
+}

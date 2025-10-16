@@ -10,28 +10,12 @@ using System.Windows.Forms;
 
 namespace Payroll_System
 {
-    public partial class BenefitsAdministration : Form
+    public partial class AssignBenefits : Form
     {
-        public BenefitsAdministration()
+        public AssignBenefits()
         {
             InitializeComponent();
         }
-
-        private void button10_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BenefitsAdministration_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void logo_Click(object sender, EventArgs e)
         {
@@ -52,14 +36,6 @@ namespace Payroll_System
         private void logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void assign_benefits_btn_Click(object sender, EventArgs e)
-        {
-            AssignBenefits assign = new AssignBenefits();
-            assign.Show();
-            this.Show();
-            this.Hide();
         }
     }
 }

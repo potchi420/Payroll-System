@@ -35,10 +35,10 @@
             label1 = new Label();
             button8 = new Button();
             panel2 = new Panel();
-            label2 = new Label();
-            button9 = new Button();
+            assign_benefits_description = new Label();
+            assign_benefits_btn = new Button();
             panel3 = new Panel();
-            label3 = new Label();
+            benefits_summary_description = new Label();
             button10 = new Button();
             label4 = new Label();
             gradientPanel1 = new GradientPanel();
@@ -92,6 +92,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Cursor = Cursors.Hand;
             label1.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(107, 57);
             label1.Name = "label1";
@@ -102,6 +103,7 @@
             // button8
             // 
             button8.BackColor = SystemColors.Control;
+            button8.Cursor = Cursors.Hand;
             button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button8.Image = (Image)resources.GetObject("button8.Image");
@@ -118,60 +120,64 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(button9);
+            panel2.Controls.Add(assign_benefits_description);
+            panel2.Controls.Add(assign_benefits_btn);
             panel2.Location = new Point(67, 316);
             panel2.Name = "panel2";
             panel2.Size = new Size(700, 106);
             panel2.TabIndex = 25;
             // 
-            // label2
+            // assign_benefits_description
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(107, 57);
-            label2.Name = "label2";
-            label2.Size = new Size(527, 17);
-            label2.TabIndex = 27;
-            label2.Text = "the process of allocating specific perks, rewards, or entitlements to eligible employees";
+            assign_benefits_description.AutoSize = true;
+            assign_benefits_description.Cursor = Cursors.Hand;
+            assign_benefits_description.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            assign_benefits_description.Location = new Point(107, 57);
+            assign_benefits_description.Name = "assign_benefits_description";
+            assign_benefits_description.Size = new Size(527, 17);
+            assign_benefits_description.TabIndex = 27;
+            assign_benefits_description.Text = "the process of allocating specific perks, rewards, or entitlements to eligible employees";
             // 
-            // button9
+            // assign_benefits_btn
             // 
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button9.Image = (Image)resources.GetObject("button9.Image");
-            button9.ImageAlign = ContentAlignment.MiddleLeft;
-            button9.Location = new Point(-1, -1);
-            button9.Name = "button9";
-            button9.Padding = new Padding(30, 0, 0, 0);
-            button9.Size = new Size(700, 106);
-            button9.TabIndex = 24;
-            button9.Text = "                               \r\n                  Assign Benefits\r\n\r\n\r\n";
-            button9.TextAlign = ContentAlignment.MiddleLeft;
-            button9.Click += button9_Click;
+            assign_benefits_btn.Cursor = Cursors.Hand;
+            assign_benefits_btn.FlatStyle = FlatStyle.Flat;
+            assign_benefits_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            assign_benefits_btn.Image = (Image)resources.GetObject("assign_benefits_btn.Image");
+            assign_benefits_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            assign_benefits_btn.Location = new Point(-1, -1);
+            assign_benefits_btn.Name = "assign_benefits_btn";
+            assign_benefits_btn.Padding = new Padding(30, 0, 0, 0);
+            assign_benefits_btn.Size = new Size(700, 106);
+            assign_benefits_btn.TabIndex = 24;
+            assign_benefits_btn.Text = "                               \r\n                  Assign Benefits\r\n\r\n\r\n";
+            assign_benefits_btn.TextAlign = ContentAlignment.MiddleLeft;
+            assign_benefits_btn.Click += assign_benefits_btn_Click;
             // 
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(label3);
+            panel3.Controls.Add(benefits_summary_description);
             panel3.Controls.Add(button10);
             panel3.Location = new Point(67, 447);
             panel3.Name = "panel3";
             panel3.Size = new Size(700, 106);
             panel3.TabIndex = 25;
             // 
-            // label3
+            // benefits_summary_description
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(107, 56);
-            label3.Name = "label3";
-            label3.Size = new Size(583, 17);
-            label3.TabIndex = 28;
-            label3.Text = "a concise overview of the key details, coverage, and value of the benefits offered to employees";
+            benefits_summary_description.AutoSize = true;
+            benefits_summary_description.Cursor = Cursors.Hand;
+            benefits_summary_description.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            benefits_summary_description.Location = new Point(107, 56);
+            benefits_summary_description.Name = "benefits_summary_description";
+            benefits_summary_description.Size = new Size(583, 17);
+            benefits_summary_description.TabIndex = 28;
+            benefits_summary_description.Text = "a concise overview of the key details, coverage, and value of the benefits offered to employees";
             // 
             // button10
             // 
+            button10.Cursor = Cursors.Hand;
             button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button10.Image = (Image)resources.GetObject("button10.Image");
@@ -183,7 +189,6 @@
             button10.TabIndex = 24;
             button10.Text = "                               \r\n                 Benefit Summary\r\n\r\n\r\n";
             button10.TextAlign = ContentAlignment.MiddleLeft;
-            button10.UseCompatibleTextRendering = true;
             button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click_1;
             // 
@@ -313,12 +318,12 @@
         private Panel panel1;
         private Button button8;
         private Panel panel2;
-        private Button button9;
+        private Button assign_benefits_btn;
         private Panel panel3;
         private Button button10;
         private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label assign_benefits_description;
+        private Label benefits_summary_description;
         private Label label4;
         private GradientPanel gradientPanel1;
         private Label home;

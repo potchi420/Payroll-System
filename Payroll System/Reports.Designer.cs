@@ -81,9 +81,9 @@
             sss_panel.Controls.Add(dataGridView1);
             sss_panel.Controls.Add(label4);
             sss_panel.Controls.Add(label3);
-            sss_panel.Location = new Point(9, 235);
+            sss_panel.Location = new Point(31, 235);
             sss_panel.Name = "sss_panel";
-            sss_panel.Size = new Size(376, 169);
+            sss_panel.Size = new Size(354, 169);
             sss_panel.TabIndex = 27;
             // 
             // dataGridView1
@@ -100,7 +100,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 26.75F);
-            label4.Location = new Point(117, 73);
+            label4.Location = new Point(108, 73);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Size = new Size(122, 41);
@@ -111,7 +111,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial Narrow", 15F);
-            label3.Location = new Point(163, 26);
+            label3.Location = new Point(152, 30);
             label3.Margin = new Padding(0);
             label3.Name = "label3";
             label3.Size = new Size(43, 24);
@@ -122,7 +122,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 26.25F);
-            label2.Location = new Point(9, 109);
+            label2.Location = new Point(30, 110);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(137, 40);
@@ -135,7 +135,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(6, 155);
+            linkLabel1.Location = new Point(31, 162);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(1057, 15);
             linkLabel1.TabIndex = 29;
@@ -147,16 +147,16 @@
             pagibig_panel.BorderStyle = BorderStyle.FixedSingle;
             pagibig_panel.Controls.Add(label7);
             pagibig_panel.Controls.Add(label9);
-            pagibig_panel.Location = new Point(816, 235);
+            pagibig_panel.Location = new Point(823, 235);
             pagibig_panel.Name = "pagibig_panel";
-            pagibig_panel.Size = new Size(376, 169);
+            pagibig_panel.Size = new Size(354, 169);
             pagibig_panel.TabIndex = 30;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Arial", 26.75F);
-            label7.Location = new Point(124, 73);
+            label7.Location = new Point(117, 73);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
             label7.Size = new Size(122, 41);
@@ -167,7 +167,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Arial Narrow", 15F);
-            label9.Location = new Point(154, 30);
+            label9.Location = new Point(141, 30);
             label9.Margin = new Padding(0);
             label9.Name = "label9";
             label9.Size = new Size(78, 24);
@@ -179,16 +179,16 @@
             philhealth_panel.BorderStyle = BorderStyle.FixedSingle;
             philhealth_panel.Controls.Add(label5);
             philhealth_panel.Controls.Add(label6);
-            philhealth_panel.Location = new Point(415, 235);
+            philhealth_panel.Location = new Point(423, 235);
             philhealth_panel.Name = "philhealth_panel";
-            philhealth_panel.Size = new Size(376, 169);
+            philhealth_panel.Size = new Size(354, 169);
             philhealth_panel.TabIndex = 31;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 26.75F);
-            label5.Location = new Point(123, 73);
+            label5.Location = new Point(115, 73);
             label5.Margin = new Padding(0);
             label5.Name = "label5";
             label5.Size = new Size(122, 41);
@@ -199,7 +199,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial Narrow", 15F);
-            label6.Location = new Point(151, 30);
+            label6.Location = new Point(140, 30);
             label6.Margin = new Padding(0);
             label6.Name = "label6";
             label6.Size = new Size(80, 24);
@@ -217,14 +217,14 @@
             panel6.Controls.Add(label15);
             panel6.Location = new Point(613, 471);
             panel6.Name = "panel6";
-            panel6.Size = new Size(582, 167);
+            panel6.Size = new Size(564, 167);
             panel6.TabIndex = 33;
             // 
             // total_deduction_value
             // 
             total_deduction_value.AutoSize = true;
             total_deduction_value.Font = new Font("Arial", 14.25F);
-            total_deduction_value.Location = new Point(502, 123);
+            total_deduction_value.Location = new Point(486, 123);
             total_deduction_value.Name = "total_deduction_value";
             total_deduction_value.Size = new Size(61, 22);
             total_deduction_value.TabIndex = 31;
@@ -238,16 +238,16 @@
             linkLabel2.LinkColor = Color.Gray;
             linkLabel2.Location = new Point(25, 102);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(538, 15);
+            linkLabel2.Size = new Size(520, 15);
             linkLabel2.TabIndex = 30;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "                                                                                                                                                                                 ";
+            linkLabel2.Text = "                                                                                                                                                                           ";
             // 
             // total_benefits_value
             // 
             total_benefits_value.AutoSize = true;
             total_benefits_value.Font = new Font("Arial", 14.25F);
-            total_benefits_value.Location = new Point(502, 70);
+            total_benefits_value.Location = new Point(486, 70);
             total_benefits_value.Name = "total_benefits_value";
             total_benefits_value.Size = new Size(61, 22);
             total_benefits_value.TabIndex = 16;
@@ -267,7 +267,7 @@
             // 
             total_tax_value.AutoSize = true;
             total_tax_value.Font = new Font("Arial", 14.25F);
-            total_tax_value.Location = new Point(502, 33);
+            total_tax_value.Location = new Point(486, 33);
             total_tax_value.Name = "total_tax_value";
             total_tax_value.Size = new Size(61, 22);
             total_tax_value.TabIndex = 14;
@@ -287,7 +287,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(9, 191);
+            label1.Location = new Point(31, 190);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(179, 24);
@@ -298,7 +298,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial", 15.75F);
-            label10.Location = new Point(9, 429);
+            label10.Location = new Point(31, 429);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(219, 24);
@@ -327,9 +327,9 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(overtime_label);
             panel5.Controls.Add(basic_salary_label);
-            panel5.Location = new Point(9, 471);
+            panel5.Location = new Point(31, 471);
             panel5.Name = "panel5";
-            panel5.Size = new Size(582, 167);
+            panel5.Size = new Size(560, 167);
             panel5.TabIndex = 32;
             // 
             // performance_bonus_value

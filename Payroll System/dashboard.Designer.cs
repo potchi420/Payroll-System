@@ -73,28 +73,28 @@
             // 
             // panel4
             // 
-            panel4.Location = new Point(622, 24);
+            panel4.Location = new Point(618, 24);
             panel4.Name = "panel4";
             panel4.Size = new Size(242, 145);
             panel4.TabIndex = 9;
             // 
             // panel3
             // 
-            panel3.Location = new Point(930, 24);
+            panel3.Location = new Point(926, 24);
             panel3.Name = "panel3";
             panel3.Size = new Size(242, 145);
             panel3.TabIndex = 8;
             // 
             // panel2
             // 
-            panel2.Location = new Point(316, 24);
+            panel2.Location = new Point(333, 24);
             panel2.Name = "panel2";
             panel2.Size = new Size(242, 145);
             panel2.TabIndex = 8;
             // 
             // panel1
             // 
-            panel1.Location = new Point(15, 24);
+            panel1.Location = new Point(32, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(242, 145);
             panel1.TabIndex = 7;
@@ -102,7 +102,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(15, 219);
+            dataGridView1.Location = new Point(32, 219);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(543, 351);
             dataGridView1.TabIndex = 6;
@@ -113,7 +113,7 @@
             btnsettings.Cursor = Cursors.Hand;
             btnsettings.Font = new Font("Arial", 9F);
             btnsettings.Image = (Image)resources.GetObject("btnsettings.Image");
-            btnsettings.Location = new Point(1002, 400);
+            btnsettings.Location = new Point(998, 400);
             btnsettings.Margin = new Padding(10);
             btnsettings.Name = "btnsettings";
             btnsettings.Size = new Size(170, 170);
@@ -129,7 +129,7 @@
             btnbenefits.Cursor = Cursors.Hand;
             btnbenefits.Font = new Font("Arial", 9F);
             btnbenefits.Image = (Image)resources.GetObject("btnbenefits.Image");
-            btnbenefits.Location = new Point(812, 400);
+            btnbenefits.Location = new Point(808, 400);
             btnbenefits.Margin = new Padding(10);
             btnbenefits.Name = "btnbenefits";
             btnbenefits.Size = new Size(170, 170);
@@ -145,7 +145,7 @@
             btntax.Cursor = Cursors.Hand;
             btntax.Font = new Font("Arial", 9F);
             btntax.Image = (Image)resources.GetObject("btntax.Image");
-            btntax.Location = new Point(622, 400);
+            btntax.Location = new Point(618, 400);
             btntax.Margin = new Padding(10);
             btntax.Name = "btntax";
             btntax.Size = new Size(170, 170);
@@ -160,7 +160,7 @@
             btnreportscenter.Cursor = Cursors.Hand;
             btnreportscenter.Font = new Font("Arial", 9F);
             btnreportscenter.Image = (Image)resources.GetObject("btnreportscenter.Image");
-            btnreportscenter.Location = new Point(1002, 219);
+            btnreportscenter.Location = new Point(998, 219);
             btnreportscenter.Margin = new Padding(10);
             btnreportscenter.Name = "btnreportscenter";
             btnreportscenter.Size = new Size(170, 170);
@@ -176,7 +176,7 @@
             btnpayrollcenter.Cursor = Cursors.Hand;
             btnpayrollcenter.Font = new Font("Arial", 9F);
             btnpayrollcenter.Image = (Image)resources.GetObject("btnpayrollcenter.Image");
-            btnpayrollcenter.Location = new Point(812, 219);
+            btnpayrollcenter.Location = new Point(808, 219);
             btnpayrollcenter.Margin = new Padding(10);
             btnpayrollcenter.Name = "btnpayrollcenter";
             btnpayrollcenter.Size = new Size(170, 170);
@@ -192,7 +192,7 @@
             btnemployeecenter.Cursor = Cursors.Hand;
             btnemployeecenter.Font = new Font("Arial", 9F);
             btnemployeecenter.Image = (Image)resources.GetObject("btnemployeecenter.Image");
-            btnemployeecenter.Location = new Point(622, 219);
+            btnemployeecenter.Location = new Point(618, 219);
             btnemployeecenter.Margin = new Padding(10);
             btnemployeecenter.Name = "btnemployeecenter";
             btnemployeecenter.Size = new Size(170, 170);
