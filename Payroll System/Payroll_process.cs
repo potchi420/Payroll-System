@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace Payroll_System
         public Payroll_process()
         {
             InitializeComponent();
+            Connector cn = new Connector();
+            cn.LoadEmployeeNames(cmbname);
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -30,8 +34,20 @@ namespace Payroll_System
 
         private void load_employee_btn_Click(object sender, EventArgs e)
         {
-            // should make a function to load employee data from database
-            // make some changes to the labels and textboxes to display employee data, salary, etc.
+            try
+            {
+                if (cmbname.SelectedValue != null && int.TryParse(cmbname.SelectedValue.ToString(), out int empID))
+                {
+                    Connector cn = new Connector();
+                    cn.DisplayEmployeeSalary(empID, basic_salary_value,sss_value); // basic_salary_value = your Label
+                    
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
@@ -62,5 +78,12 @@ namespace Payroll_System
         {
             Application.Exit();
         }
+
+        private void cmbname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }

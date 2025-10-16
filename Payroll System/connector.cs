@@ -1,6 +1,9 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Payroll_System
 {
@@ -16,7 +19,7 @@ namespace Payroll_System
             {
                 con = new SqlConnection(cs);
                 con.Open();
-                MessageBox.Show("Connection successful!");
+                
             }
             catch (Exception ex)
             {
@@ -81,6 +84,69 @@ namespace Payroll_System
             }
         }
 
+
+
+        public void LoadEmployeeNames(ComboBox cmbname)
+        {
+           connection();
+
+            
+                try
+                {
+                    string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    cmbname.DataSource = dt;
+                    cmbname.DisplayMember = "FullName";   // What user sees
+                    cmbname.ValueMember = "employee_id";  // The actual value behind each item
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            
+        }
+
+
+
+        public void DisplayEmployeeSalary(int employeeID, Label salaryLabel,Label sss)
+        {
+            connection();
+            string query = "SELECT salary FROM employee WHERE employee_id = @id";
+            string query1 = "SELECT sss FROM deduction WHERE sss = @sss";
+            using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", employeeID);
+                   
+
+                try
+                    {
+                        
+                        object result = cmd.ExecuteScalar(); 
+                        con.Close();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        salaryLabel.Text = "₱" + Convert.ToDecimal(result).ToString("N2");
+                        sss.Text = "₱" + Convert.ToDecimal(result).ToString("N2");
+                    }
+                    else
+                    {
+                        salaryLabel.Text = "No salary found";
+                        sss.Text = "No salary found";
+
+                    }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading salary: " + ex.Message);
+                    }
+                    
+                }
+            
+        }
 
 
 
