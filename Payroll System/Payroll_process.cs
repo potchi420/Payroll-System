@@ -19,6 +19,7 @@ namespace Payroll_System
             InitializeComponent();
             Connector cn = new Connector();
             cn.LoadEmployeeNames(cmbname);
+            
 
         }
 
@@ -39,8 +40,8 @@ namespace Payroll_System
                 if (cmbname.SelectedValue != null && int.TryParse(cmbname.SelectedValue.ToString(), out int empID))
                 {
                     Connector cn = new Connector();
-                    cn.DisplayEmployeeSalary(empID, basic_salary_value,sss_value); // basic_salary_value = your Label
-                    
+                    cn.DisplayEmployeeSalary(empID, gross_pay_value, sss_value, philhealth_value, pagibig_value, total_deductions_value, net_pay_value, overtime_value); // basic_salary_value = your Label
+
 
                 }
             }
@@ -81,9 +82,14 @@ namespace Payroll_System
 
         private void cmbname_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
+        private void total_deductions_value_Click(object sender, EventArgs e)
+        {
 
+        }
+
+       
     }
 }

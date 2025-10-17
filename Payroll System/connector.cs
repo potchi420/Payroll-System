@@ -19,7 +19,7 @@ namespace Payroll_System
             {
                 con = new SqlConnection(cs);
                 con.Open();
-                
+
             }
             catch (Exception ex)
             {
@@ -33,14 +33,14 @@ namespace Payroll_System
         {
             try
             {
-                connection(); 
+                connection();
 
                 string sql = "INSERT INTO [login] (username, password) VALUES (@register_username, @register_password)";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@register_username", username);
                     cmd.Parameters.AddWithValue("@register_password", password);
-                   
+
                     cmd.ExecuteNonQuery();
                 }
 
@@ -88,65 +88,114 @@ namespace Payroll_System
 
         public void LoadEmployeeNames(ComboBox cmbname)
         {
-           connection();
+            connection();
 
-            
+
+            try
+            {
+                string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                cmbname.DataSource = dt;
+                cmbname.DisplayMember = "FullName";   // What user sees
+                cmbname.ValueMember = "employee_id";  // The actual value behind each item
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+        }
+
+
+
+        public void DisplayEmployeeSalary(
+     int employeeID,
+     Label grosspay,
+     Label sss,
+     Label philhealth,
+     Label pagibig,
+     Label totaldeductions,
+     Label netpay,
+     Label overtime)
+        {
+            double salaryPerDay = 700;
+            double sssdeduction = 0.05;
+            double phildeduction = 0.05;
+            double pagibigdeduction = 0.05;
+            connection(); // Opens your SQL connection
+
+            string query = @"
+        SELECT 
+            e.first_name, 
+            e.last_name,
+            a.days_worked,
+            a.overtimed_hour
+        FROM employee e
+        INNER JOIN attendance a 
+            ON e.employee_id = a.employee_id
+        WHERE e.employee_id = @id";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@id", employeeID);
+
                 try
                 {
-                    string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            int dayWorked = Convert.ToInt32(reader["days_worked"]);
+                            int overtimeHours = Convert.ToInt32(reader["overtimed_hour"]);
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                            double totalSalary = dayWorked * salaryPerDay;
+                            double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour workday
+                            double grossSalary = totalSalary + overtimePay;
 
-                    cmbname.DataSource = dt;
-                    cmbname.DisplayMember = "FullName";   // What user sees
-                    cmbname.ValueMember = "employee_id";  // The actual value behind each item
+                            double sssAmount = grossSalary * sssdeduction;
+                            double philAmount = grossSalary * phildeduction;
+                            double pagibigAmount = grossSalary * pagibigdeduction;
+                            double totalDeductions = sssAmount + philAmount + pagibigAmount;
+                            double netSalary = grossSalary - totalDeductions;
+
+                            // Display values with ₱ and 2 decimal places
+                            grosspay.Text = $"₱{grossSalary:N2}";
+                            sss.Text = $"₱{sssAmount:N2}";
+                            philhealth.Text = $"₱{philAmount:N2}";
+                            pagibig.Text = $"₱{pagibigAmount:N2}";
+                            totaldeductions.Text = $"₱{totalDeductions:N2}";
+                            netpay.Text = $"₱{netSalary:N2}";
+                            overtime.Text = $"₱{overtimePay:N2}";
+                        }
+                        else
+                        {
+                            grosspay.Text = "₱N/A";
+                            sss.Text = "₱N/A";
+                            philhealth.Text = "₱N/A";
+                            pagibig.Text = "₱N/A";
+                            totaldeductions.Text = "₱N/A";
+                            netpay.Text = "₱N/A";
+                            overtime.Text = "₱N/A";
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("Error loading salary: " + ex.Message);
                 }
-            
-        }
-
-
-
-        public void DisplayEmployeeSalary(int employeeID, Label salaryLabel,Label sss)
-        {
-            connection();
-            string query = "SELECT salary FROM employee WHERE employee_id = @id";
-            string query1 = "SELECT sss FROM deduction WHERE sss = @sss";
-            using (SqlCommand cmd = new SqlCommand(query, con))
+                finally
                 {
-                    cmd.Parameters.AddWithValue("@id", employeeID);
-                   
-
-                try
-                    {
-                        
-                        object result = cmd.ExecuteScalar(); 
-                        con.Close();
-                    if (result != null && result != DBNull.Value)
-                    {
-                        salaryLabel.Text = "₱" + Convert.ToDecimal(result).ToString("N2");
-                        sss.Text = "₱" + Convert.ToDecimal(result).ToString("N2");
-                    }
-                    else
-                    {
-                        salaryLabel.Text = "No salary found";
-                        sss.Text = "No salary found";
-
-                    }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading salary: " + ex.Message);
-                    }
-                    
+                    con.Close();
                 }
-            
+            }
         }
+
+
+
 
 
 

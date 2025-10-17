@@ -107,7 +107,7 @@
             // pagibig_value
             // 
             pagibig_value.AutoSize = true;
-            pagibig_value.Location = new Point(384, 135);
+            pagibig_value.Location = new Point(339, 135);
             pagibig_value.Name = "pagibig_value";
             pagibig_value.Size = new Size(61, 22);
             pagibig_value.TabIndex = 14;
@@ -116,7 +116,7 @@
             // philhealth_value
             // 
             philhealth_value.AutoSize = true;
-            philhealth_value.Location = new Point(384, 89);
+            philhealth_value.Location = new Point(339, 89);
             philhealth_value.Name = "philhealth_value";
             philhealth_value.Size = new Size(61, 22);
             philhealth_value.TabIndex = 13;
@@ -126,7 +126,7 @@
             // sss_value
             // 
             sss_value.AutoSize = true;
-            sss_value.Location = new Point(384, 44);
+            sss_value.Location = new Point(339, 44);
             sss_value.Name = "sss_value";
             sss_value.Size = new Size(61, 22);
             sss_value.TabIndex = 12;
@@ -229,7 +229,7 @@
             // gross_pay_value
             // 
             gross_pay_value.AutoSize = true;
-            gross_pay_value.Location = new Point(382, 135);
+            gross_pay_value.Location = new Point(343, 135);
             gross_pay_value.Name = "gross_pay_value";
             gross_pay_value.Size = new Size(61, 22);
             gross_pay_value.TabIndex = 8;
@@ -238,7 +238,7 @@
             // overtime_value
             // 
             overtime_value.AutoSize = true;
-            overtime_value.Location = new Point(382, 89);
+            overtime_value.Location = new Point(343, 89);
             overtime_value.Name = "overtime_value";
             overtime_value.Size = new Size(61, 22);
             overtime_value.TabIndex = 7;
@@ -247,11 +247,11 @@
             // basic_salary_value
             // 
             basic_salary_value.AutoSize = true;
-            basic_salary_value.Location = new Point(382, 44);
+            basic_salary_value.Location = new Point(343, 44);
             basic_salary_value.Name = "basic_salary_value";
-            basic_salary_value.Size = new Size(61, 22);
+            basic_salary_value.Size = new Size(72, 22);
             basic_salary_value.TabIndex = 6;
-            basic_salary_value.Text = "₱0.00";
+            basic_salary_value.Text = "₱700.0";
             // 
             // label2
             // 
@@ -299,16 +299,17 @@
             // total_deductions_value
             // 
             total_deductions_value.AutoSize = true;
-            total_deductions_value.Location = new Point(382, 51);
+            total_deductions_value.Location = new Point(343, 51);
             total_deductions_value.Name = "total_deductions_value";
             total_deductions_value.Size = new Size(61, 22);
             total_deductions_value.TabIndex = 3;
             total_deductions_value.Text = "₱0.00";
+            total_deductions_value.Click += total_deductions_value_Click;
             // 
             // net_pay_value
             // 
             net_pay_value.AutoSize = true;
-            net_pay_value.Location = new Point(382, 107);
+            net_pay_value.Location = new Point(343, 107);
             net_pay_value.Name = "net_pay_value";
             net_pay_value.Size = new Size(61, 22);
             net_pay_value.TabIndex = 2;
