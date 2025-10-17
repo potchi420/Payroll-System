@@ -15,6 +15,7 @@ namespace Payroll_System
         public BenefitsAdministration()
         {
             InitializeComponent();
+            focus_remover();
         }
 
         private void button10_Click_1(object sender, EventArgs e)
@@ -60,6 +61,14 @@ namespace Payroll_System
             assign.Show();
             this.Show();
             this.Hide();
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
         }
     }
 }

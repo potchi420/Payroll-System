@@ -32,7 +32,7 @@
             btnaddemployee = new Button();
             label2 = new Label();
             linkLabel1 = new LinkLabel();
-            comboBox1 = new ComboBox();
+            searchbox = new ComboBox();
             label1 = new Label();
             label3 = new Label();
             dataGridViewEmployees = new DataGridView();
@@ -41,6 +41,7 @@
             logout = new Label();
             label8 = new Label();
             logo = new PictureBox();
+            load_btn = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).BeginInit();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
@@ -58,6 +59,7 @@
             btnaddemployee.TabIndex = 2;
             btnaddemployee.Text = "+ Add New Employee";
             btnaddemployee.UseVisualStyleBackColor = false;
+            btnaddemployee.Click += btnaddemployee_Click;
             // 
             // label2
             // 
@@ -82,19 +84,19 @@
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
             // 
-            // comboBox1
+            // searchbox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1026, 234);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(109, 23);
-            comboBox1.TabIndex = 26;
+            searchbox.FormattingEnabled = true;
+            searchbox.Location = new Point(975, 227);
+            searchbox.Name = "searchbox";
+            searchbox.Size = new Size(160, 23);
+            searchbox.TabIndex = 26;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(964, 236);
+            label1.Location = new Point(919, 229);
             label1.Name = "label1";
             label1.Size = new Size(56, 16);
             label1.TabIndex = 27;
@@ -104,7 +106,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(57, 234);
+            label3.Location = new Point(57, 227);
             label3.Name = "label3";
             label3.Size = new Size(101, 16);
             label3.TabIndex = 28;
@@ -188,16 +190,26 @@
             logo.TabStop = false;
             logo.Click += logo_Click;
             // 
+            // load_btn
+            // 
+            load_btn.Location = new Point(1060, 255);
+            load_btn.Name = "load_btn";
+            load_btn.Size = new Size(75, 23);
+            load_btn.TabIndex = 31;
+            load_btn.Text = "Load";
+            load_btn.UseVisualStyleBackColor = true;
+            // 
             // Employeedashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(load_btn);
             Controls.Add(gradientPanel1);
             Controls.Add(dataGridViewEmployees);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(searchbox);
             Controls.Add(linkLabel1);
             Controls.Add(label2);
             Controls.Add(btnaddemployee);
@@ -216,7 +228,7 @@
         private Button btnaddemployee;
         private Label label2;
         private LinkLabel linkLabel1;
-        private ComboBox comboBox1;
+        private ComboBox searchbox;
         private Label label1;
         private Label label3;
         private DataGridView dataGridViewEmployees;
@@ -225,5 +237,6 @@
         private Label logout;
         private Label label8;
         private PictureBox logo;
+        private Button load_btn;
     }
 }

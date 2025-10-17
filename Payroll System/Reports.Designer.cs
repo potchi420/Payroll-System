@@ -34,7 +34,6 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            linkLabel1 = new LinkLabel();
             pagibig_panel = new Panel();
             label7 = new Label();
             label9 = new Label();
@@ -65,6 +64,7 @@
             logout = new Label();
             label8 = new Label();
             logo = new PictureBox();
+            linkLabel1 = new LinkLabel();
             sss_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pagibig_panel.SuspendLayout();
@@ -128,19 +128,6 @@
             label2.Size = new Size(137, 40);
             label2.TabIndex = 25;
             label2.Text = "Reports";
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.ActiveLinkColor = Color.Transparent;
-            linkLabel1.AutoSize = true;
-            linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
-            linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(31, 162);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1057, 15);
-            linkLabel1.TabIndex = 29;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = resources.GetString("linkLabel1.Text");
             // 
             // pagibig_panel
             // 
@@ -481,11 +468,25 @@
             logo.TabStop = false;
             logo.Click += logo_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Transparent;
+            linkLabel1.AutoSize = true;
+            linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
+            linkLabel1.LinkColor = Color.Gray;
+            linkLabel1.Location = new Point(30, 150);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(1150, 15);
+            linkLabel1.TabIndex = 26;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = resources.GetString("linkLabel1.Text");
+            // 
             // Reports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1201, 651);
+            Controls.Add(linkLabel1);
             Controls.Add(gradientPanel1);
             Controls.Add(label11);
             Controls.Add(label10);
@@ -494,7 +495,6 @@
             Controls.Add(panel5);
             Controls.Add(philhealth_panel);
             Controls.Add(pagibig_panel);
-            Controls.Add(linkLabel1);
             Controls.Add(label2);
             Controls.Add(sss_panel);
             Name = "Reports";
@@ -520,7 +520,6 @@
         #endregion
         private Panel sss_panel;
         private Label label2;
-        private LinkLabel linkLabel1;
         private Panel pagibig_panel;
         private Panel philhealth_panel;
         private Panel panel6;
@@ -554,5 +553,6 @@
         private Label logout;
         private Label label8;
         private PictureBox logo;
+        private LinkLabel linkLabel1;
     }
 }

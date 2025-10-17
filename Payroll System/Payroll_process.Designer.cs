@@ -68,6 +68,11 @@
             logout = new Label();
             label8 = new Label();
             logo = new PictureBox();
+            gradientPanel1 = new GradientPanel();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            pictureBox1 = new PictureBox();
             deductions_box.SuspendLayout();
             load_employee_box.SuspendLayout();
             payroll_computation_box.SuspendLayout();
@@ -75,14 +80,15 @@
             actions_box.SuspendLayout();
             pay_period_box.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
-            panel2.Location = new Point(1, 557);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(1, 418);
             panel2.Name = "panel2";
-            panel2.Size = new Size(9, 11);
+            panel2.Size = new Size(8, 8);
             panel2.TabIndex = 13;
             // 
             // deductions_box
@@ -95,11 +101,9 @@
             deductions_box.Controls.Add(sss_label);
             deductions_box.FlatStyle = FlatStyle.Flat;
             deductions_box.Font = new Font("Arial", 11F);
-            deductions_box.Location = new Point(527, 435);
-            deductions_box.Margin = new Padding(3, 4, 3, 4);
+            deductions_box.Location = new Point(461, 326);
             deductions_box.Name = "deductions_box";
-            deductions_box.Padding = new Padding(3, 4, 3, 4);
-            deductions_box.Size = new Size(461, 188);
+            deductions_box.Size = new Size(403, 141);
             deductions_box.TabIndex = 14;
             deductions_box.TabStop = false;
             deductions_box.Text = "Deductions";
@@ -107,18 +111,18 @@
             // pagibig_value
             // 
             pagibig_value.AutoSize = true;
-            pagibig_value.Location = new Point(339, 135);
+            pagibig_value.Location = new Point(297, 101);
             pagibig_value.Name = "pagibig_value";
-            pagibig_value.Size = new Size(61, 22);
+            pagibig_value.Size = new Size(46, 17);
             pagibig_value.TabIndex = 14;
             pagibig_value.Text = "₱0.00";
             // 
             // philhealth_value
             // 
             philhealth_value.AutoSize = true;
-            philhealth_value.Location = new Point(339, 89);
+            philhealth_value.Location = new Point(297, 67);
             philhealth_value.Name = "philhealth_value";
-            philhealth_value.Size = new Size(61, 22);
+            philhealth_value.Size = new Size(46, 17);
             philhealth_value.TabIndex = 13;
             philhealth_value.Text = "₱0.00";
             philhealth_value.Click += label3_Click;
@@ -126,36 +130,36 @@
             // sss_value
             // 
             sss_value.AutoSize = true;
-            sss_value.Location = new Point(339, 44);
+            sss_value.Location = new Point(297, 33);
             sss_value.Name = "sss_value";
-            sss_value.Size = new Size(61, 22);
+            sss_value.Size = new Size(46, 17);
             sss_value.TabIndex = 12;
             sss_value.Text = "₱0.00";
             // 
             // philhealth_label
             // 
             philhealth_label.AutoSize = true;
-            philhealth_label.Location = new Point(27, 89);
+            philhealth_label.Location = new Point(24, 67);
             philhealth_label.Name = "philhealth_label";
-            philhealth_label.Size = new Size(99, 22);
+            philhealth_label.Size = new Size(77, 17);
             philhealth_label.TabIndex = 11;
             philhealth_label.Text = "PhilHealth:";
             // 
             // pagibig_label
             // 
             pagibig_label.AutoSize = true;
-            pagibig_label.Location = new Point(27, 135);
+            pagibig_label.Location = new Point(24, 101);
             pagibig_label.Name = "pagibig_label";
-            pagibig_label.Size = new Size(95, 22);
+            pagibig_label.Size = new Size(70, 17);
             pagibig_label.TabIndex = 10;
             pagibig_label.Text = "Pag-IBIG:";
             // 
             // sss_label
             // 
             sss_label.AutoSize = true;
-            sss_label.Location = new Point(27, 44);
+            sss_label.Location = new Point(24, 33);
             sss_label.Name = "sss_label";
-            sss_label.Size = new Size(59, 22);
+            sss_label.Size = new Size(46, 17);
             sss_label.TabIndex = 9;
             sss_label.Text = "SSS: ";
             // 
@@ -166,11 +170,9 @@
             load_employee_box.Controls.Add(cmbname);
             load_employee_box.Controls.Add(employee_label);
             load_employee_box.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            load_employee_box.Location = new Point(14, 136);
-            load_employee_box.Margin = new Padding(3, 4, 3, 4);
+            load_employee_box.Location = new Point(12, 102);
             load_employee_box.Name = "load_employee_box";
-            load_employee_box.Padding = new Padding(3, 4, 3, 4);
-            load_employee_box.Size = new Size(974, 269);
+            load_employee_box.Size = new Size(852, 202);
             load_employee_box.TabIndex = 15;
             load_employee_box.TabStop = false;
             load_employee_box.Text = "Select Employee";
@@ -179,10 +181,9 @@
             // 
             load_employee_btn.Cursor = Cursors.Hand;
             load_employee_btn.Font = new Font("Arial", 11F);
-            load_employee_btn.Location = new Point(25, 157);
-            load_employee_btn.Margin = new Padding(3, 4, 3, 4);
+            load_employee_btn.Location = new Point(22, 118);
             load_employee_btn.Name = "load_employee_btn";
-            load_employee_btn.Size = new Size(195, 43);
+            load_employee_btn.Size = new Size(171, 32);
             load_employee_btn.TabIndex = 2;
             load_employee_btn.Text = "Load Employee Data";
             load_employee_btn.UseVisualStyleBackColor = true;
@@ -191,10 +192,9 @@
             // cmbname
             // 
             cmbname.FormattingEnabled = true;
-            cmbname.Location = new Point(25, 99);
-            cmbname.Margin = new Padding(3, 4, 3, 4);
+            cmbname.Location = new Point(22, 74);
             cmbname.Name = "cmbname";
-            cmbname.Size = new Size(370, 31);
+            cmbname.Size = new Size(324, 26);
             cmbname.TabIndex = 1;
             cmbname.SelectedIndexChanged += cmbname_SelectedIndexChanged;
             // 
@@ -202,9 +202,9 @@
             // 
             employee_label.AutoSize = true;
             employee_label.Font = new Font("Arial", 11F);
-            employee_label.Location = new Point(25, 51);
+            employee_label.Location = new Point(22, 38);
             employee_label.Name = "employee_label";
-            employee_label.Size = new Size(96, 22);
+            employee_label.Size = new Size(73, 17);
             employee_label.TabIndex = 0;
             employee_label.Text = "Employee";
             // 
@@ -217,11 +217,9 @@
             payroll_computation_box.Controls.Add(overtime_label);
             payroll_computation_box.Controls.Add(basic_salary_label);
             payroll_computation_box.Font = new Font("Arial", 11F);
-            payroll_computation_box.Location = new Point(14, 435);
-            payroll_computation_box.Margin = new Padding(3, 4, 3, 4);
+            payroll_computation_box.Location = new Point(12, 326);
             payroll_computation_box.Name = "payroll_computation_box";
-            payroll_computation_box.Padding = new Padding(3, 4, 3, 4);
-            payroll_computation_box.Size = new Size(461, 188);
+            payroll_computation_box.Size = new Size(403, 141);
             payroll_computation_box.TabIndex = 16;
             payroll_computation_box.TabStop = false;
             payroll_computation_box.Text = "Payroll Computation";
@@ -229,54 +227,54 @@
             // gross_pay_value
             // 
             gross_pay_value.AutoSize = true;
-            gross_pay_value.Location = new Point(343, 135);
+            gross_pay_value.Location = new Point(300, 101);
             gross_pay_value.Name = "gross_pay_value";
-            gross_pay_value.Size = new Size(61, 22);
+            gross_pay_value.Size = new Size(46, 17);
             gross_pay_value.TabIndex = 8;
             gross_pay_value.Text = "₱0.00";
             // 
             // overtime_value
             // 
             overtime_value.AutoSize = true;
-            overtime_value.Location = new Point(343, 89);
+            overtime_value.Location = new Point(300, 67);
             overtime_value.Name = "overtime_value";
-            overtime_value.Size = new Size(61, 22);
+            overtime_value.Size = new Size(46, 17);
             overtime_value.TabIndex = 7;
             overtime_value.Text = "₱0.00";
             // 
             // basic_salary_value
             // 
             basic_salary_value.AutoSize = true;
-            basic_salary_value.Location = new Point(343, 44);
+            basic_salary_value.Location = new Point(300, 33);
             basic_salary_value.Name = "basic_salary_value";
-            basic_salary_value.Size = new Size(72, 22);
+            basic_salary_value.Size = new Size(54, 17);
             basic_salary_value.TabIndex = 6;
             basic_salary_value.Text = "₱700.0";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(25, 135);
+            label2.Location = new Point(22, 101);
             label2.Name = "label2";
-            label2.Size = new Size(104, 22);
+            label2.Size = new Size(81, 17);
             label2.TabIndex = 5;
             label2.Text = "Gross Pay:";
             // 
             // overtime_label
             // 
             overtime_label.AutoSize = true;
-            overtime_label.Location = new Point(25, 89);
+            overtime_label.Location = new Point(22, 67);
             overtime_label.Name = "overtime_label";
-            overtime_label.Size = new Size(203, 22);
+            overtime_label.Size = new Size(157, 17);
             overtime_label.TabIndex = 3;
             overtime_label.Text = "Overtime and Benefits:";
             // 
             // basic_salary_label
             // 
             basic_salary_label.AutoSize = true;
-            basic_salary_label.Location = new Point(25, 44);
+            basic_salary_label.Location = new Point(22, 33);
             basic_salary_label.Name = "basic_salary_label";
-            basic_salary_label.Size = new Size(124, 22);
+            basic_salary_label.Size = new Size(98, 17);
             basic_salary_label.TabIndex = 2;
             basic_salary_label.Text = "Basic Salary: ";
             // 
@@ -287,11 +285,9 @@
             payroll_summary_box.Controls.Add(total_deductions_label);
             payroll_summary_box.Controls.Add(netpay_label);
             payroll_summary_box.Font = new Font("Arial", 11F);
-            payroll_summary_box.Location = new Point(14, 652);
-            payroll_summary_box.Margin = new Padding(3, 4, 3, 4);
+            payroll_summary_box.Location = new Point(12, 489);
             payroll_summary_box.Name = "payroll_summary_box";
-            payroll_summary_box.Padding = new Padding(3, 4, 3, 4);
-            payroll_summary_box.Size = new Size(461, 188);
+            payroll_summary_box.Size = new Size(403, 141);
             payroll_summary_box.TabIndex = 15;
             payroll_summary_box.TabStop = false;
             payroll_summary_box.Text = "Payroll Summary";
@@ -299,9 +295,9 @@
             // total_deductions_value
             // 
             total_deductions_value.AutoSize = true;
-            total_deductions_value.Location = new Point(343, 51);
+            total_deductions_value.Location = new Point(300, 38);
             total_deductions_value.Name = "total_deductions_value";
-            total_deductions_value.Size = new Size(61, 22);
+            total_deductions_value.Size = new Size(46, 17);
             total_deductions_value.TabIndex = 3;
             total_deductions_value.Text = "₱0.00";
             total_deductions_value.Click += total_deductions_value_Click;
@@ -309,27 +305,27 @@
             // net_pay_value
             // 
             net_pay_value.AutoSize = true;
-            net_pay_value.Location = new Point(343, 107);
+            net_pay_value.Location = new Point(300, 80);
             net_pay_value.Name = "net_pay_value";
-            net_pay_value.Size = new Size(61, 22);
+            net_pay_value.Size = new Size(46, 17);
             net_pay_value.TabIndex = 2;
             net_pay_value.Text = "₱0.00";
             // 
             // total_deductions_label
             // 
             total_deductions_label.AutoSize = true;
-            total_deductions_label.Location = new Point(25, 51);
+            total_deductions_label.Location = new Point(22, 38);
             total_deductions_label.Name = "total_deductions_label";
-            total_deductions_label.Size = new Size(156, 22);
+            total_deductions_label.Size = new Size(120, 17);
             total_deductions_label.TabIndex = 1;
             total_deductions_label.Text = "Total Deductions:";
             // 
             // netpay_label
             // 
             netpay_label.AutoSize = true;
-            netpay_label.Location = new Point(25, 107);
+            netpay_label.Location = new Point(22, 80);
             netpay_label.Name = "netpay_label";
-            netpay_label.Size = new Size(81, 22);
+            netpay_label.Size = new Size(63, 17);
             netpay_label.TabIndex = 0;
             netpay_label.Text = "Net Pay:";
             // 
@@ -340,11 +336,9 @@
             actions_box.Controls.Add(export_btn);
             actions_box.Controls.Add(generate_payslip_btn);
             actions_box.Font = new Font("Arial", 11F);
-            actions_box.Location = new Point(527, 652);
-            actions_box.Margin = new Padding(3, 4, 3, 4);
+            actions_box.Location = new Point(461, 489);
             actions_box.Name = "actions_box";
-            actions_box.Padding = new Padding(3, 4, 3, 4);
-            actions_box.Size = new Size(461, 188);
+            actions_box.Size = new Size(403, 141);
             actions_box.TabIndex = 17;
             actions_box.TabStop = false;
             actions_box.Text = "Payslip-Actions";
@@ -352,10 +346,9 @@
             // save_record_btn
             // 
             save_record_btn.Cursor = Cursors.Hand;
-            save_record_btn.Location = new Point(238, 107);
-            save_record_btn.Margin = new Padding(3, 4, 3, 4);
+            save_record_btn.Location = new Point(208, 80);
             save_record_btn.Name = "save_record_btn";
-            save_record_btn.Size = new Size(182, 48);
+            save_record_btn.Size = new Size(159, 36);
             save_record_btn.TabIndex = 3;
             save_record_btn.Text = "Save Record";
             save_record_btn.UseVisualStyleBackColor = true;
@@ -363,10 +356,9 @@
             // print_payslip_btn
             // 
             print_payslip_btn.Cursor = Cursors.Hand;
-            print_payslip_btn.Location = new Point(39, 107);
-            print_payslip_btn.Margin = new Padding(3, 4, 3, 4);
+            print_payslip_btn.Location = new Point(34, 80);
             print_payslip_btn.Name = "print_payslip_btn";
-            print_payslip_btn.Size = new Size(192, 48);
+            print_payslip_btn.Size = new Size(168, 36);
             print_payslip_btn.TabIndex = 2;
             print_payslip_btn.Text = "Print Payslip";
             print_payslip_btn.UseVisualStyleBackColor = true;
@@ -375,10 +367,9 @@
             // export_btn
             // 
             export_btn.Cursor = Cursors.Hand;
-            export_btn.Location = new Point(238, 51);
-            export_btn.Margin = new Padding(3, 4, 3, 4);
+            export_btn.Location = new Point(208, 38);
             export_btn.Name = "export_btn";
-            export_btn.Size = new Size(182, 48);
+            export_btn.Size = new Size(159, 36);
             export_btn.TabIndex = 1;
             export_btn.Text = "Export Payslip";
             export_btn.UseVisualStyleBackColor = true;
@@ -386,10 +377,9 @@
             // generate_payslip_btn
             // 
             generate_payslip_btn.Cursor = Cursors.Hand;
-            generate_payslip_btn.Location = new Point(39, 51);
-            generate_payslip_btn.Margin = new Padding(3, 4, 3, 4);
+            generate_payslip_btn.Location = new Point(34, 38);
             generate_payslip_btn.Name = "generate_payslip_btn";
-            generate_payslip_btn.Size = new Size(192, 48);
+            generate_payslip_btn.Size = new Size(168, 36);
             generate_payslip_btn.TabIndex = 0;
             generate_payslip_btn.Text = "Generate Payslip";
             generate_payslip_btn.UseVisualStyleBackColor = true;
@@ -402,11 +392,9 @@
             pay_period_box.Controls.Add(payperiod);
             pay_period_box.Controls.Add(groupBox1);
             pay_period_box.Font = new Font("Arial", 11F);
-            pay_period_box.Location = new Point(1030, 136);
-            pay_period_box.Margin = new Padding(3, 4, 3, 4);
+            pay_period_box.Location = new Point(901, 102);
             pay_period_box.Name = "pay_period_box";
-            pay_period_box.Padding = new Padding(3, 4, 3, 4);
-            pay_period_box.Size = new Size(310, 269);
+            pay_period_box.Size = new Size(271, 202);
             pay_period_box.TabIndex = 18;
             pay_period_box.TabStop = false;
             pay_period_box.Text = "Pay Period";
@@ -414,45 +402,41 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(46, 168);
+            label3.Location = new Point(40, 126);
             label3.Name = "label3";
-            label3.Size = new Size(147, 22);
+            label3.Size = new Size(113, 17);
             label3.TabIndex = 25;
             label3.Text = "Pay Period End:";
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(46, 204);
-            dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
+            dateTimePicker1.Location = new Point(40, 153);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(228, 29);
+            dateTimePicker1.Size = new Size(200, 24);
             dateTimePicker1.TabIndex = 24;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(46, 55);
+            label1.Location = new Point(40, 41);
             label1.Name = "label1";
-            label1.Size = new Size(152, 22);
+            label1.Size = new Size(118, 17);
             label1.TabIndex = 23;
             label1.Text = "Pay Period Start:";
             // 
             // payperiod
             // 
-            payperiod.Location = new Point(46, 96);
-            payperiod.Margin = new Padding(3, 4, 3, 4);
+            payperiod.Location = new Point(40, 72);
             payperiod.Name = "payperiod";
-            payperiod.Size = new Size(228, 29);
+            payperiod.Size = new Size(200, 24);
             payperiod.TabIndex = 22;
             // 
             // groupBox1
             // 
             groupBox1.Font = new Font("Arial", 11F);
-            groupBox1.Location = new Point(7, 359);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Location = new Point(6, 269);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(344, 365);
+            groupBox1.Size = new Size(301, 274);
             groupBox1.TabIndex = 21;
             groupBox1.TabStop = false;
             groupBox1.Text = "Payroll Breakdown";
@@ -460,11 +444,9 @@
             // groupBox2
             // 
             groupBox2.Font = new Font("Arial", 11F);
-            groupBox2.Location = new Point(1030, 432);
-            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Location = new Point(901, 324);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 4, 3, 4);
-            groupBox2.Size = new Size(310, 408);
+            groupBox2.Size = new Size(271, 306);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Payroll Breakdown";
@@ -525,11 +507,78 @@
             logo.TabStop = false;
             logo.Click += logo_Click;
             // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(label4);
+            gradientPanel1.Controls.Add(label5);
+            gradientPanel1.Controls.Add(label6);
+            gradientPanel1.Controls.Add(pictureBox1);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 31;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Cursor = Cursors.Hand;
+            label4.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Transparent;
+            label4.Location = new Point(1018, 30);
+            label4.Name = "label4";
+            label4.Size = new Size(66, 24);
+            label4.TabIndex = 24;
+            label4.Text = "Home";
+            label4.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
+            label5.Cursor = Cursors.Hand;
+            label5.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Transparent;
+            label5.Location = new Point(1090, 30);
+            label5.Name = "label5";
+            label5.Size = new Size(85, 24);
+            label5.TabIndex = 24;
+            label5.Text = "Log Out";
+            label5.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
+            label6.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Transparent;
+            label6.Location = new Point(82, 30);
+            label6.Name = "label6";
+            label6.Size = new Size(258, 24);
+            label6.TabIndex = 23;
+            label6.Text = "PCU PAYROLL SYSTEM";
+            label6.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Cursor = Cursors.Hand;
+            pictureBox1.Image = Properties.Resources.icon;
+            pictureBox1.Location = new Point(0, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(76, 75);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 22;
+            pictureBox1.TabStop = false;
+            // 
             // Payroll_process
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1353, 868);
+            ClientSize = new Size(1184, 651);
+            Controls.Add(gradientPanel1);
             Controls.Add(groupBox2);
             Controls.Add(pay_period_box);
             Controls.Add(actions_box);
@@ -538,7 +587,6 @@
             Controls.Add(load_employee_box);
             Controls.Add(deductions_box);
             Controls.Add(panel2);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Payroll_process";
             Text = "Payroll_process";
             deductions_box.ResumeLayout(false);
@@ -553,6 +601,9 @@
             pay_period_box.ResumeLayout(false);
             pay_period_box.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -599,5 +650,9 @@
         private Label logout;
         private Label label8;
         private PictureBox logo;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private PictureBox pictureBox1;
     }
 }

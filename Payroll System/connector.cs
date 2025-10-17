@@ -194,10 +194,9 @@ namespace Payroll_System
             }
         }
 
-
-
-
-
-
+        internal static bool ExecuteScalar(string dept)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

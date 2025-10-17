@@ -19,7 +19,7 @@ namespace Payroll_System
             InitializeComponent();
             Connector cn = new Connector();
             cn.LoadEmployeeNames(cmbname);
-            
+
 
         }
 
@@ -90,6 +90,5 @@ namespace Payroll_System
 
         }
 
-       
     }
 }
