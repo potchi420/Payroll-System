@@ -38,12 +38,13 @@
             linkLabel1 = new LinkLabel();
             dataGridView1 = new DataGridView();
             curved_panel = new GradientPanel();
-            search_lb = new Label();
+            remove_btn = new Button();
+            edit_btn = new Button();
+            add_btn = new Button();
             textBox1 = new TextBox();
-            button2 = new Button();
-            button5 = new Button();
-            button1 = new Button();
-            button3 = new Button();
+            search_lb = new Label();
+            save_btn = new Button();
+            back_btn = new Button();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -154,9 +155,9 @@
             // curved_panel
             // 
             curved_panel.BorderStyle = BorderStyle.FixedSingle;
-            curved_panel.Controls.Add(button3);
-            curved_panel.Controls.Add(button1);
-            curved_panel.Controls.Add(button2);
+            curved_panel.Controls.Add(remove_btn);
+            curved_panel.Controls.Add(edit_btn);
+            curved_panel.Controls.Add(add_btn);
             curved_panel.Controls.Add(textBox1);
             curved_panel.Controls.Add(search_lb);
             curved_panel.Controls.Add(dataGridView1);
@@ -166,6 +167,44 @@
             curved_panel.Name = "curved_panel";
             curved_panel.Size = new Size(886, 351);
             curved_panel.TabIndex = 44;
+            // 
+            // remove_btn
+            // 
+            remove_btn.Font = new Font("Arial", 11.25F);
+            remove_btn.Location = new Point(703, 189);
+            remove_btn.Name = "remove_btn";
+            remove_btn.Size = new Size(130, 43);
+            remove_btn.TabIndex = 33;
+            remove_btn.Text = "Remove Benefit";
+            remove_btn.UseVisualStyleBackColor = true;
+            // 
+            // edit_btn
+            // 
+            edit_btn.Font = new Font("Arial", 11.25F);
+            edit_btn.Location = new Point(703, 128);
+            edit_btn.Name = "edit_btn";
+            edit_btn.Size = new Size(130, 43);
+            edit_btn.TabIndex = 32;
+            edit_btn.Text = "Edit Benefit";
+            edit_btn.UseVisualStyleBackColor = true;
+            // 
+            // add_btn
+            // 
+            add_btn.Font = new Font("Arial", 11.25F);
+            add_btn.Location = new Point(703, 66);
+            add_btn.Name = "add_btn";
+            add_btn.Size = new Size(130, 43);
+            add_btn.TabIndex = 31;
+            add_btn.Text = "Add Benefit";
+            add_btn.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(165, 25);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(201, 21);
+            textBox1.TabIndex = 30;
             // 
             // search_lb
             // 
@@ -177,60 +216,34 @@
             search_lb.TabIndex = 29;
             search_lb.Text = "Employee Search:";
             // 
-            // textBox1
+            // save_btn
             // 
-            textBox1.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(165, 25);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(201, 21);
-            textBox1.TabIndex = 30;
+            save_btn.Font = new Font("Arial", 11.25F);
+            save_btn.Location = new Point(910, 559);
+            save_btn.Name = "save_btn";
+            save_btn.Size = new Size(130, 43);
+            save_btn.TabIndex = 35;
+            save_btn.Text = "Save";
+            save_btn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // back_btn
             // 
-            button2.Font = new Font("Arial", 11.25F);
-            button2.Location = new Point(703, 66);
-            button2.Name = "button2";
-            button2.Size = new Size(130, 43);
-            button2.TabIndex = 31;
-            button2.Text = "Add Benefit";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Font = new Font("Arial", 11.25F);
-            button5.Location = new Point(858, 558);
-            button5.Name = "button5";
-            button5.Size = new Size(130, 43);
-            button5.TabIndex = 35;
-            button5.Text = "Save";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Arial", 11.25F);
-            button1.Location = new Point(703, 128);
-            button1.Name = "button1";
-            button1.Size = new Size(130, 43);
-            button1.TabIndex = 32;
-            button1.Text = "Edit Benefit";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Arial", 11.25F);
-            button3.Location = new Point(703, 189);
-            button3.Name = "button3";
-            button3.Size = new Size(130, 43);
-            button3.TabIndex = 33;
-            button3.Text = "Remove Benefit";
-            button3.UseVisualStyleBackColor = true;
+            back_btn.Font = new Font("Arial", 11.25F);
+            back_btn.Location = new Point(764, 559);
+            back_btn.Name = "back_btn";
+            back_btn.Size = new Size(130, 43);
+            back_btn.TabIndex = 45;
+            back_btn.Text = "Back";
+            back_btn.UseVisualStyleBackColor = true;
+            back_btn.Click += back_btn_Click;
             // 
             // AssignBenefits
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
-            Controls.Add(button5);
+            Controls.Add(back_btn);
+            Controls.Add(save_btn);
             Controls.Add(curved_panel);
             Controls.Add(linkLabel1);
             Controls.Add(benefits_administration_label);
@@ -258,11 +271,12 @@
         private LinkLabel linkLabel1;
         private DataGridView dataGridView1;
         private GradientPanel curved_panel;
-        private Button button2;
+        private Button add_btn;
         private TextBox textBox1;
         private Label search_lb;
-        private Button button5;
-        private Button button3;
-        private Button button1;
+        private Button save_btn;
+        private Button remove_btn;
+        private Button edit_btn;
+        private Button back_btn;
     }
 }

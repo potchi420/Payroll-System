@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gradientPanel1 = new GradientPanel();
             label8 = new Label();
             pictureBox5 = new PictureBox();
             panel1 = new Panel();
@@ -41,27 +40,24 @@
             button1 = new Button();
             btnemployeeside = new Button();
             btnhome = new Button();
-            gradientPanel1.SuspendLayout();
+            pnlmid = new Panel();
+            btnusermanagement = new Button();
+            lblusermanagement = new Label();
+            btndataupdates = new Button();
+            lbldataupdates = new Label();
+            btnstructuremanagement = new Button();
+            lblstructuremanagement = new Label();
+            lblsystemadministration = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel1.SuspendLayout();
+            pnlmid.SuspendLayout();
             SuspendLayout();
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label8);
-            gradientPanel1.Controls.Add(pictureBox5);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(2, 1);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1425, 76);
-            gradientPanel1.TabIndex = 24;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Transparent;
             label8.Location = new Point(82, 30);
             label8.Name = "label8";
@@ -197,19 +193,108 @@
             btnhome.Text = "Home";
             btnhome.UseVisualStyleBackColor = false;
             // 
+            // pnlmid
+            // 
+            pnlmid.Controls.Add(lblsystemadministration);
+            pnlmid.Controls.Add(lblstructuremanagement);
+            pnlmid.Controls.Add(btnstructuremanagement);
+            pnlmid.Controls.Add(lbldataupdates);
+            pnlmid.Controls.Add(btndataupdates);
+            pnlmid.Controls.Add(lblusermanagement);
+            pnlmid.Controls.Add(btnusermanagement);
+            pnlmid.Location = new Point(202, 73);
+            pnlmid.Name = "pnlmid";
+            pnlmid.Size = new Size(722, 443);
+            pnlmid.TabIndex = 24;
+            // 
+            // btnusermanagement
+            // 
+            btnusermanagement.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnusermanagement.Location = new Point(3, 105);
+            btnusermanagement.Name = "btnusermanagement";
+            btnusermanagement.Size = new Size(716, 95);
+            btnusermanagement.TabIndex = 0;
+            btnusermanagement.Text = "            User Management\r\n\r\n";
+            btnusermanagement.TextAlign = ContentAlignment.TopLeft;
+            btnusermanagement.UseVisualStyleBackColor = true;
+            btnusermanagement.Click += button8_Click;
+            // 
+            // lblusermanagement
+            // 
+            lblusermanagement.AutoSize = true;
+            lblusermanagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblusermanagement.Location = new Point(56, 148);
+            lblusermanagement.Name = "lblusermanagement";
+            lblusermanagement.Size = new Size(344, 17);
+            lblusermanagement.TabIndex = 1;
+            lblusermanagement.Text = "Create and manage user accounts and their access levels.\r\n";
+            // 
+            // btndataupdates
+            // 
+            btndataupdates.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btndataupdates.Location = new Point(3, 214);
+            btndataupdates.Name = "btndataupdates";
+            btndataupdates.Size = new Size(716, 95);
+            btndataupdates.TabIndex = 2;
+            btndataupdates.Text = "            Data Updates\r\n\r\n\r\n";
+            btndataupdates.TextAlign = ContentAlignment.TopLeft;
+            btndataupdates.UseVisualStyleBackColor = true;
+            // 
+            // lbldataupdates
+            // 
+            lbldataupdates.AutoSize = true;
+            lbldataupdates.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbldataupdates.Location = new Point(56, 256);
+            lbldataupdates.Name = "lbldataupdates";
+            lbldataupdates.Size = new Size(511, 34);
+            lbldataupdates.TabIndex = 3;
+            lbldataupdates.Text = "Review and update data tables to comply with new system or government regulations.\r\n\r\n";
+            // 
+            // btnstructuremanagement
+            // 
+            btnstructuremanagement.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnstructuremanagement.Location = new Point(3, 329);
+            btnstructuremanagement.Name = "btnstructuremanagement";
+            btnstructuremanagement.Size = new Size(716, 95);
+            btnstructuremanagement.TabIndex = 4;
+            btnstructuremanagement.Text = "            Structure Management\r\n\r\n\r\n\r\n";
+            btnstructuremanagement.TextAlign = ContentAlignment.TopLeft;
+            btnstructuremanagement.UseVisualStyleBackColor = true;
+            // 
+            // lblstructuremanagement
+            // 
+            lblstructuremanagement.AutoSize = true;
+            lblstructuremanagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblstructuremanagement.Location = new Point(56, 370);
+            lblstructuremanagement.Name = "lblstructuremanagement";
+            lblstructuremanagement.Size = new Size(293, 34);
+            lblstructuremanagement.TabIndex = 5;
+            lblstructuremanagement.Text = "Manage the school's branches and departments.\r\n\r\n";
+            lblstructuremanagement.Click += label1_Click;
+            // 
+            // lblsystemadministration
+            // 
+            lblsystemadministration.AutoSize = true;
+            lblsystemadministration.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblsystemadministration.Location = new Point(3, 39);
+            lblsystemadministration.Name = "lblsystemadministration";
+            lblsystemadministration.Size = new Size(229, 30);
+            lblsystemadministration.TabIndex = 6;
+            lblsystemadministration.Text = "System Administration";
+            // 
             // Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1429, 651);
-            Controls.Add(gradientPanel1);
+            ClientSize = new Size(1284, 651);
+            Controls.Add(pnlmid);
             Controls.Add(panel1);
             Name = "Settings";
             Text = "Settings";
-            gradientPanel1.ResumeLayout(false);
-            gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel1.ResumeLayout(false);
+            pnlmid.ResumeLayout(false);
+            pnlmid.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -228,5 +313,13 @@
         private Button button1;
         private Button btnemployeeside;
         private Button btnhome;
+        private Panel pnlmid;
+        private Button btnusermanagement;
+        private Label lblusermanagement;
+        private Button btndataupdates;
+        private Label lbldataupdates;
+        private Label lblstructuremanagement;
+        private Button btnstructuremanagement;
+        private Label lblsystemadministration;
     }
 }

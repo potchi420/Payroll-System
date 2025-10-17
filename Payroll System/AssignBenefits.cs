@@ -39,6 +39,14 @@ namespace Payroll_System
             Application.Exit();
         }
 
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            BenefitsAdministration benefitsAdmin = new BenefitsAdministration();
+            benefitsAdmin.Show();
+            this.Show();
+            this.Hide();
+        }
+
         /*
          // Global variables
             DataTable employeeDataTable;
