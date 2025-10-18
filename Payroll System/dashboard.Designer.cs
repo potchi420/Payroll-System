@@ -240,7 +240,7 @@
             emp_list.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -287,7 +287,7 @@
             // 
             total_emp.AutoSize = true;
             total_emp.Font = new Font("Arial", 26.25F);
-            total_emp.Location = new Point(100, 62);
+            total_emp.Location = new Point(95, 62);
             total_emp.Margin = new Padding(0);
             total_emp.Name = "total_emp";
             total_emp.Size = new Size(36, 40);
@@ -394,7 +394,7 @@
             // 
             ave_pay.AutoSize = true;
             ave_pay.Font = new Font("Arial", 26.25F);
-            ave_pay.Location = new Point(60, 62);
+            ave_pay.Location = new Point(57, 62);
             ave_pay.Margin = new Padding(0);
             ave_pay.Name = "ave_pay";
             ave_pay.Size = new Size(126, 40);
@@ -406,7 +406,7 @@
             dept_list.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
-            dataGridViewCellStyle3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;

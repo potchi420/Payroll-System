@@ -17,9 +17,10 @@ namespace Payroll_System
         {
             InitializeComponent();
             panel_color();
-            LoadInitialEmployees();
-            focus_remover();    
+            LoadInitialEmployees();  
             LoadDepartments();
+            load_avg_pay();
+            focus_remover();
 
         }
 
@@ -121,9 +122,21 @@ namespace Payroll_System
             return dt;
         }
 
+        private void load_avg_pay()
+        {
+            string query = "SELECT AVG(salary) AS average_salary FROM employee";
+            DataTable avgTable = connector(query);
+            if (avgTable.Rows.Count > 0)
+            {
+                int averageSalary = Convert.ToInt32(avgTable.Rows[0]["average_salary"]);
+                ave_pay.Text = averageSalary.ToString("C0"); // Format as currency
+            }
+        }
+
         private void LoadInitialEmployees()
         {
-            string query = "SELECT TOP 50 employee_id, first_name, last_name, salary FROM employee";
+            string query = "SELECT TOP 50 employee_id, department_id, (first_name + ' ' + last_name) AS name, salary FROM employee";
+            string countQuery = "SELECT COUNT(*) AS total FROM employee";
             emp_list.DataSource = connector(query);
             // Auto-size columns to fit content
             emp_list.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -133,6 +146,14 @@ namespace Payroll_System
             emp_list.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             emp_list.DefaultCellStyle.SelectionBackColor = emp_list.DefaultCellStyle.BackColor;
             emp_list.DefaultCellStyle.SelectionForeColor = emp_list.DefaultCellStyle.ForeColor;
+
+            // Get department count from query result
+            DataTable countTable = connector(countQuery);
+            if (countTable.Rows.Count > 0)
+            {
+                int count = Convert.ToInt32(countTable.Rows[0]["total"]);
+                total_emp.Text = count.ToString(); // Update label
+            }
         }
         private void LoadDepartments()
         {
