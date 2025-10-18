@@ -135,7 +135,7 @@
             gradientPanel1.Controls.Add(logo);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(-3, -2);
+            gradientPanel1.Location = new Point(-3, 0);
             gradientPanel1.Name = "gradientPanel1";
             gradientPanel1.Size = new Size(1191, 76);
             gradientPanel1.TabIndex = 4;
@@ -199,7 +199,7 @@
             btntax.Name = "btntax";
             btntax.Size = new Size(170, 170);
             btntax.TabIndex = 3;
-            btntax.Text = "Tax Filings\r\n\r\n";
+            btntax.Text = "Attendance\r\n\r\n";
             btntax.TextAlign = ContentAlignment.BottomCenter;
             btntax.UseVisualStyleBackColor = false;
             // 

@@ -24,5 +24,10 @@ namespace Payroll_System
             this.Show();
             this.Hide();
         }
+
+        private void curved_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

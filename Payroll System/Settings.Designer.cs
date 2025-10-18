@@ -28,25 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             label8 = new Label();
             pictureBox5 = new PictureBox();
             pnlmid = new Panel();
+            linkLabel1 = new LinkLabel();
             lblsystemadministration = new Label();
             lblstructuremanagement = new Label();
-            btnstructuremanagement = new Button();
+            btnacccountmanagement = new Button();
             lbldataupdates = new Label();
             btndataupdates = new Button();
             lblusermanagement = new Label();
             btnusermanagement = new Button();
             gradientPanel1 = new GradientPanel();
-            label4 = new Label();
-            label5 = new Label();
+            home = new Label();
+            logout = new Label();
             label6 = new Label();
-            pictureBox1 = new PictureBox();
+            logo = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             pnlmid.SuspendLayout();
             gradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             SuspendLayout();
             // 
             // label8
@@ -75,99 +77,124 @@
             // 
             // pnlmid
             // 
+            pnlmid.Controls.Add(linkLabel1);
             pnlmid.Controls.Add(lblsystemadministration);
             pnlmid.Controls.Add(lblstructuremanagement);
-            pnlmid.Controls.Add(btnstructuremanagement);
+            pnlmid.Controls.Add(btnacccountmanagement);
             pnlmid.Controls.Add(lbldataupdates);
             pnlmid.Controls.Add(btndataupdates);
             pnlmid.Controls.Add(lblusermanagement);
             pnlmid.Controls.Add(btnusermanagement);
             pnlmid.Location = new Point(79, 103);
             pnlmid.Name = "pnlmid";
-            pnlmid.Size = new Size(722, 443);
+            pnlmid.Size = new Size(722, 487);
             pnlmid.TabIndex = 24;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Transparent;
+            linkLabel1.AutoSize = true;
+            linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
+            linkLabel1.LinkColor = Color.Gray;
+            linkLabel1.Location = new Point(3, 44);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(709, 15);
+            linkLabel1.TabIndex = 33;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = resources.GetString("linkLabel1.Text");
             // 
             // lblsystemadministration
             // 
             lblsystemadministration.AutoSize = true;
-            lblsystemadministration.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblsystemadministration.Location = new Point(3, 39);
+            lblsystemadministration.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblsystemadministration.Location = new Point(3, 0);
             lblsystemadministration.Name = "lblsystemadministration";
-            lblsystemadministration.Size = new Size(229, 30);
+            lblsystemadministration.Size = new Size(273, 29);
             lblsystemadministration.TabIndex = 6;
             lblsystemadministration.Text = "System Administration";
+            lblsystemadministration.Click += lblsystemadministration_Click;
             // 
             // lblstructuremanagement
             // 
             lblstructuremanagement.AutoSize = true;
-            lblstructuremanagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblstructuremanagement.Location = new Point(56, 370);
+            lblstructuremanagement.BackColor = SystemColors.Control;
+            lblstructuremanagement.Font = new Font("Arial", 9.75F);
+            lblstructuremanagement.Location = new Point(56, 383);
             lblstructuremanagement.Name = "lblstructuremanagement";
-            lblstructuremanagement.Size = new Size(293, 34);
+            lblstructuremanagement.Size = new Size(221, 32);
             lblstructuremanagement.TabIndex = 5;
-            lblstructuremanagement.Text = "Manage the school's branches and departments.\r\n\r\n";
+            lblstructuremanagement.Text = "Edit relevant info about your account.\r\n\r\n";
             lblstructuremanagement.Click += label1_Click;
             // 
-            // btnstructuremanagement
+            // btnacccountmanagement
             // 
-            btnstructuremanagement.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnstructuremanagement.Location = new Point(3, 329);
-            btnstructuremanagement.Name = "btnstructuremanagement";
-            btnstructuremanagement.Size = new Size(716, 95);
-            btnstructuremanagement.TabIndex = 4;
-            btnstructuremanagement.Text = "            Structure Management\r\n\r\n\r\n\r\n";
-            btnstructuremanagement.TextAlign = ContentAlignment.TopLeft;
-            btnstructuremanagement.UseVisualStyleBackColor = true;
+            btnacccountmanagement.BackColor = SystemColors.Control;
+            btnacccountmanagement.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnacccountmanagement.ImageAlign = ContentAlignment.TopCenter;
+            btnacccountmanagement.Location = new Point(0, 347);
+            btnacccountmanagement.Name = "btnacccountmanagement";
+            btnacccountmanagement.Size = new Size(700, 106);
+            btnacccountmanagement.TabIndex = 4;
+            btnacccountmanagement.Text = "           Account Management\r\n\r\n\r\n\r\n";
+            btnacccountmanagement.TextAlign = ContentAlignment.TopLeft;
+            btnacccountmanagement.UseVisualStyleBackColor = false;
+            btnacccountmanagement.Click += btnacccountmanagement_Click;
             // 
             // lbldataupdates
             // 
             lbldataupdates.AutoSize = true;
-            lbldataupdates.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbldataupdates.BackColor = SystemColors.Control;
+            lbldataupdates.Font = new Font("Arial", 9.75F);
             lbldataupdates.Location = new Point(56, 256);
             lbldataupdates.Name = "lbldataupdates";
-            lbldataupdates.Size = new Size(511, 34);
+            lbldataupdates.Size = new Size(501, 32);
             lbldataupdates.TabIndex = 3;
             lbldataupdates.Text = "Review and update data tables to comply with new system or government regulations.\r\n\r\n";
             // 
             // btndataupdates
             // 
-            btndataupdates.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btndataupdates.BackColor = SystemColors.Control;
+            btndataupdates.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btndataupdates.ImageAlign = ContentAlignment.TopCenter;
             btndataupdates.Location = new Point(3, 214);
             btndataupdates.Name = "btndataupdates";
-            btndataupdates.Size = new Size(716, 95);
+            btndataupdates.Size = new Size(700, 106);
             btndataupdates.TabIndex = 2;
             btndataupdates.Text = "            Data Updates\r\n\r\n\r\n";
             btndataupdates.TextAlign = ContentAlignment.TopLeft;
-            btndataupdates.UseVisualStyleBackColor = true;
+            btndataupdates.UseVisualStyleBackColor = false;
             // 
             // lblusermanagement
             // 
             lblusermanagement.AutoSize = true;
-            lblusermanagement.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblusermanagement.Location = new Point(56, 148);
+            lblusermanagement.BackColor = SystemColors.Control;
+            lblusermanagement.Font = new Font("Arial", 9.75F);
+            lblusermanagement.Location = new Point(56, 123);
             lblusermanagement.Name = "lblusermanagement";
-            lblusermanagement.Size = new Size(344, 17);
+            lblusermanagement.Size = new Size(346, 16);
             lblusermanagement.TabIndex = 1;
             lblusermanagement.Text = "Create and manage user accounts and their access levels.\r\n";
             // 
             // btnusermanagement
             // 
-            btnusermanagement.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnusermanagement.Location = new Point(3, 105);
+            btnusermanagement.BackColor = SystemColors.Control;
+            btnusermanagement.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnusermanagement.ImageAlign = ContentAlignment.TopCenter;
+            btnusermanagement.Location = new Point(3, 85);
             btnusermanagement.Name = "btnusermanagement";
-            btnusermanagement.Size = new Size(716, 95);
+            btnusermanagement.Size = new Size(700, 106);
             btnusermanagement.TabIndex = 0;
             btnusermanagement.Text = "            User Management\r\n\r\n";
             btnusermanagement.TextAlign = ContentAlignment.TopLeft;
-            btnusermanagement.UseVisualStyleBackColor = true;
-            btnusermanagement.Click += button8_Click;
+            btnusermanagement.UseVisualStyleBackColor = false;
+            btnusermanagement.Click += btnusermanagement_Click;
             // 
             // gradientPanel1
             // 
-            gradientPanel1.Controls.Add(label4);
-            gradientPanel1.Controls.Add(label5);
+            gradientPanel1.Controls.Add(home);
+            gradientPanel1.Controls.Add(logout);
             gradientPanel1.Controls.Add(label6);
-            gradientPanel1.Controls.Add(pictureBox1);
+            gradientPanel1.Controls.Add(logo);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, 0);
@@ -175,33 +202,35 @@
             gradientPanel1.Size = new Size(1191, 76);
             gradientPanel1.TabIndex = 32;
             // 
-            // label4
+            // home
             // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.Transparent;
-            label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Transparent;
-            label4.Location = new Point(1018, 30);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 24);
-            label4.TabIndex = 24;
-            label4.Text = "Home";
-            label4.TextAlign = ContentAlignment.TopCenter;
+            home.AutoSize = true;
+            home.BackColor = Color.Transparent;
+            home.Cursor = Cursors.Hand;
+            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.ForeColor = Color.Transparent;
+            home.Location = new Point(1018, 30);
+            home.Name = "home";
+            home.Size = new Size(66, 24);
+            home.TabIndex = 24;
+            home.Text = "Home";
+            home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += home_Click;
             // 
-            // label5
+            // logout
             // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.Transparent;
-            label5.Cursor = Cursors.Hand;
-            label5.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Transparent;
-            label5.Location = new Point(1090, 30);
-            label5.Name = "label5";
-            label5.Size = new Size(85, 24);
-            label5.TabIndex = 24;
-            label5.Text = "Log Out";
-            label5.TextAlign = ContentAlignment.TopCenter;
+            logout.AutoSize = true;
+            logout.BackColor = Color.Transparent;
+            logout.Cursor = Cursors.Hand;
+            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.ForeColor = Color.Transparent;
+            logout.Location = new Point(1090, 30);
+            logout.Name = "logout";
+            logout.Size = new Size(85, 24);
+            logout.TabIndex = 24;
+            logout.Text = "Log Out";
+            logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
             // 
             // label6
             // 
@@ -216,25 +245,28 @@
             label6.Text = "PCU PAYROLL SYSTEM";
             label6.TextAlign = ContentAlignment.TopCenter;
             // 
-            // pictureBox1
+            // logo
             // 
-            pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Cursor = Cursors.Hand;
-            pictureBox1.Image = Properties.Resources.icon;
-            pictureBox1.Location = new Point(0, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(76, 75);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 22;
-            pictureBox1.TabStop = false;
+            logo.BackColor = Color.Transparent;
+            logo.Cursor = Cursors.Hand;
+            logo.Image = Properties.Resources.icon;
+            logo.Location = new Point(0, 3);
+            logo.Name = "logo";
+            logo.Size = new Size(76, 75);
+            logo.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo.TabIndex = 22;
+            logo.TabStop = false;
+            logo.Click += logo_Click;
             // 
             // Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.Control;
             ClientSize = new Size(1184, 651);
             Controls.Add(gradientPanel1);
             Controls.Add(pnlmid);
+            Cursor = Cursors.Hand;
             Name = "Settings";
             Text = "Settings";
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
@@ -242,7 +274,7 @@
             pnlmid.PerformLayout();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ResumeLayout(false);
         }
 
@@ -255,12 +287,13 @@
         private Button btndataupdates;
         private Label lbldataupdates;
         private Label lblstructuremanagement;
-        private Button btnstructuremanagement;
+        private Button btnacccountmanagement;
         private Label lblsystemadministration;
         private GradientPanel gradientPanel1;
-        private Label label4;
-        private Label label5;
+        private Label home;
+        private Label logout;
         private Label label6;
-        private PictureBox pictureBox1;
+        private PictureBox logo;
+        private LinkLabel linkLabel1;
     }
 }

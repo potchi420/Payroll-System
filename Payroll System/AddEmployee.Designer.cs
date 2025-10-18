@@ -127,7 +127,7 @@
             // back_btn
             // 
             back_btn.Font = new Font("Arial", 11.25F);
-            back_btn.Location = new Point(759, 550);
+            back_btn.Location = new Point(734, 553);
             back_btn.Name = "back_btn";
             back_btn.Size = new Size(130, 43);
             back_btn.TabIndex = 50;
@@ -138,7 +138,7 @@
             // save_btn
             // 
             save_btn.Font = new Font("Arial", 11.25F);
-            save_btn.Location = new Point(905, 550);
+            save_btn.Location = new Point(880, 553);
             save_btn.Name = "save_btn";
             save_btn.Size = new Size(130, 43);
             save_btn.TabIndex = 47;
@@ -162,25 +162,27 @@
             curved_panel.Controls.Add(first_name);
             curved_panel.gradientBottom = Color.Empty;
             curved_panel.gradientTop = Color.Empty;
-            curved_panel.Location = new Point(149, 182);
+            curved_panel.Location = new Point(177, 178);
             curved_panel.Name = "curved_panel";
-            curved_panel.Size = new Size(886, 351);
+            curved_panel.Size = new Size(833, 351);
             curved_panel.TabIndex = 49;
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
-            label6.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(83, 218);
+            label6.Font = new Font("Arial", 15.75F);
+            label6.Location = new Point(57, 218);
             label6.Name = "label6";
-            label6.Size = new Size(62, 22);
+            label6.Size = new Size(70, 24);
             label6.TabIndex = 58;
             label6.Text = "Salary";
             // 
             // Salary
             // 
+            Salary.Anchor = AnchorStyles.None;
             Salary.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Salary.Location = new Point(88, 254);
+            Salary.Location = new Point(62, 254);
             Salary.Multiline = true;
             Salary.Name = "Salary";
             Salary.Size = new Size(326, 29);
@@ -188,18 +190,20 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
-            label5.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(471, 129);
+            label5.Font = new Font("Arial", 15.75F);
+            label5.Location = new Point(445, 129);
             label5.Name = "label5";
-            label5.Size = new Size(106, 22);
+            label5.Size = new Size(118, 24);
             label5.TabIndex = 56;
             label5.Text = "Contact no.";
             // 
             // contact_no
             // 
+            contact_no.Anchor = AnchorStyles.None;
             contact_no.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contact_no.Location = new Point(476, 165);
+            contact_no.Location = new Point(450, 165);
             contact_no.Multiline = true;
             contact_no.Name = "contact_no";
             contact_no.Size = new Size(326, 29);
@@ -207,37 +211,41 @@
             // 
             // department
             // 
+            department.Anchor = AnchorStyles.None;
             department.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             department.FormattingEnabled = true;
-            department.Location = new Point(88, 165);
+            department.Location = new Point(62, 165);
             department.Name = "department";
             department.Size = new Size(326, 26);
             department.TabIndex = 54;
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
-            label4.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(83, 129);
+            label4.Font = new Font("Arial", 15.75F);
+            label4.Location = new Point(57, 129);
             label4.Name = "label4";
-            label4.Size = new Size(109, 22);
+            label4.Size = new Size(118, 24);
             label4.TabIndex = 53;
             label4.Text = "Department";
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
-            label3.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(472, 218);
+            label3.Font = new Font("Arial", 15.75F);
+            label3.Location = new Point(446, 218);
             label3.Name = "label3";
-            label3.Size = new Size(82, 22);
+            label3.Size = new Size(86, 24);
             label3.TabIndex = 51;
             label3.Text = "Address";
             // 
             // Address
             // 
+            Address.Anchor = AnchorStyles.None;
             Address.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Address.Location = new Point(476, 253);
+            Address.Location = new Point(450, 253);
             Address.Multiline = true;
             Address.Name = "Address";
             Address.Size = new Size(327, 72);
@@ -245,18 +253,20 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
-            label2.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(472, 25);
+            label2.Font = new Font("Arial", 15.75F);
+            label2.Location = new Point(446, 25);
             label2.Name = "label2";
-            label2.Size = new Size(101, 22);
+            label2.Size = new Size(111, 24);
             label2.TabIndex = 49;
             label2.Text = "Last Name";
             // 
             // last_name
             // 
+            last_name.Anchor = AnchorStyles.None;
             last_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            last_name.Location = new Point(472, 61);
+            last_name.Location = new Point(446, 61);
             last_name.Multiline = true;
             last_name.Name = "last_name";
             last_name.Size = new Size(326, 29);
@@ -264,18 +274,20 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
-            label1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(83, 25);
+            label1.Font = new Font("Arial", 15.75F);
+            label1.Location = new Point(57, 25);
             label1.Name = "label1";
-            label1.Size = new Size(102, 22);
+            label1.Size = new Size(112, 24);
             label1.TabIndex = 47;
             label1.Text = "First Name";
             // 
             // first_name
             // 
+            first_name.Anchor = AnchorStyles.None;
             first_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            first_name.Location = new Point(88, 61);
+            first_name.Location = new Point(62, 61);
             first_name.Multiline = true;
             first_name.Name = "first_name";
             first_name.Size = new Size(326, 29);
