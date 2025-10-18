@@ -13,7 +13,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             try
             {
@@ -113,31 +113,33 @@ namespace Payroll_System
 
 
         public void DisplayEmployeeSalary(
-     int employeeID,
-     Label grosspay,
-     Label sss,
-     Label philhealth,
-     Label pagibig,
-     Label totaldeductions,
-     Label netpay,
-     Label overtime)
+  int employeeID,
+  Label grosspay,
+  Label sss,
+  Label philhealth,
+  Label pagibig,
+  Label totaldeductions,
+  Label netpay,
+  Label overtime,
+  Label salary)
         {
-            double salaryPerDay = 700;
+
             double sssdeduction = 0.05;
             double phildeduction = 0.05;
             double pagibigdeduction = 0.05;
             connection(); // Opens your SQL connection
 
             string query = @"
-        SELECT 
-            e.first_name, 
-            e.last_name,
-            a.days_worked,
-            a.overtimed_hour
-        FROM employee e
-        INNER JOIN attendance a 
-            ON e.employee_id = a.employee_id
-        WHERE e.employee_id = @id";
+   SELECT 
+       e.first_name, 
+       e.last_name,
+       a.days_worked,
+       a.overtimed_hour,
+       e.salary
+   FROM employee e
+   INNER JOIN attendance a 
+       ON e.employee_id = a.employee_id
+   WHERE e.employee_id = @id";
 
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
@@ -151,6 +153,8 @@ namespace Payroll_System
                         {
                             int dayWorked = Convert.ToInt32(reader["days_worked"]);
                             int overtimeHours = Convert.ToInt32(reader["overtimed_hour"]);
+                            double salaryPerDay = Convert.ToDouble(reader["salary"]);
+
 
                             double totalSalary = dayWorked * salaryPerDay;
                             double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour workday
@@ -163,6 +167,7 @@ namespace Payroll_System
                             double netSalary = grossSalary - totalDeductions;
 
                             // Display values with ₱ and 2 decimal places
+                            salary.Text = $"₱{salaryPerDay:N2}";
                             grosspay.Text = $"₱{grossSalary:N2}";
                             sss.Text = $"₱{sssAmount:N2}";
                             philhealth.Text = $"₱{philAmount:N2}";
@@ -180,6 +185,7 @@ namespace Payroll_System
                             totaldeductions.Text = "₱N/A";
                             netpay.Text = "₱N/A";
                             overtime.Text = "₱N/A";
+                            salary.Text = "₱N/A";
                         }
                     }
                 }
@@ -194,9 +200,7 @@ namespace Payroll_System
             }
         }
 
-        internal static bool ExecuteScalar(string dept)
-        {
-            throw new NotImplementedException();
-        }
+       
+
     }
 }

@@ -40,8 +40,7 @@ namespace Payroll_System
                 if (cmbname.SelectedValue != null && int.TryParse(cmbname.SelectedValue.ToString(), out int empID))
                 {
                     Connector cn = new Connector();
-                    cn.DisplayEmployeeSalary(empID, gross_pay_value, sss_value, philhealth_value, pagibig_value, total_deductions_value, net_pay_value, overtime_value); // basic_salary_value = your Label
-
+                    cn.DisplayEmployeeSalary(empID, gross_pay_value, sss_value, philhealth_value, pagibig_value, total_deductions_value, net_pay_value, overtime_value, basic_salary_value);
 
                 }
             }
