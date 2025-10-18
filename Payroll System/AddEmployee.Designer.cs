@@ -84,6 +84,7 @@
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
+            home.Click += home_Click;
             // 
             // logout
             // 
@@ -98,6 +99,7 @@
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
+            logout.Click += logout_Click;
             // 
             // label8
             // 
@@ -123,6 +125,7 @@
             logo.SizeMode = PictureBoxSizeMode.StretchImage;
             logo.TabIndex = 22;
             logo.TabStop = false;
+            logo.Click += logo_Click;
             // 
             // back_btn
             // 
@@ -144,6 +147,7 @@
             save_btn.TabIndex = 47;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
+            save_btn.Click += save_btn_Click;
             // 
             // curved_panel
             // 
