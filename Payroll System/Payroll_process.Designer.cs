@@ -383,6 +383,7 @@
             generate_payslip_btn.TabIndex = 0;
             generate_payslip_btn.Text = "Generate Payslip";
             generate_payslip_btn.UseVisualStyleBackColor = true;
+            generate_payslip_btn.Click += generate_payslip_btn_Click;
             // 
             // pay_period_box
             // 

@@ -100,18 +100,22 @@ namespace Payroll_System
         {
             if (e.RowIndex >= 0)
             {
-                string name = dataGridViewEmployees.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                //string name = dataGridViewEmployees.Rows[e.RowIndex].Cells["Name"].Value.ToString();
                 string column = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
 
                 if (column == "Document")
                 {
-                    MessageBox.Show($"Open document for {name}");
-                    // Add logic to open document
+                    MessageBox.Show($"Open document for ");
+
                 }
-                else if (column == "Action")
+                else if (column == "remove_employee_btn")
                 {
-                    MessageBox.Show($"Show details for {name}");
-                    // Add logic to show employee details
+                    MessageBox.Show($"Show details for ");
+
+                }
+                else if (column == "edit_employee_btn")
+                {
+                    MessageBox.Show($"Edit employee ");
                 }
             }
         }
