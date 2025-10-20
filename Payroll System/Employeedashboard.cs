@@ -1,4 +1,6 @@
-﻿using System.Data;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 
@@ -100,7 +102,7 @@ namespace Payroll_System
         {
             if (e.RowIndex >= 0)
             {
-                //string name = dataGridViewEmployees.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                int empID = Convert.ToInt32(dataGridViewEmployees.Rows[e.RowIndex].Cells["employee_id"].Value);
                 string column = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
 
                 if (column == "Document")
@@ -110,8 +112,24 @@ namespace Payroll_System
                 }
                 else if (column == "remove_employee_btn")
                 {
-                    MessageBox.Show($"Show details for ");
+                    DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
+                    if (result == DialogResult.Yes)
+                    {
+
+                        using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+                        { 
+                            string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
+                            using (SqlCommand cmd = new SqlCommand(deleteQuery, connector))
+                            {
+                                cmd.Parameters.AddWithValue("@empID", empID);
+                                connector.Open();
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                        MessageBox.Show("Employee details deleted successfully!");
+                        reloadForm();
+                    }
                 }
                 else if (column == "edit_employee_btn")
                 {
@@ -158,10 +176,9 @@ namespace Payroll_System
                 }
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public void reloadForm()
         {
-
+            LoadInitialEmployees();
         }
     }
 }

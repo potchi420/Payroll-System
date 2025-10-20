@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             logo = new PictureBox();
             label8 = new Label();
             logout = new Label();
@@ -59,8 +60,8 @@
             ave_pay = new Label();
             dept_list = new DataGridView();
             label1 = new Label();
-            label4 = new Label();
             pnlcenter = new Panel();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)emp_list).BeginInit();
@@ -416,7 +417,14 @@
             dept_list.GridColor = SystemColors.ControlLight;
             dept_list.Location = new Point(32, 446);
             dept_list.Name = "dept_list";
-            dept_list.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            dataGridViewCellStyle4.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dept_list.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dept_list.Size = new Size(543, 124);
             dept_list.TabIndex = 10;
             // 
@@ -430,17 +438,6 @@
             label1.Size = new Size(107, 18);
             label1.TabIndex = 33;
             label1.Text = "Employee List";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(32, 426);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(129, 18);
-            label4.TabIndex = 34;
-            label4.Text = "Departments List";
             // 
             // pnlcenter
             // 
@@ -463,6 +460,17 @@
             pnlcenter.Name = "pnlcenter";
             pnlcenter.Size = new Size(1188, 591);
             pnlcenter.TabIndex = 3;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(32, 426);
+            label4.Margin = new Padding(0);
+            label4.Name = "label4";
+            label4.Size = new Size(129, 18);
+            label4.TabIndex = 34;
+            label4.Text = "Departments List";
             // 
             // dashboard
             // 
@@ -519,7 +527,7 @@
         private Label ave_pay;
         private DataGridView dept_list;
         private Label label1;
-        private Label label4;
         private Panel pnlcenter;
+        private Label label4;
     }
 }
