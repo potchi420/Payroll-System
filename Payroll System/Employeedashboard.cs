@@ -18,6 +18,17 @@ namespace Payroll_System
             LoadEmployeeNames(searchbox);
         }
 
+        //change the connection string as per your sql server
+        public static class dbConnector
+        {
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
+        }
+
         private void logo_Click(object sender, EventArgs e)
         {
             dashboard db = new dashboard();
@@ -117,7 +128,7 @@ namespace Payroll_System
                     if (result == DialogResult.Yes)
                     {
 
-                        using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+                        using (SqlConnection connector = dbConnector.GetConnection())
                         { 
                             string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
                             using (SqlCommand cmd = new SqlCommand(deleteQuery, connector))
@@ -153,7 +164,7 @@ namespace Payroll_System
         {
             string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
 
-            using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connector = dbConnector.GetConnection())
             {
                 try
                 {

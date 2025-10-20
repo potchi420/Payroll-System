@@ -19,6 +19,17 @@ namespace Payroll_System
             load_departments(department);
         }
 
+        //change the connection string as per your sql server
+        public static class dbConnector
+        {
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
+        }
+
         private void back_btn_Click(object sender, EventArgs e)
         {
             Employeedashboard ed = new Employeedashboard();
@@ -50,7 +61,7 @@ namespace Payroll_System
         private void load_departments(ComboBox departments)
         {
             string query = "SELECT department_id, department_name FROM department";
-            using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connector = dbConnector.GetConnection())
             {
                 try
                 {
@@ -78,7 +89,7 @@ namespace Payroll_System
         {
 
             // Code to save the new employee details to the database
-            using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connector = dbConnector.GetConnection())
             {
                 string add_emp = "INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update) " +
                                      "VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update)";

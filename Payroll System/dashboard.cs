@@ -24,9 +24,15 @@ namespace Payroll_System
 
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        //change the connection string as per your sql server
+        public static class dbConnector
         {
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
         }
 
         private void btnemployee_Click(object sender, EventArgs e)
@@ -51,36 +57,6 @@ namespace Payroll_System
             reports.Show();
             this.Show();
             this.Hide();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblsystem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlside_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblsystem_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnemployeeside_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnbenefits_Click(object sender, EventArgs e)
@@ -114,7 +90,7 @@ namespace Payroll_System
         private DataTable connector(string query)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connector = dbConnector.GetConnection())
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connector);
                 adapter.Fill(dt);
