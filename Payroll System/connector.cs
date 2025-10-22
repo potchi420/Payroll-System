@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using Org.BouncyCastle.Tls;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,7 +14,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             try
             {
@@ -199,8 +200,292 @@ namespace Payroll_System
                 }
             }
         }
+        public void LoadEmployeeBenefits(DataGridView dgv)
+        {
+            try
+            {
+                connection(); // open SQL connection
 
-       
+                // 1️⃣ Get employees
+                string employeeQuery = "SELECT employee_id, first_name, last_name FROM employee";
+                SqlDataAdapter empAdapter = new SqlDataAdapter(employeeQuery, con);
+                DataTable empTable = new DataTable();
+                empAdapter.Fill(empTable);
+
+                // 2️⃣ Get benefits with status
+                string benefitQuery = "SELECT benefit_type FROM BenefitCatalog";
+                SqlDataAdapter benAdapter = new SqlDataAdapter(benefitQuery, con);
+                DataTable benTable = new DataTable();
+                benAdapter.Fill(benTable);
+
+                // 3️⃣ Clear DataGridView
+                dgv.Rows.Clear();
+                dgv.Columns.Clear();
+
+                // 4️⃣ Add Name column (TextBox)
+                DataGridViewTextBoxColumn nameCol = new DataGridViewTextBoxColumn();
+                nameCol.HeaderText = "Name";
+                nameCol.Name = "name";
+                nameCol.ReadOnly = true;
+                dgv.Columns.Add(nameCol);
+
+                // 5️⃣ Add Benefit column (ComboBox)
+                DataGridViewComboBoxColumn benefitCol = new DataGridViewComboBoxColumn();
+                benefitCol.HeaderText = "Benefit";
+                benefitCol.Name = "benefit_type";
+                benefitCol.DataSource = benTable;
+                benefitCol.DisplayMember = "benefit_type";
+                benefitCol.ValueMember = "benefit_type";
+                dgv.Columns.Add(benefitCol);
+
+                // 6️⃣ Add Status column (ComboBox)
+                DataGridViewComboBoxColumn statusCol = new DataGridViewComboBoxColumn();
+                statusCol.HeaderText = "Status";
+                statusCol.Name = "status";
+                statusCol.Items.Add("Active");
+                statusCol.Items.Add("Inactive");
+                dgv.Columns.Add(statusCol);
+
+                // 7️⃣ Add employee rows
+                foreach (DataRow row in empTable.Rows)
+                {
+                    string fullName = row["first_name"].ToString() + " " + row["last_name"].ToString();
+                    dgv.Rows.Add(fullName);
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading employee benefits: " + ex.Message);
+            }
+        }
+
+
+        public void DisplayBenefits(DataGridView dgv)
+        {
+            try
+            {
+                connection();
+
+                string query = "SELECT benefit_id, benefit_type, description,default_amount FROM BenefitCatalog";
+                using (SqlDataAdapter adapter = new SqlDataAdapter(query, con))
+                {
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dgv.Rows.Clear(); // clear old data
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        dgv.Rows.Add(
+
+                            row["benefit_id"].ToString(),
+                            row["benefit_type"].ToString(),
+                            row["description"].ToString(),
+                            row["default_amount"].ToString()
+                        );
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
+
+
+        public void AddBenefits(DataGridView dgv)
+{
+    try
+    {
+        connection();
+        bool anyAdded = false;
+
+        foreach (DataGridViewRow row in dgv.Rows)
+        {
+            if (row.IsNewRow) continue;
+
+            string benefitType = row.Cells["benefit_type"].Value?.ToString();
+            string description = row.Cells["description"].Value?.ToString();
+            string amountText = row.Cells["default_amount"].Value?.ToString();
+
+            if (string.IsNullOrWhiteSpace(benefitType) || string.IsNullOrWhiteSpace(amountText))
+                continue;
+
+            double defaultAmount = double.Parse(amountText);
+
+            // ✅ Check if this benefit already exists
+            string checkQuery = @"SELECT COUNT(*) FROM BenefitCatalog 
+                                  WHERE benefit_type = @type 
+                                  AND CAST(description AS NVARCHAR(MAX)) = @desc";
+
+            using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+            {
+                checkCmd.Parameters.AddWithValue("@type", benefitType);
+                checkCmd.Parameters.AddWithValue("@desc", description ?? "");
+                int exists = (int)checkCmd.ExecuteScalar();
+
+                if (exists == 0) // Only insert if not exists
+                {
+                    string insertQuery = @"INSERT INTO BenefitCatalog 
+                                           (benefit_type, description, default_amount)
+                                           VALUES (@type, @desc, @amount)";
+
+                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                    {
+                        insertCmd.Parameters.AddWithValue("@type", benefitType);
+                        insertCmd.Parameters.AddWithValue("@desc", description ?? "");
+                        insertCmd.Parameters.AddWithValue("@amount", defaultAmount);
+                        insertCmd.ExecuteNonQuery();
+                    }
+
+                    anyAdded = true;
+                }
+            }
+        }
+
+        if (anyAdded)
+        {
+            MessageBox.Show("New rows added successfully!");
+            DisplayBenefits(dgv); // Refresh grid
+        }
+        else
+        {
+            MessageBox.Show("No new Benefits to add.");
+        }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+    finally
+    {
+        con.Close();
+    }
+}
+
+
+        public void EditBenefit(DataGridView dgv)
+        {
+            try
+            {
+                if (dgv.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a row to edit.");
+                    return;
+                }
+
+                DataGridViewRow row = dgv.SelectedRows[0];
+
+
+                int benefitID = Convert.ToInt32(row.Cells["benefit_id"].Value);
+
+                string description = row.Cells["description"].Value?.ToString();
+                string benefitType = row.Cells["benefit_type"].Value?.ToString();
+                string amountText = row.Cells["default_amount"].Value?.ToString();
+
+                if (string.IsNullOrWhiteSpace(benefitType) || string.IsNullOrWhiteSpace(amountText))
+                {
+                    MessageBox.Show("Please fill in all fields.");
+                    return;
+                }
+
+                double defaultAmount = double.Parse(amountText);
+
+                connection(); // Open SQL connection
+
+                string query = @"UPDATE BenefitCatalog
+           SET benefit_type = @type,
+                  description = @desc,
+               default_amount = @amount
+           WHERE benefit_id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@desc", description ?? "");
+                    cmd.Parameters.AddWithValue("@type", benefitType);
+                    cmd.Parameters.AddWithValue("@amount", defaultAmount);
+                    cmd.Parameters.AddWithValue("@id", benefitID);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                        MessageBox.Show("Record updated successfully!");
+                    else
+                        MessageBox.Show("No record found to update.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
+
+
+
+        public void DeleteBenefit(DataGridView dgv)
+        {
+            try
+            {
+                if (dgv.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a row to delete.");
+                    return;
+                }
+
+                DataGridViewRow row = dgv.SelectedRows[0];
+                int benefitID = Convert.ToInt32(row.Cells["benefit_id"].Value); // unique key
+
+                DialogResult confirm = MessageBox.Show(
+                    "Are you sure you want to delete this record?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    connection(); // open SQL connection
+
+                    string query = "DELETE FROM BenefitCatalog WHERE benefit_id = @id";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", benefitID);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Record deleted successfully!");
+
+                    // Refresh the grid after deletion
+                    DisplayBenefits(dgv); // reloads data from the database
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+
+
+
 
     }
 }

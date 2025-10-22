@@ -33,23 +33,23 @@
             logout = new Label();
             label8 = new Label();
             logo = new PictureBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            btn_add = new Button();
+            btn_edit = new Button();
+            btn_delete = new Button();
             linkLabel1 = new LinkLabel();
             benefits_administration_label = new Label();
             dataGridViewEmployees = new DataGridView();
-            back_btn = new Button();
-            save_btn = new Button();
+            benefit_id = new DataGridViewTextBoxColumn();
+            benefit_type = new DataGridViewTextBoxColumn();
+            description = new DataGridViewTextBoxColumn();
+            default_amount = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            gradientPanel1 = new GradientPanel();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).BeginInit();
-            gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -109,35 +109,41 @@
             logo.TabStop = false;
             logo.Click += logo_Click;
             // 
-            // button1
+            // btn_add
             // 
-            button1.Font = new Font("Arial", 11.25F);
-            button1.Location = new Point(793, 220);
-            button1.Name = "button1";
-            button1.Size = new Size(120, 42);
-            button1.TabIndex = 1;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            btn_add.Font = new Font("Arial", 11.25F);
+            btn_add.Location = new Point(906, 293);
+            btn_add.Margin = new Padding(3, 4, 3, 4);
+            btn_add.Name = "btn_add";
+            btn_add.Size = new Size(137, 56);
+            btn_add.TabIndex = 1;
+            btn_add.Text = "Add";
+            btn_add.UseVisualStyleBackColor = true;
+            btn_add.Click += btn_add_Click;
             // 
-            // button2
+            // btn_edit
             // 
-            button2.Font = new Font("Arial", 11.25F);
-            button2.Location = new Point(793, 286);
-            button2.Name = "button2";
-            button2.Size = new Size(120, 42);
-            button2.TabIndex = 2;
-            button2.Text = "Edit";
-            button2.UseVisualStyleBackColor = true;
+            btn_edit.Font = new Font("Arial", 11.25F);
+            btn_edit.Location = new Point(906, 381);
+            btn_edit.Margin = new Padding(3, 4, 3, 4);
+            btn_edit.Name = "btn_edit";
+            btn_edit.Size = new Size(137, 56);
+            btn_edit.TabIndex = 2;
+            btn_edit.Text = "Edit";
+            btn_edit.UseVisualStyleBackColor = true;
+            btn_edit.Click += btn_edit_Click;
             // 
-            // button3
+            // btn_delete
             // 
-            button3.Font = new Font("Arial", 11.25F);
-            button3.Location = new Point(793, 353);
-            button3.Name = "button3";
-            button3.Size = new Size(120, 42);
-            button3.TabIndex = 3;
-            button3.Text = "Delete";
-            button3.UseVisualStyleBackColor = true;
+            btn_delete.Font = new Font("Arial", 11.25F);
+            btn_delete.Location = new Point(906, 471);
+            btn_delete.Margin = new Padding(3, 4, 3, 4);
+            btn_delete.Name = "btn_delete";
+            btn_delete.Size = new Size(137, 56);
+            btn_delete.TabIndex = 3;
+            btn_delete.Text = "Delete";
+            btn_delete.UseVisualStyleBackColor = true;
+            btn_delete.Click += btn_delete_Click;
             // 
             // linkLabel1
             // 
@@ -145,9 +151,9 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(63, 134);
+            linkLabel1.Location = new Point(72, 179);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1078, 15);
+            linkLabel1.Size = new Size(1437, 20);
             linkLabel1.TabIndex = 40;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
@@ -156,9 +162,9 @@
             // 
             benefits_administration_label.AutoSize = true;
             benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            benefits_administration_label.Location = new Point(60, 105);
+            benefits_administration_label.Location = new Point(69, 140);
             benefits_administration_label.Name = "benefits_administration_label";
-            benefits_administration_label.Size = new Size(202, 29);
+            benefits_administration_label.Size = new Size(251, 35);
             benefits_administration_label.TabIndex = 39;
             benefits_administration_label.Text = "Benefits Catalog";
             // 
@@ -166,53 +172,52 @@
             // 
             dataGridViewEmployees.BackgroundColor = SystemColors.Control;
             dataGridViewEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewEmployees.Location = new Point(79, 220);
+            dataGridViewEmployees.Columns.AddRange(new DataGridViewColumn[] { benefit_id, benefit_type, description, default_amount });
+            dataGridViewEmployees.Location = new Point(90, 293);
+            dataGridViewEmployees.Margin = new Padding(3, 4, 3, 4);
             dataGridViewEmployees.Name = "dataGridViewEmployees";
-            dataGridViewEmployees.Size = new Size(679, 259);
+            dataGridViewEmployees.RowHeadersWidth = 51;
+            dataGridViewEmployees.Size = new Size(776, 345);
             dataGridViewEmployees.TabIndex = 41;
             // 
-            // back_btn
+            // benefit_id
             // 
-            back_btn.Font = new Font("Arial", 11.25F);
-            back_btn.Location = new Point(79, 508);
-            back_btn.Name = "back_btn";
-            back_btn.Size = new Size(120, 42);
-            back_btn.TabIndex = 42;
-            back_btn.Text = "Back";
-            back_btn.UseVisualStyleBackColor = true;
+            benefit_id.HeaderText = "Number";
+            benefit_id.MinimumWidth = 6;
+            benefit_id.Name = "benefit_id";
+            benefit_id.Visible = false;
+            benefit_id.Width = 125;
             // 
-            // save_btn
+            // benefit_type
             // 
-            save_btn.Font = new Font("Arial", 11.25F);
-            save_btn.Location = new Point(217, 508);
-            save_btn.Name = "save_btn";
-            save_btn.Size = new Size(120, 42);
-            save_btn.TabIndex = 43;
-            save_btn.Text = "Save";
-            save_btn.UseVisualStyleBackColor = true;
+            benefit_type.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            benefit_type.HeaderText = "Name";
+            benefit_type.MinimumWidth = 6;
+            benefit_type.Name = "benefit_type";
+            // 
+            // description
+            // 
+            description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            description.HeaderText = "Description";
+            description.MinimumWidth = 6;
+            description.Name = "description";
+            // 
+            // default_amount
+            // 
+            default_amount.HeaderText = "Amount";
+            default_amount.MinimumWidth = 6;
+            default_amount.Name = "default_amount";
+            default_amount.Width = 125;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(79, 180);
+            label1.Location = new Point(90, 240);
             label1.Name = "label1";
-            label1.Size = new Size(80, 22);
+            label1.Size = new Size(99, 27);
             label1.TabIndex = 44;
             label1.Text = "Benefits";
-            // 
-            // gradientPanel1
-            // 
-            gradientPanel1.Controls.Add(label2);
-            gradientPanel1.Controls.Add(label3);
-            gradientPanel1.Controls.Add(label4);
-            gradientPanel1.Controls.Add(pictureBox1);
-            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
-            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
-            gradientPanel1.Location = new Point(-3, 0);
-            gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1191, 76);
-            gradientPanel1.TabIndex = 45;
             // 
             // label2
             // 
@@ -269,25 +274,21 @@
             // 
             // BenefitCatalog
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 651);
-            Controls.Add(gradientPanel1);
+            ClientSize = new Size(1353, 868);
             Controls.Add(label1);
-            Controls.Add(save_btn);
-            Controls.Add(back_btn);
             Controls.Add(dataGridViewEmployees);
             Controls.Add(linkLabel1);
             Controls.Add(benefits_administration_label);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btn_delete);
+            Controls.Add(btn_edit);
+            Controls.Add(btn_add);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "BenefitCatalog";
             Text = "BenefitCatalog";
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).EndInit();
-            gradientPanel1.ResumeLayout(false);
-            gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -298,19 +299,21 @@
         private Label logout;
         private Label label8;
         private PictureBox logo;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button btn_add;
+        private Button btn_edit;
+        private Button btn_delete;
         private LinkLabel linkLabel1;
         private Label benefits_administration_label;
         private DataGridView dataGridViewEmployees;
-        private Button back_btn;
-        private Button save_btn;
         private Label label1;
         private GradientPanel gradientPanel1;
         private Label label2;
         private Label label3;
         private Label label4;
         private PictureBox pictureBox1;
+        private DataGridViewTextBoxColumn benefit_id;
+        private DataGridViewTextBoxColumn benefit_type;
+        private DataGridViewTextBoxColumn description;
+        private DataGridViewTextBoxColumn default_amount;
     }
 }

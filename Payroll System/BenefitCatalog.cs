@@ -12,9 +12,13 @@ namespace Payroll_System
 {
     public partial class BenefitCatalog : Form
     {
+        Connector cn = new Connector();
         public BenefitCatalog()
         {
             InitializeComponent();
+            cn.DisplayBenefits(dataGridViewEmployees);
+
+
         }
 
         private void logo_Click(object sender, EventArgs e)
@@ -36,6 +40,21 @@ namespace Payroll_System
         private void logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+            cn.AddBenefits(dataGridViewEmployees);
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            cn.EditBenefit(dataGridViewEmployees);
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            cn.DeleteBenefit(dataGridViewEmployees);
         }
     }
 }
