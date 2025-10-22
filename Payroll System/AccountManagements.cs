@@ -16,5 +16,20 @@ namespace Payroll_System
         {
             InitializeComponent();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblcurrent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblnew_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
