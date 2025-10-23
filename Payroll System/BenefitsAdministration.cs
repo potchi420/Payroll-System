@@ -70,5 +70,13 @@ namespace Payroll_System
             this.Controls.Add(dummyFocus);
             this.ActiveControl = dummyFocus;
         }
+
+        private void benefit_catalog_btn_Click(object sender, EventArgs e)
+        {
+            BenefitCatalog benefitCatalog = new BenefitCatalog();
+            benefitCatalog.Show();
+            this.Show();
+            this.Hide();
+        }
     }
 }

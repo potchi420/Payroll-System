@@ -31,5 +31,26 @@ namespace Payroll_System
         {
 
         }
+
+        private void home_btn_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logout_btn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void logo_btn_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
     }
 }

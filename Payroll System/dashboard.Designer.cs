@@ -203,6 +203,7 @@
             btntax.Text = "Attendance\r\n\r\n";
             btntax.TextAlign = ContentAlignment.BottomCenter;
             btntax.UseVisualStyleBackColor = false;
+            btntax.Click += btntax_Click;
             // 
             // btnbenefits
             // 

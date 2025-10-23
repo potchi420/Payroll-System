@@ -16,6 +16,7 @@ namespace Payroll_System
         public AssignBenefits()
         {
             InitializeComponent();
+            focus_remover();
         }
 
         private void logo_Click(object sender, EventArgs e)
@@ -45,6 +46,14 @@ namespace Payroll_System
             benefitsAdmin.Show();
             this.Show();
             this.Hide();
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
         }
 
         /*

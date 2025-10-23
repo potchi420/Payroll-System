@@ -17,7 +17,7 @@ namespace Payroll_System
         {
             InitializeComponent();
             panel_color();
-            LoadInitialEmployees();  
+            LoadInitialEmployees();
             LoadDepartments();
             load_avg_pay();
             focus_remover();
@@ -200,6 +200,14 @@ namespace Payroll_System
             deptAccent.BackColor = Color.DarkOrange;
             this.Controls.Add(deptAccent);
             deptAccent.BringToFront();
+        }
+
+        private void btntax_Click(object sender, EventArgs e)
+        {
+            attendance attendance = new attendance();
+            attendance.Show();
+            this.Show();
+            this.Hide();
         }
     }
 }

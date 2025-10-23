@@ -33,7 +33,7 @@
             pictureBox5 = new PictureBox();
             panel1 = new Panel();
             label1 = new Label();
-            button8 = new Button();
+            benefit_catalog_btn = new Button();
             panel2 = new Panel();
             assign_benefits_description = new Label();
             assign_benefits_btn = new Button();
@@ -83,7 +83,7 @@
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(button8);
+            panel1.Controls.Add(benefit_catalog_btn);
             panel1.Location = new Point(67, 184);
             panel1.Name = "panel1";
             panel1.Size = new Size(700, 106);
@@ -100,22 +100,23 @@
             label1.TabIndex = 26;
             label1.Text = "a comprehensive list or guide that outlines the perks, services, and rewards available";
             // 
-            // button8
+            // benefit_catalog_btn
             // 
-            button8.BackColor = SystemColors.Control;
-            button8.Cursor = Cursors.Hand;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(-1, -1);
-            button8.Name = "button8";
-            button8.Padding = new Padding(30, 0, 0, 0);
-            button8.Size = new Size(700, 106);
-            button8.TabIndex = 24;
-            button8.Text = "                  Benefit Catalog\r\n\r\n";
-            button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.UseVisualStyleBackColor = true;
+            benefit_catalog_btn.BackColor = SystemColors.Control;
+            benefit_catalog_btn.Cursor = Cursors.Hand;
+            benefit_catalog_btn.FlatStyle = FlatStyle.Flat;
+            benefit_catalog_btn.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            benefit_catalog_btn.Image = (Image)resources.GetObject("benefit_catalog_btn.Image");
+            benefit_catalog_btn.ImageAlign = ContentAlignment.MiddleLeft;
+            benefit_catalog_btn.Location = new Point(-1, -1);
+            benefit_catalog_btn.Name = "benefit_catalog_btn";
+            benefit_catalog_btn.Padding = new Padding(30, 0, 0, 0);
+            benefit_catalog_btn.Size = new Size(700, 106);
+            benefit_catalog_btn.TabIndex = 24;
+            benefit_catalog_btn.Text = "                  Benefit Catalog\r\n\r\n";
+            benefit_catalog_btn.TextAlign = ContentAlignment.MiddleLeft;
+            benefit_catalog_btn.UseVisualStyleBackColor = true;
+            benefit_catalog_btn.Click += benefit_catalog_btn_Click;
             // 
             // panel2
             // 
@@ -316,7 +317,7 @@
         private Label label8;
         private PictureBox pictureBox5;
         private Panel panel1;
-        private Button button8;
+        private Button benefit_catalog_btn;
         private Panel panel2;
         private Button assign_benefits_btn;
         private Panel panel3;

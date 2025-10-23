@@ -17,6 +17,7 @@ namespace Payroll_System
         {
             InitializeComponent();
             cn.DisplayBenefits(dataGridViewEmployees);
+            focus_remover();
         }
 
         private void home1_Click(object sender, EventArgs e)
@@ -53,6 +54,14 @@ namespace Payroll_System
         private void btn_delete_Click(object sender, EventArgs e)
         {
             cn.DeleteBenefit(dataGridViewEmployees);
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
         }
     }
 }
