@@ -16,25 +16,30 @@ namespace Payroll_System
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void home1_Click(object sender, EventArgs e)
+        {
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logout1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void logo1_Click(object sender, EventArgs e)
+        {
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            this.Show();
+            this.Hide();
         }
     }
 }

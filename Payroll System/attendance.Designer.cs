@@ -34,24 +34,31 @@
             logo = new PictureBox();
             label1 = new Label();
             panel1 = new Panel();
-            panel2 = new Panel();
-            label2 = new Label();
-            comboBox1 = new ComboBox();
-            label3 = new Label();
-            numericUpDown1 = new NumericUpDown();
-            label4 = new Label();
-            numericUpDown2 = new NumericUpDown();
-            button1 = new Button();
             button2 = new Button();
+            button1 = new Button();
+            numericUpDown2 = new NumericUpDown();
+            label4 = new Label();
+            numericUpDown1 = new NumericUpDown();
+            label3 = new Label();
+            comboBox1 = new ComboBox();
+            label2 = new Label();
+            panel2 = new Panel();
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
+            gradientPanel1 = new GradientPanel();
+            home1 = new Label();
+            logout1 = new Label();
+            label8 = new Label();
+            logo1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
             SuspendLayout();
             // 
             // home
@@ -112,7 +119,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ImageAlign = ContentAlignment.TopCenter;
-            label1.Location = new Point(395, 9);
+            label1.Location = new Point(121, 146);
             label1.Name = "label1";
             label1.Size = new Size(216, 24);
             label1.TabIndex = 0;
@@ -131,84 +138,10 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(162, 67);
+            panel1.Location = new Point(53, 214);
             panel1.Name = "panel1";
             panel1.Size = new Size(340, 297);
             panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Location = new Point(162, 379);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(340, 297);
-            panel2.TabIndex = 2;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 24);
-            label2.Name = "label2";
-            label2.Size = new Size(104, 17);
-            label2.TabIndex = 0;
-            label2.Text = "Employee Name";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 44);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(312, 21);
-            comboBox1.TabIndex = 1;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(12, 77);
-            label3.Name = "label3";
-            label3.Size = new Size(85, 17);
-            label3.TabIndex = 2;
-            label3.Text = "Days Worked";
-            // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(12, 97);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(214, 20);
-            numericUpDown1.TabIndex = 3;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(12, 130);
-            label4.Name = "label4";
-            label4.Size = new Size(94, 17);
-            label4.TabIndex = 4;
-            label4.Text = "Overtime Hour";
-            // 
-            // numericUpDown2
-            // 
-            numericUpDown2.Location = new Point(12, 150);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(214, 20);
-            numericUpDown2.TabIndex = 5;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.SteelBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(12, 196);
-            button1.Name = "button1";
-            button1.Size = new Size(214, 31);
-            button1.TabIndex = 3;
-            button1.Text = "Save Attendance";
-            button1.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
@@ -223,12 +156,86 @@
             button2.Text = "Clear Fields";
             button2.UseVisualStyleBackColor = false;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.SteelBlue;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(12, 196);
+            button1.Name = "button1";
+            button1.Size = new Size(214, 31);
+            button1.TabIndex = 3;
+            button1.Text = "Save Attendance";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(12, 150);
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(214, 20);
+            numericUpDown2.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(12, 130);
+            label4.Name = "label4";
+            label4.Size = new Size(94, 17);
+            label4.TabIndex = 4;
+            label4.Text = "Overtime Hour";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(12, 97);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(214, 20);
+            numericUpDown1.TabIndex = 3;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(12, 77);
+            label3.Name = "label3";
+            label3.Size = new Size(85, 17);
+            label3.TabIndex = 2;
+            label3.Text = "Days Worked";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(12, 44);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(312, 21);
+            comboBox1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(12, 24);
+            label2.Name = "label2";
+            label2.Size = new Size(104, 17);
+            label2.TabIndex = 0;
+            label2.Text = "Employee Name";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.White;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Location = new Point(456, 214);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(340, 297);
+            panel2.TabIndex = 2;
+            // 
             // dataGridView1
             // 
             dataGridView1.BackgroundColor = SystemColors.Control;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridView1.Location = new Point(162, 379);
+            dataGridView1.Location = new Point(456, 214);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(684, 297);
             dataGridView1.TabIndex = 0;
@@ -252,11 +259,81 @@
             Column3.HeaderText = "Overtime Hour";
             Column3.Name = "Column3";
             // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(home1);
+            gradientPanel1.Controls.Add(logout1);
+            gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Controls.Add(logo1);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 5;
+            // 
+            // home1
+            // 
+            home1.AutoSize = true;
+            home1.BackColor = Color.Transparent;
+            home1.Cursor = Cursors.Hand;
+            home1.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home1.ForeColor = Color.Transparent;
+            home1.Location = new Point(1018, 30);
+            home1.Name = "home1";
+            home1.Size = new Size(66, 24);
+            home1.TabIndex = 24;
+            home1.Text = "Home";
+            home1.TextAlign = ContentAlignment.TopCenter;
+            home1.Click += home1_Click;
+            // 
+            // logout1
+            // 
+            logout1.AutoSize = true;
+            logout1.BackColor = Color.Transparent;
+            logout1.Cursor = Cursors.Hand;
+            logout1.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout1.ForeColor = Color.Transparent;
+            logout1.Location = new Point(1090, 30);
+            logout1.Name = "logout1";
+            logout1.Size = new Size(85, 24);
+            logout1.TabIndex = 24;
+            logout1.Text = "Log Out";
+            logout1.TextAlign = ContentAlignment.TopCenter;
+            logout1.Click += logout1_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.Transparent;
+            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Transparent;
+            label8.Location = new Point(82, 30);
+            label8.Name = "label8";
+            label8.Size = new Size(258, 24);
+            label8.TabIndex = 23;
+            label8.Text = "PCU PAYROLL SYSTEM";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logo1
+            // 
+            logo1.BackColor = Color.Transparent;
+            logo1.Cursor = Cursors.Hand;
+            logo1.Image = Properties.Resources.icon;
+            logo1.Location = new Point(0, 3);
+            logo1.Name = "logo1";
+            logo1.Size = new Size(76, 75);
+            logo1.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo1.TabIndex = 22;
+            logo1.TabStop = false;
+            logo1.Click += logo1_Click;
+            // 
             // attendance
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1015, 744);
+            ClientSize = new Size(1184, 651);
+            Controls.Add(gradientPanel1);
             Controls.Add(dataGridView1);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -268,9 +345,12 @@
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -297,5 +377,9 @@
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
+        private Label home1;
+        private Label logout1;
+        private Label label8;
+        private PictureBox logo1;
     }
 }

@@ -48,9 +48,16 @@
             label3 = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
+            gradientPanel1 = new GradientPanel();
+            home1 = new Label();
+            logout1 = new Label();
+            label7 = new Label();
+            logo1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
             SuspendLayout();
             // 
             // home
@@ -66,7 +73,6 @@
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
-            home.Click += home_Click;
             // 
             // logout
             // 
@@ -81,7 +87,6 @@
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
-            logout.Click += logout_Click;
             // 
             // label8
             // 
@@ -107,15 +112,13 @@
             logo.SizeMode = PictureBoxSizeMode.StretchImage;
             logo.TabIndex = 22;
             logo.TabStop = false;
-            logo.Click += logo_Click;
             // 
             // btn_add
             // 
             btn_add.Font = new Font("Arial", 11.25F);
-            btn_add.Location = new Point(906, 293);
-            btn_add.Margin = new Padding(3, 4, 3, 4);
+            btn_add.Location = new Point(793, 220);
             btn_add.Name = "btn_add";
-            btn_add.Size = new Size(137, 56);
+            btn_add.Size = new Size(120, 42);
             btn_add.TabIndex = 1;
             btn_add.Text = "Add";
             btn_add.UseVisualStyleBackColor = true;
@@ -124,10 +127,9 @@
             // btn_edit
             // 
             btn_edit.Font = new Font("Arial", 11.25F);
-            btn_edit.Location = new Point(906, 381);
-            btn_edit.Margin = new Padding(3, 4, 3, 4);
+            btn_edit.Location = new Point(793, 286);
             btn_edit.Name = "btn_edit";
-            btn_edit.Size = new Size(137, 56);
+            btn_edit.Size = new Size(120, 42);
             btn_edit.TabIndex = 2;
             btn_edit.Text = "Edit";
             btn_edit.UseVisualStyleBackColor = true;
@@ -136,10 +138,9 @@
             // btn_delete
             // 
             btn_delete.Font = new Font("Arial", 11.25F);
-            btn_delete.Location = new Point(906, 471);
-            btn_delete.Margin = new Padding(3, 4, 3, 4);
+            btn_delete.Location = new Point(793, 353);
             btn_delete.Name = "btn_delete";
-            btn_delete.Size = new Size(137, 56);
+            btn_delete.Size = new Size(120, 42);
             btn_delete.TabIndex = 3;
             btn_delete.Text = "Delete";
             btn_delete.UseVisualStyleBackColor = true;
@@ -151,9 +152,9 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(72, 179);
+            linkLabel1.Location = new Point(63, 134);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1437, 20);
+            linkLabel1.Size = new Size(1078, 15);
             linkLabel1.TabIndex = 40;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
@@ -162,9 +163,9 @@
             // 
             benefits_administration_label.AutoSize = true;
             benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            benefits_administration_label.Location = new Point(69, 140);
+            benefits_administration_label.Location = new Point(60, 105);
             benefits_administration_label.Name = "benefits_administration_label";
-            benefits_administration_label.Size = new Size(251, 35);
+            benefits_administration_label.Size = new Size(202, 29);
             benefits_administration_label.TabIndex = 39;
             benefits_administration_label.Text = "Benefits Catalog";
             // 
@@ -173,11 +174,10 @@
             dataGridViewEmployees.BackgroundColor = SystemColors.Control;
             dataGridViewEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewEmployees.Columns.AddRange(new DataGridViewColumn[] { benefit_id, benefit_type, description, default_amount });
-            dataGridViewEmployees.Location = new Point(90, 293);
-            dataGridViewEmployees.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewEmployees.Location = new Point(79, 220);
             dataGridViewEmployees.Name = "dataGridViewEmployees";
             dataGridViewEmployees.RowHeadersWidth = 51;
-            dataGridViewEmployees.Size = new Size(776, 345);
+            dataGridViewEmployees.Size = new Size(679, 259);
             dataGridViewEmployees.TabIndex = 41;
             // 
             // benefit_id
@@ -213,9 +213,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(90, 240);
+            label1.Location = new Point(79, 180);
             label1.Name = "label1";
-            label1.Size = new Size(99, 27);
+            label1.Size = new Size(80, 22);
             label1.TabIndex = 44;
             label1.Text = "Benefits";
             // 
@@ -272,11 +272,81 @@
             pictureBox1.TabIndex = 22;
             pictureBox1.TabStop = false;
             // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(home1);
+            gradientPanel1.Controls.Add(logout1);
+            gradientPanel1.Controls.Add(label7);
+            gradientPanel1.Controls.Add(logo1);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.TabIndex = 45;
+            // 
+            // home1
+            // 
+            home1.AutoSize = true;
+            home1.BackColor = Color.Transparent;
+            home1.Cursor = Cursors.Hand;
+            home1.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home1.ForeColor = Color.Transparent;
+            home1.Location = new Point(1018, 30);
+            home1.Name = "home1";
+            home1.Size = new Size(66, 24);
+            home1.TabIndex = 24;
+            home1.Text = "Home";
+            home1.TextAlign = ContentAlignment.TopCenter;
+            home1.Click += home1_Click;
+            // 
+            // logout1
+            // 
+            logout1.AutoSize = true;
+            logout1.BackColor = Color.Transparent;
+            logout1.Cursor = Cursors.Hand;
+            logout1.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout1.ForeColor = Color.Transparent;
+            logout1.Location = new Point(1090, 30);
+            logout1.Name = "logout1";
+            logout1.Size = new Size(85, 24);
+            logout1.TabIndex = 24;
+            logout1.Text = "Log Out";
+            logout1.TextAlign = ContentAlignment.TopCenter;
+            logout1.Click += logout1_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Transparent;
+            label7.Location = new Point(82, 30);
+            label7.Name = "label7";
+            label7.Size = new Size(258, 24);
+            label7.TabIndex = 23;
+            label7.Text = "PCU PAYROLL SYSTEM";
+            label7.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logo1
+            // 
+            logo1.BackColor = Color.Transparent;
+            logo1.Cursor = Cursors.Hand;
+            logo1.Image = Properties.Resources.icon;
+            logo1.Location = new Point(0, 3);
+            logo1.Name = "logo1";
+            logo1.Size = new Size(76, 75);
+            logo1.SizeMode = PictureBoxSizeMode.StretchImage;
+            logo1.TabIndex = 22;
+            logo1.TabStop = false;
+            logo1.Click += logo1_Click;
+            // 
             // BenefitCatalog
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1353, 868);
+            ClientSize = new Size(1184, 651);
+            Controls.Add(gradientPanel1);
             Controls.Add(label1);
             Controls.Add(dataGridViewEmployees);
             Controls.Add(linkLabel1);
@@ -284,12 +354,14 @@
             Controls.Add(btn_delete);
             Controls.Add(btn_edit);
             Controls.Add(btn_add);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "BenefitCatalog";
             Text = "BenefitCatalog";
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -315,5 +387,9 @@
         private DataGridViewTextBoxColumn benefit_type;
         private DataGridViewTextBoxColumn description;
         private DataGridViewTextBoxColumn default_amount;
+        private Label home1;
+        private Label logout1;
+        private Label label7;
+        private PictureBox logo1;
     }
 }
