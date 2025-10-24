@@ -16,6 +16,9 @@ namespace Payroll_System
             LoadInitialEmployees();
             SetupGridColumns();
             LoadEmployeeNames(searchbox);
+            employeeEntriesCount();
+            dataGridViewEmployees.CellMouseMove += dataGridViewEmployees_CellMouseMove;
+            searchbox.KeyDown += searchbox_KeyDown;
         }
 
         //change the connection string as per your sql server
@@ -129,7 +132,7 @@ namespace Payroll_System
                     {
 
                         using (SqlConnection connector = dbConnector.GetConnection())
-                        { 
+                        {
                             string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
                             using (SqlCommand cmd = new SqlCommand(deleteQuery, connector))
                             {
@@ -144,7 +147,10 @@ namespace Payroll_System
                 }
                 else if (column == "edit_employee_btn")
                 {
-                    MessageBox.Show($"Edit employee ");
+                    EditEmployee editEmployee = new EditEmployee(empID);
+                    editEmployee.Show();
+                    this.Show();
+                    this.Hide();
                 }
             }
         }
@@ -187,9 +193,69 @@ namespace Payroll_System
                 }
             }
         }
+        private void dataGridViewEmployees_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string columnName = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
+
+                if (columnName == "edit_employee_btn" || columnName == "remove_employee_btn")
+                {
+                    dataGridViewEmployees.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    dataGridViewEmployees.Cursor = Cursors.Default;
+                }
+            }
+            else
+            {
+                dataGridViewEmployees.Cursor = Cursors.Default;
+            }
+        }
         public void reloadForm()
         {
             LoadInitialEmployees();
+        }
+
+        private void searchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string selectedName = searchbox.Text.Trim().ToLower();
+                dataGridViewEmployees.ClearSelection();
+
+                foreach (DataGridViewRow row in dataGridViewEmployees.Rows)
+                {
+                    if (row.Cells["first_name"].Value != null && row.Cells["last_name"].Value != null)
+                    {
+                        string fullName = (row.Cells["first_name"].Value.ToString() + " " + row.Cells["last_name"].Value.ToString()).ToLower();
+
+                        if (fullName == selectedName)
+                        {
+                            row.Selected = true;
+                            dataGridViewEmployees.FirstDisplayedScrollingRowIndex = row.Index;
+                            break;
+                        }
+                    }
+                }
+
+                e.Handled = true;
+            }
+        }
+
+        public void employeeEntriesCount() 
+        { 
+            string query = "SELECT COUNT(*) FROM employee";
+            using (SqlConnection connector = dbConnector.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connector))
+                {
+                    connector.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    employee_entries.Text = "Showing " + count.ToString() + " Entries";
+                }
+            }
         }
     }
 }

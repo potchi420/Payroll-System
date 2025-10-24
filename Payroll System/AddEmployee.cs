@@ -17,6 +17,7 @@ namespace Payroll_System
         {
             InitializeComponent();
             load_departments(department);
+            focus_remover();
         }
 
         //change the connection string as per your sql server
@@ -108,6 +109,14 @@ namespace Payroll_System
                 }
             }
             MessageBox.Show("Employee details saved successfully!");
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
         }
     }
 }

@@ -53,6 +53,7 @@
             logout1 = new Label();
             label7 = new Label();
             logo1 = new PictureBox();
+            back_btn = new Button();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEmployees).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -341,11 +342,23 @@
             logo1.TabStop = false;
             logo1.Click += logo1_Click;
             // 
+            // back_btn
+            // 
+            back_btn.Font = new Font("Arial", 11.25F);
+            back_btn.Location = new Point(79, 506);
+            back_btn.Name = "back_btn";
+            back_btn.Size = new Size(120, 43);
+            back_btn.TabIndex = 51;
+            back_btn.Text = "Back";
+            back_btn.UseVisualStyleBackColor = true;
+            back_btn.Click += back_btn_Click;
+            // 
             // BenefitCatalog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(back_btn);
             Controls.Add(gradientPanel1);
             Controls.Add(label1);
             Controls.Add(dataGridViewEmployees);
@@ -391,5 +404,6 @@
         private Label logout1;
         private Label label7;
         private PictureBox logo1;
+        private Button back_btn;
     }
 }
