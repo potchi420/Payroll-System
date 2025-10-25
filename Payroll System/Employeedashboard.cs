@@ -158,7 +158,7 @@ namespace Payroll_System
         private DataTable GetEmployees(string query)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection connector = new SqlConnection("Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connector = dbConnector.GetConnection())
             {
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connector);
                 adapter.Fill(dt);

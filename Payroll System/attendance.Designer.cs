@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             home = new Label();
             logout = new Label();
             label5 = new Label();
@@ -43,10 +45,7 @@
             comboBox1 = new ComboBox();
             label2 = new Label();
             panel2 = new Panel();
-            dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
+            attendance_table = new DataGridView();
             gradientPanel1 = new GradientPanel();
             home1 = new Label();
             logout1 = new Label();
@@ -56,7 +55,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)attendance_table).BeginInit();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
             SuspendLayout();
@@ -230,34 +229,31 @@
             panel2.Size = new Size(340, 297);
             panel2.TabIndex = 2;
             // 
-            // dataGridView1
+            // attendance_table
             // 
-            dataGridView1.BackgroundColor = SystemColors.Control;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridView1.Location = new Point(456, 214);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(684, 297);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // Column1
-            // 
-            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column1.HeaderText = "Employee";
-            Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column2.HeaderText = "Days Worked";
-            Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Column3.HeaderText = "Overtime Hour";
-            Column3.Name = "Column3";
+            attendance_table.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            attendance_table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            attendance_table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            attendance_table.DefaultCellStyle = dataGridViewCellStyle2;
+            attendance_table.Location = new Point(456, 214);
+            attendance_table.Name = "attendance_table";
+            attendance_table.Size = new Size(684, 297);
+            attendance_table.TabIndex = 0;
+            attendance_table.CellContentClick += dataGridView1_CellContentClick;
             // 
             // gradientPanel1
             // 
@@ -334,7 +330,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
             Controls.Add(gradientPanel1);
-            Controls.Add(dataGridView1);
+            Controls.Add(attendance_table);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -347,7 +343,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)attendance_table).EndInit();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).EndInit();
@@ -373,10 +369,7 @@
         private NumericUpDown numericUpDown1;
         private Label label3;
         private ComboBox comboBox1;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
+        private DataGridView attendance_table;
         private Label home1;
         private Label logout1;
         private Label label8;
