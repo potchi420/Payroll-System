@@ -163,5 +163,53 @@ namespace Payroll_System
             doc.Close();
             MessageBox.Show("Generated the payslip");
         }
+
+        private void save_record_btn_Click(object sender, EventArgs e)
+
+        {
+            try
+            {
+                if (cmbname.SelectedValue == null)
+                {
+                    MessageBox.Show("Please select an employee first.");
+                    return;
+                }
+
+                int employeeID = Convert.ToInt32(cmbname.SelectedValue);
+
+                // Convert label text to numbers safely
+                if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double grossPay))
+                {
+                    MessageBox.Show("Invalid gross pay value.");
+                    return;
+                }
+
+                if (!double.TryParse(net_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double netPay))
+                {
+                    MessageBox.Show("Invalid net pay value.");
+                    return;
+                }
+
+                if (!double.TryParse(total_deductions_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double totalDeductions))
+                {
+                    MessageBox.Show("Invalid total deductions value.");
+                    return;
+                }
+
+                // Create connector object
+                Connector con = new Connector();
+
+                // Get attendance period
+                var period = con.GetAttendancePeriod(employeeID);
+                if (period.startDate == DateTime.MinValue) return;
+
+                // Save or update payslip
+                con.SaveOrUpdatePayslip(employeeID, period.startDate, period.endDate, grossPay, netPay, totalDeductions);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving payslip: " + ex.Message);
+            }
+        }
     }
 }

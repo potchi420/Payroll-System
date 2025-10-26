@@ -28,6 +28,7 @@ namespace Payroll_System
         private void register_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Register register = new Register();
+            this.Hide();
             register.Show();
         }
 
