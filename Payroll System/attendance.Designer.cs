@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             home = new Label();
             logout = new Label();
             label5 = new Label();
             logo = new PictureBox();
             label1 = new Label();
             panel1 = new Panel();
-            button2 = new Button();
-            button1 = new Button();
-            numericUpDown2 = new NumericUpDown();
+            attendance_date = new DateTimePicker();
+            label6 = new Label();
+            clearBTN = new Button();
+            saveAttendanceBTN = new Button();
+            overtimed_hours = new NumericUpDown();
             label4 = new Label();
-            numericUpDown1 = new NumericUpDown();
+            days_worked = new NumericUpDown();
             label3 = new Label();
-            comboBox1 = new ComboBox();
+            employee_searchbox = new ComboBox();
             label2 = new Label();
             panel2 = new Panel();
             attendance_table = new DataGridView();
@@ -53,8 +53,8 @@
             logo1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)overtimed_hours).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)days_worked).BeginInit();
             ((System.ComponentModel.ISupportInitialize)attendance_table).BeginInit();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo1).BeginInit();
@@ -129,94 +129,120 @@
             // 
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(button2);
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(numericUpDown2);
+            panel1.Controls.Add(attendance_date);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(clearBTN);
+            panel1.Controls.Add(saveAttendanceBTN);
+            panel1.Controls.Add(overtimed_hours);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(numericUpDown1);
+            panel1.Controls.Add(days_worked);
             panel1.Controls.Add(label3);
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(employee_searchbox);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(89, 214);
             panel1.Name = "panel1";
-            panel1.Size = new Size(340, 297);
+            panel1.Size = new Size(340, 322);
             panel1.TabIndex = 1;
             // 
-            // button2
+            // attendance_date
             // 
-            button2.BackColor = Color.SteelBlue;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(12, 233);
-            button2.Name = "button2";
-            button2.Size = new Size(214, 31);
-            button2.TabIndex = 6;
-            button2.Text = "Clear Fields";
-            button2.UseVisualStyleBackColor = false;
+            attendance_date.Location = new Point(12, 201);
+            attendance_date.Name = "attendance_date";
+            attendance_date.Size = new Size(200, 20);
+            attendance_date.TabIndex = 6;
             // 
-            // button1
+            // label6
             // 
-            button1.BackColor = Color.SteelBlue;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(12, 196);
-            button1.Name = "button1";
-            button1.Size = new Size(214, 31);
-            button1.TabIndex = 3;
-            button1.Text = "Save Attendance";
-            button1.UseVisualStyleBackColor = false;
+            label6.AutoSize = true;
+            label6.Font = new Font("Arial", 9.75F);
+            label6.Location = new Point(12, 182);
+            label6.Name = "label6";
+            label6.Size = new Size(104, 16);
+            label6.TabIndex = 7;
+            label6.Text = "Attendance Date";
             // 
-            // numericUpDown2
+            // clearBTN
             // 
-            numericUpDown2.Location = new Point(12, 150);
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(214, 20);
-            numericUpDown2.TabIndex = 5;
+            clearBTN.BackColor = Color.SteelBlue;
+            clearBTN.Cursor = Cursors.Hand;
+            clearBTN.FlatAppearance.BorderSize = 0;
+            clearBTN.FlatStyle = FlatStyle.Flat;
+            clearBTN.Font = new Font("Arial", 9.75F);
+            clearBTN.ForeColor = Color.White;
+            clearBTN.Location = new Point(12, 272);
+            clearBTN.Name = "clearBTN";
+            clearBTN.Size = new Size(214, 31);
+            clearBTN.TabIndex = 6;
+            clearBTN.Text = "Clear Fields";
+            clearBTN.UseVisualStyleBackColor = false;
+            clearBTN.Click += clearBTN_Click;
+            // 
+            // saveAttendanceBTN
+            // 
+            saveAttendanceBTN.BackColor = Color.SteelBlue;
+            saveAttendanceBTN.Cursor = Cursors.Hand;
+            saveAttendanceBTN.FlatAppearance.BorderSize = 0;
+            saveAttendanceBTN.FlatStyle = FlatStyle.Flat;
+            saveAttendanceBTN.Font = new Font("Arial", 9.75F);
+            saveAttendanceBTN.ForeColor = Color.White;
+            saveAttendanceBTN.Location = new Point(12, 235);
+            saveAttendanceBTN.Name = "saveAttendanceBTN";
+            saveAttendanceBTN.Size = new Size(214, 31);
+            saveAttendanceBTN.TabIndex = 3;
+            saveAttendanceBTN.Text = "Save Attendance";
+            saveAttendanceBTN.UseVisualStyleBackColor = false;
+            saveAttendanceBTN.Click += saveAttendanceBTN_Click;
+            // 
+            // overtimed_hours
+            // 
+            overtimed_hours.Location = new Point(12, 150);
+            overtimed_hours.Name = "overtimed_hours";
+            overtimed_hours.Size = new Size(214, 20);
+            overtimed_hours.TabIndex = 5;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Arial", 9.75F);
             label4.Location = new Point(12, 130);
             label4.Name = "label4";
-            label4.Size = new Size(94, 17);
+            label4.Size = new Size(92, 16);
             label4.TabIndex = 4;
-            label4.Text = "Overtime Hour";
+            label4.Text = "Ovetime Hours";
             // 
-            // numericUpDown1
+            // days_worked
             // 
-            numericUpDown1.Location = new Point(12, 97);
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(214, 20);
-            numericUpDown1.TabIndex = 3;
+            days_worked.Location = new Point(12, 97);
+            days_worked.Name = "days_worked";
+            days_worked.Size = new Size(214, 20);
+            days_worked.TabIndex = 3;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Arial", 9.75F);
             label3.Location = new Point(12, 77);
             label3.Name = "label3";
-            label3.Size = new Size(85, 17);
+            label3.Size = new Size(86, 16);
             label3.TabIndex = 2;
             label3.Text = "Days Worked";
             // 
-            // comboBox1
+            // employee_searchbox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(12, 44);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(312, 21);
-            comboBox1.TabIndex = 1;
+            employee_searchbox.Font = new Font("Arial Narrow", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            employee_searchbox.FormattingEnabled = true;
+            employee_searchbox.Location = new Point(12, 44);
+            employee_searchbox.Name = "employee_searchbox";
+            employee_searchbox.Size = new Size(312, 28);
+            employee_searchbox.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Arial", 9.75F);
             label2.Location = new Point(12, 24);
             label2.Name = "label2";
-            label2.Size = new Size(104, 17);
+            label2.Size = new Size(103, 16);
             label2.TabIndex = 0;
             label2.Text = "Employee Name";
             // 
@@ -232,26 +258,10 @@
             // attendance_table
             // 
             attendance_table.BackgroundColor = SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            attendance_table.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             attendance_table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            attendance_table.DefaultCellStyle = dataGridViewCellStyle6;
             attendance_table.Location = new Point(456, 214);
             attendance_table.Name = "attendance_table";
-            attendance_table.Size = new Size(684, 297);
+            attendance_table.Size = new Size(684, 322);
             attendance_table.TabIndex = 0;
             attendance_table.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -261,6 +271,7 @@
             gradientPanel1.Controls.Add(logout1);
             gradientPanel1.Controls.Add(label8);
             gradientPanel1.Controls.Add(logo1);
+            gradientPanel1.Font = new Font("Arial", 9.75F);
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, 0);
@@ -341,8 +352,8 @@
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)overtimed_hours).EndInit();
+            ((System.ComponentModel.ISupportInitialize)days_worked).EndInit();
             ((System.ComponentModel.ISupportInitialize)attendance_table).EndInit();
             gradientPanel1.ResumeLayout(false);
             gradientPanel1.PerformLayout();
@@ -362,17 +373,19 @@
         private Panel panel1;
         private Label label2;
         private Panel panel2;
-        private Button button2;
-        private Button button1;
-        private NumericUpDown numericUpDown2;
+        private Button clearBTN;
+        private Button saveAttendanceBTN;
+        private NumericUpDown overtimed_hours;
         private Label label4;
-        private NumericUpDown numericUpDown1;
+        private NumericUpDown days_worked;
         private Label label3;
-        private ComboBox comboBox1;
+        private ComboBox employee_searchbox;
         private DataGridView attendance_table;
         private Label home1;
         private Label logout1;
         private Label label8;
         private PictureBox logo1;
+        private Label label6;
+        private DateTimePicker attendance_date;
     }
 }

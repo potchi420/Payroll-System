@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static Payroll_System.Payroll_process;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Payroll_System
@@ -12,10 +13,11 @@ namespace Payroll_System
     internal class Connector
     {
         private SqlConnection con;
+        PayslipData data = new PayslipData();
 
         public void connection()
         {
-            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -104,6 +106,10 @@ namespace Payroll_System
                 cmbname.DataSource = dt;
                 cmbname.DisplayMember = "FullName";   // What user sees
                 cmbname.ValueMember = "employee_id";  // The actual value behind each item
+                cmbname.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbname.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbname.SelectedIndex = -1;
+                cmbname.Text = "";
             }
             catch (Exception ex)
             {
@@ -112,95 +118,101 @@ namespace Payroll_System
 
         }
 
+        public PayslipData GetPayslipData(int employeeID)
+        {
+            PayslipData data = new PayslipData();
 
+            double sssRate = 0.045;
+            double philRate = 0.025;
+            double pagibigRate = 0.02;
 
-            public void DisplayEmployeeSalary(
-      int employeeID,
-      Label grosspay,
-      Label sss,
-      Label philhealth,
-      Label pagibig,
-      Label totaldeductions,
-      Label netpay,
-      Label overtime,
-      Label salary)
+            connection(); // open SQL connection
+
+            string query = @"
+        SELECT 
+            e.first_name, 
+            e.last_name,
+            d.department_name,
+            a.days_worked,
+            a.overtime_hours,
+            e.salary
+        FROM employee e
+        INNER JOIN attendance a ON e.employee_id = a.employee_id
+        LEFT JOIN department d ON e.department_id = d.department_id
+        WHERE e.employee_id = @id";
+
+            using (SqlCommand cmd = new SqlCommand(query, con))
             {
+                cmd.Parameters.AddWithValue("@id", employeeID);
 
-                double sssdeduction = 0.05;
-                double phildeduction = 0.05;
-                double pagibigdeduction = 0.05;
-                connection(); // Opens your SQL connection
-
-                string query = @"
-       SELECT 
-           e.first_name, 
-           e.last_name,
-           a.days_worked,
-           a.overtime_hours,
-           e.salary
-       FROM employee e
-       INNER JOIN attendance a 
-           ON e.employee_id = a.employee_id
-       WHERE e.employee_id = @id";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@id", employeeID);
-
-                    try
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.Read())
                         {
-                            if (reader.Read())
-                            {
-                                int dayWorked = Convert.ToInt32(reader["days_worked"]);
-                                int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
-                                double salaryPerDay = Convert.ToDouble(reader["salary"]);
+                            int daysWorked = Convert.ToInt32(reader["days_worked"]);
+                            int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
+                            double dailyRate = Convert.ToDouble(reader["salary"]);
 
+                            double basicPay = daysWorked * dailyRate;
+                            double overtimePay = overtimeHours * (dailyRate / 8) * 1.25;
+                            double gross = basicPay + overtimePay;
 
-                                double totalSalary = dayWorked * salaryPerDay;
-                                double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour workday
-                                double grossSalary = totalSalary + overtimePay;
+                            double sss = gross * sssRate;
+                            double phil = gross * philRate;
+                            double pagibig = gross * pagibigRate;
+                            double totalDeductions = sss + phil + pagibig;
+                            double net = gross - totalDeductions;
 
-                                double sssAmount = grossSalary * sssdeduction;
-                                double philAmount = grossSalary * phildeduction;
-                                double pagibigAmount = grossSalary * pagibigdeduction;
-                                double totalDeductions = sssAmount + philAmount + pagibigAmount;
-                                double netSalary = grossSalary - totalDeductions;
+                            data.employeeID = employeeID;
+                            data.FullName = reader["first_name"] + " " + reader["last_name"];
+                            data.Department = reader["department_name"].ToString();
+                            data.PayPeriodStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                            data.PayPeriodEnd = data.PayPeriodStart.AddMonths(1).AddDays(-1);
+                            data.DaysWorked = daysWorked;
+                            data.OvertimeHours = overtimeHours;
+                            data.DailyRate = Convert.ToDecimal(dailyRate);
+                            data.BasicPay = Convert.ToDecimal(basicPay);
+                            data.GrossPay = Convert.ToDecimal(gross);
+                            data.overtimePay = Convert.ToDecimal(overtimePay);
+                            data.NetPay = Convert.ToDecimal(net);
 
-                                // Display values with ₱ and 2 decimal places
-                                salary.Text = $"₱{salaryPerDay:N2}";
-                                grosspay.Text = $"₱{grossSalary:N2}";
-                                sss.Text = $"₱{sssAmount:N2}";
-                                philhealth.Text = $"₱{philAmount:N2}";
-                                pagibig.Text = $"₱{pagibigAmount:N2}";
-                                totaldeductions.Text = $"₱{totalDeductions:N2}";
-                                netpay.Text = $"₱{netSalary:N2}";
-                                overtime.Text = $"₱{overtimePay:N2}";
-                            }
-                            else
-                            {
-                                grosspay.Text = "₱N/A";
-                                sss.Text = "₱N/A";
-                                philhealth.Text = "₱N/A";
-                                pagibig.Text = "₱N/A";
-                                totaldeductions.Text = "₱N/A";
-                                netpay.Text = "₱N/A";
-                                overtime.Text = "₱N/A";
-                                salary.Text = "₱N/A";
-                            }
+                            data.Deductions.Add(("SSS", Convert.ToDecimal(sss)));
+                            data.Deductions.Add(("PhilHealth", Convert.ToDecimal(phil)));
+                            data.Deductions.Add(("Pag-IBIG", Convert.ToDecimal(pagibig)));
+
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error loading salary: " + ex.Message);
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error retrieving payslip data: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
+
+            return data;
+        }
+
+        public void DisplayEmployeeSalary(int employeeID, Label grosspay, Label sss, Label philhealth, Label pagibig, Label totaldeductions, Label netpay, Label overtime, Label salary)
+        {
+            PayslipData data = GetPayslipData(employeeID); // fetch the data
+
+            decimal totalDeductions = data.Deductions.Sum(d => d.Amount);
+
+            salary.Text = $"₱{data.DailyRate:N2}";
+            grosspay.Text = $"₱{(data.BasicPay + data.overtimePay):N2}";
+            sss.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "SSS").Amount:N2}";
+            philhealth.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "PhilHealth").Amount:N2}";
+            pagibig.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "Pag-IBIG").Amount:N2}";
+            totaldeductions.Text = $"₱{totalDeductions:N2}";
+            netpay.Text = $"₱{data.NetPay:N2}";
+            overtime.Text = $"₱{data.overtimePay:N2}";
+        }
 
         public (DateTime startDate, DateTime endDate) GetAttendancePeriod(int employeeID)
         {
@@ -298,6 +310,9 @@ namespace Payroll_System
                         updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
                         updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
                         updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+
+                        data.PayPeriodStart = payPeriodStart;
+                        data.PayPeriodEnd = payPeriodEnd;
 
                         updateCmd.ExecuteNonQuery();
                         MessageBox.Show("Payslip updated successfully!");
@@ -563,6 +578,7 @@ namespace Payroll_System
         }
 
 
+        /*
         public void SearchEmployee(TextBox txtSearch, DataGridView dgv)
         {
             try
@@ -593,7 +609,7 @@ namespace Payroll_System
             {
                 MessageBox.Show("Error: " + ex.Message, "Search Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         public void LoadEmployeeBenefits(DataGridView dgv)
         {
