@@ -67,5 +67,20 @@ namespace Payroll_System
             this.Show();
             this.Hide();
         }
+
+        private void btndataupdates_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblusermanagement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbldataupdates_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
