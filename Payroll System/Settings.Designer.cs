@@ -43,8 +43,15 @@
             lblstructuremanagement = new Label();
             lblsystemadministration = new Label();
             linkLabel1 = new LinkLabel();
+            gradientPanel1 = new GradientPanel();
+            homebtn = new Label();
+            logoutbtn = new Label();
+            label3 = new Label();
+            logobtn = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
+            gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logobtn).BeginInit();
             SuspendLayout();
             // 
             // label8
@@ -84,7 +91,6 @@
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
-            home.Click += home_Click;
             // 
             // logout
             // 
@@ -99,7 +105,6 @@
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
-            logout.Click += logout_Click;
             // 
             // label6
             // 
@@ -125,7 +130,6 @@
             logo.SizeMode = PictureBoxSizeMode.StretchImage;
             logo.TabIndex = 22;
             logo.TabStop = false;
-            logo.Click += logo_Click;
             // 
             // btnusermanagement
             // 
@@ -134,7 +138,7 @@
             btnusermanagement.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnusermanagement.Image = (Image)resources.GetObject("btnusermanagement.Image");
             btnusermanagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnusermanagement.Location = new Point(79, 158);
+            btnusermanagement.Location = new Point(79, 164);
             btnusermanagement.Name = "btnusermanagement";
             btnusermanagement.Size = new Size(709, 106);
             btnusermanagement.TabIndex = 0;
@@ -162,7 +166,7 @@
             btndataupdates.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btndataupdates.Image = (Image)resources.GetObject("btndataupdates.Image");
             btndataupdates.ImageAlign = ContentAlignment.MiddleLeft;
-            btndataupdates.Location = new Point(79, 403);
+            btndataupdates.Location = new Point(79, 409);
             btndataupdates.Name = "btndataupdates";
             btndataupdates.Size = new Size(709, 106);
             btndataupdates.TabIndex = 2;
@@ -189,7 +193,7 @@
             btnacccountmanagement.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnacccountmanagement.Image = (Image)resources.GetObject("btnacccountmanagement.Image");
             btnacccountmanagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnacccountmanagement.Location = new Point(79, 279);
+            btnacccountmanagement.Location = new Point(79, 285);
             btnacccountmanagement.Name = "btnacccountmanagement";
             btnacccountmanagement.Size = new Size(709, 106);
             btnacccountmanagement.TabIndex = 4;
@@ -227,19 +231,89 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(79, 128);
+            linkLabel1.Location = new Point(76, 128);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(709, 15);
+            linkLabel1.Size = new Size(712, 15);
             linkLabel1.TabIndex = 31;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
+            // 
+            // gradientPanel1
+            // 
+            gradientPanel1.Controls.Add(homebtn);
+            gradientPanel1.Controls.Add(logoutbtn);
+            gradientPanel1.Controls.Add(label3);
+            gradientPanel1.Controls.Add(logobtn);
+            gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
+            gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
+            gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Name = "gradientPanel1";
+            gradientPanel1.Size = new Size(1206, 76);
+            gradientPanel1.TabIndex = 37;
+            // 
+            // homebtn
+            // 
+            homebtn.AutoSize = true;
+            homebtn.BackColor = Color.Transparent;
+            homebtn.Cursor = Cursors.Hand;
+            homebtn.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            homebtn.ForeColor = Color.Transparent;
+            homebtn.Location = new Point(1038, 30);
+            homebtn.Name = "homebtn";
+            homebtn.Size = new Size(66, 24);
+            homebtn.TabIndex = 24;
+            homebtn.Text = "Home";
+            homebtn.TextAlign = ContentAlignment.TopCenter;
+            homebtn.Click += homebtn_Click;
+            // 
+            // logoutbtn
+            // 
+            logoutbtn.AutoSize = true;
+            logoutbtn.BackColor = Color.Transparent;
+            logoutbtn.Cursor = Cursors.Hand;
+            logoutbtn.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logoutbtn.ForeColor = Color.Transparent;
+            logoutbtn.Location = new Point(1110, 30);
+            logoutbtn.Name = "logoutbtn";
+            logoutbtn.Size = new Size(85, 24);
+            logoutbtn.TabIndex = 24;
+            logoutbtn.Text = "Log Out";
+            logoutbtn.TextAlign = ContentAlignment.TopCenter;
+            logoutbtn.Click += logoutbtn_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Transparent;
+            label3.Location = new Point(82, 30);
+            label3.Name = "label3";
+            label3.Size = new Size(258, 24);
+            label3.TabIndex = 23;
+            label3.Text = "PCU PAYROLL SYSTEM";
+            label3.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // logobtn
+            // 
+            logobtn.BackColor = Color.Transparent;
+            logobtn.Cursor = Cursors.Hand;
+            logobtn.Image = Properties.Resources.icon;
+            logobtn.Location = new Point(0, 3);
+            logobtn.Name = "logobtn";
+            logobtn.Size = new Size(76, 75);
+            logobtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            logobtn.TabIndex = 22;
+            logobtn.TabStop = false;
+            logobtn.Click += logobtn_Click;
             // 
             // Settings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(1184, 651);
+            ClientSize = new Size(1200, 690);
+            Controls.Add(gradientPanel1);
             Controls.Add(linkLabel1);
             Controls.Add(lblstructuremanagement);
             Controls.Add(lblsystemadministration);
@@ -249,11 +323,14 @@
             Controls.Add(btnusermanagement);
             Controls.Add(btndataupdates);
             Cursor = Cursors.Hand;
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Settings";
             Text = "Settings";
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();
+            gradientPanel1.ResumeLayout(false);
+            gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logobtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -274,5 +351,9 @@
         private Label lblstructuremanagement;
         private Label lblsystemadministration;
         private LinkLabel linkLabel1;
+        private Label homebtn;
+        private Label logoutbtn;
+        private Label label3;
+        private PictureBox logobtn;
     }
 }

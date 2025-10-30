@@ -39,27 +39,6 @@ namespace Payroll_System
 
         }
 
-        private void logo_Click(object sender, EventArgs e)
-        {
-            dashboard db = new dashboard();
-            db.Show();
-            this.Show();
-            this.Hide();
-        }
-
-        private void home_Click(object sender, EventArgs e)
-        {
-            dashboard db = new dashboard();
-            db.Show();
-            this.Show();
-            this.Hide();
-        }
-
-        private void logout_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void btnacccountmanagement_Click(object sender, EventArgs e)
         {
             AccountManagements am = new AccountManagements();
@@ -78,9 +57,25 @@ namespace Payroll_System
 
         }
 
-        private void lbldataupdates_Click(object sender, EventArgs e)
+        private void logobtn_Click(object sender, EventArgs e)
         {
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            this.Show();
+            this.Hide();
+        }
 
+        private void homebtn_Click(object sender, EventArgs e)
+        {
+            dashboard dashboard = new dashboard();
+            dashboard.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logoutbtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
