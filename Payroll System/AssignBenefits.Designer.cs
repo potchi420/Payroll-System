@@ -37,11 +37,6 @@
             benefits_administration_label = new Label();
             linkLabel1 = new LinkLabel();
             dgv_assignbenefits = new DataGridView();
-            employee_id = new DataGridViewTextBoxColumn();
-            employee_name = new DataGridViewTextBoxColumn();
-            benefit_id = new DataGridViewTextBoxColumn();
-            benefit_type = new DataGridViewTextBoxColumn();
-            status = new DataGridViewTextBoxColumn();
             curved_panel = new GradientPanel();
             save_btn = new Button();
             back_btn = new Button();
@@ -62,8 +57,9 @@
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Margin = new Padding(3, 4, 3, 4);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.Size = new Size(1361, 101);
             gradientPanel1.TabIndex = 28;
             // 
             // home
@@ -73,9 +69,9 @@
             home.Cursor = Cursors.Hand;
             home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             home.ForeColor = Color.Transparent;
-            home.Location = new Point(1018, 30);
+            home.Location = new Point(1163, 40);
             home.Name = "home";
-            home.Size = new Size(66, 24);
+            home.Size = new Size(86, 31);
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
@@ -88,9 +84,9 @@
             logout.Cursor = Cursors.Hand;
             logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             logout.ForeColor = Color.Transparent;
-            logout.Location = new Point(1090, 30);
+            logout.Location = new Point(1246, 40);
             logout.Name = "logout";
-            logout.Size = new Size(85, 24);
+            logout.Size = new Size(111, 31);
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
@@ -102,9 +98,9 @@
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Transparent;
-            label5.Location = new Point(82, 30);
+            label5.Location = new Point(94, 40);
             label5.Name = "label5";
-            label5.Size = new Size(258, 24);
+            label5.Size = new Size(332, 31);
             label5.TabIndex = 23;
             label5.Text = "PCU PAYROLL SYSTEM";
             label5.TextAlign = ContentAlignment.TopCenter;
@@ -114,9 +110,10 @@
             logo.BackColor = Color.Transparent;
             logo.Cursor = Cursors.Hand;
             logo.Image = Properties.Resources.icon;
-            logo.Location = new Point(0, 3);
+            logo.Location = new Point(0, 4);
+            logo.Margin = new Padding(3, 4, 3, 4);
             logo.Name = "logo";
-            logo.Size = new Size(76, 75);
+            logo.Size = new Size(87, 100);
             logo.SizeMode = PictureBoxSizeMode.StretchImage;
             logo.TabIndex = 22;
             logo.TabStop = false;
@@ -126,9 +123,9 @@
             // 
             benefits_administration_label.AutoSize = true;
             benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            benefits_administration_label.Location = new Point(60, 105);
+            benefits_administration_label.Location = new Point(69, 140);
             benefits_administration_label.Name = "benefits_administration_label";
-            benefits_administration_label.Size = new Size(194, 29);
+            benefits_administration_label.Size = new Size(240, 35);
             benefits_administration_label.TabIndex = 31;
             benefits_administration_label.Text = "Assign Benefits";
             // 
@@ -138,9 +135,9 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(63, 134);
+            linkLabel1.Location = new Point(72, 179);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1078, 15);
+            linkLabel1.Size = new Size(1437, 20);
             linkLabel1.TabIndex = 38;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
@@ -149,47 +146,12 @@
             // 
             dgv_assignbenefits.BackgroundColor = SystemColors.ControlLightLight;
             dgv_assignbenefits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_assignbenefits.Columns.AddRange(new DataGridViewColumn[] { employee_id, employee_name, benefit_id, benefit_type, status });
-            dgv_assignbenefits.Location = new Point(36, 66);
+            dgv_assignbenefits.Location = new Point(41, 88);
+            dgv_assignbenefits.Margin = new Padding(3, 4, 3, 4);
             dgv_assignbenefits.Name = "dgv_assignbenefits";
             dgv_assignbenefits.RowHeadersWidth = 51;
-            dgv_assignbenefits.Size = new Size(678, 259);
+            dgv_assignbenefits.Size = new Size(775, 345);
             dgv_assignbenefits.TabIndex = 0;
-            // 
-            // employee_id
-            // 
-            employee_id.HeaderText = "employeeID";
-            employee_id.MinimumWidth = 6;
-            employee_id.Name = "employee_id";
-            employee_id.Width = 125;
-            // 
-            // employee_name
-            // 
-            employee_name.HeaderText = "Name";
-            employee_name.MinimumWidth = 6;
-            employee_name.Name = "employee_name";
-            employee_name.Width = 125;
-            // 
-            // benefit_id
-            // 
-            benefit_id.HeaderText = "benefitId";
-            benefit_id.MinimumWidth = 6;
-            benefit_id.Name = "benefit_id";
-            benefit_id.Width = 125;
-            // 
-            // benefit_type
-            // 
-            benefit_type.HeaderText = "Benefit Type";
-            benefit_type.MinimumWidth = 6;
-            benefit_type.Name = "benefit_type";
-            benefit_type.Width = 125;
-            // 
-            // status
-            // 
-            status.HeaderText = "Status";
-            status.MinimumWidth = 6;
-            status.Name = "status";
-            status.Width = 125;
             // 
             // curved_panel
             // 
@@ -201,17 +163,19 @@
             curved_panel.Controls.Add(dgv_assignbenefits);
             curved_panel.gradientBottom = Color.Empty;
             curved_panel.gradientTop = Color.Empty;
-            curved_panel.Location = new Point(154, 191);
+            curved_panel.Location = new Point(176, 255);
+            curved_panel.Margin = new Padding(3, 4, 3, 4);
             curved_panel.Name = "curved_panel";
-            curved_panel.Size = new Size(886, 351);
+            curved_panel.Size = new Size(1012, 467);
             curved_panel.TabIndex = 44;
             // 
             // save_btn
             // 
             save_btn.Font = new Font("Arial", 11.25F);
-            save_btn.Location = new Point(740, 255);
+            save_btn.Location = new Point(846, 340);
+            save_btn.Margin = new Padding(3, 4, 3, 4);
             save_btn.Name = "save_btn";
-            save_btn.Size = new Size(121, 32);
+            save_btn.Size = new Size(138, 43);
             save_btn.TabIndex = 35;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
@@ -220,9 +184,10 @@
             // back_btn
             // 
             back_btn.Font = new Font("Arial", 11.25F);
-            back_btn.Location = new Point(740, 293);
+            back_btn.Location = new Point(846, 391);
+            back_btn.Margin = new Padding(3, 4, 3, 4);
             back_btn.Name = "back_btn";
-            back_btn.Size = new Size(122, 32);
+            back_btn.Size = new Size(139, 43);
             back_btn.TabIndex = 45;
             back_btn.Text = "Back";
             back_btn.UseVisualStyleBackColor = true;
@@ -231,30 +196,32 @@
             // textBox1
             // 
             textBox1.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(165, 25);
+            textBox1.Location = new Point(189, 33);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(201, 21);
+            textBox1.Size = new Size(229, 25);
             textBox1.TabIndex = 30;
             // 
             // search_lb
             // 
             search_lb.AutoSize = true;
             search_lb.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            search_lb.Location = new Point(36, 27);
+            search_lb.Location = new Point(41, 36);
             search_lb.Name = "search_lb";
-            search_lb.Size = new Size(123, 16);
+            search_lb.Size = new Size(151, 19);
             search_lb.TabIndex = 29;
             search_lb.Text = "Employee Search:";
             // 
             // AssignBenefits
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 651);
+            ClientSize = new Size(1353, 868);
             Controls.Add(curved_panel);
             Controls.Add(linkLabel1);
             Controls.Add(benefits_administration_label);
             Controls.Add(gradientPanel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AssignBenefits";
             Text = "AssignBenefits";
             gradientPanel1.ResumeLayout(false);
@@ -282,10 +249,5 @@
         private Label search_lb;
         private Button save_btn;
         private Button back_btn;
-        private DataGridViewTextBoxColumn employee_id;
-        private DataGridViewTextBoxColumn employee_name;
-        private DataGridViewTextBoxColumn benefit_id;
-        private DataGridViewTextBoxColumn benefit_type;
-        private DataGridViewTextBoxColumn status;
     }
 }

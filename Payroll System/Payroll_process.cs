@@ -46,9 +46,25 @@ namespace Payroll_System
                 if (cmbname.SelectedValue != null && int.TryParse(cmbname.SelectedValue.ToString(), out int empID))
                 {
                     Connector cn = new Connector();
-                    currentID = empID;
-                    cn.DisplayEmployeeSalary(empID, gross_pay_value, sss_value, philhealth_value, pagibig_value, total_deductions_value, net_pay_value, overtime_value, basic_salary_value);
 
+                    // ✅ Pass start_date and end_date DateTimePicker controls to your method
+                    cn.DisplayEmployeeSalary(
+                        empID,
+                        gross_pay_value,
+                        sss_value,
+                        philhealth_value,
+                        pagibig_value,
+                        total_deductions_value,
+                        net_pay_value,
+                        overtime_value,
+                        basic_salary_value,
+                        start_date,   // your DateTimePicker for start date
+                        end_date      // your DateTimePicker for end date
+                    );
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid employee.");
                 }
             }
             catch (Exception ex)
@@ -56,6 +72,7 @@ namespace Payroll_System
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void cmbname_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -309,7 +326,6 @@ namespace Payroll_System
         // as i envisioned this to utilize the 2 datetimepick elements
         // or not use the 2 datetimepick at all
         private void save_record_btn_Click(object sender, EventArgs e)
-
         {
             try
             {
@@ -321,7 +337,14 @@ namespace Payroll_System
 
                 int employeeID = Convert.ToInt32(cmbname.SelectedValue);
 
-                // Convert label text to numbers safely
+                // Validate pay period
+                if (end_date.Value < start_date.Value)
+                {
+                    MessageBox.Show("End date cannot be earlier than start date.");
+                    return;
+                }
+
+                // Safely convert label text values to numeric
                 if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double grossPay))
                 {
                     MessageBox.Show("Invalid gross pay value.");
@@ -343,12 +366,14 @@ namespace Payroll_System
                 // Create connector object
                 Connector con = new Connector();
 
-                // Get attendance period
-                var period = con.GetAttendancePeriod(employeeID);
-                if (period.startDate == DateTime.MinValue) return;
-
-                // Save or update payslip
-                con.SaveOrUpdatePayslip(employeeID, period.startDate, period.endDate, grossPay, netPay, totalDeductions);
+                // Save or update payslip and refresh DataGridView
+                con.SaveOrUpdatePayslip(
+                    employeeID,
+                    start_date,
+                    end_date,
+                    grossPay,
+                    netPay,
+                    totalDeductions );
             }
             catch (Exception ex)
             {
@@ -356,7 +381,7 @@ namespace Payroll_System
             }
         }
 
-        
+
         private void print_payslip_btn_Click(object sender, EventArgs e)
         {
             /*

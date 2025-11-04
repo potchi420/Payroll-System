@@ -22,7 +22,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             try
             {
@@ -213,70 +213,115 @@ namespace Payroll_System
             return data;
         }
 
-        public void DisplayEmployeeSalary(int employeeID, Label grosspay, Label sss, Label philhealth, Label pagibig, Label totaldeductions, Label netpay, Label overtime, Label salary)
+        public void DisplayEmployeeSalary(
+     int employeeID,
+     Label grosspay,
+     Label sss,
+     Label philhealth,
+     Label pagibig,
+     Label totaldeductions,
+     Label netpay,
+     Label overtime,
+     Label salary,
+     DateTimePicker start_date,
+     DateTimePicker end_date)
         {
-            PayslipData data = GetPayslipData(employeeID); // fetch the data
+            double sssdeduction = 0.05;
+            double phildeduction = 0.05;
+            double pagibigdeduction = 0.05;
 
-            decimal totalDeductions = data.Deductions.Sum(d => d.Amount);
+            connection(); // Opens your SQL connection
 
-            salary.Text = $"₱{data.DailyRate:N2}";
-            grosspay.Text = $"₱{(data.BasicPay + data.overtimePay):N2}";
-            sss.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "SSS").Amount:N2}";
-            philhealth.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "PhilHealth").Amount:N2}";
-            pagibig.Text = $"₱{data.Deductions.FirstOrDefault(d => d.DeductionType == "Pag-IBIG").Amount:N2}";
-            totaldeductions.Text = $"₱{totalDeductions:N2}";
-            netpay.Text = $"₱{data.NetPay:N2}";
-            overtime.Text = $"₱{data.overtimePay:N2}";
-        }
+            string query = @"
+        SELECT 
+            e.first_name, 
+            e.last_name,
+            a.days_worked,
+            a.overtime_hours,
+            e.salary,
+            a.start_date,
+            a.end_date
+        FROM employee e
+        INNER JOIN attendance a 
+            ON e.employee_id = a.employee_id
+        WHERE e.employee_id = @id";
 
-        public (DateTime startDate, DateTime endDate) GetAttendancePeriod(int employeeID)
-        {
-            connection(); // open SQL connection
-            try
+            using (SqlCommand cmd = new SqlCommand(query, con))
             {
-                string query = @"
-            SELECT 
-                MIN(attendance_date) AS StartDate,
-                MAX(attendance_date) AS EndDate
-            FROM attendance
-            WHERE employee_id = @id";
+                cmd.Parameters.AddWithValue("@id", employeeID);
 
-                using (SqlCommand cmd = new SqlCommand(query, con))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@id", employeeID);
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read() && reader["StartDate"] != DBNull.Value && reader["EndDate"] != DBNull.Value)
+                        if (reader.Read())
                         {
-                            DateTime start = Convert.ToDateTime(reader["StartDate"]);
-                            DateTime end = Convert.ToDateTime(reader["EndDate"]);
-                            return (start, end);
+                            // 🗓 Retrieve attendance period
+                            DateTime startDate = Convert.ToDateTime(reader["start_date"]);
+                            DateTime endDate = Convert.ToDateTime(reader["end_date"]);
+
+                            // ✅ Show in DateTimePickers
+                            start_date.Value = startDate;
+                            end_date.Value = endDate;
+
+                            // 📆 Attendance and salary info
+                            int dayWorked = Convert.ToInt32(reader["days_worked"]);
+                            int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
+                            double salaryPerDay = Convert.ToDouble(reader["salary"]);
+
+                            // 💰 Salary computation
+                            double totalSalary = dayWorked * salaryPerDay;
+                            double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour day
+                            double grossSalary = totalSalary + overtimePay;
+
+                            double sssAmount = grossSalary * sssdeduction;
+                            double philAmount = grossSalary * phildeduction;
+                            double pagibigAmount = grossSalary * pagibigdeduction;
+                            double totalDeductions = sssAmount + philAmount + pagibigAmount;
+                            double netSalary = grossSalary - totalDeductions;
+
+                            // 💵 Display in labels
+                            salary.Text = $"₱{salaryPerDay:N2}";
+                            grosspay.Text = $"₱{grossSalary:N2}";
+                            sss.Text = $"₱{sssAmount:N2}";
+                            philhealth.Text = $"₱{philAmount:N2}";
+                            pagibig.Text = $"₱{pagibigAmount:N2}";
+                            totaldeductions.Text = $"₱{totalDeductions:N2}";
+                            netpay.Text = $"₱{netSalary:N2}";
+                            overtime.Text = $"₱{overtimePay:N2}";
                         }
                         else
                         {
-                            MessageBox.Show("No attendance records found for this employee.");
-                            return (DateTime.MinValue, DateTime.MinValue);
+                            // No record found
+                            MessageBox.Show("No attendance record found for this employee.");
+
+                            // Reset labels
+                            grosspay.Text = sss.Text = philhealth.Text = pagibig.Text =
+                            totaldeductions.Text = netpay.Text = overtime.Text = salary.Text = "₱N/A";
+
+                            // Reset pickers
+                            start_date.Value = DateTime.Today;
+                            end_date.Value = DateTime.Today;
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error fetching attendance period: " + ex.Message);
-                return (DateTime.MinValue, DateTime.MinValue);
-            }
-            finally
-            {
-                con.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading salary: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
         }
+
 
 
         public void SaveOrUpdatePayslip(
     int employeeID,
-    DateTime payPeriodStart,
-    DateTime payPeriodEnd,
+    DateTimePicker startDatePicker,
+    DateTimePicker endDatePicker,
     double grossPay,
     double netPay,
     double taxWithheld)
@@ -285,6 +330,10 @@ namespace Payroll_System
 
             try
             {
+                // Get values from DateTimePickers
+                DateTime payPeriodStart = startDatePicker.Value;
+                DateTime payPeriodEnd = endDatePicker.Value;
+
                 // Check if a payslip already exists for this employee & period
                 string checkQuery = @"
             SELECT COUNT(*) 
@@ -299,7 +348,6 @@ namespace Payroll_System
                     checkCmd.Parameters.AddWithValue("@employee_id", employeeID);
                     checkCmd.Parameters.AddWithValue("@start", payPeriodStart);
                     checkCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-
                     count = (int)checkCmd.ExecuteScalar();
                 }
 
@@ -318,16 +366,13 @@ namespace Payroll_System
 
                     using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
                     {
-                        updateCmd.Parameters.AddWithValue("@gross", grossPay);
-                        updateCmd.Parameters.AddWithValue("@net", netPay);
-                        updateCmd.Parameters.AddWithValue("@tax", taxWithheld);
+                        updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                        updateCmd.Parameters.AddWithValue("@net", (float)netPay);
+                        updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
                         updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
                         updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
                         updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
                         updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-
-                        data.PayPeriodStart = payPeriodStart;
-                        data.PayPeriodEnd = payPeriodEnd;
 
                         updateCmd.ExecuteNonQuery();
                         MessageBox.Show("Payslip updated successfully!");
@@ -346,15 +391,17 @@ namespace Payroll_System
                         insertCmd.Parameters.AddWithValue("@employee_id", employeeID);
                         insertCmd.Parameters.AddWithValue("@start", payPeriodStart);
                         insertCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-                        insertCmd.Parameters.AddWithValue("@gross", grossPay);
-                        insertCmd.Parameters.AddWithValue("@net", netPay);
-                        insertCmd.Parameters.AddWithValue("@tax", taxWithheld);
+                        insertCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                        insertCmd.Parameters.AddWithValue("@net", (float)netPay);
+                        insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
                         insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
 
                         insertCmd.ExecuteNonQuery();
-                        MessageBox.Show("Payslip saved successfully!");
+                        MessageBox.Show("Payslip added successfully!");
                     }
                 }
+
+
             }
             catch (Exception ex)
             {
@@ -365,6 +412,7 @@ namespace Payroll_System
                 con.Close();
             }
         }
+
 
 
 
@@ -411,74 +459,74 @@ namespace Payroll_System
 
 
         public void AddBenefits(DataGridView dgv)
-{
-    try
-    {
-        connection();
-        bool anyAdded = false;
-
-        foreach (DataGridViewRow row in dgv.Rows)
         {
-            if (row.IsNewRow) continue;
+            try
+            {
+                connection();
+                bool anyAdded = false;
 
-            string benefitType = row.Cells["benefit_type"].Value?.ToString();
-            string description = row.Cells["description"].Value?.ToString();
-            string amountText = row.Cells["default_amount"].Value?.ToString();
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    if (row.IsNewRow) continue;
 
-            if (string.IsNullOrWhiteSpace(benefitType) || string.IsNullOrWhiteSpace(amountText))
-                continue;
+                    string benefitType = row.Cells["benefit_type"].Value?.ToString();
+                    string description = row.Cells["description"].Value?.ToString();
+                    string amountText = row.Cells["default_amount"].Value?.ToString();
 
-            double defaultAmount = double.Parse(amountText);
+                    if (string.IsNullOrWhiteSpace(benefitType) || string.IsNullOrWhiteSpace(amountText))
+                        continue;
 
-            // ✅ Check if this benefit already exists
-            string checkQuery = @"SELECT COUNT(*) FROM BenefitCatalog 
+                    double defaultAmount = double.Parse(amountText);
+
+                    // ✅ Check if this benefit already exists
+                    string checkQuery = @"SELECT COUNT(*) FROM BenefitCatalog 
                                   WHERE benefit_type = @type 
                                   AND CAST(description AS NVARCHAR(MAX)) = @desc";
 
-            using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
-            {
-                checkCmd.Parameters.AddWithValue("@type", benefitType);
-                checkCmd.Parameters.AddWithValue("@desc", description ?? "");
-                int exists = (int)checkCmd.ExecuteScalar();
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+                    {
+                        checkCmd.Parameters.AddWithValue("@type", benefitType);
+                        checkCmd.Parameters.AddWithValue("@desc", description ?? "");
+                        int exists = (int)checkCmd.ExecuteScalar();
 
-                if (exists == 0) // Only insert if not exists
-                {
-                    string insertQuery = @"INSERT INTO BenefitCatalog 
+                        if (exists == 0) // Only insert if not exists
+                        {
+                            string insertQuery = @"INSERT INTO BenefitCatalog 
                                            (benefit_type, description, default_amount)
                                            VALUES (@type, @desc, @amount)";
 
-                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
-                    {
-                        insertCmd.Parameters.AddWithValue("@type", benefitType);
-                        insertCmd.Parameters.AddWithValue("@desc", description ?? "");
-                        insertCmd.Parameters.AddWithValue("@amount", defaultAmount);
-                        insertCmd.ExecuteNonQuery();
-                    }
+                            using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                            {
+                                insertCmd.Parameters.AddWithValue("@type", benefitType);
+                                insertCmd.Parameters.AddWithValue("@desc", description ?? "");
+                                insertCmd.Parameters.AddWithValue("@amount", defaultAmount);
+                                insertCmd.ExecuteNonQuery();
+                            }
 
-                    anyAdded = true;
+                            anyAdded = true;
+                        }
+                    }
+                }
+
+                if (anyAdded)
+                {
+                    MessageBox.Show("New rows added successfully!");
+                    DisplayBenefits(dgv); // Refresh grid
+                }
+                else
+                {
+                    MessageBox.Show("No new Benefits to add.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
-
-        if (anyAdded)
-        {
-            MessageBox.Show("New rows added successfully!");
-            DisplayBenefits(dgv); // Refresh grid
-        }
-        else
-        {
-            MessageBox.Show("No new Benefits to add.");
-        }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error: " + ex.Message);
-    }
-    finally
-    {
-        con.Close();
-    }
-}
 
 
         public void EditBenefit(DataGridView dgv)
@@ -593,73 +641,38 @@ namespace Payroll_System
         }
 
 
-        /*
-        public void SearchEmployee(TextBox txtSearch, DataGridView dgv)
-        {
-            try
-            {
-                connection(); // open connection
-
-                string query = @"
-     SELECT 
-         
-         CONCAT(first_name, ' ', last_name) AS Name
-     FROM Employee
-     WHERE (first_name + ' ' + last_name) LIKE @name + '%'";
-
-                using (SqlCommand cmd = new SqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@name", txtSearch.Text.Trim());
-
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    dgv.DataSource = dt;
-                }
-
-                con.Close(); // close after query
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Search Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }*/
-
         public void LoadEmployeeBenefits(DataGridView dgv)
         {
             try
             {
                 connection(); // Open SQL connection
 
-                // 1️⃣ Get employees
+                // Get employees
                 string employeeQuery = "SELECT employee_id, first_name, last_name FROM Employee";
                 SqlDataAdapter empAdapter = new SqlDataAdapter(employeeQuery, con);
                 DataTable empTable = new DataTable();
                 empAdapter.Fill(empTable);
 
-                // 2️⃣ Get benefits
+                // Get benefits
                 string benefitQuery = "SELECT benefit_id, benefit_type, default_amount FROM BenefitCatalog";
                 SqlDataAdapter benAdapter = new SqlDataAdapter(benefitQuery, con);
                 DataTable benTable = new DataTable();
                 benAdapter.Fill(benTable);
-
-                // Set primary key for faster lookup
                 if (benTable.PrimaryKey.Length == 0)
                     benTable.PrimaryKey = new DataColumn[] { benTable.Columns["benefit_id"] };
 
-                // 3️⃣ Get assigned benefits (if any)
+                // Get assigned benefits
                 string assignedQuery = "SELECT employee_id, benefit_id, amount, status FROM AssignedBenefits";
                 SqlDataAdapter assignedAdapter = new SqlDataAdapter(assignedQuery, con);
                 DataTable assignedTable = new DataTable();
                 assignedAdapter.Fill(assignedTable);
 
-                // 4️⃣ Clear rows and columns
+                // Clear grid
                 dgv.Rows.Clear();
                 dgv.Columns.Clear();
                 dgv.AutoGenerateColumns = false;
 
-                // 5️⃣ Create columns dynamically
+                // Create columns
                 dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "employee_id", Visible = false });
                 dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "employee_name", HeaderText = "Employee Name", ReadOnly = true });
                 dgv.Columns.Add(new DataGridViewComboBoxColumn
@@ -672,13 +685,9 @@ namespace Payroll_System
                 });
                 dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "benefit_id", Visible = false });
                 dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "amount", HeaderText = "Amount", ReadOnly = true });
+                dgv.Columns.Add(new DataGridViewComboBoxColumn { Name = "status", HeaderText = "Status" });
 
-                var statusCol = new DataGridViewComboBoxColumn { Name = "status", HeaderText = "Status" };
-                statusCol.Items.Add("Active");
-                statusCol.Items.Add("Inactive");
-                dgv.Columns.Add(statusCol);
-
-                // 6️⃣ Add employee rows
+                // Add employee rows
                 foreach (DataRow emp in empTable.Rows)
                 {
                     int rowIndex = dgv.Rows.Add();
@@ -690,30 +699,36 @@ namespace Payroll_System
                     row.Cells["employee_id"].Value = employeeId;
                     row.Cells["employee_name"].Value = fullName;
 
-                    // Check if this employee already has an assigned benefit
                     DataRow assigned = assignedTable.Select("employee_id = " + employeeId).FirstOrDefault();
 
+                    // Set benefit
                     if (assigned != null)
                     {
                         row.Cells["benefit_type"].Value = assigned["benefit_id"];
                         row.Cells["benefit_id"].Value = assigned["benefit_id"];
                         row.Cells["amount"].Value = assigned["amount"];
-
-                        // ✅ Make sure status matches ComboBox items
-                        string statusValue = assigned["status"].ToString().Trim();
-                        row.Cells["status"].Value = statusCol.Items.Contains(statusValue) ? statusValue : "Active";
                     }
-                    else if (benTable.Rows.Count > 0)
+                    else
                     {
-                        // Default first benefit if no assigned benefit
                         row.Cells["benefit_type"].Value = benTable.Rows[0]["benefit_id"];
                         row.Cells["benefit_id"].Value = benTable.Rows[0]["benefit_id"];
                         row.Cells["amount"].Value = benTable.Rows[0]["default_amount"];
-                        row.Cells["status"].Value = "Active";
                     }
+
+                    // Set status using a ComboBoxCell per row
+                    var statusCell = new DataGridViewComboBoxCell();
+                    statusCell.Items.Add("Active");
+                    statusCell.Items.Add("Inactive");
+
+                    string currentStatus = (assigned != null) ? assigned["status"].ToString().Trim() : "Active";
+                    if (!statusCell.Items.Contains(currentStatus))
+                        statusCell.Items.Add(currentStatus);
+
+                    statusCell.Value = currentStatus;
+                    row.Cells["status"] = statusCell;
                 }
 
-                // 7️⃣ Handle benefit selection change to update Amount and hidden benefit_id
+                // Handle benefit selection change
                 dgv.EditingControlShowing += (s, e) =>
                 {
                     if (dgv.CurrentCell.OwningColumn.Name == "benefit_type" && e.Control is ComboBox cb)
@@ -733,21 +748,22 @@ namespace Payroll_System
 
                     dgv.CurrentRow.Cells["benefit_id"].Value = selectedBenefitId;
 
-                    // Auto-fill amount based on selected benefit
                     DataRow found = benTable.Rows.Find(selectedBenefitId);
                     if (found != null)
                         dgv.CurrentRow.Cells["amount"].Value = found["default_amount"];
                 }
 
-                con.Close();
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading employee benefits: " + ex.Message);
             }
+            finally
+            {
+                con.Close();
+            }
         }
-
-
 
         public void SaveAssignedBenefits(DataGridView dgv)
         {
@@ -757,21 +773,21 @@ namespace Payroll_System
 
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    if (row.IsNewRow) continue; // Skip empty row
+                    if (row.IsNewRow) continue;
 
                     int employeeId = Convert.ToInt32(row.Cells["employee_id"].Value);
                     int benefitId = Convert.ToInt32(row.Cells["benefit_id"].Value);
                     double amount = Convert.ToDouble(row.Cells["amount"].Value ?? 0);
                     string status = row.Cells["status"].Value?.ToString() ?? "Active";
-                    DateTime dateAssigned = DateTime.Now.Date; // Today's date
+                    DateTime dateAssigned = DateTime.Now.Date;
 
-                    // Get payslip_id for this employee (latest payslip)
+                    // Get latest payslip for this employee
                     int payslipId = 0;
                     string payslipQuery = @"
                 SELECT TOP 1 payslip_id 
                 FROM Payslip
                 WHERE employee_id = @empId
-                ORDER BY pay_period_end DESC"; // Get latest payslip
+                ORDER BY pay_period_end DESC";
 
                     using (SqlCommand cmdPayslip = new SqlCommand(payslipQuery, con))
                     {
@@ -783,58 +799,101 @@ namespace Payroll_System
 
                     if (payslipId == 0)
                     {
-                        MessageBox.Show($"Payslip not found for employee ID {employeeId}. Skipping row.");
-                        continue; // Skip if no payslip found
+                        // If no payslip exists, insert a new benefit row without a payslip_id
+                        string insertQuery = @"
+                    INSERT INTO AssignedBenefits
+                    (employee_id, benefit_id, amount, date_assigned, status)
+                    VALUES
+                    (@empId, @benefitId, @amount, @dateAssigned, @status)";
+
+                        using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                        {
+                            insertCmd.Parameters.AddWithValue("@empId", employeeId);
+                            insertCmd.Parameters.AddWithValue("@benefitId", benefitId);
+                            insertCmd.Parameters.AddWithValue("@amount", amount);
+                            insertCmd.Parameters.AddWithValue("@dateAssigned", dateAssigned);
+                            insertCmd.Parameters.AddWithValue("@status", status);
+
+                            insertCmd.ExecuteNonQuery();
+                        }
+
+                        continue; // skip to next row
                     }
 
-                    // Check if the benefit already exists and is active
+                    // Check if benefit already exists for this employee + payslip
                     string checkQuery = @"
                 SELECT COUNT(*) 
                 FROM AssignedBenefits
                 WHERE employee_id = @empId
                   AND benefit_id = @benefitId
-                  AND status = 'Active'";
+                  AND payslip_id = @payslipId";
 
                     int exists = 0;
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, con))
                     {
                         cmdCheck.Parameters.AddWithValue("@empId", employeeId);
                         cmdCheck.Parameters.AddWithValue("@benefitId", benefitId);
+                        cmdCheck.Parameters.AddWithValue("@payslipId", payslipId);
+
                         exists = (int)cmdCheck.ExecuteScalar();
                     }
 
                     if (exists > 0)
                     {
-                        // Skip if already active
-                        continue;
+                        // UPDATE existing row
+                        string updateQuery = @"
+                    UPDATE AssignedBenefits
+                    SET amount = @amount,
+                        status = @status,
+                        date_assigned = @dateAssigned
+                    WHERE employee_id = @empId
+                      AND benefit_id = @benefitId
+                      AND payslip_id = @payslipId";
+
+                        using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+                        {
+                            updateCmd.Parameters.AddWithValue("@amount", amount);
+                            updateCmd.Parameters.AddWithValue("@status", status);
+                            updateCmd.Parameters.AddWithValue("@dateAssigned", dateAssigned);
+                            updateCmd.Parameters.AddWithValue("@empId", employeeId);
+                            updateCmd.Parameters.AddWithValue("@benefitId", benefitId);
+                            updateCmd.Parameters.AddWithValue("@payslipId", payslipId);
+
+                            updateCmd.ExecuteNonQuery();
+                        }
                     }
-
-                    // Insert into AssignedBenefits
-                    string insertQuery = @"
-                INSERT INTO AssignedBenefits
-                (payslip_id, employee_id, benefit_id, amount, date_assigned, status)
-                VALUES
-                (@payslipId, @empId, @benefitId, @amount, @dateAssigned, @status)";
-
-                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                    else
                     {
-                        insertCmd.Parameters.AddWithValue("@payslipId", payslipId);
-                        insertCmd.Parameters.AddWithValue("@empId", employeeId);
-                        insertCmd.Parameters.AddWithValue("@benefitId", benefitId);
-                        insertCmd.Parameters.AddWithValue("@amount", amount);
-                        insertCmd.Parameters.AddWithValue("@dateAssigned", dateAssigned);
-                        insertCmd.Parameters.AddWithValue("@status", status);
+                        // INSERT new row with payslip_id
+                        string insertQuery = @"
+                    INSERT INTO AssignedBenefits
+                    (payslip_id, employee_id, benefit_id, amount, date_assigned, status)
+                    VALUES
+                    (@payslipId, @empId, @benefitId, @amount, @dateAssigned, @status)";
 
-                        insertCmd.ExecuteNonQuery();
+                        using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                        {
+                            insertCmd.Parameters.AddWithValue("@payslipId", payslipId);
+                            insertCmd.Parameters.AddWithValue("@empId", employeeId);
+                            insertCmd.Parameters.AddWithValue("@benefitId", benefitId);
+                            insertCmd.Parameters.AddWithValue("@amount", amount);
+                            insertCmd.Parameters.AddWithValue("@dateAssigned", dateAssigned);
+                            insertCmd.Parameters.AddWithValue("@status", status);
+
+                            insertCmd.ExecuteNonQuery();
+                        }
                     }
                 }
 
-                con.Close();
                 MessageBox.Show("All assigned benefits saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving assigned benefits: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
