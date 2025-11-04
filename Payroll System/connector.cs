@@ -15,6 +15,11 @@ namespace Payroll_System
         private SqlConnection con;
         PayslipData data = new PayslipData();
 
+        public static class SessionData
+        {
+            public static int? EmployeeID { get; set; }
+        }
+
         public void connection()
         {
             string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
@@ -61,25 +66,35 @@ namespace Payroll_System
             }
         }
 
-        public bool DataReceive(string username, string password)
+        public (bool isValid, int? employeeId) DataReceive(string username, string password)
         {
             try
             {
                 connection();
-                string sql = "SELECT COUNT(*) FROM [login] WHERE username = @user AND password = @pass";
+                string sql = "SELECT employee_id FROM [login] WHERE username = @user AND password = @pass";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@user", username);
                     cmd.Parameters.AddWithValue("@pass", password);
 
-                    int count = (int)cmd.ExecuteScalar(); // returns number of matches
-                    return count > 0; // true if found, false if not
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        if (result != DBNull.Value)
+                            return (true, Convert.ToInt32(result)); // employee login
+                        else
+                            return (true, null); // admin login
+                    }
+                    else
+                    {
+                        return (false, null); // login not found
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
-                return false;
+                return (false, null);
             }
             finally
             {

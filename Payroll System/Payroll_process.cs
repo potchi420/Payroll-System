@@ -1,7 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Office.CoverPageProps;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Spire.Pdf;
 using Org.BouncyCastle.Ocsp;
+using PdfDocument = Spire.Pdf.PdfDocument;
 
 
 namespace Payroll_System
@@ -95,13 +97,19 @@ namespace Payroll_System
                     Connector cn = new Connector();
                     PayslipData data = cn.GetPayslipData(currentID);
 
-                    // Sanitize FullName for filename safety
                     string safeName = data.FullName.Replace(" ", "_");
                     string start = data.PayPeriodStart.ToString("dd-MM-yyyy");
                     string end = data.PayPeriodEnd.ToString("dd-MM-yyyy");
                     string fileName = $"{safeName}_{start}_{end}.pdf";
-                    string filePath = Path.Combine(@"C:\Users\franz\Downloads", fileName);
 
+                    // Ensure directory exists
+                    string directoryPath = @"C:\Payslips";
+                    if (!Directory.Exists(directoryPath))
+                    {
+                        Directory.CreateDirectory(directoryPath);
+                    }
+
+                    string filePath = Path.Combine(directoryPath, fileName);
                     GeneratePayslipPDF(filePath, data);
                 }
                 else
@@ -195,44 +203,44 @@ namespace Payroll_System
 
             void AddDeduction(string type, string amount)
             {
-                    deductionsTable.AddCell(new PdfPCell(new Phrase(type, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    deductionsTable.AddCell(new PdfPCell(new Phrase(amount, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
-                }
-
-                foreach (var deduction in data.Deductions)
-                    AddDeduction(deduction.DeductionType, $"-₱{deduction.Amount:N2}");
-
-                decimal totalDeductions = data.Deductions.Sum(d => d.Amount);
-                AddDeduction("Total Deductions", $"₱{totalDeductions:N2}");
-
-                doc.Add(deductionsTable);
-                doc.Add(new Paragraph("\n"));
-
-
-                // Net Pay
-                Paragraph netPay = new Paragraph($"Net Pay: ₱{data.NetPay:N2}", sectionFont);
-                doc.Add(netPay);
-                doc.Add(new Paragraph($"In Words: {ConvertToWords(data.NetPay)}", italicFont));
-                doc.Add(new Paragraph("\n"));
-
-                // Signature Section
-                PdfPTable signTable = new PdfPTable(2);
-                signTable.WidthPercentage = 100;
-                signTable.SetWidths(new float[] { 50f, 50f });
-
-                signTable.AddCell(new PdfPCell(new Phrase("\n\n________________________\nEmployer Signature", valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
-                signTable.AddCell(new PdfPCell(new Phrase("\n\n________________________\nEmployee Signature", valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
-
-                doc.Add(signTable);
-
-                // Footer
-                Paragraph footer = new Paragraph("\nThis is a system-generated payslip. No signature is required.", italicFont);
-                footer.Alignment = Element.ALIGN_CENTER;
-                doc.Add(footer);
-
-                doc.Close();
-                MessageBox.Show("Payslip generated successfully.");
+                deductionsTable.AddCell(new PdfPCell(new Phrase(type, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                deductionsTable.AddCell(new PdfPCell(new Phrase(amount, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
             }
+
+            foreach (var deduction in data.Deductions)
+                AddDeduction(deduction.DeductionType, $"-₱{deduction.Amount:N2}");
+
+            decimal totalDeductions = data.Deductions.Sum(d => d.Amount);
+            AddDeduction("Total Deductions", $"₱{totalDeductions:N2}");
+
+            doc.Add(deductionsTable);
+            doc.Add(new Paragraph("\n"));
+
+
+            // Net Pay
+            Paragraph netPay = new Paragraph($"Net Pay: ₱{data.NetPay:N2}", sectionFont);
+            doc.Add(netPay);
+            doc.Add(new Paragraph($"In Words: {ConvertToWords(data.NetPay)}", italicFont));
+            doc.Add(new Paragraph("\n"));
+
+            // Signature Section
+            PdfPTable signTable = new PdfPTable(2);
+            signTable.WidthPercentage = 100;
+            signTable.SetWidths(new float[] { 50f, 50f });
+
+            signTable.AddCell(new PdfPCell(new Phrase("\n\n________________________\nEmployer Signature", valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
+            signTable.AddCell(new PdfPCell(new Phrase("\n\n________________________\nEmployee Signature", valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_CENTER });
+
+            doc.Add(signTable);
+
+            // Footer
+            Paragraph footer = new Paragraph("\nThis is a system-generated payslip. No signature is required.", italicFont);
+            footer.Alignment = Element.ALIGN_CENTER;
+            doc.Add(footer);
+
+            doc.Close();
+            MessageBox.Show("Payslip generated successfully.");
+        }
 
         // Convert number to words (for Philippine Peso)
         public string ConvertToWords(decimal amount)
@@ -346,6 +354,46 @@ namespace Payroll_System
             {
                 MessageBox.Show("Error saving payslip: " + ex.Message);
             }
+        }
+
+        
+        private void print_payslip_btn_Click(object sender, EventArgs e)
+        {
+            /*
+            try
+            {
+                if (currentID > 0)
+                {
+                    Connector cn = new Connector();
+                    PayslipData data = cn.GetPayslipData(currentID);
+
+                    string safeName = data.FullName.Replace(" ", "_");
+                    string start = data.PayPeriodStart.ToString("dd-MM-yyyy");
+                    string end = data.PayPeriodEnd.ToString("dd-MM-yyyy");
+                    string fileName = $"{safeName}_{start}_{end}.pdf";
+                    string filePath = Path.Combine(@"C:\Users\franz\Downloads", fileName);
+
+                    // Step 1: Generate the PDF
+                    GeneratePayslipPDF(filePath, data);
+
+                    // Step 2: Load and print using FreeSpire.PDF
+                    PdfDocument doc = new PdfDocument();
+                    doc.LoadFromFile(filePath);
+
+                    // Print using Spire.Pdf's Print() method
+                    doc.Pri
+                    doc.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Please load an employee first.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error printing payslip: " + ex.Message);
+            }
+        */
         }
     }
 }

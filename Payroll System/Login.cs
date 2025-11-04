@@ -1,5 +1,6 @@
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
+using static Payroll_System.Connector;
 
 namespace Payroll_System
 {
@@ -35,12 +36,31 @@ namespace Payroll_System
         private void btnblogin_Click(object sender, EventArgs e)
         {
             Connector cn = new Connector();
-            bool tr = cn.DataReceive(username.Text,password.Text);
+            var loginResult = cn.DataReceive(username.Text, password.Text); // ✅ capture tuple
 
-            dashboard db= new dashboard();
-            db.Show();
-            this.Show();
+            if (loginResult.isValid)
+            {
+                SessionData.EmployeeID = loginResult.employeeId;
 
+                if (loginResult.employeeId.HasValue)
+                {
+                    // Employee login
+                    EmployeePayslips ed = new EmployeePayslips();
+                    ed.Show();
+                }
+                else
+                {
+                    // Admin login
+                    dashboard db = new dashboard();
+                    db.Show();
+                }
+
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password");
+            }
         }
     }
 }

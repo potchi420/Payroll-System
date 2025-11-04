@@ -362,6 +362,7 @@
             print_payslip_btn.TabIndex = 2;
             print_payslip_btn.Text = "Print Payslip";
             print_payslip_btn.UseVisualStyleBackColor = true;
+            print_payslip_btn.Click += print_payslip_btn_Click;
             // 
             // export_btn
             // 
