@@ -3,7 +3,6 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Spire.Pdf;
 using Org.BouncyCastle.Ocsp;
-using PdfDocument = Spire.Pdf.PdfDocument;
 
 
 namespace Payroll_System
@@ -39,6 +38,9 @@ namespace Payroll_System
             public decimal GrossPay { get; set; }
         }
 
+
+        // TODO
+        // this should process other attendance records, not just the first one it finds/the oldest one
         private void load_employee_btn_Click(object sender, EventArgs e)
         {
             try
@@ -61,6 +63,7 @@ namespace Payroll_System
                         start_date,   // your DateTimePicker for start date
                         end_date      // your DateTimePicker for end date
                     );
+                    currentID = empID;
                 }
                 else
                 {
@@ -321,10 +324,14 @@ namespace Payroll_System
             return result.Trim();
         }
 
-
+        // this also cant process more than 1 attendance records
         // still unsure about this
         // as i envisioned this to utilize the 2 datetimepick elements
         // or not use the 2 datetimepick at all
+
+        // update this still wont pass on the 2 datetimepick values to the payslips table
+        // this also needs to validate if end_date is not earlier than start_date
+        // this should also ONLY WORK when theres an employee already loaded.
         private void save_record_btn_Click(object sender, EventArgs e)
         {
             try
@@ -373,7 +380,7 @@ namespace Payroll_System
                     end_date,
                     grossPay,
                     netPay,
-                    totalDeductions );
+                    totalDeductions);
             }
             catch (Exception ex)
             {
@@ -419,6 +426,27 @@ namespace Payroll_System
                 MessageBox.Show("Error printing payslip: " + ex.Message);
             }
         */
+        }
+
+        private void logobtn_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void homebtn_Click(object sender, EventArgs e)
+        {
+            dashboard db = new dashboard();
+            db.Show();
+            this.Show();
+            this.Hide();
+        }
+
+        private void logoutbtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

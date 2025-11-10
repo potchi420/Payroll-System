@@ -22,7 +22,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -213,6 +213,9 @@ namespace Payroll_System
             return data;
         }
 
+
+        // deleted the data. things in here
+        // might need it again tho
         public void DisplayEmployeeSalary(
      int employeeID,
      Label grosspay,
@@ -226,9 +229,9 @@ namespace Payroll_System
      DateTimePicker start_date,
      DateTimePicker end_date)
         {
-            double sssdeduction = 0.05;
-            double phildeduction = 0.05;
-            double pagibigdeduction = 0.05;
+            double sssRate = 0.045;
+            double philRate = 0.025;
+            double pagibigRate = 0.02;
 
             connection(); // Opens your SQL connection
 
@@ -274,9 +277,9 @@ namespace Payroll_System
                             double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour day
                             double grossSalary = totalSalary + overtimePay;
 
-                            double sssAmount = grossSalary * sssdeduction;
-                            double philAmount = grossSalary * phildeduction;
-                            double pagibigAmount = grossSalary * pagibigdeduction;
+                            double sssAmount = grossSalary * sssRate;
+                            double philAmount = grossSalary * philRate;
+                            double pagibigAmount = grossSalary * pagibigRate;
                             double totalDeductions = sssAmount + philAmount + pagibigAmount;
                             double netSalary = grossSalary - totalDeductions;
 
@@ -289,6 +292,8 @@ namespace Payroll_System
                             totaldeductions.Text = $"₱{totalDeductions:N2}";
                             netpay.Text = $"₱{netSalary:N2}";
                             overtime.Text = $"₱{overtimePay:N2}";
+
+
                         }
                         else
                         {

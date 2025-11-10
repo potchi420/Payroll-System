@@ -13,7 +13,7 @@ namespace Payroll_System
 
             try
             {
-                Application.Run(new AssignBenefits());
+                Application.Run(new dashboard());
             }
             catch (Exception ex)
             {

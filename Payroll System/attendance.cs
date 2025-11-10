@@ -59,7 +59,7 @@ namespace Payroll_System
         }
         private void LoadInitialEmployees()
         {
-            string query = "SELECT a.attendance_id, a.employee_id, a.days_worked AS [Days Worked], a.overtime_hours AS [Hours Overtimed], e.first_name + ' ' + e.last_name AS FullName FROM attendance a JOIN employee e ON a.employee_id = e.employee_id";
+            string query = "SELECT a.attendance_id AS [Attendance ID], a.employee_id AS [Employee ID], a.days_worked AS [Days Worked], a.overtime_hours AS [Hours Overtimed], e.first_name + ' ' + e.last_name AS FullName FROM attendance a JOIN employee e ON a.employee_id = e.employee_id";
             attendance_table.DataSource = getEmployeeAttendance(query);
             // Auto-size columns to fit content
             attendance_table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -111,30 +111,80 @@ namespace Payroll_System
 
         private void saveAttendanceBTN_Click(object sender, EventArgs e)
         {
+            if (employee_searchbox.SelectedValue == null)
+            {
+                MessageBox.Show("Please select an employee.");
+                return;
+            }
 
-            // Code to save the new employee details to the database
+            int employeeID = Convert.ToInt32(employee_searchbox.SelectedValue);
+            int daysWorked = Convert.ToInt32(days_worked.Value);
+            int overtimeHours = Convert.ToInt32(overtimed_hours.Value);
+            DateTime startDate = start_date.Value.Date;
+            DateTime endDate = end_date.Value.Date;
+
+            if (daysWorked < 0 || daysWorked > 31)
+            {
+                MessageBox.Show("Days worked must be between 0 and 31.");
+                return;
+            }
+
+            if (overtimeHours < 0 || overtimeHours > 200)
+            {
+                MessageBox.Show("Overtime hours must be between 0 and 200.");
+                return;
+            }
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be earlier than start date.");
+                return;
+            }
+
+            using (SqlConnection checkCon = dbConnector.GetConnection())
+            {
+                string checkQuery = @"SELECT COUNT(*) FROM attendance 
+                              WHERE employee_id = @id AND start_date = @start AND end_date = @end";
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, checkCon))
+                {
+                    checkCmd.Parameters.AddWithValue("@id", employeeID);
+                    checkCmd.Parameters.AddWithValue("@start", startDate);
+                    checkCmd.Parameters.AddWithValue("@end", endDate);
+
+                    checkCon.Open();
+                    int existing = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    checkCon.Close();
+
+                    if (existing > 0)
+                    {
+                        MessageBox.Show("Attendance for this employee and period already exists.");
+                        return;
+                    }
+                }
+            }
+
+            // Save attendance record
             using (SqlConnection connector = dbConnector.GetConnection())
             {
-                string add_emp = "INSERT INTO attendance (employee_id, days_worked, overtime_hours, attendance_date) " +
-                                     "VALUES (@employee_id, @days_worked, @overtime_hours, @attendance_date)";
+                string add_emp = @"INSERT INTO attendance 
+                           (employee_id, days_worked, overtime_hours, start_date, end_date) 
+                           VALUES (@employee_id, @days_worked, @overtime_hours, @start_date, @end_date)";
                 using (SqlCommand cmd = new SqlCommand(add_emp, connector))
                 {
-                    cmd.Parameters.AddWithValue("@employee_id", Convert.ToInt32(employee_searchbox.SelectedValue));
-                    cmd.Parameters.AddWithValue("@days_worked", days_worked.Value);
-                    cmd.Parameters.AddWithValue("overtime_hours", overtimed_hours.Value);
-                    cmd.Parameters.AddWithValue("@attendance_date", attendance_date.Value);
+                    cmd.Parameters.AddWithValue("@employee_id", employeeID);
+                    cmd.Parameters.AddWithValue("@days_worked", daysWorked);
+                    cmd.Parameters.AddWithValue("@overtime_hours", overtimeHours);
+                    cmd.Parameters.AddWithValue("@start_date", startDate);
+                    cmd.Parameters.AddWithValue("@end_date", endDate);
 
                     connector.Open();
                     cmd.ExecuteNonQuery();
-
-                    
                 }
             }
-            MessageBox.Show("Employee Attendance details saved successfully!");
-            attendance attendance = new attendance();
-            attendance.Show();
-            this.Show();
-            this.Hide();
+
+            MessageBox.Show("Employee attendance details saved successfully!");
+            LoadInitialEmployees();
+            clearBTN_Click(sender, e);
         }
 
         public void focus_remover()
@@ -153,7 +203,8 @@ namespace Payroll_System
 
             days_worked.Value = 0; 
             overtimed_hours.Value = 0; 
-            attendance_date.Value = DateTime.Today;
+            start_date.Value = DateTime.Today;
+            end_date.Value = DateTime.Today;
             focus_remover();
         }
     }

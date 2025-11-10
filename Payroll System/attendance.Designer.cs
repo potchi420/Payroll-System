@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(attendance));
             home = new Label();
             logout = new Label();
             label5 = new Label();
             logo = new PictureBox();
             label1 = new Label();
             panel1 = new Panel();
-            attendance_date = new DateTimePicker();
+            end_date = new DateTimePicker();
+            label7 = new Label();
+            start_date = new DateTimePicker();
             label6 = new Label();
             clearBTN = new Button();
             saveAttendanceBTN = new Button();
@@ -44,13 +47,13 @@
             label3 = new Label();
             employee_searchbox = new ComboBox();
             label2 = new Label();
-            panel2 = new Panel();
             attendance_table = new DataGridView();
             gradientPanel1 = new GradientPanel();
             home1 = new Label();
             logout1 = new Label();
             label8 = new Label();
             logo1 = new PictureBox();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)overtimed_hours).BeginInit();
@@ -116,11 +119,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ImageAlign = ContentAlignment.TopCenter;
-            label1.Location = new Point(89, 173);
+            label1.Location = new Point(52, 115);
             label1.Name = "label1";
-            label1.Size = new Size(216, 24);
+            label1.Size = new Size(243, 29);
             label1.TabIndex = 0;
             label1.Text = "Attendance Checker";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -129,7 +132,9 @@
             // 
             panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(attendance_date);
+            panel1.Controls.Add(end_date);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(start_date);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(clearBTN);
             panel1.Controls.Add(saveAttendanceBTN);
@@ -139,27 +144,44 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(employee_searchbox);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(89, 214);
+            panel1.Location = new Point(52, 177);
             panel1.Name = "panel1";
-            panel1.Size = new Size(340, 322);
+            panel1.Size = new Size(398, 415);
             panel1.TabIndex = 1;
             // 
-            // attendance_date
+            // end_date
             // 
-            attendance_date.Location = new Point(12, 201);
-            attendance_date.Name = "attendance_date";
-            attendance_date.Size = new Size(200, 20);
-            attendance_date.TabIndex = 6;
+            end_date.Location = new Point(12, 260);
+            end_date.Name = "end_date";
+            end_date.Size = new Size(261, 20);
+            end_date.TabIndex = 8;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 9.75F);
+            label7.Location = new Point(12, 241);
+            label7.Name = "label7";
+            label7.Size = new Size(131, 16);
+            label7.TabIndex = 9;
+            label7.Text = "Attendance End Date";
+            // 
+            // start_date
+            // 
+            start_date.Location = new Point(12, 207);
+            start_date.Name = "start_date";
+            start_date.Size = new Size(261, 20);
+            start_date.TabIndex = 6;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 9.75F);
-            label6.Location = new Point(12, 182);
+            label6.Location = new Point(12, 188);
             label6.Name = "label6";
-            label6.Size = new Size(104, 16);
+            label6.Size = new Size(136, 16);
             label6.TabIndex = 7;
-            label6.Text = "Attendance Date";
+            label6.Text = "Attendance Start Date";
             // 
             // clearBTN
             // 
@@ -169,7 +191,7 @@
             clearBTN.FlatStyle = FlatStyle.Flat;
             clearBTN.Font = new Font("Arial", 9.75F);
             clearBTN.ForeColor = Color.White;
-            clearBTN.Location = new Point(12, 272);
+            clearBTN.Location = new Point(90, 359);
             clearBTN.Name = "clearBTN";
             clearBTN.Size = new Size(214, 31);
             clearBTN.TabIndex = 6;
@@ -185,7 +207,7 @@
             saveAttendanceBTN.FlatStyle = FlatStyle.Flat;
             saveAttendanceBTN.Font = new Font("Arial", 9.75F);
             saveAttendanceBTN.ForeColor = Color.White;
-            saveAttendanceBTN.Location = new Point(12, 235);
+            saveAttendanceBTN.Location = new Point(90, 322);
             saveAttendanceBTN.Name = "saveAttendanceBTN";
             saveAttendanceBTN.Size = new Size(214, 31);
             saveAttendanceBTN.TabIndex = 3;
@@ -246,22 +268,13 @@
             label2.TabIndex = 0;
             label2.Text = "Employee Name";
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Location = new Point(456, 214);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(340, 297);
-            panel2.TabIndex = 2;
-            // 
             // attendance_table
             // 
             attendance_table.BackgroundColor = SystemColors.ButtonHighlight;
             attendance_table.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            attendance_table.Location = new Point(456, 214);
+            attendance_table.Location = new Point(481, 177);
             attendance_table.Name = "attendance_table";
-            attendance_table.Size = new Size(684, 322);
+            attendance_table.Size = new Size(649, 415);
             attendance_table.TabIndex = 0;
             attendance_table.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -335,14 +348,27 @@
             logo1.TabStop = false;
             logo1.Click += logo1_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.Transparent;
+            linkLabel1.AutoSize = true;
+            linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
+            linkLabel1.LinkColor = Color.Gray;
+            linkLabel1.Location = new Point(52, 144);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(1078, 13);
+            linkLabel1.TabIndex = 50;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = resources.GetString("linkLabel1.Text");
+            // 
             // attendance
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(linkLabel1);
             Controls.Add(gradientPanel1);
             Controls.Add(attendance_table);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(label1);
             Font = new Font("Microsoft Sans Serif", 8.25F);
@@ -372,7 +398,6 @@
         private Label label1;
         private Panel panel1;
         private Label label2;
-        private Panel panel2;
         private Button clearBTN;
         private Button saveAttendanceBTN;
         private NumericUpDown overtimed_hours;
@@ -386,6 +411,9 @@
         private Label label8;
         private PictureBox logo1;
         private Label label6;
-        private DateTimePicker attendance_date;
+        private DateTimePicker start_date;
+        private LinkLabel linkLabel1;
+        private DateTimePicker end_date;
+        private Label label7;
     }
 }
