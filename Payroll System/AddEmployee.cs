@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -88,28 +90,85 @@ namespace Payroll_System
 
         public void save_btn_Click(object sender, EventArgs e)
         {
+            string firstName = first_name.Text.Trim();
+            string lastName = last_name.Text.Trim();
+            string contact = contact_no.Text.Trim();
+            string address = Address.Text.Trim();
+            string emailAddress = email.Text.Trim();
+            decimal salary = Convert.ToDecimal(Salary.Text);
+            object departmentID = department.SelectedValue;
 
-            // Code to save the new employee details to the database
             using (SqlConnection connector = dbConnector.GetConnection())
             {
-                string add_emp = "INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update) " +
-                                     "VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update)";
+                string add_emp = @"INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update, email) 
+                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email)";
                 using (SqlCommand cmd = new SqlCommand(add_emp, connector))
                 {
-                    cmd.Parameters.AddWithValue("@FirstName", first_name.Text);
-                    cmd.Parameters.AddWithValue("@LastName", last_name.Text);
-                    cmd.Parameters.AddWithValue("@contact_no", contact_no.Text);
-                    cmd.Parameters.AddWithValue("@Address", Address.Text);
-                    cmd.Parameters.AddWithValue("@department_id", department.SelectedValue);
-                    cmd.Parameters.AddWithValue("@Salary", Convert.ToDecimal(Salary.Text));
+                    cmd.Parameters.AddWithValue("@FirstName", firstName);
+                    cmd.Parameters.AddWithValue("@LastName", lastName);
+                    cmd.Parameters.AddWithValue("@contact_no", contact);
+                    cmd.Parameters.AddWithValue("@Address", address);
+                    cmd.Parameters.AddWithValue("@department_id", departmentID);
+                    cmd.Parameters.AddWithValue("@Salary", salary);
                     cmd.Parameters.AddWithValue("@last_update", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@email", emailAddress);
 
                     connector.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
-            MessageBox.Show("Employee details saved successfully!");
+
+
+            try
+            {
+                string username = (firstName + lastName).ToLower();
+                string password = "password1234";
+
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress("payrollsytemm@gmail.com");
+                message.To.Add(emailAddress);
+                message.Subject = "Your Payroll System Account";
+                message.Body = $"Hello {firstName},\n\nYour account has been created.\n\nUsername: {username}\nPassword: {password}\n\nPlease change your password after logging in.";
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.Credentials = new NetworkCredential("payrollsystemm@gmail.com", "qytn rqet tetq qtoj"); // login niyo to if itetest niyo to
+                smtp.EnableSsl = true;
+                smtp.Send(message);
+
+                /* store login credentials in login table
+                 * should fetch the employee_id of the newly added employee first tho 
+                 * before inserting into login table
+                using (SqlConnection connector = dbConnector.GetConnection())
+                {
+                    string add_emp = @"INSERT INTO login (username, password, [Contact no.], address, department_id, salary, last_update, email) 
+                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email)";
+                    using (SqlCommand cmd = new SqlCommand(add_emp, connector))
+                    {
+                        cmd.Parameters.AddWithValue("@FirstName", firstName);
+                        cmd.Parameters.AddWithValue("@LastName", lastName);
+                        cmd.Parameters.AddWithValue("@contact_no", contact);
+                        cmd.Parameters.AddWithValue("@Address", address);
+                        cmd.Parameters.AddWithValue("@department_id", departmentID);
+                        cmd.Parameters.AddWithValue("@Salary", salary);
+                        cmd.Parameters.AddWithValue("@last_update", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@email", emailAddress);
+
+                        connector.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                */
+
+
+                MessageBox.Show("Employee details saved and email sent successfully!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Employee saved, but failed to send email: " + ex.Message);
+            }
         }
+
+
         public void focus_remover()
         {
             Label dummyFocus = new Label();

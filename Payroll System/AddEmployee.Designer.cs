@@ -53,6 +53,8 @@
             linkLabel1 = new LinkLabel();
             benefits_administration_label = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
+            label7 = new Label();
+            email = new TextBox();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             curved_panel.SuspendLayout();
@@ -130,7 +132,7 @@
             // back_btn
             // 
             back_btn.Font = new Font("Arial", 11.25F);
-            back_btn.Location = new Point(734, 553);
+            back_btn.Location = new Point(734, 569);
             back_btn.Name = "back_btn";
             back_btn.Size = new Size(130, 43);
             back_btn.TabIndex = 50;
@@ -141,7 +143,7 @@
             // save_btn
             // 
             save_btn.Font = new Font("Arial", 11.25F);
-            save_btn.Location = new Point(880, 553);
+            save_btn.Location = new Point(880, 569);
             save_btn.Name = "save_btn";
             save_btn.Size = new Size(130, 43);
             save_btn.TabIndex = 47;
@@ -152,6 +154,8 @@
             // curved_panel
             // 
             curved_panel.BorderStyle = BorderStyle.FixedSingle;
+            curved_panel.Controls.Add(label7);
+            curved_panel.Controls.Add(email);
             curved_panel.Controls.Add(label6);
             curved_panel.Controls.Add(Salary);
             curved_panel.Controls.Add(label5);
@@ -166,9 +170,9 @@
             curved_panel.Controls.Add(first_name);
             curved_panel.gradientBottom = Color.Empty;
             curved_panel.gradientTop = Color.Empty;
-            curved_panel.Location = new Point(177, 178);
+            curved_panel.Location = new Point(177, 166);
             curved_panel.Name = "curved_panel";
-            curved_panel.Size = new Size(833, 351);
+            curved_panel.Size = new Size(833, 397);
             curved_panel.TabIndex = 49;
             // 
             // label6
@@ -176,7 +180,7 @@
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 15.75F);
-            label6.Location = new Point(57, 218);
+            label6.Location = new Point(58, 214);
             label6.Name = "label6";
             label6.Size = new Size(70, 24);
             label6.TabIndex = 58;
@@ -186,7 +190,7 @@
             // 
             Salary.Anchor = AnchorStyles.None;
             Salary.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Salary.Location = new Point(62, 254);
+            Salary.Location = new Point(63, 250);
             Salary.Multiline = true;
             Salary.Name = "Salary";
             Salary.Size = new Size(326, 29);
@@ -197,7 +201,7 @@
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 15.75F);
-            label5.Location = new Point(445, 129);
+            label5.Location = new Point(446, 125);
             label5.Name = "label5";
             label5.Size = new Size(118, 24);
             label5.TabIndex = 56;
@@ -207,7 +211,7 @@
             // 
             contact_no.Anchor = AnchorStyles.None;
             contact_no.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contact_no.Location = new Point(450, 165);
+            contact_no.Location = new Point(451, 161);
             contact_no.Multiline = true;
             contact_no.Name = "contact_no";
             contact_no.Size = new Size(326, 29);
@@ -218,7 +222,7 @@
             department.Anchor = AnchorStyles.None;
             department.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             department.FormattingEnabled = true;
-            department.Location = new Point(62, 165);
+            department.Location = new Point(63, 161);
             department.Name = "department";
             department.Size = new Size(326, 26);
             department.TabIndex = 54;
@@ -228,7 +232,7 @@
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 15.75F);
-            label4.Location = new Point(57, 129);
+            label4.Location = new Point(58, 125);
             label4.Name = "label4";
             label4.Size = new Size(118, 24);
             label4.TabIndex = 53;
@@ -239,7 +243,7 @@
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 15.75F);
-            label3.Location = new Point(446, 218);
+            label3.Location = new Point(63, 303);
             label3.Name = "label3";
             label3.Size = new Size(86, 24);
             label3.TabIndex = 51;
@@ -249,10 +253,10 @@
             // 
             Address.Anchor = AnchorStyles.None;
             Address.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Address.Location = new Point(450, 253);
+            Address.Location = new Point(63, 339);
             Address.Multiline = true;
             Address.Name = "Address";
-            Address.Size = new Size(327, 72);
+            Address.Size = new Size(714, 37);
             Address.TabIndex = 50;
             // 
             // label2
@@ -260,7 +264,7 @@
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 15.75F);
-            label2.Location = new Point(446, 25);
+            label2.Location = new Point(447, 21);
             label2.Name = "label2";
             label2.Size = new Size(111, 24);
             label2.TabIndex = 49;
@@ -270,7 +274,7 @@
             // 
             last_name.Anchor = AnchorStyles.None;
             last_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            last_name.Location = new Point(446, 61);
+            last_name.Location = new Point(447, 57);
             last_name.Multiline = true;
             last_name.Name = "last_name";
             last_name.Size = new Size(326, 29);
@@ -281,7 +285,7 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(57, 25);
+            label1.Location = new Point(58, 21);
             label1.Name = "label1";
             label1.Size = new Size(112, 24);
             label1.TabIndex = 47;
@@ -291,7 +295,7 @@
             // 
             first_name.Anchor = AnchorStyles.None;
             first_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            first_name.Location = new Point(62, 61);
+            first_name.Location = new Point(63, 57);
             first_name.Multiline = true;
             first_name.Name = "first_name";
             first_name.Size = new Size(326, 29);
@@ -324,6 +328,27 @@
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 15.75F);
+            label7.Location = new Point(451, 214);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 24);
+            label7.TabIndex = 60;
+            label7.Text = "Email";
+            // 
+            // email
+            // 
+            email.Anchor = AnchorStyles.None;
+            email.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            email.Location = new Point(451, 250);
+            email.Multiline = true;
+            email.Name = "email";
+            email.Size = new Size(326, 29);
+            email.TabIndex = 59;
             // 
             // AddEmployee
             // 
@@ -373,5 +398,7 @@
         private TextBox Address;
         private Label label6;
         private TextBox Salary;
+        private Label label7;
+        private TextBox email;
     }
 }
