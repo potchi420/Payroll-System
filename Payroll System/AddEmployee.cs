@@ -97,11 +97,13 @@ namespace Payroll_System
             string emailAddress = email.Text.Trim();
             decimal salary = Convert.ToDecimal(Salary.Text);
             object departmentID = department.SelectedValue;
+            int newEmployeeID = 0;
 
             using (SqlConnection connector = dbConnector.GetConnection())
             {
-                string add_emp = @"INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update, email) 
-                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email)";
+                string add_emp = @"INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update, email)
+                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email);
+                                                SELECT SCOPE_IDENTITY();";
                 using (SqlCommand cmd = new SqlCommand(add_emp, connector))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);
@@ -114,7 +116,10 @@ namespace Payroll_System
                     cmd.Parameters.AddWithValue("@email", emailAddress);
 
                     connector.Open();
-                    cmd.ExecuteNonQuery();
+                    object result = cmd.ExecuteScalar();
+                    newEmployeeID = Convert.ToInt32(result);
+
+
                 }
             }
 
@@ -135,37 +140,30 @@ namespace Payroll_System
                 smtp.EnableSsl = true;
                 smtp.Send(message);
 
-                /* store login credentials in login table
-                 * should fetch the employee_id of the newly added employee first tho 
-                 * before inserting into login table
-                using (SqlConnection connector = dbConnector.GetConnection())
-                {
-                    string add_emp = @"INSERT INTO login (username, password, [Contact no.], address, department_id, salary, last_update, email) 
-                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email)";
-                    using (SqlCommand cmd = new SqlCommand(add_emp, connector))
-                    {
-                        cmd.Parameters.AddWithValue("@FirstName", firstName);
-                        cmd.Parameters.AddWithValue("@LastName", lastName);
-                        cmd.Parameters.AddWithValue("@contact_no", contact);
-                        cmd.Parameters.AddWithValue("@Address", address);
-                        cmd.Parameters.AddWithValue("@department_id", departmentID);
-                        cmd.Parameters.AddWithValue("@Salary", salary);
-                        cmd.Parameters.AddWithValue("@last_update", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@email", emailAddress);
-
-                        connector.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                */
-
-
                 MessageBox.Show("Employee details saved and email sent successfully!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Employee saved, but failed to send email: " + ex.Message);
             }
+
+            using (SqlConnection connector = dbConnector.GetConnection())
+            {
+                string add_login = @"INSERT INTO login (username, password, employee_id)
+                             VALUES (@username, @password, @employee_id)";
+
+                using (SqlCommand cmd = new SqlCommand(add_login, connector))
+                {
+                    cmd.Parameters.AddWithValue("@username", firstName.ToLower() + lastName.ToLower());
+                    cmd.Parameters.AddWithValue("@password", "password1234");
+                    cmd.Parameters.AddWithValue("@employee_id", newEmployeeID);
+
+                    connector.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+
         }
 
 

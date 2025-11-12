@@ -38,6 +38,8 @@
             back_btn = new Button();
             save_btn = new Button();
             curved_panel = new GradientPanel();
+            label7 = new Label();
+            email = new TextBox();
             label6 = new Label();
             Salary = new TextBox();
             label5 = new Label();
@@ -53,8 +55,6 @@
             linkLabel1 = new LinkLabel();
             benefits_administration_label = new Label();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            label7 = new Label();
-            email = new TextBox();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             curved_panel.SuspendLayout();
@@ -174,6 +174,27 @@
             curved_panel.Name = "curved_panel";
             curved_panel.Size = new Size(833, 397);
             curved_panel.TabIndex = 49;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 15.75F);
+            label7.Location = new Point(451, 214);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 24);
+            label7.TabIndex = 60;
+            label7.Text = "Email";
+            // 
+            // email
+            // 
+            email.Anchor = AnchorStyles.None;
+            email.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            email.Location = new Point(451, 250);
+            email.Multiline = true;
+            email.Name = "email";
+            email.Size = new Size(326, 29);
+            email.TabIndex = 59;
             // 
             // label6
             // 
@@ -328,27 +349,6 @@
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
-            // 
-            // label7
-            // 
-            label7.Anchor = AnchorStyles.None;
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial", 15.75F);
-            label7.Location = new Point(451, 214);
-            label7.Name = "label7";
-            label7.Size = new Size(61, 24);
-            label7.TabIndex = 60;
-            label7.Text = "Email";
-            // 
-            // email
-            // 
-            email.Anchor = AnchorStyles.None;
-            email.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            email.Location = new Point(451, 250);
-            email.Multiline = true;
-            email.Name = "email";
-            email.Size = new Size(326, 29);
-            email.TabIndex = 59;
             // 
             // AddEmployee
             // 
