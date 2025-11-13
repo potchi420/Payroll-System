@@ -41,6 +41,8 @@
             save_btn = new Button();
             gradientPanel1 = new GradientPanel();
             curved_panel = new GradientPanel();
+            label7 = new Label();
+            email = new TextBox();
             label6 = new Label();
             Salary = new TextBox();
             label5 = new Label();
@@ -53,11 +55,23 @@
             last_name = new TextBox();
             label1 = new Label();
             first_name = new TextBox();
-            label7 = new Label();
-            email = new TextBox();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox7 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             gradientPanel1.SuspendLayout();
             curved_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // contextMenuStrip1
@@ -106,11 +120,11 @@
             logout.AutoSize = true;
             logout.BackColor = Color.Transparent;
             logout.Cursor = Cursors.Hand;
-            logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             logout.ForeColor = Color.Transparent;
             logout.Location = new Point(1090, 31);
             logout.Name = "logout";
-            logout.Size = new Size(85, 24);
+            logout.Size = new Size(88, 25);
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
@@ -120,11 +134,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Transparent;
             label8.Location = new Point(82, 31);
             label8.Name = "label8";
-            label8.Size = new Size(258, 24);
+            label8.Size = new Size(254, 25);
             label8.TabIndex = 23;
             label8.Text = "PCU PAYROLL SYSTEM";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -147,11 +161,11 @@
             home.AutoSize = true;
             home.BackColor = Color.Transparent;
             home.Cursor = Cursors.Hand;
-            home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             home.ForeColor = Color.Transparent;
             home.Location = new Point(1018, 31);
             home.Name = "home";
-            home.Size = new Size(66, 24);
+            home.Size = new Size(68, 25);
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
@@ -185,6 +199,13 @@
             // curved_panel
             // 
             curved_panel.BorderStyle = BorderStyle.FixedSingle;
+            curved_panel.Controls.Add(pictureBox7);
+            curved_panel.Controls.Add(pictureBox6);
+            curved_panel.Controls.Add(pictureBox5);
+            curved_panel.Controls.Add(pictureBox4);
+            curved_panel.Controls.Add(pictureBox3);
+            curved_panel.Controls.Add(pictureBox2);
+            curved_panel.Controls.Add(pictureBox1);
             curved_panel.Controls.Add(label7);
             curved_panel.Controls.Add(email);
             curved_panel.Controls.Add(label6);
@@ -206,12 +227,33 @@
             curved_panel.Size = new Size(833, 406);
             curved_panel.TabIndex = 57;
             // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.None;
+            label7.AutoSize = true;
+            label7.Font = new Font("Arial", 15.75F);
+            label7.Location = new Point(482, 233);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 24);
+            label7.TabIndex = 72;
+            label7.Text = "Email";
+            // 
+            // email
+            // 
+            email.Anchor = AnchorStyles.None;
+            email.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            email.Location = new Point(451, 260);
+            email.Multiline = true;
+            email.Name = "email";
+            email.Size = new Size(326, 29);
+            email.TabIndex = 71;
+            // 
             // label6
             // 
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 15.75F);
-            label6.Location = new Point(58, 224);
+            label6.Location = new Point(102, 233);
             label6.Name = "label6";
             label6.Size = new Size(70, 24);
             label6.TabIndex = 70;
@@ -233,7 +275,7 @@
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 15.75F);
-            label5.Location = new Point(446, 135);
+            label5.Location = new Point(482, 144);
             label5.Name = "label5";
             label5.Size = new Size(118, 24);
             label5.TabIndex = 68;
@@ -265,7 +307,7 @@
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 15.75F);
-            label4.Location = new Point(58, 135);
+            label4.Location = new Point(102, 144);
             label4.Name = "label4";
             label4.Size = new Size(118, 24);
             label4.TabIndex = 65;
@@ -276,7 +318,7 @@
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 15.75F);
-            label3.Location = new Point(63, 302);
+            label3.Location = new Point(102, 312);
             label3.Name = "label3";
             label3.Size = new Size(86, 24);
             label3.TabIndex = 64;
@@ -297,7 +339,7 @@
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 15.75F);
-            label2.Location = new Point(447, 31);
+            label2.Location = new Point(482, 40);
             label2.Name = "label2";
             label2.Size = new Size(111, 24);
             label2.TabIndex = 62;
@@ -319,7 +361,7 @@
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(58, 31);
+            label1.Location = new Point(102, 40);
             label1.Name = "label1";
             label1.Size = new Size(112, 24);
             label1.TabIndex = 60;
@@ -336,26 +378,75 @@
             first_name.TabIndex = 59;
             first_name.KeyPress += first_name_TextChanged;
             // 
-            // label7
+            // pictureBox1
             // 
-            label7.Anchor = AnchorStyles.None;
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial", 15.75F);
-            label7.Location = new Point(446, 224);
-            label7.Name = "label7";
-            label7.Size = new Size(61, 24);
-            label7.TabIndex = 72;
-            label7.Text = "Email";
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(63, 32);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(32, 32);
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox1.TabIndex = 73;
+            pictureBox1.TabStop = false;
             // 
-            // email
+            // pictureBox2
             // 
-            email.Anchor = AnchorStyles.None;
-            email.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            email.Location = new Point(451, 260);
-            email.Multiline = true;
-            email.Name = "email";
-            email.Size = new Size(326, 29);
-            email.TabIndex = 71;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(447, 32);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(32, 32);
+            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox2.TabIndex = 74;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(63, 133);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(32, 32);
+            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.TabIndex = 75;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(451, 136);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(32, 32);
+            pictureBox4.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox4.TabIndex = 76;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(63, 225);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(32, 32);
+            pictureBox5.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox5.TabIndex = 77;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(64, 304);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(32, 32);
+            pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox6.TabIndex = 78;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(451, 225);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(32, 32);
+            pictureBox7.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox7.TabIndex = 79;
+            pictureBox7.TabStop = false;
             // 
             // EditEmployee
             // 
@@ -375,6 +466,13 @@
             gradientPanel1.PerformLayout();
             curved_panel.ResumeLayout(false);
             curved_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -406,5 +504,12 @@
         private TextBox first_name;
         private Label label7;
         private TextBox email;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
     }
 }
