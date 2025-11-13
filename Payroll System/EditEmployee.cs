@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,7 +26,7 @@ namespace Payroll_System
 
         public static class dbConnector
         {
-            private static readonly string connectionString = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             public static SqlConnection GetConnection()
             {
@@ -110,6 +111,7 @@ namespace Payroll_System
             string contact = contact_no.Text.Trim();
             string address = Address.Text.Trim();
             string salaryText = Salary.Text.Trim();
+            string emailText = email.Text.Trim();
             object departmentID = department.SelectedValue;
 
             // 1️⃣ Required field check
@@ -118,6 +120,7 @@ namespace Payroll_System
                 string.IsNullOrWhiteSpace(contact) ||
                 string.IsNullOrWhiteSpace(address) ||
                 string.IsNullOrWhiteSpace(salaryText) ||
+                string.IsNullOrWhiteSpace(emailText) ||
                 departmentID == null)
             {
                 MessageBox.Show("Please fill in all required fields before saving.",
@@ -181,6 +184,17 @@ namespace Payroll_System
                 return false;
             }
 
+            // 5️⃣ Email validation (simple pattern)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(emailText, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Please enter a valid email address.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                email.Focus();
+                return false;
+            }
+
             // ✅ Passed all checks
             return true;
         }
@@ -204,6 +218,7 @@ namespace Payroll_System
                                     "department_id = @department_id, " +
                                     "salary = @Salary, " +
                                     "last_update = @last_update " +
+                                    "email = @email " +
                                     "WHERE employee_id = @employee_id";
                 using (SqlCommand cmd = new SqlCommand(update_emp, connector))
                 {
@@ -214,6 +229,7 @@ namespace Payroll_System
                     cmd.Parameters.AddWithValue("@department_id", department.SelectedValue);
                     cmd.Parameters.AddWithValue("@Salary", Convert.ToDecimal(Salary.Text));
                     cmd.Parameters.AddWithValue("@last_update", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@email", email.Text);
                     cmd.Parameters.AddWithValue("@employee_id", empID);
 
                     connector.Open();
