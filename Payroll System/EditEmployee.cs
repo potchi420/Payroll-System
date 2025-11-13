@@ -50,10 +50,11 @@ namespace Payroll_System
                             // Assuming you have textboxes named txtName, txtDepartment, txtEmail
                             first_name.Text = reader["first_name"].ToString();
                             last_name.Text = reader["last_name"].ToString();
-                            contact_no.Text = reader["contact_number"].ToString();
+                            contact_no.Text = reader["Contact no."].ToString();
                             Salary.Text = reader["salary"].ToString();
                             Address.Text = reader["address"].ToString();
                             department.SelectedValue = reader["department_id"];
+                            email.Text = reader["email"].ToString();
                         }
                     }
                 }
