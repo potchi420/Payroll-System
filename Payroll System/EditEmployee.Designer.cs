@@ -60,6 +60,7 @@
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
@@ -69,9 +70,9 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(58, 125);
+            linkLabel1.Location = new Point(66, 167);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(1078, 15);
+            linkLabel1.Size = new Size(1437, 20);
             linkLabel1.TabIndex = 54;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
@@ -80,9 +81,9 @@
             // 
             benefits_administration_label.AutoSize = true;
             benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            benefits_administration_label.Location = new Point(55, 96);
+            benefits_administration_label.Location = new Point(63, 128);
             benefits_administration_label.Name = "benefits_administration_label";
-            benefits_administration_label.Size = new Size(179, 29);
+            benefits_administration_label.Size = new Size(219, 35);
             benefits_administration_label.TabIndex = 52;
             benefits_administration_label.Text = "Edit Employee";
             // 
@@ -90,9 +91,10 @@
             // 
             back_btn.Cursor = Cursors.Hand;
             back_btn.Font = new Font("Arial", 11.25F);
-            back_btn.Location = new Point(734, 568);
+            back_btn.Location = new Point(839, 757);
+            back_btn.Margin = new Padding(3, 4, 3, 4);
             back_btn.Name = "back_btn";
-            back_btn.Size = new Size(130, 43);
+            back_btn.Size = new Size(149, 57);
             back_btn.TabIndex = 56;
             back_btn.Text = "Back";
             back_btn.UseVisualStyleBackColor = true;
@@ -105,9 +107,9 @@
             logout.Cursor = Cursors.Hand;
             logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             logout.ForeColor = Color.Transparent;
-            logout.Location = new Point(1090, 31);
+            logout.Location = new Point(1246, 41);
             logout.Name = "logout";
-            logout.Size = new Size(85, 24);
+            logout.Size = new Size(111, 31);
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
@@ -119,9 +121,9 @@
             label8.BackColor = Color.Transparent;
             label8.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.Transparent;
-            label8.Location = new Point(82, 31);
+            label8.Location = new Point(94, 41);
             label8.Name = "label8";
-            label8.Size = new Size(258, 24);
+            label8.Size = new Size(332, 31);
             label8.TabIndex = 23;
             label8.Text = "PCU PAYROLL SYSTEM";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -131,9 +133,10 @@
             logo.BackColor = Color.Transparent;
             logo.Cursor = Cursors.Hand;
             logo.Image = Properties.Resources.icon;
-            logo.Location = new Point(0, 4);
+            logo.Location = new Point(0, 5);
+            logo.Margin = new Padding(3, 4, 3, 4);
             logo.Name = "logo";
-            logo.Size = new Size(76, 75);
+            logo.Size = new Size(87, 100);
             logo.SizeMode = PictureBoxSizeMode.StretchImage;
             logo.TabIndex = 22;
             logo.TabStop = false;
@@ -146,9 +149,9 @@
             home.Cursor = Cursors.Hand;
             home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             home.ForeColor = Color.Transparent;
-            home.Location = new Point(1018, 31);
+            home.Location = new Point(1163, 41);
             home.Name = "home";
-            home.Size = new Size(66, 24);
+            home.Size = new Size(86, 31);
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
@@ -158,9 +161,10 @@
             // 
             save_btn.Cursor = Cursors.Hand;
             save_btn.Font = new Font("Arial", 11.25F);
-            save_btn.Location = new Point(880, 568);
+            save_btn.Location = new Point(1006, 757);
+            save_btn.Margin = new Padding(3, 4, 3, 4);
             save_btn.Name = "save_btn";
-            save_btn.Size = new Size(130, 43);
+            save_btn.Size = new Size(149, 57);
             save_btn.TabIndex = 53;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
@@ -175,8 +179,9 @@
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, 0);
+            gradientPanel1.Margin = new Padding(3, 4, 3, 4);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(1191, 76);
+            gradientPanel1.Size = new Size(1361, 101);
             gradientPanel1.TabIndex = 51;
             // 
             // curved_panel
@@ -196,9 +201,10 @@
             curved_panel.Controls.Add(first_name);
             curved_panel.gradientBottom = Color.Empty;
             curved_panel.gradientTop = Color.Empty;
-            curved_panel.Location = new Point(177, 156);
+            curved_panel.Location = new Point(202, 208);
+            curved_panel.Margin = new Padding(3, 4, 3, 4);
             curved_panel.Name = "curved_panel";
-            curved_panel.Size = new Size(833, 406);
+            curved_panel.Size = new Size(952, 541);
             curved_panel.TabIndex = 57;
             // 
             // label6
@@ -206,9 +212,9 @@
             label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Arial", 15.75F);
-            label6.Location = new Point(55, 245);
+            label6.Location = new Point(63, 327);
             label6.Name = "label6";
-            label6.Size = new Size(70, 24);
+            label6.Size = new Size(91, 32);
             label6.TabIndex = 70;
             label6.Text = "Salary";
             // 
@@ -216,20 +222,22 @@
             // 
             Salary.Anchor = AnchorStyles.None;
             Salary.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Salary.Location = new Point(60, 281);
+            Salary.Location = new Point(69, 375);
+            Salary.Margin = new Padding(3, 4, 3, 4);
             Salary.Multiline = true;
             Salary.Name = "Salary";
-            Salary.Size = new Size(326, 29);
+            Salary.Size = new Size(372, 37);
             Salary.TabIndex = 69;
+            Salary.KeyPress += Salary_TextChanged;
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 15.75F);
-            label5.Location = new Point(443, 156);
+            label5.Location = new Point(506, 208);
             label5.Name = "label5";
-            label5.Size = new Size(118, 24);
+            label5.Size = new Size(155, 32);
             label5.TabIndex = 68;
             label5.Text = "Contact no.";
             // 
@@ -237,20 +245,23 @@
             // 
             contact_no.Anchor = AnchorStyles.None;
             contact_no.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contact_no.Location = new Point(448, 192);
+            contact_no.Location = new Point(512, 256);
+            contact_no.Margin = new Padding(3, 4, 3, 4);
             contact_no.Multiline = true;
             contact_no.Name = "contact_no";
-            contact_no.Size = new Size(326, 29);
+            contact_no.Size = new Size(372, 37);
             contact_no.TabIndex = 67;
+            contact_no.KeyPress += contact_no_TextChanged;
             // 
             // department
             // 
             department.Anchor = AnchorStyles.None;
             department.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             department.FormattingEnabled = true;
-            department.Location = new Point(60, 192);
+            department.Location = new Point(69, 256);
+            department.Margin = new Padding(3, 4, 3, 4);
             department.Name = "department";
-            department.Size = new Size(326, 26);
+            department.Size = new Size(372, 31);
             department.TabIndex = 66;
             // 
             // label4
@@ -258,9 +269,9 @@
             label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Arial", 15.75F);
-            label4.Location = new Point(55, 156);
+            label4.Location = new Point(63, 208);
             label4.Name = "label4";
-            label4.Size = new Size(118, 24);
+            label4.Size = new Size(156, 32);
             label4.TabIndex = 65;
             label4.Text = "Department";
             // 
@@ -269,9 +280,9 @@
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 15.75F);
-            label3.Location = new Point(444, 245);
+            label3.Location = new Point(507, 327);
             label3.Name = "label3";
-            label3.Size = new Size(86, 24);
+            label3.Size = new Size(114, 32);
             label3.TabIndex = 64;
             label3.Text = "Address";
             // 
@@ -279,10 +290,11 @@
             // 
             Address.Anchor = AnchorStyles.None;
             Address.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Address.Location = new Point(448, 280);
+            Address.Location = new Point(512, 373);
+            Address.Margin = new Padding(3, 4, 3, 4);
             Address.Multiline = true;
             Address.Name = "Address";
-            Address.Size = new Size(327, 72);
+            Address.Size = new Size(373, 95);
             Address.TabIndex = 63;
             // 
             // label2
@@ -290,9 +302,9 @@
             label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 15.75F);
-            label2.Location = new Point(444, 52);
+            label2.Location = new Point(507, 69);
             label2.Name = "label2";
-            label2.Size = new Size(111, 24);
+            label2.Size = new Size(145, 32);
             label2.TabIndex = 62;
             label2.Text = "Last Name";
             // 
@@ -300,20 +312,22 @@
             // 
             last_name.Anchor = AnchorStyles.None;
             last_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            last_name.Location = new Point(444, 88);
+            last_name.Location = new Point(507, 117);
+            last_name.Margin = new Padding(3, 4, 3, 4);
             last_name.Multiline = true;
             last_name.Name = "last_name";
-            last_name.Size = new Size(326, 29);
+            last_name.Size = new Size(372, 37);
             last_name.TabIndex = 61;
+            last_name.KeyPress += last_name_TextChanged;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(55, 52);
+            label1.Location = new Point(63, 69);
             label1.Name = "label1";
-            label1.Size = new Size(112, 24);
+            label1.Size = new Size(147, 32);
             label1.TabIndex = 60;
             label1.Text = "First Name";
             // 
@@ -321,23 +335,26 @@
             // 
             first_name.Anchor = AnchorStyles.None;
             first_name.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            first_name.Location = new Point(60, 88);
+            first_name.Location = new Point(69, 117);
+            first_name.Margin = new Padding(3, 4, 3, 4);
             first_name.Multiline = true;
             first_name.Name = "first_name";
-            first_name.Size = new Size(326, 29);
+            first_name.Size = new Size(372, 37);
             first_name.TabIndex = 59;
+            first_name.KeyPress += first_name_TextChanged;
             // 
             // EditEmployee
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 651);
+            ClientSize = new Size(1353, 868);
             Controls.Add(curved_panel);
             Controls.Add(linkLabel1);
             Controls.Add(benefits_administration_label);
             Controls.Add(back_btn);
             Controls.Add(save_btn);
             Controls.Add(gradientPanel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "EditEmployee";
             Text = "EditEmployee";
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();

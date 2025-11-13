@@ -25,7 +25,7 @@ namespace Payroll_System
 
         public static class dbConnector
         {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            private static readonly string connectionString = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             public static SqlConnection GetConnection()
             {
@@ -49,7 +49,7 @@ namespace Payroll_System
                             // Assuming you have textboxes named txtName, txtDepartment, txtEmail
                             first_name.Text = reader["first_name"].ToString();
                             last_name.Text = reader["last_name"].ToString();
-                            contact_no.Text = reader["Contact no."].ToString();
+                            contact_no.Text = reader["contact_number"].ToString();
                             Salary.Text = reader["salary"].ToString();
                             Address.Text = reader["address"].ToString();
                             department.SelectedValue = reader["department_id"];
@@ -103,8 +103,95 @@ namespace Payroll_System
             Application.Exit();
         }
 
+        private bool ValidateEmployeeBeforeUpdate()
+        {
+            string firstName = first_name.Text.Trim();
+            string lastName = last_name.Text.Trim();
+            string contact = contact_no.Text.Trim();
+            string address = Address.Text.Trim();
+            string salaryText = Salary.Text.Trim();
+            object departmentID = department.SelectedValue;
+
+            // 1️⃣ Required field check
+            if (string.IsNullOrWhiteSpace(firstName) ||
+                string.IsNullOrWhiteSpace(lastName) ||
+                string.IsNullOrWhiteSpace(contact) ||
+                string.IsNullOrWhiteSpace(address) ||
+                string.IsNullOrWhiteSpace(salaryText) ||
+                departmentID == null)
+            {
+                MessageBox.Show("Please fill in all required fields before saving.",
+                                "Missing Information",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 2️⃣ First & last name validation (letters only)
+            if (!firstName.All(char.IsLetter))
+            {
+                MessageBox.Show("First name should contain letters only.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                first_name.Focus();
+                return false;
+            }
+
+            if (!lastName.All(char.IsLetter))
+            {
+                MessageBox.Show("Last name should contain letters only.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                last_name.Focus();
+                return false;
+            }
+
+            // 3️⃣ Contact validation (exactly 11 digits)
+            if (contact.Length != 11 || !contact.All(char.IsDigit))
+            {
+                MessageBox.Show("Contact number must be exactly 11 digits and contain only numbers.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                contact_no.Focus();
+                return false;
+            }
+
+            // Optional: must start with "09"
+            if (!contact.StartsWith("09"))
+            {
+                MessageBox.Show("Contact number must start with '09'.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                contact_no.Focus();
+                return false;
+            }
+
+            // 4️⃣ Salary validation
+            if (!decimal.TryParse(salaryText, out decimal salary) || salary <= 0)
+            {
+                MessageBox.Show("Salary must be a positive number.",
+                                "Invalid Input",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                Salary.Focus();
+                return false;
+            }
+
+            // ✅ Passed all checks
+            return true;
+        }
+
         public void save_btn_Click(object sender, EventArgs e)
         {
+            if (!ValidateEmployeeBeforeUpdate())
+            {
+                // Stop here if validation fails
+                return;
+            }
 
             // Code to save the new employee details to the database
             using (SqlConnection connector = dbConnector.GetConnection())
@@ -148,5 +235,62 @@ namespace Payroll_System
             this.ActiveControl = dummyFocus;
         }
 
+        private void first_name_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void last_name_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true; // Ignore the input
+            }
+        }
+
+        private void contact_no_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Allow only digits and control keys
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Block invalid input
+                return;
+            }
+
+            // Limit to 11 digits
+            if (!char.IsControl(e.KeyChar) && textBox.Text.Length >= 11)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Salary_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // Allow control keys (like Backspace)
+            if (char.IsControl(e.KeyChar))
+            {
+                return;
+            }
+
+            // Allow only digits and one dot
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Block invalid input
+                return;
+            }
+
+            // Allow only one dot (prevent typing multiple decimals)
+            if (e.KeyChar == '.' && textBox.Text.Contains('.'))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
