@@ -439,6 +439,7 @@
             end_date.Name = "end_date";
             end_date.Size = new Size(298, 29);
             end_date.TabIndex = 24;
+            end_date.Enabled = false;
             // 
             // label1
             // 
@@ -456,6 +457,11 @@
             start_date.Name = "start_date";
             start_date.Size = new Size(298, 29);
             start_date.TabIndex = 22;
+            start_date.Enabled = false;
+           
+            
+
+
             // 
             // groupBox1
             // 

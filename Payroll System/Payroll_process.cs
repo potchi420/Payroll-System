@@ -336,6 +336,7 @@ namespace Payroll_System
         {
             try
             {
+                // Validate employee
                 if (cmbname.SelectedValue == null)
                 {
                     MessageBox.Show("Please select an employee first.");
@@ -344,36 +345,52 @@ namespace Payroll_System
 
                 int employeeID = Convert.ToInt32(cmbname.SelectedValue);
 
-                // Validate pay period
+                // Validate date range
                 if (end_date.Value < start_date.Value)
                 {
-                    MessageBox.Show("End date cannot be earlier than start date.");
+                    MessageBox.Show("No Data to Save! Plese load first");
                     return;
                 }
 
-                // Safely convert label text values to numeric
-                if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double grossPay))
+                // ❗ Check if payslip data was loaded
+                bool dataNotLoaded =
+                    string.IsNullOrWhiteSpace(gross_pay_value.Text) ||
+                    gross_pay_value.Text == "₱N/A" ||
+                    string.IsNullOrWhiteSpace(net_pay_value.Text) ||
+                    net_pay_value.Text == "₱N/A" ||
+                    string.IsNullOrWhiteSpace(total_deductions_value.Text) ||
+                    total_deductions_value.Text == "₱N/A";
+
+                if (dataNotLoaded)
+                {
+                    MessageBox.Show("Please click LOAD to compute the employee’s payslip before saving.");
+                    return;
+                }
+
+                // Convert label values safely
+                if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(),
+                                     out double grossPay))
                 {
                     MessageBox.Show("Invalid gross pay value.");
                     return;
                 }
 
-                if (!double.TryParse(net_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double netPay))
+                if (!double.TryParse(net_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(),
+                                     out double netPay))
                 {
                     MessageBox.Show("Invalid net pay value.");
                     return;
                 }
 
-                if (!double.TryParse(total_deductions_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double totalDeductions))
+                if (!double.TryParse(total_deductions_value.Text.Replace("₱", "").Replace(",", "").Trim(),
+                                     out double totalDeductions))
                 {
                     MessageBox.Show("Invalid total deductions value.");
                     return;
                 }
 
-                // Create connector object
+                // Save to database
                 Connector con = new Connector();
-
-                // Save or update payslip and refresh DataGridView
                 con.SaveOrUpdatePayslip(
                     employeeID,
                     start_date,
@@ -381,6 +398,8 @@ namespace Payroll_System
                     grossPay,
                     netPay,
                     totalDeductions);
+
+                MessageBox.Show("Payslip successfully saved!");
             }
             catch (Exception ex)
             {
@@ -448,5 +467,7 @@ namespace Payroll_System
         {
             Application.Exit();
         }
+
+     
     }
 }
