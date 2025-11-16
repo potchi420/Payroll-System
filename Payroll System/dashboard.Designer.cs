@@ -90,11 +90,11 @@
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Calisto MT", 15.75F);
             label8.ForeColor = Color.Transparent;
             label8.Location = new Point(82, 30);
             label8.Name = "label8";
-            label8.Size = new Size(254, 25);
+            label8.Size = new Size(258, 24);
             label8.TabIndex = 23;
             label8.Text = "PCU PAYROLL SYSTEM";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -104,11 +104,11 @@
             logout.AutoSize = true;
             logout.BackColor = Color.Transparent;
             logout.Cursor = Cursors.Hand;
-            logout.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.Font = new Font("Calisto MT", 15.75F);
             logout.ForeColor = Color.Transparent;
             logout.Location = new Point(1090, 30);
             logout.Name = "logout";
-            logout.Size = new Size(88, 25);
+            logout.Size = new Size(85, 24);
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
@@ -119,11 +119,11 @@
             home.AutoSize = true;
             home.BackColor = Color.Transparent;
             home.Cursor = Cursors.Hand;
-            home.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.Font = new Font("Calisto MT", 15.75F);
             home.ForeColor = Color.Transparent;
             home.Location = new Point(1018, 30);
             home.Name = "home";
-            home.Size = new Size(68, 25);
+            home.Size = new Size(66, 24);
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;

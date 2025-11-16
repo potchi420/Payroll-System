@@ -15,6 +15,7 @@ namespace Payroll_System
         public Settings()
         {
             InitializeComponent();
+            focus_remover();
         }
 
 
@@ -76,6 +77,14 @@ namespace Payroll_System
         private void logoutbtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
         }
     }
 }

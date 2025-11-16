@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Bibliography;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,9 @@ namespace Payroll_System
         }
         private void LoadInitialEmployees()
         {
-            string query = "SELECT a.attendance_id AS [Attendance ID], a.employee_id AS [Employee ID], a.days_worked AS [Days Worked], a.overtime_hours AS [Hours Overtimed], e.first_name + ' ' + e.last_name AS FullName FROM attendance a JOIN employee e ON a.employee_id = e.employee_id";
+            string query = @"SELECT a.attendance_id AS [Attendance ID], a.employee_id AS [Employee ID], a.days_worked AS [Days Worked], a.overtime_hours AS [Hours Overtimed],
+                            e.first_name + ' ' + e.last_name AS FullName, a.start_date AS [Starting Date], a.end_date AS [Ending Date]" +
+                            "FROM attendance a JOIN employee e ON a.employee_id = e.employee_id";
             attendance_table.DataSource = getEmployeeAttendance(query);
             // Auto-size columns to fit content
             attendance_table.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -123,7 +126,8 @@ namespace Payroll_System
             DateTime startDate = start_date.Value.Date;
             DateTime endDate = end_date.Value.Date;
 
-            if (daysWorked < 0 || daysWorked > 31)
+            if (daysWorked < 0 || daysWorked > 15
+                )
             {
                 MessageBox.Show("Days worked must be between 0 and 31.");
                 return;
@@ -158,6 +162,35 @@ namespace Payroll_System
                     if (existing > 0)
                     {
                         MessageBox.Show("Attendance for this employee and period already exists.");
+                        return;
+                    }
+                }
+            }
+
+            using (SqlConnection checkCon = dbConnector.GetConnection())
+            {
+                string overlapQuery = @"SELECT COUNT(*) FROM attendance
+                            WHERE employee_id = @id
+                            AND (
+                                (@start BETWEEN start_date AND end_date)
+                                OR (@end BETWEEN start_date AND end_date)
+                                OR (start_date BETWEEN @start AND @end)
+                                OR (end_date BETWEEN @start AND @end)
+                            )";
+
+                using (SqlCommand checkCmd = new SqlCommand(overlapQuery, checkCon))
+                {
+                    checkCmd.Parameters.AddWithValue("@id", employeeID);
+                    checkCmd.Parameters.AddWithValue("@start", startDate);
+                    checkCmd.Parameters.AddWithValue("@end", endDate);
+
+                    checkCon.Open();
+                    int overlapCount = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    checkCon.Close();
+
+                    if (overlapCount > 0)
+                    {
+                        MessageBox.Show("Attendance period overlaps with an existing record.");
                         return;
                     }
                 }

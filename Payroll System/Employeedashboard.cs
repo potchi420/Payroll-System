@@ -81,6 +81,9 @@ namespace Payroll_System
             docButton.Name = "Document";
             docButton.HeaderText = "Document";
             docButton.Text = "📄";
+            /*
+            docButton.DefaultCellStyle.BackColor = Color.DarkBlue;
+            docButton.DefaultCellStyle.ForeColor = Color.White;*/
             docButton.UseColumnTextForButtonValue = true;
             dataGridViewEmployees.Columns.Add(docButton);
 
@@ -89,6 +92,9 @@ namespace Payroll_System
             editButton.Name = "edit_employee_btn";
             editButton.HeaderText = "Edit";
             editButton.Text = "✏️";
+            /*
+            editButton.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#e6ae22"); 
+            editButton.DefaultCellStyle.ForeColor = Color.White;*/
             editButton.UseColumnTextForButtonValue = true;
             dataGridViewEmployees.Columns.Add(editButton);
 
@@ -97,9 +103,15 @@ namespace Payroll_System
             removeButton.Name = "remove_employee_btn";
             removeButton.HeaderText = "Remove";
             removeButton.Text = "🗑️";
+            /*
+            removeButton.DefaultCellStyle.BackColor = Color.Red;
+            removeButton.DefaultCellStyle.ForeColor = Color.White;*/
             removeButton.UseColumnTextForButtonValue = true;
             dataGridViewEmployees.Columns.Add(removeButton);
 
+            docButton.FlatStyle = FlatStyle.Flat;
+            editButton.FlatStyle = FlatStyle.Flat;
+            removeButton.FlatStyle = FlatStyle.Flat;
             dataGridViewEmployees.CellContentClick += dataGridViewEmployees_CellContentClick;
         }
 
