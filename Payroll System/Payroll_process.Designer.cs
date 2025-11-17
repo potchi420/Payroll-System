@@ -58,6 +58,7 @@
             export_btn = new Button();
             generate_payslip_btn = new Button();
             pay_period_box = new GroupBox();
+            btn_filter = new Button();
             label3 = new Label();
             end_date = new DateTimePicker();
             label1 = new Label();
@@ -392,6 +393,7 @@
             // 
             // pay_period_box
             // 
+            pay_period_box.Controls.Add(btn_filter);
             pay_period_box.Controls.Add(label3);
             pay_period_box.Controls.Add(end_date);
             pay_period_box.Controls.Add(label1);
@@ -405,19 +407,32 @@
             pay_period_box.TabStop = false;
             pay_period_box.Text = "Pay Period";
             // 
+            // btn_filter
+            // 
+            btn_filter.Cursor = Cursors.Hand;
+            btn_filter.Font = new Font("Arial", 11F);
+            btn_filter.Location = new Point(40, 156);
+            btn_filter.Name = "btn_filter";
+            btn_filter.Size = new Size(171, 32);
+            btn_filter.TabIndex = 26;
+            btn_filter.Text = "Filter";
+            btn_filter.UseVisualStyleBackColor = true;
+            btn_filter.Click += btn_filter_Click;
+            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(40, 126);
+            label3.Location = new Point(40, 99);
             label3.Name = "label3";
             label3.Size = new Size(113, 17);
             label3.TabIndex = 25;
             label3.Text = "Pay Period End:";
+            label3.Click += label3_Click;
             // 
             // end_date
             // 
-            end_date.Enabled = false;
-            end_date.Location = new Point(5, 146);
+            
+            end_date.Location = new Point(5, 126);
             end_date.Name = "end_date";
             end_date.Size = new Size(261, 24);
             end_date.TabIndex = 24;
@@ -433,8 +448,8 @@
             // 
             // start_date
             // 
-            start_date.Enabled = false;
-            start_date.Location = new Point(5, 72);
+            
+            start_date.Location = new Point(4, 61);
             start_date.Name = "start_date";
             start_date.Size = new Size(261, 24);
             start_date.TabIndex = 22;
@@ -712,5 +727,6 @@
         private Label logoutbtn;
         private Label label7;
         private PictureBox logobtn;
+        private Button btn_filter;
     }
 }

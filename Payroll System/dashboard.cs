@@ -16,11 +16,11 @@ namespace Payroll_System
         public dashboard()
         {
             InitializeComponent();
-            panel_color();
-            LoadInitialEmployees();
-            LoadDepartments();
-            load_avg_pay();
-            focus_remover();
+            //panel_color();
+           // LoadInitialEmployees();
+           // LoadDepartments();
+            //load_avg_pay();
+           // focus_remover();
 
         }
 
