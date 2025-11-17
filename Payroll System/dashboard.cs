@@ -162,6 +162,70 @@ namespace Payroll_System
             dummyFocus.Location = new Point(0, 0);
             this.Controls.Add(dummyFocus);
             this.ActiveControl = dummyFocus;
+
+            // employee button hover effect
+            btnemployeecenter.MouseEnter += (s, e) =>
+            {
+                btnemployeecenter.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+
+            btnemployeecenter.MouseLeave += (s, e) =>
+            {
+                btnemployeecenter.BackColor = SystemColors.Control;
+            };
+
+            // payroll button hover effect
+            btnpayrollcenter.MouseEnter += (s, e) =>
+            {
+                btnpayrollcenter.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+
+            btnpayrollcenter.MouseLeave += (s, e) =>
+            {
+                btnpayrollcenter.BackColor = SystemColors.Control;
+            };
+
+            // reports button hover effect
+            btnreportscenter.MouseEnter += (s, e) =>
+            {
+                btnreportscenter.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+
+            btnpayrollcenter.MouseLeave += (s, e) =>
+            {
+                btnreportscenter.BackColor = SystemColors.Control;
+            };
+
+            // tax button hover effect
+            btntax.MouseEnter += (s, e) =>
+            {
+                btntax.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+
+            btntax.MouseLeave += (s, e) =>
+            {
+                btntax.BackColor = SystemColors.Control;
+            };
+
+            // benefits button hover effect
+            btnbenefits.MouseEnter += (s, e) =>
+            {
+                btnbenefits.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+            btnbenefits.MouseLeave += (s, e) =>
+            {
+                btnbenefits.BackColor = SystemColors.Control;
+            };
+
+            // settings button hover effect
+            btnsettings.MouseEnter += (s, e) =>
+            {
+                btnsettings.BackColor = ColorTranslator.FromHtml("#E6F3FE");
+            };
+            btnsettings.MouseLeave += (s, e) =>
+            {
+                btnsettings.BackColor = SystemColors.Control;
+            };
         }
         public void panel_color()
         {

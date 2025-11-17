@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeePayslips));
             gradientPanel1 = new GradientPanel();
             home_btn = new Label();
@@ -39,6 +39,11 @@
             payslipGrid = new DataGridView();
             linkLabel1 = new LinkLabel();
             greet = new Label();
+            month_filter = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
+            year_fiter = new ComboBox();
+            btnaddemployee = new Button();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo_btn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)payslipGrid).BeginInit();
@@ -46,6 +51,7 @@
             // 
             // gradientPanel1
             // 
+            gradientPanel1.BackColor = Color.FromArgb(33, 145, 245);
             gradientPanel1.Controls.Add(home_btn);
             gradientPanel1.Controls.Add(logout_btn);
             gradientPanel1.Controls.Add(label6);
@@ -116,26 +122,26 @@
             // payslipGrid
             // 
             payslipGrid.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            payslipGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            payslipGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             payslipGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            payslipGrid.Location = new Point(52, 205);
+            payslipGrid.Location = new Point(52, 224);
             payslipGrid.Name = "payslipGrid";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            payslipGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            payslipGrid.Size = new Size(667, 354);
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Control;
+            dataGridViewCellStyle6.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            payslipGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            payslipGrid.Size = new Size(667, 335);
             payslipGrid.TabIndex = 33;
             // 
             // linkLabel1
@@ -161,11 +167,67 @@
             greet.TabIndex = 34;
             greet.Text = "Welcome";
             // 
+            // month_filter
+            // 
+            month_filter.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            month_filter.FormattingEnabled = true;
+            month_filter.Location = new Point(791, 254);
+            month_filter.Name = "month_filter";
+            month_filter.Size = new Size(114, 26);
+            month_filter.TabIndex = 36;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(791, 224);
+            label1.Name = "label1";
+            label1.Size = new Size(54, 18);
+            label1.TabIndex = 37;
+            label1.Text = "Month:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(953, 224);
+            label2.Name = "label2";
+            label2.Size = new Size(43, 18);
+            label2.TabIndex = 39;
+            label2.Text = "Year:";
+            // 
+            // year_fiter
+            // 
+            year_fiter.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            year_fiter.FormattingEnabled = true;
+            year_fiter.Location = new Point(953, 254);
+            year_fiter.Name = "year_fiter";
+            year_fiter.Size = new Size(101, 26);
+            year_fiter.TabIndex = 38;
+            // 
+            // btnaddemployee
+            // 
+            btnaddemployee.BackColor = Color.FromArgb(33, 145, 245);
+            btnaddemployee.Cursor = Cursors.Hand;
+            btnaddemployee.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnaddemployee.ForeColor = SystemColors.HighlightText;
+            btnaddemployee.Location = new Point(791, 317);
+            btnaddemployee.Name = "btnaddemployee";
+            btnaddemployee.Size = new Size(131, 43);
+            btnaddemployee.TabIndex = 40;
+            btnaddemployee.Text = "Filter";
+            btnaddemployee.UseVisualStyleBackColor = false;
+            // 
             // EmployeePayslips
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(btnaddemployee);
+            Controls.Add(label2);
+            Controls.Add(year_fiter);
+            Controls.Add(label1);
+            Controls.Add(month_filter);
             Controls.Add(linkLabel1);
             Controls.Add(greet);
             Controls.Add(payslipGrid);
@@ -190,5 +252,10 @@
         private DataGridView payslipGrid;
         private LinkLabel linkLabel1;
         private Label greet;
+        private ComboBox month_filter;
+        private Label label1;
+        private Label label2;
+        private ComboBox year_fiter;
+        private Button btnaddemployee;
     }
 }

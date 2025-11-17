@@ -265,8 +265,6 @@ namespace Payroll_System
                     cmd.ExecuteNonQuery();
                 }
             }
-
-
         }
 
 

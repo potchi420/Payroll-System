@@ -94,11 +94,11 @@ namespace Payroll_System
             home.AutoSize = true;
             home.BackColor = Color.Transparent;
             home.Cursor = Cursors.Hand;
-            home.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            home.Font = new Font("Calisto MT", 15.75F);
             home.ForeColor = Color.Transparent;
             home.Location = new Point(1018, 30);
             home.Name = "home";
-            home.Size = new Size(68, 25);
+            home.Size = new Size(66, 24);
             home.TabIndex = 24;
             home.Text = "Home";
             home.TextAlign = ContentAlignment.TopCenter;
@@ -109,11 +109,11 @@ namespace Payroll_System
             logout.AutoSize = true;
             logout.BackColor = Color.Transparent;
             logout.Cursor = Cursors.Hand;
-            logout.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            logout.Font = new Font("Calisto MT", 15.75F);
             logout.ForeColor = Color.Transparent;
             logout.Location = new Point(1090, 30);
             logout.Name = "logout";
-            logout.Size = new Size(88, 25);
+            logout.Size = new Size(85, 24);
             logout.TabIndex = 24;
             logout.Text = "Log Out";
             logout.TextAlign = ContentAlignment.TopCenter;
@@ -123,11 +123,11 @@ namespace Payroll_System
             // 
             label8.AutoSize = true;
             label8.BackColor = Color.Transparent;
-            label8.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Font = new Font("Calisto MT", 15.75F);
             label8.ForeColor = Color.Transparent;
             label8.Location = new Point(82, 30);
             label8.Name = "label8";
-            label8.Size = new Size(254, 25);
+            label8.Size = new Size(258, 24);
             label8.TabIndex = 23;
             label8.Text = "PCU PAYROLL SYSTEM";
             label8.TextAlign = ContentAlignment.TopCenter;
@@ -151,7 +151,7 @@ namespace Payroll_System
             back_btn.Location = new Point(734, 569);
             back_btn.Name = "back_btn";
             back_btn.Size = new Size(130, 43);
-            back_btn.TabIndex = 50;
+            back_btn.TabIndex = 9;
             back_btn.Text = "Back";
             back_btn.UseVisualStyleBackColor = true;
             back_btn.Click += back_btn_Click;
@@ -162,7 +162,7 @@ namespace Payroll_System
             save_btn.Location = new Point(880, 569);
             save_btn.Name = "save_btn";
             save_btn.Size = new Size(130, 43);
-            save_btn.TabIndex = 47;
+            save_btn.TabIndex = 8;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
             save_btn.Click += save_btn_Click;
@@ -288,7 +288,7 @@ namespace Payroll_System
             email.Multiline = true;
             email.Name = "email";
             email.Size = new Size(326, 29);
-            email.TabIndex = 59;
+            email.TabIndex = 6;
             // 
             // label6
             // 
@@ -309,7 +309,7 @@ namespace Payroll_System
             Salary.Multiline = true;
             Salary.Name = "Salary";
             Salary.Size = new Size(326, 29);
-            Salary.TabIndex = 57;
+            Salary.TabIndex = 5;
             Salary.KeyPress += Salary_TextChanged;
             // 
             // label5
@@ -331,7 +331,7 @@ namespace Payroll_System
             contact_no.Multiline = true;
             contact_no.Name = "contact_no";
             contact_no.Size = new Size(326, 29);
-            contact_no.TabIndex = 55;
+            contact_no.TabIndex = 4;
             contact_no.KeyPress += contact_no_TextChanged;
             // 
             // department
@@ -342,7 +342,7 @@ namespace Payroll_System
             department.Location = new Point(63, 161);
             department.Name = "department";
             department.Size = new Size(326, 26);
-            department.TabIndex = 54;
+            department.TabIndex = 3;
             // 
             // label4
             // 
@@ -374,7 +374,7 @@ namespace Payroll_System
             Address.Multiline = true;
             Address.Name = "Address";
             Address.Size = new Size(714, 37);
-            Address.TabIndex = 50;
+            Address.TabIndex = 7;
             // 
             // label2
             // 
@@ -395,7 +395,7 @@ namespace Payroll_System
             last_name.Multiline = true;
             last_name.Name = "last_name";
             last_name.Size = new Size(326, 29);
-            last_name.TabIndex = 48;
+            last_name.TabIndex = 2;
             last_name.KeyPress += last_name_TextChanged;
             // 
             // label1
@@ -417,7 +417,7 @@ namespace Payroll_System
             first_name.Multiline = true;
             first_name.Name = "first_name";
             first_name.Size = new Size(326, 29);
-            first_name.TabIndex = 0;
+            first_name.TabIndex = 1;
             first_name.KeyPress += first_name_TextChanged;
             // 
             // linkLabel1
@@ -429,7 +429,7 @@ namespace Payroll_System
             linkLabel1.Location = new Point(58, 125);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(1078, 15);
-            linkLabel1.TabIndex = 48;
+            linkLabel1.TabIndex = 46;
             linkLabel1.TabStop = true;
             linkLabel1.Text = resources.GetString("linkLabel1.Text");
             // 
@@ -440,7 +440,7 @@ namespace Payroll_System
             benefits_administration_label.Location = new Point(55, 96);
             benefits_administration_label.Name = "benefits_administration_label";
             benefits_administration_label.Size = new Size(180, 29);
-            benefits_administration_label.TabIndex = 46;
+            benefits_administration_label.TabIndex = 0;
             benefits_administration_label.Text = "Add Employee";
             // 
             // contextMenuStrip1

@@ -129,13 +129,13 @@ namespace Payroll_System
             if (daysWorked < 0 || daysWorked > 15
                 )
             {
-                MessageBox.Show("Days worked must be between 0 and 31.");
+                MessageBox.Show("Days worked must be between 0 and 15.");
                 return;
             }
 
-            if (overtimeHours < 0 || overtimeHours > 200)
+            if (overtimeHours < 0 || overtimeHours > 70)
             {
-                MessageBox.Show("Overtime hours must be between 0 and 200.");
+                MessageBox.Show("Overtime hours must be between 0 and 70.");
                 return;
             }
 

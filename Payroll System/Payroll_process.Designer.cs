@@ -380,13 +380,14 @@
             // 
             // generate_payslip_btn
             // 
+            generate_payslip_btn.BackColor = Color.Transparent;
             generate_payslip_btn.Cursor = Cursors.Hand;
             generate_payslip_btn.Location = new Point(34, 38);
             generate_payslip_btn.Name = "generate_payslip_btn";
             generate_payslip_btn.Size = new Size(242, 36);
             generate_payslip_btn.TabIndex = 0;
             generate_payslip_btn.Text = "Generate Payslip";
-            generate_payslip_btn.UseVisualStyleBackColor = true;
+            generate_payslip_btn.UseVisualStyleBackColor = false;
             generate_payslip_btn.Click += generate_payslip_btn_Click;
             // 
             // pay_period_box
