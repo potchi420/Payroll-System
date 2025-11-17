@@ -19,6 +19,8 @@ namespace Payroll_System
             greetUser(Connector.SessionData.EmployeeID ?? 0);
             loadPayslips(Connector.SessionData.EmployeeID ?? 0);
             SetupGridColumns();
+            LoadMonthFilter(month_filter);
+            LoadYearFilter(year_fiter);
             payslipGrid.CellFormatting += PayslipGrid_CellFormatting;
         }
 
@@ -83,7 +85,7 @@ namespace Payroll_System
         {
             using (SqlConnection con = dbConnector.GetConnection())
             {
-                string query = @"SELECT created_at, gross_pay, net_pay FROM payslip WHERE employee_id = @empID ORDER BY created_at DESC";
+                string query = "SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID ORDER BY created_at DESC";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -95,7 +97,6 @@ namespace Payroll_System
 
                     payslipGrid.DataSource = dt;
 
-                    payslipGrid.Columns["created_at"].HeaderText = "Date";
                     payslipGrid.Columns["gross_pay"].HeaderText = "Gross Pay";
                     payslipGrid.Columns["net_pay"].HeaderText = "Net Pay";
                     payslipGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -190,6 +191,132 @@ namespace Payroll_System
                 {
                     e.Value = date.ToString("yyyy-MM-dd"); // or "dd/MM/yyyy"
                     e.FormattingApplied = true;
+                }
+            }
+        }
+
+        public void LoadMonthFilter(ComboBox monthCombo)
+        {
+            monthCombo.Items.Clear();
+
+            string query = "SELECT DISTINCT MONTH(pay_period_start) AS MonthNum FROM payslip WHERE employee_id = @empID ORDER BY MonthNum";
+
+            using (SqlConnection con = dbConnector.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@empID", Connector.SessionData.EmployeeID ?? 0);
+
+                try
+                {
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int monthNum = reader.GetInt32(0);
+                            string monthName = new DateTime(2025, monthNum, 1).ToString("MMMM");
+                            monthCombo.Items.Add(monthName);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading month filters: " + ex.Message);
+                }
+            }
+        }
+
+        public void LoadYearFilter(ComboBox yearCombo)
+        {
+            yearCombo.Items.Clear();
+
+            string query = "SELECT DISTINCT YEAR(pay_period_start) AS FROM WHERE employee_id = @ORDER BY YearNum DESC";
+
+            using (SqlConnection con = dbConnector.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@empID", Connector.SessionData.EmployeeID ?? 0);
+
+                try
+                {
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int year = reader.GetInt32(0);
+                            yearCombo.Items.Add(year.ToString());
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading year filter: " + ex.Message);
+                }
+            }
+        }
+
+
+        private void filter_Click(object sender, EventArgs e)
+        {
+            bool hasMonth = month_filter.SelectedItem != null;
+            bool hasYear = year_fiter.SelectedItem != null;
+
+            int? monthNumber = null;
+            int? yearNumber = null;
+
+            if (hasMonth)
+            {
+                string selectedMonthName = month_filter.SelectedItem.ToString();
+                monthNumber = DateTime.ParseExact(selectedMonthName, "MMMM", null).Month;
+            }
+
+            if (hasYear)
+            {
+                yearNumber = int.Parse(year_fiter.SelectedItem.ToString());
+            }
+
+            using (SqlConnection con = dbConnector.GetConnection())
+            {
+                StringBuilder queryBuilder = new StringBuilder("SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, FROM payslip WHERE employee_id = @empID");
+
+                if (monthNumber.HasValue)
+                    queryBuilder.Append(" AND MONTH(pay_period_start) = @month");
+
+                if (yearNumber.HasValue)
+                    queryBuilder.Append(" AND YEAR(pay_period_start) = @year");
+
+                queryBuilder.Append(" ORDER BY created_at DESC");
+
+                using (SqlCommand cmd = new SqlCommand(queryBuilder.ToString(), con))
+                {
+                    cmd.Parameters.AddWithValue("@empID", Connector.SessionData.EmployeeID ?? 0);
+
+                    if (monthNumber.HasValue)
+                        cmd.Parameters.AddWithValue("@month", monthNumber.Value);
+
+                    if (yearNumber.HasValue)
+                        cmd.Parameters.AddWithValue("@year", yearNumber.Value);
+
+                    try
+                    {
+                        con.Open();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        payslipGrid.DataSource = dt;
+
+                        // Reapply formatting
+                        payslipGrid.Columns["gross_pay"].HeaderText = "Gross Pay";
+                        payslipGrid.Columns["net_pay"].HeaderText = "Net Pay";
+                        payslipGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        payslipGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error applying filter: " + ex.Message);
+                    }
                 }
             }
         }

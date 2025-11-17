@@ -73,7 +73,7 @@ namespace Payroll_System
                 // 3️⃣ Check if load was successful
                 if (salaryLoaded)
                 {
-                    currentID = attendanceID; // store the current attendance record
+                    currentID = cn.GetEmployeeIDFromAttendance(attendanceID);
                 }
                 else
                 {
@@ -395,7 +395,7 @@ namespace Payroll_System
                 // Save to database
                 Connector conector = new Connector();
                 conector.SaveOrUpdatePayslip(
-                    attendanceID, // use attendanceID
+                    currentID, // use attendanceID
                     start_date,
                     end_date,
                     grossPay,

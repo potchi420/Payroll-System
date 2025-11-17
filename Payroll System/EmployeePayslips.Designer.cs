@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeePayslips));
             gradientPanel1 = new GradientPanel();
             home_btn = new Label();
@@ -43,7 +43,7 @@
             label1 = new Label();
             label2 = new Label();
             year_fiter = new ComboBox();
-            btnaddemployee = new Button();
+            filter = new Button();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo_btn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)payslipGrid).BeginInit();
@@ -122,25 +122,25 @@
             // payslipGrid
             // 
             payslipGrid.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            payslipGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Arial", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            payslipGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             payslipGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             payslipGrid.Location = new Point(52, 224);
             payslipGrid.Name = "payslipGrid";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            payslipGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            payslipGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             payslipGrid.Size = new Size(667, 335);
             payslipGrid.TabIndex = 33;
             // 
@@ -205,25 +205,26 @@
             year_fiter.Size = new Size(101, 26);
             year_fiter.TabIndex = 38;
             // 
-            // btnaddemployee
+            // filter
             // 
-            btnaddemployee.BackColor = Color.FromArgb(33, 145, 245);
-            btnaddemployee.Cursor = Cursors.Hand;
-            btnaddemployee.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnaddemployee.ForeColor = SystemColors.HighlightText;
-            btnaddemployee.Location = new Point(791, 317);
-            btnaddemployee.Name = "btnaddemployee";
-            btnaddemployee.Size = new Size(131, 43);
-            btnaddemployee.TabIndex = 40;
-            btnaddemployee.Text = "Filter";
-            btnaddemployee.UseVisualStyleBackColor = false;
+            filter.BackColor = Color.FromArgb(33, 145, 245);
+            filter.Cursor = Cursors.Hand;
+            filter.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            filter.ForeColor = SystemColors.HighlightText;
+            filter.Location = new Point(791, 317);
+            filter.Name = "filter";
+            filter.Size = new Size(131, 43);
+            filter.TabIndex = 40;
+            filter.Text = "Filter";
+            filter.UseVisualStyleBackColor = false;
+            filter.Click += filter_Click;
             // 
             // EmployeePayslips
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
-            Controls.Add(btnaddemployee);
+            Controls.Add(filter);
             Controls.Add(label2);
             Controls.Add(year_fiter);
             Controls.Add(label1);
@@ -256,6 +257,6 @@
         private Label label1;
         private Label label2;
         private ComboBox year_fiter;
-        private Button btnaddemployee;
+        private Button filter;
     }
 }

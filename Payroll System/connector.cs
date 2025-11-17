@@ -22,7 +22,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -978,8 +978,37 @@ ORDER BY a.attendance_id;
                 con.Close();
             }
         }
-//
+        //
+        public int GetEmployeeIDFromAttendance(int attendanceID)
+        {
+            int employeeID = 0;
 
+            connection(); 
+
+            try
+            {
+                string query = "SELECT employee_id FROM Attendance WHERE attendance_id = @attendanceID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@attendanceID", attendanceID);
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        employeeID = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving employee ID: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return employeeID;
+        }
 
     }
 }
