@@ -10,6 +10,7 @@ namespace Payroll_System
     // THIS IS THE MAIN GIT SOMETHING
     public partial class Payroll_process : Form
     {
+        private bool salaryLoaded = false;
         public int currentID;
         public Payroll_process()
         {
@@ -45,36 +46,49 @@ namespace Payroll_System
         {
             try
             {
-                if (cmbname.SelectedValue != null && int.TryParse(cmbname.SelectedValue.ToString(), out int empID))
+                // 1️⃣ Validate that a record is selected
+                if (cmbname.SelectedValue == null || !int.TryParse(cmbname.SelectedValue.ToString(), out int attendanceID))
                 {
-                    Connector cn = new Connector();
+                    MessageBox.Show("Please select a valid attendance record.");
+                    salaryLoaded = false; // ensure flag is false if no selection
+                    return;
+                }
 
-                    // ✅ Pass start_date and end_date DateTimePicker controls to your method
-                    cn.DisplayEmployeeSalary(
-                        empID,
-                        gross_pay_value,
-                        sss_value,
-                        philhealth_value,
-                        pagibig_value,
-                        total_deductions_value,
-                        net_pay_value,
-                        overtime_value,
-                        basic_salary_value,
-                        start_date,   // your DateTimePicker for start date
-                        end_date      // your DateTimePicker for end date
-                    );
-                    currentID = empID;
+                // 2️⃣ Load employee salary using DisplayEmployeeSalary
+                Connector cn = new Connector();
+                salaryLoaded = cn.DisplayEmployeeSalary(
+                    attendanceID,
+                    gross_pay_value,
+                    sss_value,
+                    philhealth_value,
+                    pagibig_value,
+                    total_deductions_value,
+                    net_pay_value,
+                    overtime_value,
+                    basic_salary_value,
+                    start_date,
+                    end_date
+                );
+
+                // 3️⃣ Check if load was successful
+                if (salaryLoaded)
+                {
+                    currentID = attendanceID; // store the current attendance record
                 }
                 else
                 {
-                    MessageBox.Show("Please select a valid employee.");
+                    MessageBox.Show("Failed to load salary. Please check the attendance record.");
+                    currentID = 0;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error loading employee salary: " + ex.Message);
+                salaryLoaded = false; // prevent accidental save
+                currentID = 0;
             }
         }
+
 
 
         private void cmbname_SelectedIndexChanged(object sender, EventArgs e)
@@ -336,76 +350,70 @@ namespace Payroll_System
         {
             try
             {
-                // Validate employee
-                if (cmbname.SelectedValue == null)
+                // Ensure an attendance record is selected
+                if (cmbname.SelectedValue == null || cmbname.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Please select an employee first.");
+                    MessageBox.Show("Please select an attendance record first.");
                     return;
                 }
 
-                int employeeID = Convert.ToInt32(cmbname.SelectedValue);
+                int attendanceID = Convert.ToInt32(cmbname.SelectedValue);
+
+                // Prevent saving if salary was not loaded
+                if (!salaryLoaded)
+                {
+                    MessageBox.Show("Please click LOAD to compute the employee’s salary before saving.");
+                    return;
+                }
 
                 // Validate date range
                 if (end_date.Value < start_date.Value)
                 {
-                    MessageBox.Show("No Data to Save! Plese load first");
+                    MessageBox.Show("Invalid date range. Please reload salary.");
                     return;
                 }
 
-                // ❗ Check if payslip data was loaded
-                bool dataNotLoaded =
-                    string.IsNullOrWhiteSpace(gross_pay_value.Text) ||
-                    gross_pay_value.Text == "₱N/A" ||
-                    string.IsNullOrWhiteSpace(net_pay_value.Text) ||
-                    net_pay_value.Text == "₱N/A" ||
-                    string.IsNullOrWhiteSpace(total_deductions_value.Text) ||
-                    total_deductions_value.Text == "₱N/A";
-
-                if (dataNotLoaded)
+                // Parse label values individually
+                if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double grossPay))
                 {
-                    MessageBox.Show("Please click LOAD to compute the employee’s payslip before saving.");
+                    MessageBox.Show("Invalid gross pay value. Please reload salary.");
                     return;
                 }
 
-                // Convert label values safely
-                if (!double.TryParse(gross_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(),
-                                     out double grossPay))
+                if (!double.TryParse(net_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double netPay))
                 {
-                    MessageBox.Show("Invalid gross pay value.");
+                    MessageBox.Show("Invalid net pay value. Please reload salary.");
                     return;
                 }
 
-                if (!double.TryParse(net_pay_value.Text.Replace("₱", "").Replace(",", "").Trim(),
-                                     out double netPay))
+                if (!double.TryParse(total_deductions_value.Text.Replace("₱", "").Replace(",", "").Trim(), out double totalDeductions))
                 {
-                    MessageBox.Show("Invalid net pay value.");
-                    return;
-                }
-
-                if (!double.TryParse(total_deductions_value.Text.Replace("₱", "").Replace(",", "").Trim(),
-                                     out double totalDeductions))
-                {
-                    MessageBox.Show("Invalid total deductions value.");
+                    MessageBox.Show("Invalid total deductions value. Please reload salary.");
                     return;
                 }
 
                 // Save to database
-                Connector con = new Connector();
-                con.SaveOrUpdatePayslip(
-                    employeeID,
+                Connector conector = new Connector();
+                conector.SaveOrUpdatePayslip(
+                    attendanceID, // use attendanceID
                     start_date,
                     end_date,
                     grossPay,
                     netPay,
-                    totalDeductions);
+                    totalDeductions
+                );
 
                 MessageBox.Show("Payslip successfully saved!");
+
+                // Reset flag to prevent double-save
+                salaryLoaded = false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving payslip: " + ex.Message);
             }
         }
+
 
 
         private void print_payslip_btn_Click(object sender, EventArgs e)
@@ -468,6 +476,23 @@ namespace Payroll_System
             Application.Exit();
         }
 
-     
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_filter_Click(object sender, EventArgs e)
+        {
+            Connector cn = new Connector();
+            if (end_date.Value.Date < start_date.Value.Date)
+            {
+                MessageBox.Show("End Date cannot be earlier than Start Date.");
+                return;
+            }
+
+
+            cn.LoadEmployeeNamesByDate(cmbname, start_date.Value, end_date.Value);
+
+        }
     }
 }

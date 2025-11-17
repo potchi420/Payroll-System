@@ -22,7 +22,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=R3NZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
             try
             {
@@ -102,6 +102,65 @@ namespace Payroll_System
                     con.Close();
             }
         }
+        public void LoadEmployeeNamesByDate(ComboBox cmbname, DateTime startDate, DateTime endDate)
+        {
+            connection();
+
+            try
+            {
+                string query = @"
+    SELECT 
+        a.attendance_id,
+        e.employee_id,
+        (e.first_name + ' ' + e.last_name 
+            + ' – ' + CONVERT(varchar(10), a.start_date, 120)
+            + ' to ' + CONVERT(varchar(10), a.end_date, 120)
+        ) AS FullDisplay
+    FROM employee e
+    INNER JOIN attendance a 
+        ON e.employee_id = a.employee_id
+    WHERE 
+        CAST(a.start_date AS DATE) >= @StartDate
+        AND CAST(a.end_date AS DATE) <= @EndDate
+    ORDER BY e.employee_id, a.attendance_id;
+";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.Add("@StartDate", SqlDbType.Date).Value = startDate.Date;
+                    cmd.Parameters.Add("@EndDate", SqlDbType.Date).Value = endDate.Date;
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // Reset ComboBox BEFORE assigning new values
+                    cmbname.DataSource = null;
+                    cmbname.Items.Clear();
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        cmbname.DataSource = dt;
+                        cmbname.DisplayMember = "FullDisplay";
+                        cmbname.ValueMember = "attendance_id";
+                        cmbname.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        cmbname.Items.Add("No records found");
+                        cmbname.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading employees: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
 
 
@@ -109,29 +168,57 @@ namespace Payroll_System
         {
             connection();
 
-
             try
             {
-                string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+                string query = @"
+SELECT 
+    a.attendance_id,
+    e.employee_id,
+    (e.first_name + ' ' + e.last_name 
+        + ' – ' + CONVERT(varchar(10), a.start_date, 120)
+        + ' to ' + CONVERT(varchar(10), a.end_date, 120)
+    ) AS FullDisplay
+FROM employee e
+INNER JOIN attendance a 
+    ON e.employee_id = a.employee_id
+ORDER BY a.attendance_id;
+";
 
-                SqlDataAdapter da = new SqlDataAdapter(query, con);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                cmbname.DataSource = dt;
-                cmbname.DisplayMember = "FullName";   // What user sees
-                cmbname.ValueMember = "employee_id";  // The actual value behind each item
-                cmbname.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbname.AutoCompleteSource = AutoCompleteSource.ListItems;
-                cmbname.SelectedIndex = -1;
-                cmbname.Text = "";
+                    // Reset ComboBox BEFORE assigning new values
+                    cmbname.DataSource = null;
+                    cmbname.Items.Clear();
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        cmbname.DataSource = dt;
+                        cmbname.DisplayMember = "FullDisplay";
+                        cmbname.ValueMember = "attendance_id";
+                        cmbname.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        cmbname.Items.Add("No records found");
+                        cmbname.SelectedIndex = 0;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error loading employees: " + ex.Message);
             }
-
+            finally
+            {
+                con.Close();
+            }
         }
+
+
 
         public PayslipData GetPayslipData(int employeeID)
         {
@@ -216,65 +303,66 @@ namespace Payroll_System
 
         // deleted the data. things in here
         // might need it again tho
-        public void DisplayEmployeeSalary(
-     int employeeID,
-     Label grosspay,
-     Label sss,
-     Label philhealth,
-     Label pagibig,
-     Label totaldeductions,
-     Label netpay,
-     Label overtime,
-     Label salary,
-     DateTimePicker start_date,
-     DateTimePicker end_date)
+        public bool DisplayEmployeeSalary(
+ int attendanceID,
+ Label grosspay,
+ Label sss,
+ Label philhealth,
+ Label pagibig,
+ Label totaldeductions,
+ Label netpay,
+ Label overtime,
+ Label salary,
+ DateTimePicker start_date,
+ DateTimePicker end_date)
         {
             double sssRate = 0.045;
             double philRate = 0.025;
             double pagibigRate = 0.02;
 
-            connection(); // Opens your SQL connection
-
-            string query = @"
-        SELECT 
-            e.first_name, 
-            e.last_name,
-            a.days_worked,
-            a.overtime_hours,
-            e.salary,
-            a.start_date,
-            a.end_date
-        FROM employee e
-        INNER JOIN attendance a 
-            ON e.employee_id = a.employee_id
-        WHERE e.employee_id = @id";
-
-            using (SqlCommand cmd = new SqlCommand(query, con))
+            try
             {
-                cmd.Parameters.AddWithValue("@id", employeeID);
+                // Ensure the connection is open
+                connection();
 
-                try
+                string query = @"
+       SELECT 
+           e.first_name, 
+           e.last_name,
+           a.days_worked,
+           a.overtime_hours,
+           e.salary,
+           a.start_date,
+           a.end_date
+       FROM attendance a
+       INNER JOIN employee e 
+           ON e.employee_id = a.employee_id
+       WHERE a.attendance_id = @attid
+   ";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
                 {
+                    cmd.Parameters.AddWithValue("@attid", attendanceID);
+
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            // 🗓 Retrieve attendance period
-                            DateTime startDate = Convert.ToDateTime(reader["start_date"]);
-                            DateTime endDate = Convert.ToDateTime(reader["end_date"]);
+                            // Load dates
+                            DateTime sDate = Convert.ToDateTime(reader["start_date"]);
+                            DateTime eDate = Convert.ToDateTime(reader["end_date"]);
 
-                            // ✅ Show in DateTimePickers
-                            start_date.Value = startDate;
-                            end_date.Value = endDate;
+                            start_date.Value = sDate;
+                            end_date.Value = eDate;
 
-                            // 📆 Attendance and salary info
+                            // Load attendance and salary data
                             int dayWorked = Convert.ToInt32(reader["days_worked"]);
                             int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
                             double salaryPerDay = Convert.ToDouble(reader["salary"]);
 
-                            // 💰 Salary computation
+                            // Compute salary
                             double totalSalary = dayWorked * salaryPerDay;
-                            double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25; // 8-hour day
+                            double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25;
                             double grossSalary = totalSalary + overtimePay;
 
                             double sssAmount = grossSalary * sssRate;
@@ -283,7 +371,7 @@ namespace Payroll_System
                             double totalDeductions = sssAmount + philAmount + pagibigAmount;
                             double netSalary = grossSalary - totalDeductions;
 
-                            // 💵 Display in labels
+                            // Assign values to labels
                             salary.Text = $"₱{salaryPerDay:N2}";
                             grosspay.Text = $"₱{grossSalary:N2}";
                             sss.Text = $"₱{sssAmount:N2}";
@@ -293,31 +381,20 @@ namespace Payroll_System
                             netpay.Text = $"₱{netSalary:N2}";
                             overtime.Text = $"₱{overtimePay:N2}";
 
-
+                            return true; // Salary loaded successfully
                         }
                         else
                         {
-                            // No record found
-                            MessageBox.Show("No attendance record found for this employee.");
-
-                            // Reset labels
-                            grosspay.Text = sss.Text = philhealth.Text = pagibig.Text =
-                            totaldeductions.Text = netpay.Text = overtime.Text = salary.Text = "₱N/A";
-
-                            // Reset pickers
-                            start_date.Value = DateTime.Today;
-                            end_date.Value = DateTime.Today;
+                            MessageBox.Show("No attendance record found for this selection.");
+                            return false; // No data found
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error loading salary: " + ex.Message);
-                }
-                finally
-                {
-                    con.Close();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading salary: " + ex.Message);
+                return false; // Error occurred
             }
         }
 
