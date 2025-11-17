@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Payroll_System
         public Reports()
         {
             InitializeComponent();
+            Reports_Load();
 
             // Accent line for SSS panel
             Panel sssAccent = new Panel();
@@ -56,16 +58,16 @@ namespace Payroll_System
             pagibigAccent.BringToFront();
 
         }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
+        public static class dbConnector
         {
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
         private void logo_Click(object sender, EventArgs e)
         {
             dashboard db = new dashboard();
@@ -85,6 +87,48 @@ namespace Payroll_System
         private void logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        public void Reports_Load()
+        {
+            using (SqlConnection con = dbConnector.GetConnection())
+            {
+                string query = "SELECT * FROM Reports";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    try
+                    {
+                        con.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                decimal sss = Convert.ToDecimal(reader["sss"]);
+                                decimal philhealth = Convert.ToDecimal(reader["philhealth"]);
+                                decimal pagibig = Convert.ToDecimal(reader["pagibig"]);
+                                decimal total = sss + philhealth + pagibig;
+
+                                sss_value.Text = $"₱{sss:N2}";
+                                philhealth_value.Text = $"₱{philhealth:N2}";
+                                pagibig_value.Text = $"₱{pagibig:N2}";
+                                total_tax_value.Text = $"₱{total:N0}";
+                            }
+                            else
+                            {
+                                sss_value.Text = "₱0.00";
+                                philhealth_value.Text = "₱0.00";
+                                pagibig_value.Text = "₱0.00";
+                                total_tax_value.Text = "₱0.00";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading report values: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }

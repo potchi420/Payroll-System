@@ -400,100 +400,138 @@ ORDER BY a.attendance_id;
 
 
 
-        public void SaveOrUpdatePayslip(
-    int employeeID,
-    DateTimePicker startDatePicker,
-    DateTimePicker endDatePicker,
-    double grossPay,
-    double netPay,
-    double taxWithheld)
-        {
-            connection();
-
-            try
+            public void SaveOrUpdatePayslip(
+        int employeeID,
+        DateTimePicker startDatePicker,
+        DateTimePicker endDatePicker,
+        double grossPay,
+        double netPay,
+        double taxWithheld,
+        double sss,
+        double pagibig,
+        double philhealth)
             {
-                // Get values from DateTimePickers
-                DateTime payPeriodStart = startDatePicker.Value;
-                DateTime payPeriodEnd = endDatePicker.Value;
+                connection();
 
-                // Check if a payslip already exists for this employee & period
-                string checkQuery = @"
-            SELECT COUNT(*) 
-            FROM Payslip
-            WHERE employee_id = @employee_id
-              AND pay_period_start = @start
-              AND pay_period_end = @end";
-
-                int count = 0;
-                using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+                try
                 {
-                    checkCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                    checkCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                    checkCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-                    count = (int)checkCmd.ExecuteScalar();
-                }
+                    // Get values from DateTimePickers
+                    DateTime payPeriodStart = startDatePicker.Value;
+                    DateTime payPeriodEnd = endDatePicker.Value;
 
-                if (count > 0)
-                {
-                    // Update existing record
-                    string updateQuery = @"
-                UPDATE Payslip
-                SET gross_pay = @gross,
-                    net_pay = @net,
-                    tax_withheld = @tax,
-                    created_at = @created
+                    // Check if a payslip already exists for this employee & period
+                    string checkQuery = @"
+                SELECT COUNT(*) 
+                FROM Payslip
                 WHERE employee_id = @employee_id
                   AND pay_period_start = @start
                   AND pay_period_end = @end";
 
-                    using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+                    int count = 0;
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
                     {
-                        updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
-                        updateCmd.Parameters.AddWithValue("@net", (float)netPay);
-                        updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
-                        updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
-                        updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                        updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                        updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+                        checkCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                        checkCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                        checkCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+                        count = (int)checkCmd.ExecuteScalar();
+                    }
 
-                        updateCmd.ExecuteNonQuery();
-                        MessageBox.Show("Payslip updated successfully!");
+                    if (count > 0)
+                    {
+                        // Update existing record
+                        string updateQuery = @"
+                    UPDATE Payslip
+                    SET gross_pay = @gross,
+                        net_pay = @net,
+                        tax_withheld = @tax,
+                        created_at = @created
+                    WHERE employee_id = @employee_id
+                      AND pay_period_start = @start
+                      AND pay_period_end = @end";
+
+                        using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+                        {
+                            updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                            updateCmd.Parameters.AddWithValue("@net", (float)netPay);
+                            updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
+                            updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                            updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                            updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                            updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+
+                            updateCmd.ExecuteNonQuery();
+                            MessageBox.Show("Payslip updated successfully!");
+                        }
+                    }
+                    else
+                    {
+                        // Insert new record
+                        string insertQuery = @"
+                    INSERT INTO Payslip 
+                    (employee_id, pay_period_start, pay_period_end, gross_pay, net_pay, tax_withheld, created_at)
+                    VALUES (@employee_id, @start, @end, @gross, @net, @tax, @created)";
+
+                        using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                        {
+                            insertCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                            insertCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                            insertCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+                            insertCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                            insertCmd.Parameters.AddWithValue("@net", (float)netPay);
+                            insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
+                            insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
+
+                            insertCmd.ExecuteNonQuery();
+                            MessageBox.Show("Payslip added successfully!");
+                        }
+                    }
+                // Insert into Reports table
+                // might change this later
+
+                string reportCheckQuery = "SELECT COUNT(*) FROM Reports";
+                int reportCount = 0;
+
+                using (SqlCommand checkReportCmd = new SqlCommand(reportCheckQuery, con))
+                {
+                    reportCount = (int)checkReportCmd.ExecuteScalar();
+                }
+
+                if (reportCount > 0)
+                {
+                    string reportUpdateQuery = "UPDATE Reports SET sss = sss + @sss, pagibig = pagibig + @pagibig, philhealth = philhealth + @philhealth";
+
+                    using (SqlCommand updateReportCmd = new SqlCommand(reportUpdateQuery, con))
+                    {
+                        updateReportCmd.Parameters.AddWithValue("@sss", (float)sss);
+                        updateReportCmd.Parameters.AddWithValue("@pagibig", (float)pagibig);
+                        updateReportCmd.Parameters.AddWithValue("@philhealth", (float)philhealth);
+
+                        updateReportCmd.ExecuteNonQuery();
                     }
                 }
                 else
                 {
-                    // Insert new record
-                    string insertQuery = @"
-                INSERT INTO Payslip 
-                (employee_id, pay_period_start, pay_period_end, gross_pay, net_pay, tax_withheld, created_at)
-                VALUES (@employee_id, @start, @end, @gross, @net, @tax, @created)";
+                    string reportInsertQuery = "INSERT INTO Reports (sss, pagibig, philhealth) VALUES (@sss, @pagibig, @philhealth)";
 
-                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                    using (SqlCommand reportCmd = new SqlCommand(reportInsertQuery, con))
                     {
-                        insertCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                        insertCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                        insertCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-                        insertCmd.Parameters.AddWithValue("@gross", (float)grossPay);
-                        insertCmd.Parameters.AddWithValue("@net", (float)netPay);
-                        insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
-                        insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                        reportCmd.Parameters.AddWithValue("@sss", (float)sss);
+                        reportCmd.Parameters.AddWithValue("@pagibig", (float)pagibig);
+                        reportCmd.Parameters.AddWithValue("@philhealth", (float)philhealth);
 
-                        insertCmd.ExecuteNonQuery();
-                        MessageBox.Show("Payslip added successfully!");
+                        reportCmd.ExecuteNonQuery();
                     }
                 }
-
-
             }
             catch (Exception ex)
-            {
-                MessageBox.Show("Error saving/updating payslip: " + ex.Message);
+                {
+                    MessageBox.Show("Error saving/updating payslip: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
-            finally
-            {
-                con.Close();
-            }
-        }
 
 
 

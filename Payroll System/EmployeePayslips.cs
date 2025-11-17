@@ -230,7 +230,7 @@ namespace Payroll_System
         {
             yearCombo.Items.Clear();
 
-            string query = "SELECT DISTINCT YEAR(pay_period_start) AS FROM WHERE employee_id = @ORDER BY YearNum DESC";
+            string query = "SELECT DISTINCT YEAR(pay_period_start) AS YearNum FROM payslip WHERE employee_id = @empID ORDER BY YearNum DESC";
 
             using (SqlConnection con = dbConnector.GetConnection())
             using (SqlCommand cmd = new SqlCommand(query, con))
@@ -276,9 +276,14 @@ namespace Payroll_System
                 yearNumber = int.Parse(year_fiter.SelectedItem.ToString());
             }
 
+            if (!hasMonth && !hasYear)
+            {
+                loadPayslips(Connector.SessionData.EmployeeID ?? 0);
+            }
+
             using (SqlConnection con = dbConnector.GetConnection())
             {
-                StringBuilder queryBuilder = new StringBuilder("SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, FROM payslip WHERE employee_id = @empID");
+                StringBuilder queryBuilder = new StringBuilder("SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID");
 
                 if (monthNumber.HasValue)
                     queryBuilder.Append(" AND MONTH(pay_period_start) = @month");

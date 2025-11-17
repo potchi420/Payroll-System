@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reports));
             sss_panel = new Panel();
             dataGridView1 = new DataGridView();
-            label4 = new Label();
+            sss_value = new Label();
             label3 = new Label();
             label2 = new Label();
             pagibig_panel = new Panel();
-            label7 = new Label();
+            pagibig_value = new Label();
             label9 = new Label();
             philhealth_panel = new Panel();
-            label5 = new Label();
+            philhealth_value = new Label();
             label6 = new Label();
             panel6 = new Panel();
             total_deduction_value = new Label();
@@ -79,7 +79,7 @@
             // 
             sss_panel.BorderStyle = BorderStyle.FixedSingle;
             sss_panel.Controls.Add(dataGridView1);
-            sss_panel.Controls.Add(label4);
+            sss_panel.Controls.Add(sss_value);
             sss_panel.Controls.Add(label3);
             sss_panel.Location = new Point(31, 235);
             sss_panel.Name = "sss_panel";
@@ -96,16 +96,16 @@
             dataGridView1.Size = new Size(582, 187);
             dataGridView1.TabIndex = 1;
             // 
-            // label4
+            // sss_value
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Arial", 26.75F);
-            label4.Location = new Point(108, 73);
-            label4.Margin = new Padding(0);
-            label4.Name = "label4";
-            label4.Size = new Size(122, 41);
-            label4.TabIndex = 28;
-            label4.Text = "₱ 0.00";
+            sss_value.AutoSize = true;
+            sss_value.Font = new Font("Arial", 26.75F);
+            sss_value.Location = new Point(91, 73);
+            sss_value.Margin = new Padding(0);
+            sss_value.Name = "sss_value";
+            sss_value.Size = new Size(122, 41);
+            sss_value.TabIndex = 28;
+            sss_value.Text = "₱ 0.00";
             // 
             // label3
             // 
@@ -132,23 +132,23 @@
             // pagibig_panel
             // 
             pagibig_panel.BorderStyle = BorderStyle.FixedSingle;
-            pagibig_panel.Controls.Add(label7);
+            pagibig_panel.Controls.Add(pagibig_value);
             pagibig_panel.Controls.Add(label9);
             pagibig_panel.Location = new Point(823, 235);
             pagibig_panel.Name = "pagibig_panel";
             pagibig_panel.Size = new Size(354, 169);
             pagibig_panel.TabIndex = 30;
             // 
-            // label7
+            // pagibig_value
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Arial", 26.75F);
-            label7.Location = new Point(117, 73);
-            label7.Margin = new Padding(0);
-            label7.Name = "label7";
-            label7.Size = new Size(122, 41);
-            label7.TabIndex = 30;
-            label7.Text = "₱ 0.00";
+            pagibig_value.AutoSize = true;
+            pagibig_value.Font = new Font("Arial", 26.75F);
+            pagibig_value.Location = new Point(100, 73);
+            pagibig_value.Margin = new Padding(0);
+            pagibig_value.Name = "pagibig_value";
+            pagibig_value.Size = new Size(122, 41);
+            pagibig_value.TabIndex = 30;
+            pagibig_value.Text = "₱ 0.00";
             // 
             // label9
             // 
@@ -164,23 +164,23 @@
             // philhealth_panel
             // 
             philhealth_panel.BorderStyle = BorderStyle.FixedSingle;
-            philhealth_panel.Controls.Add(label5);
+            philhealth_panel.Controls.Add(philhealth_value);
             philhealth_panel.Controls.Add(label6);
             philhealth_panel.Location = new Point(423, 235);
             philhealth_panel.Name = "philhealth_panel";
             philhealth_panel.Size = new Size(354, 169);
             philhealth_panel.TabIndex = 31;
             // 
-            // label5
+            // philhealth_value
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Arial", 26.75F);
-            label5.Location = new Point(115, 73);
-            label5.Margin = new Padding(0);
-            label5.Name = "label5";
-            label5.Size = new Size(122, 41);
-            label5.TabIndex = 30;
-            label5.Text = "₱ 0.00";
+            philhealth_value.AutoSize = true;
+            philhealth_value.Font = new Font("Arial", 26.75F);
+            philhealth_value.Location = new Point(98, 73);
+            philhealth_value.Margin = new Padding(0);
+            philhealth_value.Name = "philhealth_value";
+            philhealth_value.Size = new Size(122, 41);
+            philhealth_value.TabIndex = 30;
+            philhealth_value.Text = "₱ 0.00";
             // 
             // label6
             // 
@@ -211,7 +211,7 @@
             // 
             total_deduction_value.AutoSize = true;
             total_deduction_value.Font = new Font("Arial", 14.25F);
-            total_deduction_value.Location = new Point(486, 123);
+            total_deduction_value.Location = new Point(463, 123);
             total_deduction_value.Name = "total_deduction_value";
             total_deduction_value.Size = new Size(61, 22);
             total_deduction_value.TabIndex = 31;
@@ -234,7 +234,7 @@
             // 
             total_benefits_value.AutoSize = true;
             total_benefits_value.Font = new Font("Arial", 14.25F);
-            total_benefits_value.Location = new Point(486, 70);
+            total_benefits_value.Location = new Point(463, 70);
             total_benefits_value.Name = "total_benefits_value";
             total_benefits_value.Size = new Size(61, 22);
             total_benefits_value.TabIndex = 16;
@@ -254,7 +254,7 @@
             // 
             total_tax_value.AutoSize = true;
             total_tax_value.Font = new Font("Arial", 14.25F);
-            total_tax_value.Location = new Point(486, 33);
+            total_tax_value.Location = new Point(463, 33);
             total_tax_value.Name = "total_tax_value";
             total_tax_value.Size = new Size(61, 22);
             total_tax_value.TabIndex = 14;
@@ -323,7 +323,7 @@
             // 
             performance_bonus_value.AutoSize = true;
             performance_bonus_value.Font = new Font("Arial", 11.25F);
-            performance_bonus_value.Location = new Point(498, 123);
+            performance_bonus_value.Location = new Point(483, 123);
             performance_bonus_value.Name = "performance_bonus_value";
             performance_bonus_value.Size = new Size(46, 17);
             performance_bonus_value.TabIndex = 16;
@@ -343,7 +343,7 @@
             // 
             leave_pay_value.AutoSize = true;
             leave_pay_value.Font = new Font("Arial", 11.25F);
-            leave_pay_value.Location = new Point(498, 90);
+            leave_pay_value.Location = new Point(483, 90);
             leave_pay_value.Name = "leave_pay_value";
             leave_pay_value.Size = new Size(46, 17);
             leave_pay_value.TabIndex = 14;
@@ -353,7 +353,7 @@
             // 
             transportation_allowance_value.AutoSize = true;
             transportation_allowance_value.Font = new Font("Arial", 11.25F);
-            transportation_allowance_value.Location = new Point(498, 56);
+            transportation_allowance_value.Location = new Point(483, 56);
             transportation_allowance_value.Name = "transportation_allowance_value";
             transportation_allowance_value.Size = new Size(46, 17);
             transportation_allowance_value.TabIndex = 13;
@@ -363,7 +363,7 @@
             // 
             food_allowance_value.AutoSize = true;
             food_allowance_value.Font = new Font("Arial", 11.25F);
-            food_allowance_value.Location = new Point(498, 22);
+            food_allowance_value.Location = new Point(483, 22);
             food_allowance_value.Name = "food_allowance_value";
             food_allowance_value.Size = new Size(46, 17);
             food_allowance_value.TabIndex = 12;
@@ -524,11 +524,11 @@
         private Panel philhealth_panel;
         private Panel panel6;
         private Label label1;
-        private Label label4;
+        private Label sss_value;
         private Label label3;
-        private Label label7;
+        private Label pagibig_value;
         private Label label9;
-        private Label label5;
+        private Label philhealth_value;
         private Label label6;
         private DataGridView dataGridView1;
         private Label label10;

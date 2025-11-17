@@ -400,7 +400,10 @@ namespace Payroll_System
                     end_date,
                     grossPay,
                     netPay,
-                    totalDeductions
+                    totalDeductions,
+                    Convert.ToDouble(sss_value.Text.Replace("₱", "")),
+                    Convert.ToDouble(pagibig_value.Text.Replace("₱", "")),
+                    Convert.ToDouble(philhealth_value.Text.Replace("₱", ""))
                 );
 
                 MessageBox.Show("Payslip successfully saved!");
