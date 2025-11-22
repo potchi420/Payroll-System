@@ -33,14 +33,16 @@
             label5 = new Label();
             logo = new PictureBox();
             pnlmain = new Panel();
-            btnclear = new Button();
+            new_password_value = new TextBox();
+            label1 = new Label();
+            btnback = new Button();
             btnsave = new Button();
-            textBox3 = new TextBox();
+            cur_password_value = new TextBox();
             lblpassword = new Label();
-            textBox2 = new TextBox();
+            new_username_value = new TextBox();
             lblnew = new Label();
             lblcurrent = new Label();
-            textBox1 = new TextBox();
+            cur_username_value = new TextBox();
             lblheader = new Label();
             gradientPanel1 = new GradientPanel();
             home_btn = new Label();
@@ -109,75 +111,97 @@
             // pnlmain
             // 
             pnlmain.BorderStyle = BorderStyle.FixedSingle;
-            pnlmain.Controls.Add(btnclear);
+            pnlmain.Controls.Add(new_password_value);
+            pnlmain.Controls.Add(label1);
+            pnlmain.Controls.Add(btnback);
             pnlmain.Controls.Add(btnsave);
-            pnlmain.Controls.Add(textBox3);
+            pnlmain.Controls.Add(cur_password_value);
             pnlmain.Controls.Add(lblpassword);
-            pnlmain.Controls.Add(textBox2);
+            pnlmain.Controls.Add(new_username_value);
             pnlmain.Controls.Add(lblnew);
             pnlmain.Controls.Add(lblcurrent);
-            pnlmain.Controls.Add(textBox1);
+            pnlmain.Controls.Add(cur_username_value);
             pnlmain.Controls.Add(lblheader);
-            pnlmain.Location = new Point(420, 141);
+            pnlmain.Location = new Point(420, 108);
             pnlmain.Name = "pnlmain";
-            pnlmain.Size = new Size(350, 437);
+            pnlmain.Size = new Size(350, 470);
             pnlmain.TabIndex = 0;
             // 
-            // btnclear
+            // new_password_value
             // 
-            btnclear.BackColor = Color.White;
-            btnclear.FlatStyle = FlatStyle.Popup;
-            btnclear.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnclear.ForeColor = SystemColors.Highlight;
-            btnclear.Location = new Point(190, 369);
-            btnclear.Name = "btnclear";
-            btnclear.Size = new Size(142, 29);
-            btnclear.TabIndex = 8;
-            btnclear.Text = "Clear Fields";
-            btnclear.UseVisualStyleBackColor = false;
+            new_password_value.Location = new Point(16, 377);
+            new_password_value.Name = "new_password_value";
+            new_password_value.Size = new Size(315, 23);
+            new_password_value.TabIndex = 10;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(15, 341);
+            label1.Name = "label1";
+            label1.Size = new Size(124, 19);
+            label1.TabIndex = 9;
+            label1.Text = "New Password";
+            // 
+            // btnback
+            // 
+            btnback.BackColor = Color.White;
+            btnback.Cursor = Cursors.Hand;
+            btnback.FlatStyle = FlatStyle.Popup;
+            btnback.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnback.ForeColor = SystemColors.Highlight;
+            btnback.Location = new Point(14, 421);
+            btnback.Name = "btnback";
+            btnback.Size = new Size(142, 29);
+            btnback.TabIndex = 8;
+            btnback.Text = "Back";
+            btnback.UseVisualStyleBackColor = false;
+            btnback.Click += btnback_Click;
             // 
             // btnsave
             // 
             btnsave.BackColor = Color.DodgerBlue;
+            btnsave.Cursor = Cursors.Hand;
             btnsave.FlatStyle = FlatStyle.Popup;
             btnsave.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnsave.ForeColor = Color.White;
-            btnsave.Location = new Point(16, 369);
+            btnsave.Location = new Point(189, 421);
             btnsave.Name = "btnsave";
             btnsave.Size = new Size(142, 29);
             btnsave.TabIndex = 7;
             btnsave.Text = "Save Changes";
             btnsave.UseVisualStyleBackColor = false;
             // 
-            // textBox3
+            // cur_password_value
             // 
-            textBox3.Location = new Point(15, 309);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(317, 23);
-            textBox3.TabIndex = 6;
+            cur_password_value.Location = new Point(15, 296);
+            cur_password_value.Name = "cur_password_value";
+            cur_password_value.Size = new Size(317, 23);
+            cur_password_value.TabIndex = 6;
             // 
             // lblpassword
             // 
             lblpassword.AutoSize = true;
             lblpassword.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblpassword.Location = new Point(16, 273);
+            lblpassword.Location = new Point(16, 260);
             lblpassword.Name = "lblpassword";
             lblpassword.Size = new Size(148, 19);
             lblpassword.TabIndex = 5;
             lblpassword.Text = "Current Password";
             // 
-            // textBox2
+            // new_username_value
             // 
-            textBox2.Location = new Point(15, 226);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(317, 23);
-            textBox2.TabIndex = 4;
+            new_username_value.Location = new Point(16, 213);
+            new_username_value.Name = "new_username_value";
+            new_username_value.Size = new Size(316, 23);
+            new_username_value.TabIndex = 4;
             // 
             // lblnew
             // 
             lblnew.AutoSize = true;
             lblnew.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblnew.Location = new Point(16, 190);
+            lblnew.Location = new Point(16, 177);
             lblnew.Name = "lblnew";
             lblnew.Size = new Size(125, 19);
             lblnew.TabIndex = 3;
@@ -188,20 +212,20 @@
             // 
             lblcurrent.AutoSize = true;
             lblcurrent.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblcurrent.Location = new Point(15, 108);
+            lblcurrent.Location = new Point(15, 95);
             lblcurrent.Name = "lblcurrent";
             lblcurrent.Size = new Size(149, 19);
             lblcurrent.TabIndex = 2;
             lblcurrent.Text = "Current Username";
             lblcurrent.Click += lblcurrent_Click;
             // 
-            // textBox1
+            // cur_username_value
             // 
-            textBox1.Location = new Point(15, 139);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(317, 23);
-            textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
+            cur_username_value.Location = new Point(16, 126);
+            cur_username_value.Name = "cur_username_value";
+            cur_username_value.Size = new Size(316, 23);
+            cur_username_value.TabIndex = 1;
+            cur_username_value.TextChanged += textBox1_TextChanged;
             // 
             // lblheader
             // 
@@ -309,17 +333,19 @@
         private PictureBox logo;
         private Panel pnlmain;
         private Label lblcurrent;
-        private TextBox textBox1;
+        private TextBox cur_username_value;
         private Label lblheader;
-        private TextBox textBox2;
+        private TextBox new_username_value;
         private Label lblnew;
         private Button btnsave;
-        private TextBox textBox3;
+        private TextBox cur_password_value;
         private Label lblpassword;
-        private Button btnclear;
+        private Button btnback;
         private Label home_btn;
         private Label logout_btn;
         private Label label6;
         private PictureBox logo_btn;
+        private TextBox new_password_value;
+        private Label label1;
     }
 }

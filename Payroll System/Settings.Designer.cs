@@ -134,6 +134,7 @@
             // btnusermanagement
             // 
             btnusermanagement.BackColor = SystemColors.Control;
+            btnusermanagement.Cursor = Cursors.Hand;
             btnusermanagement.FlatStyle = FlatStyle.Flat;
             btnusermanagement.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnusermanagement.Image = (Image)resources.GetObject("btnusermanagement.Image");
@@ -162,6 +163,7 @@
             // btndataupdates
             // 
             btndataupdates.BackColor = SystemColors.Control;
+            btndataupdates.Cursor = Cursors.Hand;
             btndataupdates.FlatStyle = FlatStyle.Flat;
             btndataupdates.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btndataupdates.Image = (Image)resources.GetObject("btndataupdates.Image");
@@ -189,6 +191,7 @@
             // btnacccountmanagement
             // 
             btnacccountmanagement.BackColor = SystemColors.Control;
+            btnacccountmanagement.Cursor = Cursors.Hand;
             btnacccountmanagement.FlatStyle = FlatStyle.Flat;
             btnacccountmanagement.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnacccountmanagement.Image = (Image)resources.GetObject("btnacccountmanagement.Image");
@@ -322,7 +325,7 @@
             Controls.Add(lbldataupdates);
             Controls.Add(btnusermanagement);
             Controls.Add(btndataupdates);
-            Cursor = Cursors.Hand;
+            Cursor = Cursors.Arrow;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Settings";
             Text = "Settings";

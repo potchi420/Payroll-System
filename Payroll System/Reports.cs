@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +20,7 @@ namespace Payroll_System
         {
             InitializeComponent();
             Reports_Load();
+            focus_remover();
 
             // Accent line for SSS panel
             Panel sssAccent = new Panel();
@@ -130,5 +133,67 @@ namespace Payroll_System
                 }
             }
         }
-    }
+
+        private void save_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string directoryPath = @"C:\PayrollReports";
+                if (!Directory.Exists(directoryPath))
+                    Directory.CreateDirectory(directoryPath);
+
+                string fileName = $"TaxReport_{DateTime.Now:yyyy-MM-dd}.pdf";
+                string filePath = Path.Combine(directoryPath, fileName);
+
+                Document doc = new Document(PageSize.A4, 50, 50, 25, 25);
+                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+                doc.Open();
+
+                // Fonts
+                var titleFont = FontFactory.GetFont("Arial", 14f, iTextSharp.text.Font.BOLD);
+                var labelFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.BOLD);
+                var valueFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.NORMAL);
+
+                // Header
+                doc.Add(new Paragraph("PCU Payroll System – Tax Report", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc.Add(new Paragraph($"Generated on: {DateTime.Now:MMMM dd, yyyy hh:mm tt}", valueFont) { Alignment = Element.ALIGN_CENTER });
+                doc.Add(new Paragraph("\n"));
+
+                // Table
+                PdfPTable table = new PdfPTable(2);
+                table.WidthPercentage = 80;
+                table.SetWidths(new float[] { 40f, 60f });
+                table.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                void AddRow(string label, string value)
+                {
+                    table.AddCell(new PdfPCell(new Phrase(label, labelFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                    table.AddCell(new PdfPCell(new Phrase(value, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                }
+
+                AddRow("SSS:", sss_value.Text);
+                AddRow("PhilHealth:", philhealth_value.Text);
+                AddRow("Pag-IBIG:", pagibig_value.Text);
+                AddRow("Total Tax Withheld:", total_tax_value.Text);
+
+                doc.Add(table);
+                doc.Add(new Paragraph("\nThis is a system-generated report.", valueFont) { Alignment = Element.ALIGN_CENTER });
+
+                doc.Close();
+                MessageBox.Show("Report saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving report: " + ex.Message);
+            }
+        }
+        public void focus_remover()
+        {
+            Label dummyFocus = new Label();
+            dummyFocus.Size = new Size(0, 0);
+            dummyFocus.Location = new Point(0, 0);
+            this.Controls.Add(dummyFocus);
+            this.ActiveControl = dummyFocus;
+        }
+    }  
 }

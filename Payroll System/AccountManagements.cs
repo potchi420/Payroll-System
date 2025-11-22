@@ -52,5 +52,13 @@ namespace Payroll_System
             this.Show();
             this.Hide();
         }
+
+        private void btnback_Click(object sender, EventArgs e)
+        {
+            Settings s = new Settings();
+            s.Show();
+            this.Show();
+            this.Hide();
+        }
     }
 }

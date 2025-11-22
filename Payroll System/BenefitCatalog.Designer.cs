@@ -367,6 +367,7 @@
             Controls.Add(btn_delete);
             Controls.Add(btn_edit);
             Controls.Add(btn_add);
+            Cursor = Cursors.Hand;
             Name = "BenefitCatalog";
             Text = "BenefitCatalog";
             ((System.ComponentModel.ISupportInitialize)logo).EndInit();

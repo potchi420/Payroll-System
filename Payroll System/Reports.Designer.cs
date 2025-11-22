@@ -41,8 +41,8 @@
             philhealth_value = new Label();
             label6 = new Label();
             panel6 = new Panel();
-            total_deduction_value = new Label();
             linkLabel2 = new LinkLabel();
+            save_btn = new Button();
             total_benefits_value = new Label();
             label17 = new Label();
             total_tax_value = new Label();
@@ -81,7 +81,7 @@
             sss_panel.Controls.Add(dataGridView1);
             sss_panel.Controls.Add(sss_value);
             sss_panel.Controls.Add(label3);
-            sss_panel.Location = new Point(31, 235);
+            sss_panel.Location = new Point(31, 226);
             sss_panel.Name = "sss_panel";
             sss_panel.Size = new Size(354, 169);
             sss_panel.TabIndex = 27;
@@ -122,7 +122,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 26.25F);
-            label2.Location = new Point(30, 110);
+            label2.Location = new Point(30, 101);
             label2.Margin = new Padding(0);
             label2.Name = "label2";
             label2.Size = new Size(137, 40);
@@ -134,7 +134,7 @@
             pagibig_panel.BorderStyle = BorderStyle.FixedSingle;
             pagibig_panel.Controls.Add(pagibig_value);
             pagibig_panel.Controls.Add(label9);
-            pagibig_panel.Location = new Point(823, 235);
+            pagibig_panel.Location = new Point(823, 226);
             pagibig_panel.Name = "pagibig_panel";
             pagibig_panel.Size = new Size(354, 169);
             pagibig_panel.TabIndex = 30;
@@ -166,7 +166,7 @@
             philhealth_panel.BorderStyle = BorderStyle.FixedSingle;
             philhealth_panel.Controls.Add(philhealth_value);
             philhealth_panel.Controls.Add(label6);
-            philhealth_panel.Location = new Point(423, 235);
+            philhealth_panel.Location = new Point(423, 226);
             philhealth_panel.Name = "philhealth_panel";
             philhealth_panel.Size = new Size(354, 169);
             philhealth_panel.TabIndex = 31;
@@ -196,26 +196,16 @@
             // panel6
             // 
             panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(total_deduction_value);
             panel6.Controls.Add(linkLabel2);
+            panel6.Controls.Add(save_btn);
             panel6.Controls.Add(total_benefits_value);
             panel6.Controls.Add(label17);
             panel6.Controls.Add(total_tax_value);
             panel6.Controls.Add(label15);
-            panel6.Location = new Point(613, 471);
+            panel6.Location = new Point(613, 462);
             panel6.Name = "panel6";
-            panel6.Size = new Size(564, 167);
+            panel6.Size = new Size(564, 183);
             panel6.TabIndex = 33;
-            // 
-            // total_deduction_value
-            // 
-            total_deduction_value.AutoSize = true;
-            total_deduction_value.Font = new Font("Arial", 14.25F);
-            total_deduction_value.Location = new Point(463, 123);
-            total_deduction_value.Name = "total_deduction_value";
-            total_deduction_value.Size = new Size(61, 22);
-            total_deduction_value.TabIndex = 31;
-            total_deduction_value.Text = "₱0.00";
             // 
             // linkLabel2
             // 
@@ -229,6 +219,18 @@
             linkLabel2.TabIndex = 30;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "                                                                                                                                                                           ";
+            // 
+            // save_btn
+            // 
+            save_btn.Cursor = Cursors.Hand;
+            save_btn.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            save_btn.Location = new Point(368, 129);
+            save_btn.Name = "save_btn";
+            save_btn.Size = new Size(174, 42);
+            save_btn.TabIndex = 37;
+            save_btn.Text = "Generate Report";
+            save_btn.UseVisualStyleBackColor = true;
+            save_btn.Click += save_btn_Click;
             // 
             // total_benefits_value
             // 
@@ -274,7 +276,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 15.75F);
-            label1.Location = new Point(31, 190);
+            label1.Location = new Point(31, 181);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
             label1.Size = new Size(179, 24);
@@ -285,7 +287,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Arial", 15.75F);
-            label10.Location = new Point(31, 429);
+            label10.Location = new Point(31, 420);
             label10.Margin = new Padding(0);
             label10.Name = "label10";
             label10.Size = new Size(219, 24);
@@ -296,7 +298,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 15.75F);
-            label11.Location = new Point(613, 429);
+            label11.Location = new Point(613, 420);
             label11.Margin = new Padding(0);
             label11.Name = "label11";
             label11.Size = new Size(247, 24);
@@ -314,16 +316,16 @@
             panel5.Controls.Add(label12);
             panel5.Controls.Add(overtime_label);
             panel5.Controls.Add(basic_salary_label);
-            panel5.Location = new Point(31, 471);
+            panel5.Location = new Point(31, 462);
             panel5.Name = "panel5";
-            panel5.Size = new Size(560, 167);
+            panel5.Size = new Size(560, 183);
             panel5.TabIndex = 32;
             // 
             // performance_bonus_value
             // 
             performance_bonus_value.AutoSize = true;
             performance_bonus_value.Font = new Font("Arial", 11.25F);
-            performance_bonus_value.Location = new Point(483, 123);
+            performance_bonus_value.Location = new Point(483, 142);
             performance_bonus_value.Name = "performance_bonus_value";
             performance_bonus_value.Size = new Size(46, 17);
             performance_bonus_value.TabIndex = 16;
@@ -333,7 +335,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial", 11.25F);
-            label14.Location = new Point(21, 123);
+            label14.Location = new Point(21, 142);
             label14.Name = "label14";
             label14.Size = new Size(138, 17);
             label14.TabIndex = 15;
@@ -343,7 +345,7 @@
             // 
             leave_pay_value.AutoSize = true;
             leave_pay_value.Font = new Font("Arial", 11.25F);
-            leave_pay_value.Location = new Point(483, 90);
+            leave_pay_value.Location = new Point(483, 103);
             leave_pay_value.Name = "leave_pay_value";
             leave_pay_value.Size = new Size(46, 17);
             leave_pay_value.TabIndex = 14;
@@ -353,7 +355,7 @@
             // 
             transportation_allowance_value.AutoSize = true;
             transportation_allowance_value.Font = new Font("Arial", 11.25F);
-            transportation_allowance_value.Location = new Point(483, 56);
+            transportation_allowance_value.Location = new Point(483, 62);
             transportation_allowance_value.Name = "transportation_allowance_value";
             transportation_allowance_value.Size = new Size(46, 17);
             transportation_allowance_value.TabIndex = 13;
@@ -373,7 +375,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Arial", 11.25F);
-            label12.Location = new Point(21, 90);
+            label12.Location = new Point(21, 103);
             label12.Name = "label12";
             label12.Size = new Size(131, 17);
             label12.TabIndex = 11;
@@ -383,7 +385,7 @@
             // 
             overtime_label.AutoSize = true;
             overtime_label.Font = new Font("Arial", 11.25F);
-            overtime_label.Location = new Point(21, 56);
+            overtime_label.Location = new Point(20, 62);
             overtime_label.Name = "overtime_label";
             overtime_label.Size = new Size(174, 17);
             overtime_label.TabIndex = 10;
@@ -474,7 +476,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
-            linkLabel1.Location = new Point(30, 150);
+            linkLabel1.Location = new Point(30, 141);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(1150, 15);
             linkLabel1.TabIndex = 26;
@@ -485,7 +487,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1201, 651);
+            ClientSize = new Size(1201, 661);
             Controls.Add(linkLabel1);
             Controls.Add(gradientPanel1);
             Controls.Add(label11);
@@ -542,7 +544,6 @@
         private Label basic_salary_label;
         private Label performance_bonus_value;
         private Label label14;
-        private Label total_deduction_value;
         private LinkLabel linkLabel2;
         private Label total_benefits_value;
         private Label label17;
@@ -554,5 +555,6 @@
         private Label label8;
         private PictureBox logo;
         private LinkLabel linkLabel1;
+        private Button save_btn;
     }
 }

@@ -279,6 +279,7 @@ namespace Payroll_System
             if (!hasMonth && !hasYear)
             {
                 loadPayslips(Connector.SessionData.EmployeeID ?? 0);
+                return;
             }
 
             using (SqlConnection con = dbConnector.GetConnection())
