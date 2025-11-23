@@ -141,9 +141,10 @@ namespace Payroll_System
                     DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     // this has an error where you're not able to delete an employee if the employee has a payslip record
-                    // a simple fix for this is to delete the payslip record too
+                    // a simple fix for this is to delete the payslip record too    
                     // but i dont think deleting a payslip record is good practice for a payroll system
                     // for that should we add like a boolean "is_active" column in the db for this??
+                    // this still isnt fixed
                     if (result == DialogResult.Yes)
                     {
                         using (SqlConnection connector = dbConnector.GetConnection())

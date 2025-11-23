@@ -409,7 +409,8 @@ ORDER BY a.attendance_id;
         double taxWithheld,
         double sss,
         double pagibig,
-        double philhealth)
+        double philhealth,
+        string lastGeneratedFilePath)
             {
                 connection();
 
@@ -445,6 +446,7 @@ ORDER BY a.attendance_id;
                         net_pay = @net,
                         tax_withheld = @tax,
                         created_at = @created
+                        ile_path = @file_path
                     WHERE employee_id = @employee_id
                       AND pay_period_start = @start
                       AND pay_period_end = @end";
@@ -455,6 +457,7 @@ ORDER BY a.attendance_id;
                             updateCmd.Parameters.AddWithValue("@net", (float)netPay);
                             updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
                             updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                            updateCmd.Parameters.AddWithValue("@file_path", lastGeneratedFilePath);
                             updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
                             updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
                             updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
@@ -468,8 +471,8 @@ ORDER BY a.attendance_id;
                         // Insert new record
                         string insertQuery = @"
                     INSERT INTO Payslip 
-                    (employee_id, pay_period_start, pay_period_end, gross_pay, net_pay, tax_withheld, created_at)
-                    VALUES (@employee_id, @start, @end, @gross, @net, @tax, @created)";
+                    (employee_id, pay_period_start, pay_period_end, gross_pay, net_pay, tax_withheld, created_at, file_path)
+                    VALUES (@employee_id, @start, @end, @gross, @net, @tax, @created, @filepath)";
 
                         using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
                         {
@@ -480,8 +483,9 @@ ORDER BY a.attendance_id;
                             insertCmd.Parameters.AddWithValue("@net", (float)netPay);
                             insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
                             insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                            insertCmd.Parameters.AddWithValue("@filepath", lastGeneratedFilePath);
 
-                            insertCmd.ExecuteNonQuery();
+                        insertCmd.ExecuteNonQuery();
                             MessageBox.Show("Payslip added successfully!");
                         }
                     }

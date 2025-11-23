@@ -12,6 +12,9 @@ namespace Payroll_System
     {
         private bool salaryLoaded = false;
         public int currentID;
+        private string lastGeneratedFilePath = null;
+        private bool payslipGenerated = false;
+
         public Payroll_process()
         {
             InitializeComponent();
@@ -136,7 +139,6 @@ namespace Payroll_System
                     string end = data.PayPeriodEnd.ToString("dd-MM-yyyy");
                     string fileName = $"{safeName}_{start}_{end}.pdf";
 
-                    // Ensure directory exists
                     string directoryPath = @"C:\Payslips";
                     if (!Directory.Exists(directoryPath))
                     {
@@ -145,6 +147,9 @@ namespace Payroll_System
 
                     string filePath = Path.Combine(directoryPath, fileName);
                     GeneratePayslipPDF(filePath, data);
+
+                    lastGeneratedFilePath = filePath;
+                    payslipGenerated = true;
                 }
                 else
                 {
@@ -338,18 +343,18 @@ namespace Payroll_System
             return result.Trim();
         }
 
-        // this also cant process more than 1 attendance records
-        // still unsure about this
-        // as i envisioned this to utilize the 2 datetimepick elements
-        // or not use the 2 datetimepick at all
-
-        // update this still wont pass on the 2 datetimepick values to the payslips table
-        // this also needs to validate if end_date is not earlier than start_date
-        // this should also ONLY WORK when theres an employee already loaded.
         private void save_record_btn_Click(object sender, EventArgs e)
         {
             try
             {
+                // ginawa ko na yung "dapat nakagenerate na ng pdf payslip bago magsave"
+                if (!payslipGenerated || string.IsNullOrEmpty(lastGeneratedFilePath))
+                {
+                    MessageBox.Show("You must generate the payslip before saving.");
+                    return;
+                }
+
+
                 // Ensure an attendance record is selected
                 if (cmbname.SelectedValue == null || cmbname.SelectedIndex == -1)
                 {
@@ -395,7 +400,7 @@ namespace Payroll_System
                 // Save to database
                 Connector conector = new Connector();
                 conector.SaveOrUpdatePayslip(
-                    currentID, // use attendanceID
+                    currentID,
                     start_date,
                     end_date,
                     grossPay,
@@ -403,13 +408,15 @@ namespace Payroll_System
                     totalDeductions,
                     Convert.ToDouble(sss_value.Text.Replace("₱", "")),
                     Convert.ToDouble(pagibig_value.Text.Replace("₱", "")),
-                    Convert.ToDouble(philhealth_value.Text.Replace("₱", ""))
+                    Convert.ToDouble(philhealth_value.Text.Replace("₱", "")),
+                    lastGeneratedFilePath // new column
                 );
 
-                MessageBox.Show("Payslip successfully saved!");
 
-                // Reset flag to prevent double-save
+
+                MessageBox.Show("Payslip successfully saved!");
                 salaryLoaded = false;
+                payslipGenerated = false; // reset flag
             }
             catch (Exception ex)
             {

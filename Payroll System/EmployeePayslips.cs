@@ -22,6 +22,8 @@ namespace Payroll_System
             LoadMonthFilter(month_filter);
             LoadYearFilter(year_fiter);
             payslipGrid.CellFormatting += PayslipGrid_CellFormatting;
+            payslipGrid.CellMouseMove += payslipGrid_CellMouseMove;
+            payslipGrid.DataBindingComplete += payslipGrid_DataBindingComplete;
         }
 
         public static class dbConnector
@@ -85,7 +87,7 @@ namespace Payroll_System
         {
             using (SqlConnection con = dbConnector.GetConnection())
             {
-                string query = "SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID ORDER BY created_at DESC";
+                string query = "SELECT payslip_id, pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID ORDER BY created_at DESC";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -96,83 +98,69 @@ namespace Payroll_System
                     adapter.Fill(dt);
 
                     payslipGrid.DataSource = dt;
-
+                    payslipGrid.AllowUserToAddRows = false;
                     payslipGrid.Columns["gross_pay"].HeaderText = "Gross Pay";
                     payslipGrid.Columns["net_pay"].HeaderText = "Net Pay";
+
+                    if (payslipGrid.Columns.Contains("payslip_id"))
+                        payslipGrid.Columns["payslip_id"].Visible = false;
+
+
+                    if (payslipGrid.Columns.Contains("View"))
+                        payslipGrid.Columns["View"].DisplayIndex = payslipGrid.Columns.Count - 1;
+
                     payslipGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     payslipGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
                     payslipGrid.AllowUserToResizeColumns = false;
                     payslipGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
                     payslipGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
             }
         }
         private void SetupGridColumns()
         {
-            DataGridViewButtonColumn viewButton = new DataGridViewButtonColumn();
-            viewButton.Name = "View";
-            viewButton.HeaderText = "View Document";
-            viewButton.Text = "🔍";
-            viewButton.UseColumnTextForButtonValue = true;
-            payslipGrid.Columns.Add(viewButton);
-
-
-            DataGridViewButtonColumn removeButton = new DataGridViewButtonColumn();
-            removeButton.Name = "remove_employee_btn";
-            removeButton.HeaderText = "Remove";
-            removeButton.Text = "🗑️";
-            removeButton.UseColumnTextForButtonValue = true;
-            payslipGrid.Columns.Add(removeButton);
+            if (!payslipGrid.Columns.Contains("View"))
+            {
+                DataGridViewButtonColumn viewButton = new DataGridViewButtonColumn();
+                viewButton.Name = "View";
+                viewButton.HeaderText = "View Document";
+                viewButton.Text = "🔍";
+                viewButton.UseColumnTextForButtonValue = true;
+                viewButton.FlatStyle = FlatStyle.Flat;
+                payslipGrid.Columns.Add(viewButton);
+            }
 
             payslipGrid.CellContentClick += payslipClick;
         }
 
         private void payslipClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && payslipGrid.Columns[e.ColumnIndex].Name == "View")
             {
-                int empID = Convert.ToInt32(payslipGrid.Rows[e.RowIndex].Cells["employee_id"].Value);
-                string column = payslipGrid.Columns[e.ColumnIndex].Name;
+                int payslipID = Convert.ToInt32(payslipGrid.Rows[e.RowIndex].Cells["payslip_id"].Value);
+                string filePath = GetFilePathFromDB(payslipID);
 
-                if (column == "Document")
+                if (File.Exists(filePath))
                 {
-                    MessageBox.Show($"Open document for ");
-
-                }
-                else if (column == "remove_employee_btn")
-                {
-                    DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                    if (result == DialogResult.Yes)
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
                     {
-
-                        using (SqlConnection connector = dbConnector.GetConnection())
-                        {
-                            string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
-                            using (SqlCommand cmd = new SqlCommand(deleteQuery, connector))
-                            {
-                                cmd.Parameters.AddWithValue("@empID", empID);
-                                connector.Open();
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                        MessageBox.Show("Employee details deleted successfully!");
-                        reloadForm();
-                    }
+                        FileName = filePath,
+                        UseShellExecute = true
+                    });
                 }
-                else if (column == "edit_employee_btn")
+                else
                 {
-                    EditEmployee editEmployee = new EditEmployee(empID);
-                    editEmployee.Show();
-                    this.Show();
-                    this.Hide();
+                    MessageBox.Show("Payslip file not found.");
                 }
             }
         }
+
         public void reloadForm()
         {
             loadPayslips(Connector.SessionData.EmployeeID ?? 0);
         }
+
         private void PayslipGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (payslipGrid.Columns[e.ColumnIndex].Name == "gross_pay" ||
@@ -324,6 +312,64 @@ namespace Payroll_System
                         MessageBox.Show("Error applying filter: " + ex.Message);
                     }
                 }
+            }
+        }
+
+        private string GetFilePathFromDB(int payslipID)
+        {
+            try
+            {
+                using (SqlConnection con = dbConnector.GetConnection())
+                {
+                    string query = "SELECT file_path FROM payslip WHERE payslip_id = @payslipID";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.Add("@payslipID", SqlDbType.Int).Value = payslipID;
+                        con.Open();
+                        object result = cmd.ExecuteScalar();
+
+                        if (result == null || string.IsNullOrWhiteSpace(result.ToString()))
+                        {
+                            MessageBox.Show("No file path found for this payslip.", "Missing File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return string.Empty;
+                        }
+
+                        return result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving file path: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return string.Empty;
+            }
+        }
+
+        private void payslipGrid_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string columnName = payslipGrid.Columns[e.ColumnIndex].Name;
+
+                if (columnName == "View")
+                {
+                    payslipGrid.Cursor = Cursors.Hand;
+                }
+                else
+                {
+                    payslipGrid.Cursor = Cursors.Default;
+                }
+            }
+            else
+            {
+                payslipGrid.Cursor = Cursors.Default;
+            }
+        }
+        private void payslipGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (payslipGrid.Columns.Contains("View"))
+            {
+                payslipGrid.Columns["View"].DisplayIndex = payslipGrid.Columns.Count - 1;
             }
         }
     }
