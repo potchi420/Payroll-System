@@ -39,7 +39,7 @@ namespace Payroll_System
             public List<(string BenefitName, decimal Amount)> Benefits { get; set; } = new();
             public List<(string DeductionType, decimal Amount)> Deductions { get; set; } = new();
             public decimal NetPay { get; set; }
-            public decimal GrossPay { get; set; }
+            public decimal GrossPay { get; set; }   
         }
 
 
