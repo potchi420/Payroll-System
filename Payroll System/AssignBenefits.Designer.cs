@@ -38,9 +38,9 @@
             linkLabel1 = new LinkLabel();
             dgv_assignbenefits = new DataGridView();
             curved_panel = new GradientPanel();
+            empList = new ComboBox();
             save_btn = new Button();
             back_btn = new Button();
-            textBox1 = new TextBox();
             search_lb = new Label();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
@@ -54,6 +54,7 @@
             gradientPanel1.Controls.Add(logout);
             gradientPanel1.Controls.Add(label5);
             gradientPanel1.Controls.Add(logo);
+            gradientPanel1.Cursor = Cursors.Default;
             gradientPanel1.gradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.gradientTop = Color.FromArgb(9, 74, 158);
             gradientPanel1.Location = new Point(-3, 0);
@@ -65,7 +66,6 @@
             // 
             home.AutoSize = true;
             home.BackColor = Color.Transparent;
-            home.Cursor = Cursors.Hand;
             home.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             home.ForeColor = Color.Transparent;
             home.Location = new Point(1018, 30);
@@ -80,7 +80,6 @@
             // 
             logout.AutoSize = true;
             logout.BackColor = Color.Transparent;
-            logout.Cursor = Cursors.Hand;
             logout.Font = new Font("Calisto MT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             logout.ForeColor = Color.Transparent;
             logout.Location = new Point(1090, 30);
@@ -107,7 +106,6 @@
             // logo
             // 
             logo.BackColor = Color.Transparent;
-            logo.Cursor = Cursors.Hand;
             logo.Image = Properties.Resources.icon;
             logo.Location = new Point(0, 3);
             logo.Name = "logo";
@@ -120,6 +118,7 @@
             // benefits_administration_label
             // 
             benefits_administration_label.AutoSize = true;
+            benefits_administration_label.Cursor = Cursors.Default;
             benefits_administration_label.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             benefits_administration_label.Location = new Point(60, 105);
             benefits_administration_label.Name = "benefits_administration_label";
@@ -131,6 +130,7 @@
             // 
             linkLabel1.ActiveLinkColor = Color.Transparent;
             linkLabel1.AutoSize = true;
+            linkLabel1.Cursor = Cursors.Default;
             linkLabel1.ForeColor = Color.FromArgb(133, 133, 133);
             linkLabel1.LinkColor = Color.Gray;
             linkLabel1.Location = new Point(63, 134);
@@ -144,6 +144,7 @@
             // 
             dgv_assignbenefits.BackgroundColor = SystemColors.ControlLightLight;
             dgv_assignbenefits.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_assignbenefits.Cursor = Cursors.Default;
             dgv_assignbenefits.Location = new Point(36, 66);
             dgv_assignbenefits.Name = "dgv_assignbenefits";
             dgv_assignbenefits.RowHeadersWidth = 51;
@@ -153,11 +154,12 @@
             // curved_panel
             // 
             curved_panel.BorderStyle = BorderStyle.FixedSingle;
+            curved_panel.Controls.Add(empList);
             curved_panel.Controls.Add(save_btn);
             curved_panel.Controls.Add(back_btn);
-            curved_panel.Controls.Add(textBox1);
             curved_panel.Controls.Add(search_lb);
             curved_panel.Controls.Add(dgv_assignbenefits);
+            curved_panel.Cursor = Cursors.Default;
             curved_panel.gradientBottom = Color.Empty;
             curved_panel.gradientTop = Color.Empty;
             curved_panel.Location = new Point(154, 191);
@@ -165,19 +167,31 @@
             curved_panel.Size = new Size(886, 351);
             curved_panel.TabIndex = 44;
             // 
+            // empList
+            // 
+            empList.Cursor = Cursors.IBeam;
+            empList.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            empList.FormattingEnabled = true;
+            empList.Location = new Point(165, 24);
+            empList.Name = "empList";
+            empList.Size = new Size(190, 24);
+            empList.TabIndex = 46;
+            // 
             // save_btn
             // 
+            save_btn.Cursor = Cursors.Hand;
             save_btn.Font = new Font("Arial", 11.25F);
             save_btn.Location = new Point(740, 255);
             save_btn.Name = "save_btn";
             save_btn.Size = new Size(121, 32);
             save_btn.TabIndex = 35;
-            save_btn.Text = "Save";
+            save_btn.Text = "Assign";
             save_btn.UseVisualStyleBackColor = true;
             save_btn.Click += save_btn_Click;
             // 
             // back_btn
             // 
+            back_btn.Cursor = Cursors.Hand;
             back_btn.Font = new Font("Arial", 11.25F);
             back_btn.Location = new Point(740, 293);
             back_btn.Name = "back_btn";
@@ -186,14 +200,6 @@
             back_btn.Text = "Back";
             back_btn.UseVisualStyleBackColor = true;
             back_btn.Click += back_btn_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Arial Narrow", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(165, 25);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(201, 21);
-            textBox1.TabIndex = 30;
             // 
             // search_lb
             // 
@@ -238,9 +244,9 @@
         private LinkLabel linkLabel1;
         private DataGridView dgv_assignbenefits;
         private GradientPanel curved_panel;
-        private TextBox textBox1;
-        private Label search_lb;
         private Button save_btn;
         private Button back_btn;
+        private Label search_lb;
+        private ComboBox empList;
     }
 }
