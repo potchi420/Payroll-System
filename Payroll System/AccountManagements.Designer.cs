@@ -129,10 +129,11 @@
             // 
             // new_password_value
             // 
+            new_password_value.Font = new Font("Arial", 11.25F);
             new_password_value.Location = new Point(16, 377);
             new_password_value.Name = "new_password_value";
-            new_password_value.Size = new Size(315, 23);
-            new_password_value.TabIndex = 10;
+            new_password_value.Size = new Size(315, 25);
+            new_password_value.TabIndex = 7;
             // 
             // label1
             // 
@@ -169,15 +170,17 @@
             btnsave.Location = new Point(189, 421);
             btnsave.Name = "btnsave";
             btnsave.Size = new Size(142, 29);
-            btnsave.TabIndex = 7;
+            btnsave.TabIndex = 10;
             btnsave.Text = "Save Changes";
             btnsave.UseVisualStyleBackColor = false;
+            btnsave.Click += btnsave_Click;
             // 
             // cur_password_value
             // 
+            cur_password_value.Font = new Font("Arial", 11.25F);
             cur_password_value.Location = new Point(15, 296);
             cur_password_value.Name = "cur_password_value";
-            cur_password_value.Size = new Size(317, 23);
+            cur_password_value.Size = new Size(317, 25);
             cur_password_value.TabIndex = 6;
             // 
             // lblpassword
@@ -192,9 +195,10 @@
             // 
             // new_username_value
             // 
+            new_username_value.Font = new Font("Arial", 11.25F);
             new_username_value.Location = new Point(16, 213);
             new_username_value.Name = "new_username_value";
-            new_username_value.Size = new Size(316, 23);
+            new_username_value.Size = new Size(316, 25);
             new_username_value.TabIndex = 4;
             // 
             // lblnew
@@ -206,7 +210,6 @@
             lblnew.Size = new Size(125, 19);
             lblnew.TabIndex = 3;
             lblnew.Text = "New Username";
-            lblnew.Click += lblnew_Click;
             // 
             // lblcurrent
             // 
@@ -217,15 +220,14 @@
             lblcurrent.Size = new Size(149, 19);
             lblcurrent.TabIndex = 2;
             lblcurrent.Text = "Current Username";
-            lblcurrent.Click += lblcurrent_Click;
             // 
             // cur_username_value
             // 
+            cur_username_value.Font = new Font("Arial", 11.25F);
             cur_username_value.Location = new Point(16, 126);
             cur_username_value.Name = "cur_username_value";
-            cur_username_value.Size = new Size(316, 23);
+            cur_username_value.Size = new Size(316, 25);
             cur_username_value.TabIndex = 1;
-            cur_username_value.TextChanged += textBox1_TextChanged;
             // 
             // lblheader
             // 
@@ -263,7 +265,7 @@
             home_btn.TabIndex = 24;
             home_btn.Text = "Home";
             home_btn.TextAlign = ContentAlignment.TopCenter;
-            home_btn.Click += home_btn_Click;
+            home_btn.Click += home_btn_Click_1;
             // 
             // logout_btn
             // 
@@ -333,19 +335,19 @@
         private PictureBox logo;
         private Panel pnlmain;
         private Label lblcurrent;
-        private TextBox cur_username_value;
         private Label lblheader;
-        private TextBox new_username_value;
         private Label lblnew;
         private Button btnsave;
-        private TextBox cur_password_value;
         private Label lblpassword;
         private Button btnback;
         private Label home_btn;
         private Label logout_btn;
         private Label label6;
         private PictureBox logo_btn;
-        private TextBox new_password_value;
         private Label label1;
+        public TextBox cur_username_value;
+        public TextBox new_username_value;
+        public TextBox cur_password_value;
+        public TextBox new_password_value;
     }
 }

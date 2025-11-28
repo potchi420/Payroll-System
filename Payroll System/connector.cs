@@ -18,7 +18,9 @@ namespace Payroll_System
         public static class SessionData
         {
             public static int? EmployeeID { get; set; }
+            public static int UserID { get; set; }
         }
+
 
         public void connection()
         {
@@ -71,35 +73,33 @@ namespace Payroll_System
             try
             {
                 connection();
-                string sql = "SELECT employee_id FROM [login] WHERE username = @user AND password = @pass";
+                string sql = "SELECT user_id, employee_id FROM [login] WHERE username = @user AND password = @pass";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@user", username);
                     cmd.Parameters.AddWithValue("@pass", password);
 
-                    object result = cmd.ExecuteScalar();
-                    if (result != null)
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (result != DBNull.Value)
-                            return (true, Convert.ToInt32(result)); // employee login
+                        if (reader.Read())
+                        {
+                            Connector.SessionData.UserID = (int)reader["user_id"];
+                            Connector.SessionData.EmployeeID = reader["employee_id"] == DBNull.Value
+                                ? (int?)null
+                                : (int)reader["employee_id"];
+
+                            return (true, Connector.SessionData.EmployeeID);
+                        }
                         else
-                            return (true, null); // admin login
-                    }
-                    else
-                    {
-                        return (false, null); // login not found
+                        {
+                            return (false, null); 
+                        }
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Error: " + ex.Message);
                 return (false, null);
-            }
-            finally
-            {
-                if (con != null && con.State == ConnectionState.Open)
-                    con.Close();
             }
         }
         public void LoadEmployeeNamesByDate(ComboBox cmbname, DateTime startDate, DateTime endDate)

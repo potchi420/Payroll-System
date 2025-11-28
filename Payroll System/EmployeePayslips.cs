@@ -372,5 +372,12 @@ namespace Payroll_System
                 payslipGrid.Columns["View"].DisplayIndex = payslipGrid.Columns.Count - 1;
             }
         }
+
+        private void acc_management_btn_Click(object sender, EventArgs e)
+        {
+            AccountManagements am = new AccountManagements();
+            am.Show();
+            this.Hide();
+        }
     }
 }

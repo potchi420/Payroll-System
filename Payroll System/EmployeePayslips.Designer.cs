@@ -44,6 +44,7 @@
             label2 = new Label();
             year_fiter = new ComboBox();
             filter = new Button();
+            acc_management_btn = new Button();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo_btn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)payslipGrid).BeginInit();
@@ -219,11 +220,22 @@
             filter.UseVisualStyleBackColor = false;
             filter.Click += filter_Click;
             // 
+            // acc_management_btn
+            // 
+            acc_management_btn.Location = new Point(826, 475);
+            acc_management_btn.Name = "acc_management_btn";
+            acc_management_btn.Size = new Size(96, 43);
+            acc_management_btn.TabIndex = 41;
+            acc_management_btn.Text = "account management";
+            acc_management_btn.UseVisualStyleBackColor = true;
+            acc_management_btn.Click += acc_management_btn_Click;
+            // 
             // EmployeePayslips
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
+            Controls.Add(acc_management_btn);
             Controls.Add(filter);
             Controls.Add(label2);
             Controls.Add(year_fiter);
@@ -258,5 +270,6 @@
         private Label label2;
         private ComboBox year_fiter;
         private Button filter;
+        private Button acc_management_btn;
     }
 }

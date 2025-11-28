@@ -239,7 +239,7 @@ namespace Payroll_System
                 message.Body = $"Hello {firstName},\n\nYour account has been created.\n\nUsername: {username}\nPassword: {password}\n\nPlease change your password after logging in.";
 
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.Credentials = new NetworkCredential("payrollsystemm@gmail.com", "qytn rqet tetq qtoj"); // login niyo to if itetest niyo to
+                smtp.Credentials = new NetworkCredential("payrollsystemm@gmail.com", "vgit lcvy muai knjk"); // login niyo to if itetest niyo to
                 smtp.EnableSsl = true;
                 smtp.Send(message);
 
