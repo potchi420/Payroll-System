@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Payroll_System
@@ -16,10 +10,13 @@ namespace Payroll_System
         public UserManagement()
         {
             InitializeComponent();
+            LoadUserTable();
         }
+
         public static class dbConnector
         {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            private static readonly string connectionString =
+                "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             public static SqlConnection GetConnection()
             {
@@ -29,21 +26,57 @@ namespace Payroll_System
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-            EmployeePayslips ep = new EmployeePayslips();
+            // Admin-only navigation
+            dashboard db = new dashboard();
+            db.Show();
             this.Hide();
-            ep.Show();
         }
 
         private void logo_btn_Click(object sender, EventArgs e)
         {
-            EmployeePayslips ep = new EmployeePayslips();
-            this.Hide();
-            ep.Show();
+            home_btn_Click(sender, e); // same as Home
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoadUserTable()
+        {
+            using (SqlConnection conn = dbConnector.GetConnection())
+            {
+                conn.Open();
+                string query = @"
+                    SELECT 
+                        l.user_id,
+                        l.username,
+                        CASE 
+                            WHEN l.employee_id IS NOT NULL THEN 'Employee'
+                            ELSE 'Admin'
+                        END AS role,
+                        ISNULL(uc.email, '—') AS email
+                    FROM login l
+                    LEFT JOIN UserContact uc ON l.user_id = uc.user_id";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                userAccounts.DataSource = dt;
+                userAccounts.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                userAccounts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                userAccounts.AllowUserToResizeColumns = false;
+                userAccounts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                userAccounts.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        private void add_admin_Click(object sender, EventArgs e)
+        {
+            Register registerForm = new Register();
+            registerForm.Show();
+            this.Hide();
         }
     }
 }

@@ -37,7 +37,15 @@ namespace Payroll_System
 
         private void btnusermanagement_Click(object sender, EventArgs e)
         {
-
+            UserManagement um = new UserManagement();
+            um.Show();
+            this.Hide();
+        }
+        private void lblusermanagement_Click(object sender, EventArgs e)
+        {
+            UserManagement um = new UserManagement();
+            um.Show();
+            this.Hide();
         }
 
         private void btnacccountmanagement_Click(object sender, EventArgs e)
@@ -49,11 +57,6 @@ namespace Payroll_System
         }
 
         private void btndataupdates_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblusermanagement_Click(object sender, EventArgs e)
         {
 
         }
