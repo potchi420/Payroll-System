@@ -197,9 +197,9 @@
             label4.Location = new Point(681, 343);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
-            label4.Size = new Size(124, 13);
+            label4.Size = new Size(116, 13);
             label4.TabIndex = 15;
-            label4.Text = "Don't Have An Account?";
+            label4.Text = "Forgot Your Password?";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
             // register_link
@@ -213,10 +213,10 @@
             register_link.Location = new Point(805, 343);
             register_link.Margin = new Padding(0);
             register_link.Name = "register_link";
-            register_link.Size = new Size(70, 13);
+            register_link.Size = new Size(58, 13);
             register_link.TabIndex = 16;
             register_link.TabStop = true;
-            register_link.Text = "Register Now";
+            register_link.Text = "Reset Here";
             register_link.LinkClicked += register_link_LinkClicked;
             // 
             // btnblogin
@@ -235,7 +235,6 @@
             // 
             label10.AutoSize = true;
             label10.BackColor = Color.Transparent;
-            label10.Cursor = Cursors.Default;
             label10.Font = new Font("Calisto MT", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = SystemColors.ControlLightLight;
             label10.Location = new Point(132, 100);
@@ -248,7 +247,6 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.Transparent;
-            pictureBox5.Cursor = Cursors.Default;
             pictureBox5.Image = Properties.Resources.icon;
             pictureBox5.Location = new Point(116, 139);
             pictureBox5.Name = "pictureBox5";
@@ -261,7 +259,6 @@
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
-            label6.Cursor = Cursors.Default;
             label6.Font = new Font("Calisto MT", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = SystemColors.ControlLightLight;
             label6.Location = new Point(132, 398);
@@ -301,7 +298,6 @@
             Controls.Add(label5);
             Controls.Add(username);
             Controls.Add(label3);
-            Cursor = Cursors.Default;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;

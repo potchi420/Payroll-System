@@ -21,10 +21,10 @@ namespace Payroll_System
         private void register_btn_Click(object sender, EventArgs e)
         {
             Connector conn = new Connector();
-            conn.dataSend(register_username.Text, register_password.Text);
+            conn.dataSend(register_username.Text, register_password.Text, email.Text);
 
-            Login login = new Login();
-            login.Show();
+            UserManagement um = new UserManagement();
+            um.Show();
             this.Hide();
         }
 

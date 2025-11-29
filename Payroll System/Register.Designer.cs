@@ -42,6 +42,8 @@
             label7 = new Label();
             label9 = new Label();
             gradientPanel3 = new GradientPanel();
+            email = new TextBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             gradientPanel3.SuspendLayout();
@@ -91,7 +93,7 @@
             label3.BackColor = Color.White;
             label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(674, 213);
+            label3.Location = new Point(674, 202);
             label3.Name = "label3";
             label3.Size = new Size(80, 18);
             label3.TabIndex = 9;
@@ -100,17 +102,17 @@
             // register_btn
             // 
             register_btn.ForeColor = Color.Black;
-            register_btn.Location = new Point(738, 363);
+            register_btn.Location = new Point(735, 381);
             register_btn.Name = "register_btn";
             register_btn.Size = new Size(75, 26);
             register_btn.TabIndex = 14;
-            register_btn.Text = "Register";
+            register_btn.Text = "Create";
             register_btn.UseVisualStyleBackColor = true;
             register_btn.Click += register_btn_Click;
             // 
             // register_username
             // 
-            register_username.Location = new Point(674, 234);
+            register_username.Location = new Point(674, 223);
             register_username.Name = "register_username";
             register_username.Size = new Size(197, 23);
             register_username.TabIndex = 13;
@@ -122,7 +124,7 @@
             label5.BackColor = Color.White;
             label5.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(676, 272);
+            label5.Location = new Point(676, 261);
             label5.Name = "label5";
             label5.Size = new Size(78, 18);
             label5.TabIndex = 12;
@@ -130,7 +132,7 @@
             // 
             // register_password
             // 
-            register_password.Location = new Point(674, 293);
+            register_password.Location = new Point(674, 282);
             register_password.Name = "register_password";
             register_password.PasswordChar = '*';
             register_password.Size = new Size(197, 23);
@@ -202,12 +204,33 @@
             gradientPanel3.Size = new Size(539, 617);
             gradientPanel3.TabIndex = 19;
             // 
+            // email
+            // 
+            email.Location = new Point(676, 339);
+            email.Name = "email";
+            email.Size = new Size(197, 23);
+            email.TabIndex = 21;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.White;
+            label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(676, 318);
+            label1.Name = "label1";
+            label1.Size = new Size(48, 18);
+            label1.TabIndex = 20;
+            label1.Text = "Email";
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1014, 611);
+            Controls.Add(email);
+            Controls.Add(label1);
             Controls.Add(gradientPanel3);
             Controls.Add(label8);
             Controls.Add(register_password);
@@ -240,5 +263,7 @@
         private Label label7;
         private Label label9;
         private GradientPanel gradientPanel3;
+        private TextBox email;
+        private Label label1;
     }
 }

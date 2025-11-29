@@ -11,6 +11,7 @@ namespace Payroll_System
         {
             InitializeComponent();
             LoadUserTable();
+            LoadUsernames(searchbox);
         }
 
         public static class dbConnector
@@ -77,6 +78,32 @@ namespace Payroll_System
             Register registerForm = new Register();
             registerForm.Show();
             this.Hide();
+        }
+        public void LoadUsernames(ComboBox searchbox)
+        {
+            string query = "SELECT user_id, username FROM login";
+
+            using (SqlConnection connector = dbConnector.GetConnection())
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connector);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    searchbox.DataSource = dt;
+                    searchbox.DisplayMember = "username";   // What user sees
+                    searchbox.ValueMember = "user_id";      // The actual value behind each item
+                    searchbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                    searchbox.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    searchbox.SelectedIndex = -1;
+                    searchbox.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading usernames: " + ex.Message);
+                }
+            }
         }
     }
 }

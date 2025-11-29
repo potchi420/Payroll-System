@@ -41,19 +41,33 @@ namespace Payroll_System
 
 
 
-        public void dataSend(string username, string password)
+        public void dataSend(string username, string password, string email)
         {
             try
             {
                 connection();
 
-                string sql = "INSERT INTO [login] (username, password) VALUES (@register_username, @register_password)";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                string sqlLogin = @"
+            INSERT INTO [login] (username, password) 
+            OUTPUT INSERTED.user_id
+            VALUES (@register_username, @register_password)";
+
+                int newUserId;
+                using (SqlCommand cmd = new SqlCommand(sqlLogin, con))
                 {
                     cmd.Parameters.AddWithValue("@register_username", username);
                     cmd.Parameters.AddWithValue("@register_password", password);
 
-                    cmd.ExecuteNonQuery();
+                    newUserId = (int)cmd.ExecuteScalar();
+                }
+
+                string sqlContact = "INSERT INTO UserContact (user_id, email) VALUES (@user_id, @register_email)";
+                using (SqlCommand cmdContact = new SqlCommand(sqlContact, con))
+                {
+                    cmdContact.Parameters.AddWithValue("@user_id", newUserId);
+                    cmdContact.Parameters.AddWithValue("@register_email", email);
+
+                    cmdContact.ExecuteNonQuery();
                 }
 
                 MessageBox.Show("Registration successful!");
