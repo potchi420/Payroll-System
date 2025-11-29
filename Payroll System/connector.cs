@@ -45,8 +45,43 @@ namespace Payroll_System
         {
             try
             {
+                // Basic input validation
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    MessageBox.Show("Username cannot be empty.");
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(password))
+                {
+                    MessageBox.Show("Password cannot be empty.");
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    MessageBox.Show("Email cannot be empty.");
+                    return;
+                }
+                if (!email.Contains("@") || !email.Contains("."))
+                {
+                    MessageBox.Show("Invalid email format.");
+                    return;
+                }
+
                 connection();
 
+                string checkSql = "SELECT COUNT(*) FROM [login] WHERE username = @username";
+                using (SqlCommand checkCmd = new SqlCommand(checkSql, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@username", username);
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Username already exists. Please choose another.");
+                        return;
+                    }
+                }
+
+                // Insert into login and get new user_id
                 string sqlLogin = @"
             INSERT INTO [login] (username, password) 
             OUTPUT INSERTED.user_id
@@ -61,6 +96,7 @@ namespace Payroll_System
                     newUserId = (int)cmd.ExecuteScalar();
                 }
 
+                // Insert into UserContact
                 string sqlContact = "INSERT INTO UserContact (user_id, email) VALUES (@user_id, @register_email)";
                 using (SqlCommand cmdContact = new SqlCommand(sqlContact, con))
                 {

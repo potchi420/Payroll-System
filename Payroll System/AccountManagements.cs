@@ -100,6 +100,7 @@ namespace Payroll_System
             string newUsername = new_username_value.Text.Trim();
             string newPassword = new_password_value.Text.Trim();
 
+            // Validate current input
             if (string.IsNullOrEmpty(curUsername) || string.IsNullOrEmpty(curPassword))
             {
                 MessageBox.Show("Please enter your current username and password.");
@@ -110,6 +111,44 @@ namespace Payroll_System
             {
                 MessageBox.Show("Invalid current username or password.");
                 return;
+            }
+
+            //Validate new input
+            if (string.IsNullOrEmpty(newUsername))
+            {
+                MessageBox.Show("New username cannot be empty.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(newPassword))
+            {
+                MessageBox.Show("New password cannot be empty.");
+                return;
+            }
+
+            if (newPassword.Length < 6)
+            {
+                MessageBox.Show("Password must be at least 6 characters long.");
+                return;
+            }
+
+            //Check for duplicate username
+            using (SqlConnection conn = dbConnector.GetConnection())
+            {
+                conn.Open();
+                string checkSql = "SELECT COUNT(*) FROM login WHERE username = @username AND user_id <> @userId";
+                using (SqlCommand checkCmd = new SqlCommand(checkSql, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@username", newUsername);
+                    checkCmd.Parameters.AddWithValue("@userId", Connector.SessionData.UserID);
+
+                    int count = (int)checkCmd.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        MessageBox.Show("Username already exists. Please choose another.");
+                        return;
+                    }
+                }
             }
 
             EmailVerification ev = new EmailVerification(this);
