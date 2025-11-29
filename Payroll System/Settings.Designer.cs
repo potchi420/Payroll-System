@@ -155,9 +155,9 @@
             lblusermanagement.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblusermanagement.Location = new Point(167, 213);
             lblusermanagement.Name = "lblusermanagement";
-            lblusermanagement.Size = new Size(356, 17);
+            lblusermanagement.Size = new Size(218, 17);
             lblusermanagement.TabIndex = 1;
-            lblusermanagement.Text = "Create and manage user accounts and their access levels.\r\n";
+            lblusermanagement.Text = "Create and manage user accounts.\r\n";
             lblusermanagement.Click += lblusermanagement_Click;
             // 
             // btndataupdates
@@ -325,7 +325,6 @@
             Controls.Add(lbldataupdates);
             Controls.Add(btnusermanagement);
             Controls.Add(btndataupdates);
-            Cursor = Cursors.Arrow;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Settings";
             Text = "Settings";

@@ -40,32 +40,56 @@ namespace Payroll_System
             }
         }
 
-        private void home_btn_Click_1(object sender, EventArgs e)
-        {
-            dashboard db = new dashboard();
-            db.Show();
-            this.Show();
-            this.Hide();
-        }
-
         private void logout_btn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        private void home_btn_Click_1(object sender, EventArgs e)
+        {
+            if (isEmployee)
+            {
+                EmployeePayslips payslips = new EmployeePayslips();
+                payslips.Show();
+            }
+            else
+            {
+                dashboard db = new dashboard();
+                db.Show();
+            }
+
+            this.Hide(); 
+        }
+
         private void logo_btn_Click(object sender, EventArgs e)
         {
-            dashboard db = new dashboard();
-            db.Show();
-            this.Show();
+            if (isEmployee)
+            {
+                EmployeePayslips payslips = new EmployeePayslips();
+                payslips.Show();
+            }
+            else
+            {
+                dashboard db = new dashboard();
+                db.Show();
+            }
+
             this.Hide();
         }
 
         private void btnback_Click(object sender, EventArgs e)
         {
-            Settings s = new Settings();
-            s.Show();
-            this.Show();
+            if (isEmployee)
+            {
+                EmployeePayslips payslips = new EmployeePayslips();
+                payslips.Show();
+            }
+            else
+            {
+                Settings s = new Settings();
+                s.Show();
+            }
+
             this.Hide();
         }
 
