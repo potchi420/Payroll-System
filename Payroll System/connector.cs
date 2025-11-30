@@ -24,7 +24,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=RENZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -355,17 +355,17 @@ ORDER BY a.attendance_id;
         // deleted the data. things in here
         // might need it again tho
         public bool DisplayEmployeeSalary(
- int attendanceID,
- Label grosspay,
- Label sss,
- Label philhealth,
- Label pagibig,
- Label totaldeductions,
- Label netpay,
- Label overtime,
- Label salary,
- DateTimePicker start_date,
- DateTimePicker end_date)
+    int attendanceID,
+    Label grosspay,
+    Label sss,
+    Label philhealth,
+    Label pagibig,
+    Label totaldeductions,
+    Label netpay,
+    Label overtime,
+    Label salary,
+    DateTimePicker start_date,
+    DateTimePicker end_date)
         {
             double sssRate = 0.045;
             double philRate = 0.025;
@@ -373,23 +373,23 @@ ORDER BY a.attendance_id;
 
             try
             {
-                // Ensure the connection is open
                 connection();
 
                 string query = @"
-       SELECT 
-           e.first_name, 
-           e.last_name,
-           a.days_worked,
-           a.overtime_hours,
-           e.salary,
-           a.start_date,
-           a.end_date
-       FROM attendance a
-       INNER JOIN employee e 
-           ON e.employee_id = a.employee_id
-       WHERE a.attendance_id = @attid
-   ";
+            SELECT 
+                e.employee_id,
+                e.first_name, 
+                e.last_name,
+                a.days_worked,
+                a.overtime_hours,
+                e.salary AS monthly_salary,
+                a.start_date,
+                a.end_date
+            FROM attendance a
+            INNER JOIN employee e 
+                ON e.employee_id = a.employee_id
+            WHERE a.attendance_id = @attid
+        ";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -399,45 +399,63 @@ ORDER BY a.attendance_id;
                     {
                         if (reader.Read())
                         {
-                            // Load dates
+                            int empID = Convert.ToInt32(reader["employee_id"]);
+                            int dayWorked = Convert.ToInt32(reader["days_worked"]);
+                            int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
+                            double monthlySalary = Convert.ToDouble(reader["monthly_salary"]);
+
                             DateTime sDate = Convert.ToDateTime(reader["start_date"]);
                             DateTime eDate = Convert.ToDateTime(reader["end_date"]);
 
                             start_date.Value = sDate;
                             end_date.Value = eDate;
 
-                            // Load attendance and salary data
-                            int dayWorked = Convert.ToInt32(reader["days_worked"]);
-                            int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
-                            double salaryPerDay = Convert.ToDouble(reader["salary"]);
+                            // ✅ Convert monthly salary → salary per day
+                            double salaryPerDay = monthlySalary / 30;
 
-                            // Compute salary
+                            // Salary computation
                             double totalSalary = dayWorked * salaryPerDay;
                             double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25;
-                            double grossSalary = totalSalary + overtimePay;
 
+                            reader.Close();
+
+                            // ✅ Load Benefits
+                            double totalBenefits = 0;
+                            using (SqlCommand bcmd = new SqlCommand(
+                                "SELECT SUM(amount) FROM AssignedBenefits WHERE employee_id = @empID", con))
+                            {
+                                bcmd.Parameters.AddWithValue("@empID", empID);
+                                object result = bcmd.ExecuteScalar();
+                                totalBenefits = (result != DBNull.Value) ? Convert.ToDouble(result) : 0;
+                            }
+
+                            // ✅ Add benefits to gross salary
+                            double grossSalary = totalSalary + overtimePay + totalBenefits;
+
+                            // Deductions
                             double sssAmount = grossSalary * sssRate;
                             double philAmount = grossSalary * philRate;
                             double pagibigAmount = grossSalary * pagibigRate;
-                            double totalDeductions = sssAmount + philAmount + pagibigAmount;
-                            double netSalary = grossSalary - totalDeductions;
+                            double totalDeductionsValue = sssAmount + philAmount + pagibigAmount;
 
-                            // Assign values to labels
+                            double netSalary = grossSalary - totalDeductionsValue;
+
+                            // OUTPUT
                             salary.Text = $"₱{salaryPerDay:N2}";
                             grosspay.Text = $"₱{grossSalary:N2}";
                             sss.Text = $"₱{sssAmount:N2}";
                             philhealth.Text = $"₱{philAmount:N2}";
                             pagibig.Text = $"₱{pagibigAmount:N2}";
-                            totaldeductions.Text = $"₱{totalDeductions:N2}";
+                            totaldeductions.Text = $"₱{totalDeductionsValue:N2}";
                             netpay.Text = $"₱{netSalary:N2}";
                             overtime.Text = $"₱{overtimePay:N2}";
 
-                            return true; // Salary loaded successfully
+                            return true;
                         }
                         else
                         {
-                            MessageBox.Show("No attendance record found for this selection.");
-                            return false; // No data found
+                            MessageBox.Show("No attendance record found.");
+                            return false;
                         }
                     }
                 }
@@ -445,13 +463,14 @@ ORDER BY a.attendance_id;
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading salary: " + ex.Message);
-                return false; // Error occurred
+                return false;
             }
         }
 
 
 
-            public void SaveOrUpdatePayslip(
+
+        public void SaveOrUpdatePayslip(
         int employeeID,
         DateTimePicker startDatePicker,
         DateTimePicker endDatePicker,

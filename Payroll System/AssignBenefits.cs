@@ -17,7 +17,7 @@ namespace Payroll_System
         }
         public static class dbConnector
         {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+            private static readonly string connectionString = "Data Source=RENZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;TrustServerCertificate=True";
 
             public static SqlConnection GetConnection()
             {
@@ -39,7 +39,7 @@ namespace Payroll_System
                    b.benefit_type,
                    ab.amount,
                    ab.date_assigned
-            FROM Employee e
+            FROM employee e
             INNER JOIN AssignedBenefits ab ON e.employee_id = ab.employee_id
             INNER JOIN BenefitCatalog b ON ab.benefit_id = b.benefit_id";
 
@@ -114,7 +114,7 @@ namespace Payroll_System
             string query = @"
         SELECT DISTINCT e.employee_id, 
                (e.first_name + ' ' + e.last_name) AS FullName
-        FROM Employee e
+        FROM employee e
         INNER JOIN AssignedBenefits ab ON e.employee_id = ab.employee_id";
 
             using (SqlConnection connector = dbConnector.GetConnection())
