@@ -431,7 +431,6 @@
             // 
             // end_date
             // 
-            
             end_date.Location = new Point(5, 126);
             end_date.Name = "end_date";
             end_date.Size = new Size(261, 24);
@@ -448,7 +447,6 @@
             // 
             // start_date
             // 
-            
             start_date.Location = new Point(4, 61);
             start_date.Name = "start_date";
             start_date.Size = new Size(261, 24);

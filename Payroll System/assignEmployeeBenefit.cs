@@ -74,7 +74,7 @@ namespace Payroll_System
                     bool isAssigned = reader.GetInt32(3) == 1;
 
                     string displayText = $"{benefitType} (₱{defaultAmount:N2})";
-                    benefitsList.Items.Add(new BenefitItem(benefitId, displayText), isAssigned);
+                    benefitsList.Items.Add(new BenefitItem(benefitId, displayText, defaultAmount), isAssigned);
                 }
             }
         }
@@ -83,11 +83,13 @@ namespace Payroll_System
         {
             public int Id { get; }
             public string DisplayText { get; }
+            public decimal DefaultAmount { get; }
 
-            public BenefitItem(int id, string text)
+            public BenefitItem(int id, string text, decimal amount)
             {
                 Id = id;
                 DisplayText = text;
+                DefaultAmount = amount;
             }
 
             public override string ToString()
@@ -162,13 +164,15 @@ namespace Payroll_System
                 {
                     BenefitItem benefit = (BenefitItem)item;
 
-                    string insertQuery = "INSERT INTO AssignedBenefits (employee_id, benefit_id, amount, date_assigned) VALUES (@empId, @benefitId, @amount, GETDATE())";
+                    string insertQuery = @"INSERT INTO AssignedBenefits 
+                           (employee_id, benefit_id, amount, date_assigned) 
+                           VALUES (@empId, @benefitId, @amount, GETDATE())";
 
                     using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
                     {
                         insertCmd.Parameters.AddWithValue("@empId", employeeId);
                         insertCmd.Parameters.AddWithValue("@benefitId", benefit.Id);
-                        insertCmd.Parameters.AddWithValue("@amount", 0); 
+                        insertCmd.Parameters.AddWithValue("@amount", benefit.DefaultAmount);
                         insertCmd.ExecuteNonQuery();
                     }
                 }

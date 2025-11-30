@@ -24,7 +24,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=RENZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;TrustServerCertificate=True";
+            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -448,7 +448,7 @@ ORDER BY a.attendance_id;
                             pagibig.Text = $"₱{pagibigAmount:N2}";
                             totaldeductions.Text = $"₱{totalDeductionsValue:N2}";
                             netpay.Text = $"₱{netSalary:N2}";
-                            overtime.Text = $"₱{overtimePay:N2}";
+                            overtime.Text = $"₱{overtimePay + totalBenefits:N2}";
 
                             return true;
                         }
