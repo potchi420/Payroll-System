@@ -1,8 +1,9 @@
 ﻿using DocumentFormat.OpenXml.Office.CoverPageProps;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using Spire.Pdf;
 using Org.BouncyCastle.Ocsp;
+using Spire.Pdf;
+using System.Data.SqlClient;
 
 
 namespace Payroll_System
@@ -14,7 +15,7 @@ namespace Payroll_System
         public int currentID;
         private string lastGeneratedFilePath = null;
         private bool payslipGenerated = false;
-
+        PayslipData data = new PayslipData();
         public Payroll_process()
         {
             InitializeComponent();
@@ -26,20 +27,37 @@ namespace Payroll_System
 
         public class PayslipData
         {
-            public int employeeID { get; set; }
+            public int EmployeeID { get; set; }
             public string FullName { get; set; }
             public string Department { get; set; }
+
             public DateTime PayPeriodStart { get; set; }
             public DateTime PayPeriodEnd { get; set; }
+
             public int DaysWorked { get; set; }
             public int OvertimeHours { get; set; }
-            public decimal overtimePay { get; set; }
-            public decimal DailyRate { get; set; }
-            public decimal BasicPay { get; set; }
-            public List<(string BenefitName, decimal Amount)> Benefits { get; set; } = new();
-            public List<(string DeductionType, decimal Amount)> Deductions { get; set; } = new();
+
+            public decimal SalaryPerDay { get; set; }
+            public decimal monthlySalary { get; set; }
+            public decimal OvertimePay { get; set; }
+            public int TotalBenefits { get; set; }
+            public int GrossPay { get; set; }
+
+            public decimal SSS { get; set; }
+            public decimal PhilHealth { get; set; }
+            public decimal PagIBIG { get; set; }
+            public decimal TotalDeductions { get; set; }
+
             public decimal NetPay { get; set; }
-            public decimal GrossPay { get; set; }   
+        }
+        public static class dbConnector
+        {
+            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
+
+            public static SqlConnection GetConnection()
+            {
+                return new SqlConnection(connectionString);
+            }
         }
 
 
@@ -49,17 +67,15 @@ namespace Payroll_System
         {
             try
             {
-                // 1️⃣ Validate that a record is selected
                 if (cmbname.SelectedValue == null || !int.TryParse(cmbname.SelectedValue.ToString(), out int attendanceID))
                 {
                     MessageBox.Show("Please select a valid attendance record.");
-                    salaryLoaded = false; // ensure flag is false if no selection
+                    salaryLoaded = false; // boolean flag
                     return;
                 }
 
-                // 2️⃣ Load employee salary using DisplayEmployeeSalary
                 Connector cn = new Connector();
-                salaryLoaded = cn.DisplayEmployeeSalary(
+                data = cn.DisplayEmployeeSalary(
                     attendanceID,
                     gross_pay_value,
                     sss_value,
@@ -73,21 +89,22 @@ namespace Payroll_System
                     end_date
                 );
 
-                // 3️⃣ Check if load was successful
-                if (salaryLoaded)
+                if (data != null)  
                 {
+                    salaryLoaded = true; 
                     currentID = cn.GetEmployeeIDFromAttendance(attendanceID);
                 }
                 else
                 {
                     MessageBox.Show("Failed to load salary. Please check the attendance record.");
+                    salaryLoaded = false;
                     currentID = 0;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading employee salary: " + ex.Message);
-                salaryLoaded = false; // prevent accidental save
+                salaryLoaded = false;
                 currentID = 0;
             }
         }
@@ -131,8 +148,11 @@ namespace Payroll_System
             {
                 if (currentID > 0)
                 {
-                    Connector cn = new Connector();
-                    PayslipData data = cn.GetPayslipData(currentID);
+                    if (data == null || string.IsNullOrWhiteSpace(data.FullName))
+                    {
+                        MessageBox.Show("Payslip data is missing. Please load the employee first.");
+                        return;
+                    }
 
                     string safeName = data.FullName.Replace(" ", "_");
                     string start = data.PayPeriodStart.ToString("dd-MM-yyyy");
@@ -146,7 +166,7 @@ namespace Payroll_System
                     }
 
                     string filePath = Path.Combine(directoryPath, fileName);
-                    GeneratePayslipPDF(filePath, data);
+                    GeneratePayslipPDF(filePath);
 
                     lastGeneratedFilePath = filePath;
                     payslipGenerated = true;
@@ -162,7 +182,7 @@ namespace Payroll_System
             }
         }
 
-        public void GeneratePayslipPDF(string filePath, PayslipData data)
+        public void GeneratePayslipPDF(string filePath)
         {
             Document doc = new Document(PageSize.A4, 50, 50, 25, 25);
             PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
@@ -221,17 +241,40 @@ namespace Payroll_System
                 earningsTable.AddCell(new PdfPCell(new Phrase(amount, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
             }
 
-            AddEarning("Daily Pay", $"₱{data.DailyRate:N2}");
-            AddEarning("Overtime Pay", $"₱{data.overtimePay:N2}");
+            AddEarning("Monthly Salary", $"₱{data.monthlySalary:N2}");
+            AddEarning("Overtime Pay", $"₱{data.OvertimePay:N2}");
             AddEarning("Gross Pay", $"₱{data.GrossPay:N2}");
 
-            foreach (var benefit in data.Benefits)
-                AddEarning(benefit.BenefitName, $"₱{benefit.Amount:N2}");
-
-            decimal totalEarnings = data.GrossPay + data.Benefits.Sum(b => b.Amount);
+            decimal totalEarnings = data.GrossPay + data.TotalBenefits;
             AddEarning("Total Earnings", $"₱{totalEarnings:N2}");
 
             doc.Add(earningsTable);
+            doc.Add(new Paragraph("\n"));
+
+            doc.Add(new Paragraph("Benefits", sectionFont));
+            PdfPTable benefitTable = new PdfPTable(2);
+            benefitTable.WidthPercentage = 100;
+            benefitTable.SetWidths(new float[] { 70f, 30f });
+
+            void AddBenefit(string type, string amount)
+            {
+                benefitTable.AddCell(new PdfPCell(new Phrase(type, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
+                benefitTable.AddCell(new PdfPCell(new Phrase(amount, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+            }
+
+            // Query assigned benefits
+            List<BenefitItem> assignedBenefits = GetAssignedBenefits(data.EmployeeID);
+
+            decimal totalBenefits = 0;
+            foreach (var benefit in assignedBenefits)
+            {
+                AddBenefit(benefit.BenefitName, $"₱{benefit.Amount:N2}");
+                totalBenefits += benefit.Amount;
+            }
+
+            AddBenefit("Total Benefits", $"₱{totalBenefits:N2}");
+
+            doc.Add(benefitTable);
             doc.Add(new Paragraph("\n"));
 
             // Deductions Section
@@ -246,15 +289,15 @@ namespace Payroll_System
                 deductionsTable.AddCell(new PdfPCell(new Phrase(amount, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
             }
 
-            foreach (var deduction in data.Deductions)
-                AddDeduction(deduction.DeductionType, $"-₱{deduction.Amount:N2}");
 
-            decimal totalDeductions = data.Deductions.Sum(d => d.Amount);
-            AddDeduction("Total Deductions", $"₱{totalDeductions:N2}");
+            AddDeduction("SSS", $"₱{data.SSS:N2}");
+            AddDeduction("PhilHealth", $"₱{data.PhilHealth:N2}");
+            AddDeduction("Pag-IBIG", $"₱{data.PagIBIG:N2}");
+
+            AddDeduction("Total Deductions", $"₱{data.TotalDeductions:N2}");
 
             doc.Add(deductionsTable);
             doc.Add(new Paragraph("\n"));
-
 
             // Net Pay
             Paragraph netPay = new Paragraph($"Net Pay: ₱{data.NetPay:N2}", sectionFont);
@@ -503,6 +546,43 @@ namespace Payroll_System
 
             cn.LoadEmployeeNamesByDate(cmbname, start_date.Value, end_date.Value);
             //
+        }
+
+        public List<BenefitItem> GetAssignedBenefits(int employeeId)
+        {
+            var benefits = new List<BenefitItem>();
+
+            using (SqlConnection con = dbConnector.GetConnection())
+            {
+                string query = @"
+            SELECT bc.benefit_type, ab.amount
+            FROM AssignedBenefits ab
+            JOIN BenefitCatalog bc ON ab.benefit_id = bc.benefit_id
+            WHERE ab.employee_id = @empId";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@empId", employeeId);
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string type = reader.GetString(0);
+                            decimal amount = reader.GetDecimal(1);
+                            benefits.Add(new BenefitItem { BenefitName = type, Amount = amount });
+                        }
+                    }
+                }
+            }
+
+            return benefits;
+        }
+
+        public class BenefitItem
+        {
+            public string BenefitName { get; set; }
+            public decimal Amount { get; set; }
         }
     }
 }

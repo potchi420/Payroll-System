@@ -271,90 +271,9 @@ ORDER BY a.attendance_id;
 
 
 
-        public PayslipData GetPayslipData(int employeeID)
-        {
-            PayslipData data = new PayslipData();
-
-            double sssRate = 0.045;
-            double philRate = 0.025;
-            double pagibigRate = 0.02;
-
-            connection(); // open SQL connection
-
-            string query = @"
-        SELECT 
-            e.first_name, 
-            e.last_name,
-            d.department_name,
-            a.days_worked,
-            a.overtime_hours,
-            e.salary
-        FROM employee e
-        INNER JOIN attendance a ON e.employee_id = a.employee_id
-        LEFT JOIN department d ON e.department_id = d.department_id
-        WHERE e.employee_id = @id";
-
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            {
-                cmd.Parameters.AddWithValue("@id", employeeID);
-
-                try
-                {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            int daysWorked = Convert.ToInt32(reader["days_worked"]);
-                            int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
-                            double dailyRate = Convert.ToDouble(reader["salary"]);
-
-                            double basicPay = daysWorked * dailyRate;
-                            double overtimePay = overtimeHours * (dailyRate / 8) * 1.25;
-                            double gross = basicPay + overtimePay;
-
-                            double sss = gross * sssRate;
-                            double phil = gross * philRate;
-                            double pagibig = gross * pagibigRate;
-                            double totalDeductions = sss + phil + pagibig;
-                            double net = gross - totalDeductions;
-
-                            data.employeeID = employeeID;
-                            data.FullName = reader["first_name"] + " " + reader["last_name"];
-                            data.Department = reader["department_name"].ToString();
-                            data.PayPeriodStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                            data.PayPeriodEnd = data.PayPeriodStart.AddMonths(1).AddDays(-1);
-                            data.DaysWorked = daysWorked;
-                            data.OvertimeHours = overtimeHours;
-                            data.DailyRate = Convert.ToDecimal(dailyRate);
-                            data.BasicPay = Convert.ToDecimal(basicPay);
-                            data.GrossPay = Convert.ToDecimal(gross);
-                            data.overtimePay = Convert.ToDecimal(overtimePay);
-                            data.NetPay = Convert.ToDecimal(net);
-
-                            data.Deductions.Add(("SSS", Convert.ToDecimal(sss)));
-                            data.Deductions.Add(("PhilHealth", Convert.ToDecimal(phil)));
-                            data.Deductions.Add(("Pag-IBIG", Convert.ToDecimal(pagibig)));
-
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error retrieving payslip data: " + ex.Message);
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
-
-            return data;
-        }
-
-
         // deleted the data. things in here
         // might need it again tho
-        public bool DisplayEmployeeSalary(
+        public PayslipData DisplayEmployeeSalary(
     int attendanceID,
     Label grosspay,
     Label sss,
@@ -371,25 +290,29 @@ ORDER BY a.attendance_id;
             double philRate = 0.025;
             double pagibigRate = 0.02;
 
+            PayslipData data = new PayslipData();
+
             try
             {
                 connection();
 
                 string query = @"
-            SELECT 
-                e.employee_id,
-                e.first_name, 
-                e.last_name,
-                a.days_worked,
-                a.overtime_hours,
-                e.salary AS monthly_salary,
-                a.start_date,
-                a.end_date
-            FROM attendance a
-            INNER JOIN employee e 
-                ON e.employee_id = a.employee_id
-            WHERE a.attendance_id = @attid
-        ";
+                SELECT 
+                    e.employee_id,
+                    e.first_name,
+                    e.last_name,
+                    d.department_name,    
+                    a.days_worked,
+                    a.overtime_hours,
+                    e.salary AS monthly_salary,
+                    a.start_date,
+                    a.end_date
+                FROM attendance a
+                INNER JOIN employee e 
+                    ON e.employee_id = a.employee_id
+                INNER JOIN department d       
+                    ON e.department_id = d.department_id
+                WHERE a.attendance_id = @attid;";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -403,23 +326,19 @@ ORDER BY a.attendance_id;
                             int dayWorked = Convert.ToInt32(reader["days_worked"]);
                             int overtimeHours = Convert.ToInt32(reader["overtime_hours"]);
                             double monthlySalary = Convert.ToDouble(reader["monthly_salary"]);
-
                             DateTime sDate = Convert.ToDateTime(reader["start_date"]);
                             DateTime eDate = Convert.ToDateTime(reader["end_date"]);
+                            string fullName = reader["first_name"].ToString() + " " + reader["last_name"].ToString();
+                            string department = reader["department_name"].ToString();
+                            reader.Close();
 
                             start_date.Value = sDate;
                             end_date.Value = eDate;
 
-                            // ✅ Convert monthly salary → salary per day
                             double salaryPerDay = monthlySalary / 30;
-
-                            // Salary computation
                             double totalSalary = dayWorked * salaryPerDay;
                             double overtimePay = overtimeHours * (salaryPerDay / 8) * 1.25;
 
-                            reader.Close();
-
-                            // ✅ Load Benefits
                             double totalBenefits = 0;
                             using (SqlCommand bcmd = new SqlCommand(
                                 "SELECT SUM(amount) FROM AssignedBenefits WHERE employee_id = @empID", con))
@@ -429,18 +348,13 @@ ORDER BY a.attendance_id;
                                 totalBenefits = (result != DBNull.Value) ? Convert.ToDouble(result) : 0;
                             }
 
-                            // ✅ Add benefits to gross salary
                             double grossSalary = totalSalary + overtimePay + totalBenefits;
-
-                            // Deductions
                             double sssAmount = grossSalary * sssRate;
                             double philAmount = grossSalary * philRate;
                             double pagibigAmount = grossSalary * pagibigRate;
                             double totalDeductionsValue = sssAmount + philAmount + pagibigAmount;
-
                             double netSalary = grossSalary - totalDeductionsValue;
 
-                            // OUTPUT
                             salary.Text = $"₱{salaryPerDay:N2}";
                             grosspay.Text = $"₱{grossSalary:N2}";
                             sss.Text = $"₱{sssAmount:N2}";
@@ -450,12 +364,30 @@ ORDER BY a.attendance_id;
                             netpay.Text = $"₱{netSalary:N2}";
                             overtime.Text = $"₱{overtimePay + totalBenefits:N2}";
 
-                            return true;
+                            data.EmployeeID = empID;
+                            data.FullName = fullName;
+                            data.Department = department;
+                            data.PayPeriodStart = sDate;
+                            data.PayPeriodEnd = eDate;
+                            data.DaysWorked = dayWorked;
+                            data.OvertimeHours = overtimeHours;
+                            data.SalaryPerDay = Convert.ToDecimal(salaryPerDay);
+                            data.monthlySalary = Convert.ToDecimal(monthlySalary);
+                            data.OvertimePay = Convert.ToDecimal(overtimePay);
+                            data.TotalBenefits = Convert.ToInt32(totalBenefits);
+                            data.GrossPay = Convert.ToInt32(grossSalary);
+                            data.SSS = Convert.ToDecimal(sssAmount);
+                            data.PhilHealth = Convert.ToDecimal(philAmount);
+                            data.PagIBIG = Convert.ToDecimal(pagibigAmount);
+                            data.TotalDeductions = Convert.ToDecimal(totalDeductionsValue);
+                            data.NetPay = Convert.ToDecimal(netSalary);
+
+                            return data;
                         }
                         else
                         {
                             MessageBox.Show("No attendance record found.");
-                            return false;
+                            return null;
                         }
                     }
                 }
@@ -463,7 +395,7 @@ ORDER BY a.attendance_id;
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading salary: " + ex.Message);
-                return false;
+                return null;
             }
         }
 
@@ -865,6 +797,14 @@ ORDER BY a.attendance_id;
             }
 
             return employeeID;
+        }
+
+
+
+        public class BenefitItem
+        {
+            public string BenefitName { get; set; }
+            public decimal Amount { get; set; }
         }
 
     }
