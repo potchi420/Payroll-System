@@ -24,7 +24,7 @@ namespace Payroll_System
 
         public void connection()
         {
-            string cs = "Data Source=RENZ\\SQLEXPRESS;Initial Catalog=Payroll_db;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+            string cs = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
             try
             {
@@ -222,22 +222,26 @@ namespace Payroll_System
             try
             {
                 string query = @"
-SELECT 
-    ISNULL(a.attendance_id, 0) AS attendance_id,      -- Prevent NULL ID
-    e.employee_id,
-    (
-        e.first_name + ' ' + e.last_name
-        + CASE 
-            WHEN a.attendance_id IS NOT NULL 
-                THEN ' – ' + CONVERT(varchar(10), a.start_date, 120)
-                     + ' to ' + CONVERT(varchar(10), a.end_date, 120)
-            ELSE ' – No Attendance'
-          END
-    ) AS FullDisplay
-FROM employee e
-LEFT JOIN attendance a 
-    ON e.employee_id = a.employee_id
-ORDER BY e.employee_id, a.attendance_id;
+    SELECT 
+        ISNULL(a.attendance_id, 0) AS attendance_id,
+        e.employee_id,
+        (
+            e.first_name + ' ' + e.last_name +
+            CASE 
+                WHEN a.attendance_id IS NOT NULL THEN 
+                    ' – ' + CONVERT(varchar(10), a.start_date, 120) + 
+                    ' to ' + CONVERT(varchar(10), a.end_date, 120)
+                ELSE 
+                    ' – No Attendance'
+            END
+        ) AS FullDisplay
+    FROM employee e
+    LEFT JOIN attendance a ON e.employee_id = a.employee_id
+    ORDER BY 
+        CASE WHEN a.attendance_id IS NULL THEN 0 ELSE 1 END,
+        e.first_name,
+        e.last_name,
+        a.start_date DESC;
 ";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
