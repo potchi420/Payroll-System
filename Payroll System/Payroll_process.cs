@@ -3,6 +3,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Org.BouncyCastle.Ocsp;
 using Spire.Pdf;
+using System.Data;
 using System.Data.SqlClient;
 
 
@@ -67,16 +68,23 @@ namespace Payroll_System
         {
             try
             {
-                if (cmbname.SelectedValue == null || !int.TryParse(cmbname.SelectedValue.ToString(), out int attendanceID))
+                if (cmbname.SelectedItem == null)
                 {
-                    MessageBox.Show("Please select a valid attendance record.");
-                    salaryLoaded = false; // boolean flag
+                    MessageBox.Show("Please select a valid employee.");
+                    salaryLoaded = false;
                     return;
                 }
+
+                // Attendance ID comes from ValueMember
+                int attendanceID = Convert.ToInt32(cmbname.SelectedValue);
+
+                // Employee ID comes from the DataRowView
+                int employeeID = Convert.ToInt32(((DataRowView)cmbname.SelectedItem)["employee_id"]);
 
                 Connector cn = new Connector();
                 data = cn.DisplayEmployeeSalary(
                     attendanceID,
+                    employeeID,  
                     gross_pay_value,
                     sss_value,
                     philhealth_value,
@@ -89,14 +97,18 @@ namespace Payroll_System
                     end_date
                 );
 
-                if (data != null)  
+                if (data != null)
                 {
-                    salaryLoaded = true; 
-                    currentID = cn.GetEmployeeIDFromAttendance(attendanceID);
+                    salaryLoaded = true;
+                    currentID = employeeID; 
+                    if (attendanceID == 0)
+                    {
+                        MessageBox.Show("This employee has no attendance records. Payslip generated with default values.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Failed to load salary. Please check the attendance record.");
+                    MessageBox.Show("Failed to load salary. Please check the employee record.");
                     salaryLoaded = false;
                     currentID = 0;
                 }
