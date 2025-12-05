@@ -43,7 +43,7 @@
             label7 = new Label();
             label8 = new Label();
             label4 = new Label();
-            register_link = new LinkLabel();
+            reset_link = new LinkLabel();
             btnblogin = new Button();
             label10 = new Label();
             pictureBox5 = new PictureBox();
@@ -202,22 +202,22 @@
             label4.Text = "Forgot Your Password?";
             label4.TextAlign = ContentAlignment.TopCenter;
             // 
-            // register_link
+            // reset_link
             // 
-            register_link.ActiveLinkColor = SystemColors.Highlight;
-            register_link.AutoSize = true;
-            register_link.BackColor = Color.Transparent;
-            register_link.Cursor = Cursors.Hand;
-            register_link.Font = new Font("Calisto MT", 8F);
-            register_link.LinkColor = Color.FromArgb(33, 145, 245);
-            register_link.Location = new Point(804, 343);
-            register_link.Margin = new Padding(0);
-            register_link.Name = "register_link";
-            register_link.Size = new Size(58, 13);
-            register_link.TabIndex = 16;
-            register_link.TabStop = true;
-            register_link.Text = "Reset Here";
-            register_link.LinkClicked += register_link_LinkClicked;
+            reset_link.ActiveLinkColor = SystemColors.Highlight;
+            reset_link.AutoSize = true;
+            reset_link.BackColor = Color.Transparent;
+            reset_link.Cursor = Cursors.Hand;
+            reset_link.Font = new Font("Calisto MT", 8F);
+            reset_link.LinkColor = Color.FromArgb(33, 145, 245);
+            reset_link.Location = new Point(804, 343);
+            reset_link.Margin = new Padding(0);
+            reset_link.Name = "reset_link";
+            reset_link.Size = new Size(58, 13);
+            reset_link.TabIndex = 16;
+            reset_link.TabStop = true;
+            reset_link.Text = "Reset Here";
+            reset_link.LinkClicked += reset_link_LinkClicked;
             // 
             // btnblogin
             // 
@@ -291,7 +291,7 @@
             ClientSize = new Size(1066, 611);
             Controls.Add(btnblogin);
             Controls.Add(gradientPanel3);
-            Controls.Add(register_link);
+            Controls.Add(reset_link);
             Controls.Add(label4);
             Controls.Add(label8);
             Controls.Add(password);
@@ -333,7 +333,7 @@
         private Label label9;
         private PictureBox pictureBox3;
         private Label label4;
-        private LinkLabel register_link;
+        private LinkLabel reset_link;
         private Button btnblogin;
         private Label label10;
         private PictureBox pictureBox5;

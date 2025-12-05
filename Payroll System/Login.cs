@@ -60,5 +60,12 @@ namespace Payroll_System
                 MessageBox.Show("Invalid username or password");
             }
         }
+
+        private void reset_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgotPassword f = new ForgotPassword();
+            f.Show();
+            this.Hide();
+        }
     }
 }
