@@ -12,10 +12,11 @@
   <ItemGroup>
     <None Remove="Resources\blank-avatar-photo-place-holder-600nw-1095249842-removebg-preview.png" />
     <None Remove="Resources\signature_transparent.png" />
+    <None Remove="Resources\signature_transparent1.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\signature_transparent.png">
+    <Content Include="Resources\signature_transparent1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

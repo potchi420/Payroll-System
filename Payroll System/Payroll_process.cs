@@ -317,61 +317,58 @@ namespace Payroll_System
             doc.Add(new Paragraph($"In Words: {ConvertToWords(data.NetPay)}", italicFont));
             doc.Add(new Paragraph("\n"));
 
-            // Load employer signature image
-            iTextSharp.text.Image employerSign = iTextSharp.text.Image.GetInstance("Resources/signature_transparent.png");
-            employerSign.ScaleAbsolute(120f, 40f);   // adjust size as needed
+            // employer signature section
+            iTextSharp.text.Image employerSign = iTextSharp.text.Image.GetInstance("Resources/signature_transparent1.png");
+            employerSign.ScaleAbsolute(120f, 40f);
             employerSign.Alignment = Element.ALIGN_CENTER;
 
-            // Signature Section
-            PdfPTable signTable = new PdfPTable(2);
-            signTable.WidthPercentage = 100;
-            signTable.SetWidths(new float[] { 50f, 50f });
-
-            // Employer signature cell with nested layout
             PdfPTable employerInnerTable = new PdfPTable(1);
             employerInnerTable.WidthPercentage = 100;
 
-            // Signature image
             PdfPCell imageCell = new PdfPCell(employerSign);
             imageCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             imageCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            imageCell.PaddingBottom = 5f;
             employerInnerTable.AddCell(imageCell);
 
-            // Signature line
             PdfPCell lineCell = new PdfPCell(new Phrase("________________________", valueFont));
             lineCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             lineCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            lineCell.PaddingBottom = 2f;
             employerInnerTable.AddCell(lineCell);
 
-            // Label
             PdfPCell labelCell = new PdfPCell(new Phrase("Employer Signature", valueFont));
             labelCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             labelCell.HorizontalAlignment = Element.ALIGN_CENTER;
             employerInnerTable.AddCell(labelCell);
 
-            // Wrap nested table in outer cell
             PdfPCell employerCell = new PdfPCell(employerInnerTable);
             employerCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             employerCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            signTable.AddCell(employerCell);
+            employerCell.FixedHeight = 100f;
 
-            // Employee signature cell
+
+            // employee signature section
             PdfPCell employeeCell = new PdfPCell();
             employeeCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             employeeCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            employeeCell.FixedHeight = 100f;
 
-            employeeCell.AddElement(new Paragraph("\n\n"));
-            employeeCell.AddElement(new Paragraph("________________________", valueFont) { Alignment = Element.ALIGN_CENTER });
-            employeeCell.AddElement(new Paragraph("Employee Signature", valueFont) { Alignment = Element.ALIGN_CENTER });
+            Paragraph employeeBlock = new Paragraph();
+            employeeBlock.Alignment = Element.ALIGN_CENTER;
+            employeeBlock.Add(new Chunk("\n\n________________________", valueFont));
+            employeeBlock.Add(new Chunk("\nEmployee Signature", valueFont));
 
+            employeeCell.AddElement(employeeBlock);
+
+
+            // add to table + footer
+            PdfPTable signTable = new PdfPTable(2);
+            signTable.WidthPercentage = 100;
+            signTable.SetWidths(new float[] { 50f, 50f });
+            signTable.AddCell(employerCell);
             signTable.AddCell(employeeCell);
 
-            // Add signature table to document
             doc.Add(signTable);
 
-            // Footer
             Paragraph footer = new Paragraph("\nThis is a system-generated payslip. No signature is required.", italicFont);
             footer.Alignment = Element.ALIGN_CENTER;
             doc.Add(footer);
