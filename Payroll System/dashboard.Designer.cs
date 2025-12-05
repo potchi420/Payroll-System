@@ -396,12 +396,12 @@
             // 
             ave_pay.AutoSize = true;
             ave_pay.Font = new Font("Arial", 26.25F);
-            ave_pay.Location = new Point(57, 62);
+            ave_pay.Location = new Point(48, 62);
             ave_pay.Margin = new Padding(0);
             ave_pay.Name = "ave_pay";
-            ave_pay.Size = new Size(126, 40);
+            ave_pay.Size = new Size(145, 40);
             ave_pay.TabIndex = 31;
-            ave_pay.Text = "₱1,100";
+            ave_pay.Text = "₱13,100";
             // 
             // dept_list
             // 
