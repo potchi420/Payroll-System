@@ -86,7 +86,8 @@ namespace Payroll_System
 
         public void LoadEmployeeNames(ComboBox searchbox)
         {
-            string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+            string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName " +
+                           "FROM employee WHERE is_active = 1";
 
             using (SqlConnection connector = dbConnector.GetConnection())
             {
@@ -97,13 +98,12 @@ namespace Payroll_System
                     adapter.Fill(dt);
 
                     searchbox.DataSource = dt;
-                    searchbox.DisplayMember = "FullName";   // What user sees
-                    searchbox.ValueMember = "employee_id";  // The actual value behind each item
+                    searchbox.DisplayMember = "FullName";
+                    searchbox.ValueMember = "employee_id";
                     searchbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     searchbox.AutoCompleteSource = AutoCompleteSource.ListItems;
                     searchbox.SelectedIndex = -1;
                     searchbox.Text = "";
-
                 }
                 catch (Exception ex)
                 {

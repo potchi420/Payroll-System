@@ -204,9 +204,11 @@ namespace Payroll_System
 
             using (SqlConnection connector = dbConnector.GetConnection())
             {
-                string add_emp = @"INSERT INTO employee (first_name, last_name, [Contact no.], address, department_id, salary, last_update, email)
-                                                VALUES (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email);
-                                                SELECT SCOPE_IDENTITY();";
+                string add_emp = @"INSERT INTO employee 
+                    (first_name, last_name, [Contact no.], address, department_id, salary, last_update, email, is_active)
+                    VALUES 
+                    (@FirstName, @LastName, @contact_no, @Address, @department_id, @Salary, @last_update, @email, 1);
+                    SELECT SCOPE_IDENTITY();";
                 using (SqlCommand cmd = new SqlCommand(add_emp, connector))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", firstName);

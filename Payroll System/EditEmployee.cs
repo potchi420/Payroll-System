@@ -47,7 +47,6 @@ namespace Payroll_System
                     {
                         if (reader.Read())
                         {
-                            // Assuming you have textboxes named txtName, txtDepartment, txtEmail
                             first_name.Text = reader["first_name"].ToString();
                             last_name.Text = reader["last_name"].ToString();
                             contact_no.Text = reader["Contact no."].ToString();
@@ -218,9 +217,10 @@ namespace Payroll_System
                                     "address = @Address, " +
                                     "department_id = @department_id, " +
                                     "salary = @Salary, " +
-                                    "last_update = @last_update " +
+                                    "last_update = @last_update, " +
                                     "email = @email " +
                                     "WHERE employee_id = @employee_id";
+
                 using (SqlCommand cmd = new SqlCommand(update_emp, connector))
                 {
                     cmd.Parameters.AddWithValue("@FirstName", first_name.Text);

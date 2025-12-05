@@ -65,7 +65,7 @@ namespace Payroll_System
         private void LoadInitialEmployees()
         {
             string query = @"
-            SELECT TOP 50 
+            SELECT 
                 e.employee_id AS [Employee ID],
                 (e.first_name + ' ' + e.last_name) AS [Full Name],
                 e.address AS [Address],
@@ -75,7 +75,8 @@ namespace Payroll_System
                 e.last_update AS [Last Updated],
                 e.email AS [Email]
             FROM employee e
-            INNER JOIN department d ON e.department_id = d.department_id";
+            INNER JOIN department d ON e.department_id = d.department_id
+            WHERE e.is_active = 1";
 
 
             dataGridViewEmployees.DataSource = GetEmployees(query);
@@ -120,14 +121,13 @@ namespace Payroll_System
 
         private void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return; //ignore header clicks
+            if (e.RowIndex < 0) return;
 
             string column = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
 
-            //this makes it so that only the 2 btns are clickable
             if (column == "remove_employee_btn" || column == "edit_employee_btn")
             {
-                object idValue = dataGridViewEmployees.Rows[e.RowIndex].Cells["employee_id"].Value;
+                object idValue = dataGridViewEmployees.Rows[e.RowIndex].Cells["Employee ID"].Value;
                 if (idValue == null || idValue == DBNull.Value) return;
 
                 int empID = Convert.ToInt32(idValue);
@@ -135,17 +135,11 @@ namespace Payroll_System
                 if (column == "remove_employee_btn")
                 {
                     DialogResult result = MessageBox.Show(
-                        "Are you sure you want to delete this?",
-                        "Confirm Delete",
+                        "Are you sure you want to deactivate this employee?",
+                        "Confirm Deactivate",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning
                     );
-
-                    // this has an error where you're not able to delete an employee if the employee has a payslip record
-                    // a simple fix for this is to delete the payslip record too    
-                    // but i dont think deleting a payslip record is good practice for a payroll system
-                    // for that should we add like a boolean "is_active" column in the db for this??
-                    // this still isnt fixed
 
                     if (result == DialogResult.Yes)
                     {
@@ -162,8 +156,8 @@ namespace Payroll_System
 
                         using (SqlConnection connector = dbConnector.GetConnection())
                         {
-                            string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
-                            using (SqlCommand cmd = new SqlCommand(deleteQuery, connector))
+                            string deactivateQuery = "UPDATE employee SET is_active = 0 WHERE employee_id = @empID";
+                            using (SqlCommand cmd = new SqlCommand(deactivateQuery, connector))
                             {
                                 cmd.Parameters.AddWithValue("@empID", empID);
                                 connector.Open();
@@ -171,7 +165,7 @@ namespace Payroll_System
                             }
                         }
 
-                        MessageBox.Show("Employee details deleted successfully!");
+                        MessageBox.Show("Employee has been deactivated successfully!");
                         reloadForm();
                     }
                 }
@@ -197,7 +191,8 @@ namespace Payroll_System
 
         public void LoadEmployeeNames(ComboBox searchbox)
         {
-            string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName FROM employee";
+            string query = "SELECT employee_id, (first_name + ' ' + last_name) AS FullName " +
+                           "FROM employee WHERE is_active = 1";
 
             using (SqlConnection connector = dbConnector.GetConnection())
             {
@@ -208,13 +203,12 @@ namespace Payroll_System
                     adapter.Fill(dt);
 
                     searchbox.DataSource = dt;
-                    searchbox.DisplayMember = "FullName";   // What user sees
-                    searchbox.ValueMember = "employee_id";  // The actual value behind each item
+                    searchbox.DisplayMember = "FullName";
+                    searchbox.ValueMember = "employee_id";
                     searchbox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                     searchbox.AutoCompleteSource = AutoCompleteSource.ListItems;
                     searchbox.SelectedIndex = -1;
                     searchbox.Text = "";
-
                 }
                 catch (Exception ex)
                 {

@@ -5,6 +5,7 @@ using Org.BouncyCastle.Ocsp;
 using Spire.Pdf;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 
@@ -455,6 +456,7 @@ namespace Payroll_System
 
                 MessageBox.Show("Payslip successfully saved!");
                 salaryLoaded = false;
+                payslipSaved = true;
             }
             catch (Exception ex)
             {
@@ -463,44 +465,44 @@ namespace Payroll_System
         }
 
 
-        // make this open the saved payslip from the file_path column in the payslip 
         private void print_payslip_btn_Click(object sender, EventArgs e)
         {
-            /*
+            if (currentID <= 0)
+            {
+                MessageBox.Show("Please load an employee first.");
+                return;
+            }
+
+            if (!payslipGenerated)
+            {
+                MessageBox.Show("Please generate the payslip first.");
+                return;
+            }
+
+            if (!payslipSaved)
+            {
+                MessageBox.Show("Please save the payslip before printing.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(lastGeneratedFilePath) || !File.Exists(lastGeneratedFilePath))
+            {
+                MessageBox.Show("Payslip file not found. Please generate and save it again.");
+                return;
+            }
+
             try
             {
-                if (currentID > 0)
+                System.Diagnostics.Process.Start(new ProcessStartInfo()
                 {
-                    Connector cn = new Connector();
-                    PayslipData data = cn.GetPayslipData(currentID);
-
-                    string safeName = data.FullName.Replace(" ", "_");
-                    string start = data.PayPeriodStart.ToString("dd-MM-yyyy");
-                    string end = data.PayPeriodEnd.ToString("dd-MM-yyyy");
-                    string fileName = $"{safeName}_{start}_{end}.pdf";
-                    string filePath = Path.Combine(@"C:\Users\franz\Downloads", fileName);
-
-                    // Step 1: Generate the PDF
-                    GeneratePayslipPDF(filePath, data);
-
-                    // Step 2: Load and print using FreeSpire.PDF
-                    PdfDocument doc = new PdfDocument();
-                    doc.LoadFromFile(filePath);
-
-                    // Print using Spire.Pdf's Print() method
-                    doc.Pri
-                    doc.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Please load an employee first.");
-                }
+                    FileName = lastGeneratedFilePath,
+                    UseShellExecute = true
+                });
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error printing payslip: " + ex.Message);
+                MessageBox.Show("Error opening payslip: " + ex.Message);
             }
-        */
         }
 
         private void logobtn_Click(object sender, EventArgs e)

@@ -110,24 +110,32 @@ namespace Payroll_System
 
         private void LoadInitialEmployees()
         {
-            string query = "SELECT TOP 50 employee_id, department_id, (first_name + ' ' + last_name) AS name, salary FROM employee";
-            string countQuery = "SELECT COUNT(*) AS total FROM employee";
+            string query = @"
+            SELECT TOP 50 
+                employee_id AS [Employee ID],
+                department_id AS [Department ID],
+                (first_name + ' ' + last_name) AS [Name],
+                salary AS [Salary]
+            FROM employee
+            WHERE is_active = 1
+            ORDER BY employee_id ASC";
+
+            string countQuery = "SELECT COUNT(*) AS total FROM employee WHERE is_active = 1";
+
             emp_list.DataSource = connector(query);
-            // Auto-size columns to fit content
+
             emp_list.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             emp_list.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             emp_list.AllowUserToResizeColumns = false;
-            emp_list.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             emp_list.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             emp_list.DefaultCellStyle.SelectionBackColor = emp_list.DefaultCellStyle.BackColor;
             emp_list.DefaultCellStyle.SelectionForeColor = emp_list.DefaultCellStyle.ForeColor;
 
-            // Get department count from query result
             DataTable countTable = connector(countQuery);
             if (countTable.Rows.Count > 0)
             {
                 int count = Convert.ToInt32(countTable.Rows[0]["total"]);
-                total_emp.Text = count.ToString(); // Update label
+                total_emp.Text = count.ToString();
             }
         }
         private void LoadDepartments()

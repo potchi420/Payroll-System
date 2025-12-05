@@ -222,28 +222,28 @@ namespace Payroll_System
             try
             {
                 string query = @"
-    SELECT 
-        ISNULL(a.attendance_id, 0) AS attendance_id,
-        e.employee_id,
-        (
-            e.first_name + ' ' + e.last_name +
-            CASE 
-                WHEN a.attendance_id IS NOT NULL THEN 
-                    ' – ' + CONVERT(varchar(10), a.start_date, 120) + 
+                SELECT 
+                    ISNULL(a.attendance_id, 0) AS attendance_id,
+                    e.employee_id,
+                    (
+                        e.first_name + ' ' + e.last_name +
+                        CASE 
+                            WHEN a.attendance_id IS NOT NULL THEN 
+                                ' – ' + CONVERT(varchar(10), a.start_date, 120) + 
 
-                    ' to ' + CONVERT(varchar(10), a.end_date, 120)
-                ELSE 
-                    ' – No Attendance'
-            END
-        ) AS FullDisplay
-    FROM employee e
-    LEFT JOIN attendance a ON e.employee_id = a.employee_id
-    ORDER BY 
-        CASE WHEN a.attendance_id IS NULL THEN 0 ELSE 1 END,
-        e.first_name,
-        e.last_name,
-        a.start_date DESC;
-";
+                                ' to ' + CONVERT(varchar(10), a.end_date, 120)
+                            ELSE 
+                                ' – No Attendance'
+                        END
+                    ) AS FullDisplay
+                FROM employee e
+                LEFT JOIN attendance a ON e.employee_id = a.employee_id
+                ORDER BY 
+                    CASE WHEN a.attendance_id IS NULL THEN 0 ELSE 1 END,
+                    e.first_name,
+                    e.last_name,
+                    a.start_date DESC;
+            ";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
