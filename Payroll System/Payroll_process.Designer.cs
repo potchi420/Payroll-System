@@ -55,7 +55,7 @@
             actions_box = new GroupBox();
             save_record_btn = new Button();
             print_payslip_btn = new Button();
-            export_btn = new Button();
+            email_btn = new Button();
             generate_payslip_btn = new Button();
             pay_period_box = new GroupBox();
             btn_filter = new Button();
@@ -176,7 +176,7 @@
             load_employee_box.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             load_employee_box.Location = new Point(12, 102);
             load_employee_box.Name = "load_employee_box";
-            load_employee_box.Size = new Size(852, 202);
+            load_employee_box.Size = new Size(829, 202);
             load_employee_box.TabIndex = 15;
             load_employee_box.TabStop = false;
             load_employee_box.Text = "Select Employee";
@@ -337,7 +337,7 @@
             // 
             actions_box.Controls.Add(save_record_btn);
             actions_box.Controls.Add(print_payslip_btn);
-            actions_box.Controls.Add(export_btn);
+            actions_box.Controls.Add(email_btn);
             actions_box.Controls.Add(generate_payslip_btn);
             actions_box.Font = new Font("Arial", 11F);
             actions_box.Location = new Point(612, 489);
@@ -350,7 +350,7 @@
             // save_record_btn
             // 
             save_record_btn.Cursor = Cursors.Hand;
-            save_record_btn.Location = new Point(294, 80);
+            save_record_btn.Location = new Point(294, 34);
             save_record_btn.Name = "save_record_btn";
             save_record_btn.Size = new Size(242, 36);
             save_record_btn.TabIndex = 3;
@@ -361,7 +361,7 @@
             // print_payslip_btn
             // 
             print_payslip_btn.Cursor = Cursors.Hand;
-            print_payslip_btn.Location = new Point(34, 80);
+            print_payslip_btn.Location = new Point(34, 83);
             print_payslip_btn.Name = "print_payslip_btn";
             print_payslip_btn.Size = new Size(242, 36);
             print_payslip_btn.TabIndex = 2;
@@ -369,21 +369,22 @@
             print_payslip_btn.UseVisualStyleBackColor = true;
             print_payslip_btn.Click += print_payslip_btn_Click;
             // 
-            // export_btn
+            // email_btn
             // 
-            export_btn.Cursor = Cursors.Hand;
-            export_btn.Location = new Point(295, 38);
-            export_btn.Name = "export_btn";
-            export_btn.Size = new Size(242, 36);
-            export_btn.TabIndex = 1;
-            export_btn.Text = "Email Payslip";
-            export_btn.UseVisualStyleBackColor = true;
+            email_btn.Cursor = Cursors.Hand;
+            email_btn.Location = new Point(294, 83);
+            email_btn.Name = "email_btn";
+            email_btn.Size = new Size(242, 36);
+            email_btn.TabIndex = 1;
+            email_btn.Text = "Email Payslip";
+            email_btn.UseVisualStyleBackColor = true;
+            email_btn.Click += email_btn_Click;
             // 
             // generate_payslip_btn
             // 
             generate_payslip_btn.BackColor = Color.Transparent;
             generate_payslip_btn.Cursor = Cursors.Hand;
-            generate_payslip_btn.Location = new Point(34, 38);
+            generate_payslip_btn.Location = new Point(34, 34);
             generate_payslip_btn.Name = "generate_payslip_btn";
             generate_payslip_btn.Size = new Size(242, 36);
             generate_payslip_btn.TabIndex = 0;
@@ -400,18 +401,18 @@
             pay_period_box.Controls.Add(start_date);
             pay_period_box.Controls.Add(groupBox1);
             pay_period_box.Font = new Font("Arial", 11F);
-            pay_period_box.Location = new Point(901, 102);
+            pay_period_box.Location = new Point(874, 102);
             pay_period_box.Name = "pay_period_box";
-            pay_period_box.Size = new Size(271, 202);
+            pay_period_box.Size = new Size(298, 202);
             pay_period_box.TabIndex = 18;
             pay_period_box.TabStop = false;
-            pay_period_box.Text = "Pay Period";
+            pay_period_box.Text = "Pay Period Filter";
             // 
             // btn_filter
             // 
             btn_filter.Cursor = Cursors.Hand;
             btn_filter.Font = new Font("Arial", 11F);
-            btn_filter.Location = new Point(40, 156);
+            btn_filter.Location = new Point(62, 156);
             btn_filter.Name = "btn_filter";
             btn_filter.Size = new Size(171, 32);
             btn_filter.TabIndex = 26;
@@ -431,7 +432,7 @@
             // 
             // end_date
             // 
-            end_date.Location = new Point(5, 126);
+            end_date.Location = new Point(18, 126);
             end_date.Name = "end_date";
             end_date.Size = new Size(261, 24);
             end_date.TabIndex = 24;
@@ -447,7 +448,7 @@
             // 
             // start_date
             // 
-            start_date.Location = new Point(4, 61);
+            start_date.Location = new Point(17, 61);
             start_date.Name = "start_date";
             start_date.Size = new Size(261, 24);
             start_date.TabIndex = 22;
@@ -689,7 +690,7 @@
         private GroupBox pay_period_box;
         private Button generate_payslip_btn;
         private Button print_payslip_btn;
-        private Button export_btn;
+        private Button email_btn;
         private Button save_record_btn;
         private Label netpay_label;
         private Label total_deductions_label;

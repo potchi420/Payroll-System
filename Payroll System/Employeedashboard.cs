@@ -91,17 +91,6 @@ namespace Payroll_System
 
         private void SetupGridColumns()
         {
-            // Add Document Button Column
-            DataGridViewButtonColumn docButton = new DataGridViewButtonColumn();
-            docButton.Name = "Document";
-            docButton.HeaderText = "Document";
-            docButton.Text = "📄";
-            /*
-            docButton.DefaultCellStyle.BackColor = Color.DarkBlue;
-            docButton.DefaultCellStyle.ForeColor = Color.White;*/
-            docButton.UseColumnTextForButtonValue = true;
-            dataGridViewEmployees.Columns.Add(docButton);
-
             // Add Edit Button Column
             DataGridViewButtonColumn editButton = new DataGridViewButtonColumn();
             editButton.Name = "edit_employee_btn";
@@ -124,7 +113,6 @@ namespace Payroll_System
             removeButton.UseColumnTextForButtonValue = true;
             dataGridViewEmployees.Columns.Add(removeButton);
 
-            docButton.FlatStyle = FlatStyle.Flat;
             editButton.FlatStyle = FlatStyle.Flat;
             removeButton.FlatStyle = FlatStyle.Flat;
             dataGridViewEmployees.CellContentClick += dataGridViewEmployees_CellContentClick;

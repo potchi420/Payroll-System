@@ -514,19 +514,19 @@ namespace Payroll_System
 
                     if (count > 0)
                     {
-                        // Update existing record
-                        string updateQuery = @"
+                    // Update existing record
+                    string updateQuery = @"
                     UPDATE Payslip
                     SET gross_pay = @gross,
                         net_pay = @net,
                         tax_withheld = @tax,
-                        created_at = @created
-                        ile_path = @file_path
+                        created_at = @created,
+                        file_path = @file_path
                     WHERE employee_id = @employee_id
                       AND pay_period_start = @start
                       AND pay_period_end = @end";
 
-                        using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
+                    using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
                         {
                             updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
                             updateCmd.Parameters.AddWithValue("@net", (float)netPay);

@@ -5,6 +5,8 @@ using Org.BouncyCastle.Ocsp;
 using Spire.Pdf;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 
 
 namespace Payroll_System
@@ -16,6 +18,7 @@ namespace Payroll_System
         public int currentID;
         private string lastGeneratedFilePath = null;
         private bool payslipGenerated = false;
+        private bool payslipSaved = false;
         PayslipData data = new PayslipData();
         public Payroll_process()
         {
@@ -84,7 +87,7 @@ namespace Payroll_System
                 Connector cn = new Connector();
                 data = cn.DisplayEmployeeSalary(
                     attendanceID,
-                    employeeID,  
+                    employeeID,
                     gross_pay_value,
                     sss_value,
                     philhealth_value,
@@ -100,7 +103,7 @@ namespace Payroll_System
                 if (data != null)
                 {
                     salaryLoaded = true;
-                    currentID = employeeID; 
+                    currentID = employeeID;
                     if (attendanceID == 0)
                     {
                         MessageBox.Show("This employee has no attendance records. Payslip generated with default values.");
@@ -182,6 +185,7 @@ namespace Payroll_System
 
                     lastGeneratedFilePath = filePath;
                     payslipGenerated = true;
+                    payslipSaved = false;
                 }
                 else
                 {
@@ -377,67 +381,6 @@ namespace Payroll_System
             MessageBox.Show("Payslip generated successfully.");
         }
 
-        // Convert number to words (for Philippine Peso)
-        public string ConvertToWords(decimal amount)
-        {
-            if (amount == 0)
-                return "Zero Pesos";
-
-            long pesos = (long)Math.Floor(amount);
-            string words = NumberToWords(pesos);
-
-            return $"{words} Pesos";
-        }
-
-        // Helper method to convert number to words
-
-        private string NumberToWords(long number)
-        {
-            if (number == 0)
-                return "zero";
-
-            if (number < 0)
-                return "minus " + NumberToWords(Math.Abs(number));
-
-            string[] units = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
-                       "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-                       "Eighteen", "Nineteen" };
-            string[] tens = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-
-            string result = "";
-
-            if ((number / 1000000) > 0)
-            {
-                result += NumberToWords(number / 1000000) + " Million ";
-                number %= 1000000;
-            }
-
-            if ((number / 1000) > 0)
-            {
-                result += NumberToWords(number / 1000) + " Thousand ";
-                number %= 1000;
-            }
-
-            if ((number / 100) > 0)
-            {
-                result += NumberToWords(number / 100) + " Hundred ";
-                number %= 100;
-            }
-
-            if (number > 0)
-            {
-                if (number < 20)
-                    result += units[number];
-                else
-                {
-                    result += tens[number / 10];
-                    if ((number % 10) > 0)
-                        result += "-" + units[number % 10];
-                }
-            }
-
-            return result.Trim();
-        }
 
         private void save_record_btn_Click(object sender, EventArgs e)
         {
@@ -512,7 +455,6 @@ namespace Payroll_System
 
                 MessageBox.Show("Payslip successfully saved!");
                 salaryLoaded = false;
-                payslipGenerated = false; // reset flag
             }
             catch (Exception ex)
             {
@@ -637,5 +579,187 @@ namespace Payroll_System
             public string BenefitName { get; set; }
             public decimal Amount { get; set; }
         }
+
+
+        private void email_btn_Click(object sender, EventArgs e)
+        {
+            if (!payslipGenerated)
+            {
+                MessageBox.Show("Please generate the payslip first.");
+                return;
+            }
+
+            if (!payslipSaved)
+            {
+                MessageBox.Show("Please save the payslip before emailing.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(lastGeneratedFilePath) || !File.Exists(lastGeneratedFilePath))
+            {
+                MessageBox.Show("Payslip file not found. Please generate and save it again.");
+                return;
+            }
+
+            string email = GetEmployeeEmail(currentID);
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("This employee does not have an email address.");
+                return;
+            }
+
+            SendPayslipEmail(email, lastGeneratedFilePath);
+        }
+        private async void SendPayslipEmail(string emailAddress, string filePath)
+        {
+            //form popup aftter sending an email
+            Form sendingPopup = new Form()
+            {
+                Size = new Size(260, 110),
+                StartPosition = FormStartPosition.CenterParent,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                ControlBox = false,
+                Text = "Please wait"
+            };
+
+            Label lbl = new Label()
+            {
+                Text = "Sending payslip...",
+                AutoSize = true,
+                Font = new System.Drawing.Font("Arial", 10, FontStyle.Regular),
+                Location = new Point(40, 25)
+            };
+
+            sendingPopup.Controls.Add(lbl);
+            sendingPopup.Show();
+            sendingPopup.Refresh(); 
+
+            await Task.Run(() =>
+            {
+                try
+                {
+                    MailMessage message = new MailMessage();
+                    message.From = new MailAddress("payrollsystemm@gmail.com");
+                    message.To.Add(emailAddress);
+                    message.Subject = "Your Payslip";
+                    message.Body = @"Hello,
+
+                    Attached is your payslip for the selected pay period.
+
+                    Please keep this document for your records.
+
+                    If you have any questions, feel free to contact HR.
+
+                    Best regards,
+                    Payroll Department";
+
+                    message.Attachments.Add(new Attachment(filePath));
+
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
+                    {
+                        Credentials = new NetworkCredential("payrollsystemm@gmail.com", "vgit lcvy muai knjk"),
+                        EnableSsl = true
+                    };
+
+                    smtp.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error sending email: " + ex.Message);
+                }
+            });
+
+            sendingPopup.Close();
+
+            MessageBox.Show("Payslip emailed successfully!");
+        }
+
+        private string GetEmployeeEmail(int employeeID)
+        {
+            string email = "";
+
+            try
+            {
+                using (SqlConnection con = dbConnector.GetConnection())
+                using (SqlCommand cmd = new SqlCommand("SELECT email FROM employee WHERE employee_id = @id", con))
+                {
+                    cmd.Parameters.AddWithValue("@id", employeeID);
+                    con.Open();
+
+                    object result = cmd.ExecuteScalar();
+                    email = result?.ToString() ?? "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching email: " + ex.Message);
+            }
+
+            return email;
+        }
+
+        // Convert number to words (for Philippine Peso)
+        public string ConvertToWords(decimal amount)
+        {
+            if (amount == 0)
+                return "Zero Pesos";
+
+            long pesos = (long)Math.Floor(amount);
+            string words = NumberToWords(pesos);
+
+            return $"{words} Pesos";
+        }
+
+        // Helper method to convert number to words
+
+        private string NumberToWords(long number)
+        {
+            if (number == 0)
+                return "zero";
+
+            if (number < 0)
+                return "minus " + NumberToWords(Math.Abs(number));
+
+            string[] units = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                       "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+                       "Eighteen", "Nineteen" };
+            string[] tens = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
+
+            string result = "";
+
+            if ((number / 1000000) > 0)
+            {
+                result += NumberToWords(number / 1000000) + " Million ";
+                number %= 1000000;
+            }
+
+            if ((number / 1000) > 0)
+            {
+                result += NumberToWords(number / 1000) + " Thousand ";
+                number %= 1000;
+            }
+
+            if ((number / 100) > 0)
+            {
+                result += NumberToWords(number / 100) + " Hundred ";
+                number %= 100;
+            }
+
+            if (number > 0)
+            {
+                if (number < 20)
+                    result += units[number];
+                else
+                {
+                    result += tens[number / 10];
+                    if ((number % 10) > 0)
+                        result += "-" + units[number % 10];
+                }
+            }
+
+            return result.Trim();
+        }
     }
 }
+
