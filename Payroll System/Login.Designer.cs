@@ -194,7 +194,7 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Calisto MT", 8F);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(681, 343);
+            label4.Location = new Point(690, 343);
             label4.Margin = new Padding(0);
             label4.Name = "label4";
             label4.Size = new Size(116, 13);
@@ -210,7 +210,7 @@
             register_link.Cursor = Cursors.Hand;
             register_link.Font = new Font("Calisto MT", 8F);
             register_link.LinkColor = Color.FromArgb(33, 145, 245);
-            register_link.Location = new Point(805, 343);
+            register_link.Location = new Point(804, 343);
             register_link.Margin = new Padding(0);
             register_link.Name = "register_link";
             register_link.Size = new Size(58, 13);

@@ -64,9 +64,24 @@ namespace Payroll_System
 
         private void LoadInitialEmployees()
         {
-            string query = "SELECT TOP 50 * FROM employee";
+            string query = @"
+            SELECT TOP 50 
+                e.employee_id AS [Employee ID],
+                (e.first_name + ' ' + e.last_name) AS [Full Name],
+                e.address AS [Address],
+                e.[Contact no.] AS [Contact Number],
+                d.department_name AS [Department],
+                e.salary AS [Salary],
+                e.last_update AS [Last Updated],
+                e.email AS [Email]
+            FROM employee e
+            INNER JOIN department d ON e.department_id = d.department_id";
+
+
             dataGridViewEmployees.DataSource = GetEmployees(query);
             // Auto-size columns to fit content
+            dataGridViewEmployees.Columns["Salary"].DefaultCellStyle.Format = "C2";
+            dataGridViewEmployees.Columns["Salary"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("en-PH");
             dataGridViewEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewEmployees.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
             dataGridViewEmployees.AllowUserToResizeColumns = false;
@@ -114,15 +129,6 @@ namespace Payroll_System
             removeButton.FlatStyle = FlatStyle.Flat;
             dataGridViewEmployees.CellContentClick += dataGridViewEmployees_CellContentClick;
         }
-
-        /*
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            string keyword = txtSearch.Text.Trim();
-            string query = $"SELECT ID, Name, Department, Email FROM Employees WHERE Name LIKE '%{keyword}%'";
-            dataGridViewEmployees.DataSource = GetEmployees(query);
-        }
-        */
 
         private void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

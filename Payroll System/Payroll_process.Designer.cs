@@ -376,7 +376,7 @@
             export_btn.Name = "export_btn";
             export_btn.Size = new Size(242, 36);
             export_btn.TabIndex = 1;
-            export_btn.Text = "Export Payslip";
+            export_btn.Text = "Email Payslip";
             export_btn.UseVisualStyleBackColor = true;
             // 
             // generate_payslip_btn
