@@ -120,25 +120,33 @@ namespace Payroll_System
 
         private void dataGridViewEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex < 0) return; //ignore header clicks
+
+            string column = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
+
+            //this makes it so that only the 2 btns are clickable
+            if (column == "remove_employee_btn" || column == "edit_employee_btn")
             {
-                int empID = Convert.ToInt32(dataGridViewEmployees.Rows[e.RowIndex].Cells["employee_id"].Value);
-                string column = dataGridViewEmployees.Columns[e.ColumnIndex].Name;
+                object idValue = dataGridViewEmployees.Rows[e.RowIndex].Cells["employee_id"].Value;
+                if (idValue == null || idValue == DBNull.Value) return;
 
-                if (column == "Document")
-                {
-                    MessageBox.Show($"Open document for ");
+                int empID = Convert.ToInt32(idValue);
 
-                }
-                else if (column == "remove_employee_btn")
+                if (column == "remove_employee_btn")
                 {
-                    DialogResult result = MessageBox.Show("Are you sure you want to delete this?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = MessageBox.Show(
+                        "Are you sure you want to delete this?",
+                        "Confirm Delete",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
 
                     // this has an error where you're not able to delete an employee if the employee has a payslip record
                     // a simple fix for this is to delete the payslip record too    
                     // but i dont think deleting a payslip record is good practice for a payroll system
                     // for that should we add like a boolean "is_active" column in the db for this??
                     // this still isnt fixed
+
                     if (result == DialogResult.Yes)
                     {
                         using (SqlConnection connector = dbConnector.GetConnection())
@@ -151,6 +159,7 @@ namespace Payroll_System
                                 cmd.ExecuteNonQuery();
                             }
                         }
+
                         using (SqlConnection connector = dbConnector.GetConnection())
                         {
                             string deleteQuery = "DELETE FROM employee WHERE employee_id = @empID";
@@ -161,6 +170,7 @@ namespace Payroll_System
                                 cmd.ExecuteNonQuery();
                             }
                         }
+
                         MessageBox.Show("Employee details deleted successfully!");
                         reloadForm();
                     }
@@ -169,7 +179,6 @@ namespace Payroll_System
                 {
                     EditEmployee editEmployee = new EditEmployee(empID);
                     editEmployee.Show();
-                    this.Show();
                     this.Hide();
                 }
             }
@@ -247,9 +256,9 @@ namespace Payroll_System
 
                 foreach (DataGridViewRow row in dataGridViewEmployees.Rows)
                 {
-                    if (row.Cells["first_name"].Value != null && row.Cells["last_name"].Value != null)
+                    if (row.Cells["Full Name"].Value != null)
                     {
-                        string fullName = (row.Cells["first_name"].Value.ToString() + " " + row.Cells["last_name"].Value.ToString()).ToLower();
+                        string fullName = row.Cells["Full Name"].Value.ToString().ToLower();
 
                         if (fullName == selectedName)
                         {
