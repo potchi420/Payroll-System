@@ -51,7 +51,7 @@
             label10 = new Label();
             label11 = new Label();
             panel5 = new Panel();
-            performance_bonus_value = new Label();
+            other_benefits_value = new Label();
             label14 = new Label();
             leave_pay_value = new Label();
             transportation_allowance_value = new Label();
@@ -100,7 +100,7 @@
             // 
             sss_value.AutoSize = true;
             sss_value.Font = new Font("Arial", 26.75F);
-            sss_value.Location = new Point(91, 73);
+            sss_value.Location = new Point(83, 73);
             sss_value.Margin = new Padding(0);
             sss_value.Name = "sss_value";
             sss_value.Size = new Size(122, 41);
@@ -143,7 +143,7 @@
             // 
             pagibig_value.AutoSize = true;
             pagibig_value.Font = new Font("Arial", 26.75F);
-            pagibig_value.Location = new Point(100, 73);
+            pagibig_value.Location = new Point(92, 73);
             pagibig_value.Margin = new Padding(0);
             pagibig_value.Name = "pagibig_value";
             pagibig_value.Size = new Size(122, 41);
@@ -175,7 +175,7 @@
             // 
             philhealth_value.AutoSize = true;
             philhealth_value.Font = new Font("Arial", 26.75F);
-            philhealth_value.Location = new Point(98, 73);
+            philhealth_value.Location = new Point(90, 73);
             philhealth_value.Margin = new Padding(0);
             philhealth_value.Name = "philhealth_value";
             philhealth_value.Size = new Size(122, 41);
@@ -236,7 +236,7 @@
             // 
             total_benefits_value.AutoSize = true;
             total_benefits_value.Font = new Font("Arial", 14.25F);
-            total_benefits_value.Location = new Point(463, 70);
+            total_benefits_value.Location = new Point(435, 70);
             total_benefits_value.Name = "total_benefits_value";
             total_benefits_value.Size = new Size(61, 22);
             total_benefits_value.TabIndex = 16;
@@ -256,7 +256,7 @@
             // 
             total_tax_value.AutoSize = true;
             total_tax_value.Font = new Font("Arial", 14.25F);
-            total_tax_value.Location = new Point(463, 33);
+            total_tax_value.Location = new Point(435, 33);
             total_tax_value.Name = "total_tax_value";
             total_tax_value.Size = new Size(61, 22);
             total_tax_value.TabIndex = 14;
@@ -308,7 +308,7 @@
             // panel5
             // 
             panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(performance_bonus_value);
+            panel5.Controls.Add(other_benefits_value);
             panel5.Controls.Add(label14);
             panel5.Controls.Add(leave_pay_value);
             panel5.Controls.Add(transportation_allowance_value);
@@ -321,15 +321,15 @@
             panel5.Size = new Size(560, 183);
             panel5.TabIndex = 32;
             // 
-            // performance_bonus_value
+            // other_benefits_value
             // 
-            performance_bonus_value.AutoSize = true;
-            performance_bonus_value.Font = new Font("Arial", 11.25F);
-            performance_bonus_value.Location = new Point(483, 142);
-            performance_bonus_value.Name = "performance_bonus_value";
-            performance_bonus_value.Size = new Size(46, 17);
-            performance_bonus_value.TabIndex = 16;
-            performance_bonus_value.Text = "₱0.00";
+            other_benefits_value.AutoSize = true;
+            other_benefits_value.Font = new Font("Arial", 11.25F);
+            other_benefits_value.Location = new Point(483, 142);
+            other_benefits_value.Name = "other_benefits_value";
+            other_benefits_value.Size = new Size(46, 17);
+            other_benefits_value.TabIndex = 16;
+            other_benefits_value.Text = "₱0.00";
             // 
             // label14
             // 
@@ -337,9 +337,9 @@
             label14.Font = new Font("Arial", 11.25F);
             label14.Location = new Point(21, 142);
             label14.Name = "label14";
-            label14.Size = new Size(138, 17);
+            label14.Size = new Size(106, 17);
             label14.TabIndex = 15;
-            label14.Text = "Perfomance Bonus:";
+            label14.Text = "Other Benefits:";
             // 
             // leave_pay_value
             // 
@@ -542,7 +542,7 @@
         private Label label12;
         private Label overtime_label;
         private Label basic_salary_label;
-        private Label performance_bonus_value;
+        private Label other_benefits_value;
         private Label label14;
         private LinkLabel linkLabel2;
         private Label total_benefits_value;

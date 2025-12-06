@@ -315,10 +315,10 @@ namespace Payroll_System
                 if (attendanceID == 0)
                 {
                     string empQuery = @"
-        SELECT e.employee_id, e.first_name, e.last_name, d.department_name, e.salary AS monthly_salary
-        FROM employee e
-        INNER JOIN department d ON e.department_id = d.department_id
-        WHERE e.employee_id = @empID";
+                    SELECT e.employee_id, e.first_name, e.last_name, d.department_name, e.salary AS monthly_salary
+                    FROM employee e
+                    INNER JOIN department d ON e.department_id = d.department_id
+                    WHERE e.employee_id = @empID";
 
                     using (SqlCommand cmd = new SqlCommand(empQuery, con))
                     {
@@ -379,20 +379,20 @@ namespace Payroll_System
                 {
                     // Employee WITH attendance
                     string query = @"
-                SELECT 
-                    e.employee_id,
-                    e.first_name,
-                    e.last_name,
-                    d.department_name,    
-                    a.days_worked,
-                    a.overtime_hours,
-                    e.salary AS monthly_salary,
-                    a.start_date,
-                    a.end_date
-                FROM attendance a
-                INNER JOIN employee e ON e.employee_id = a.employee_id
-                INNER JOIN department d ON e.department_id = d.department_id
-                WHERE a.attendance_id = @attid;";
+                    SELECT 
+                        e.employee_id,
+                        e.first_name,
+                        e.last_name,
+                        d.department_name,    
+                        a.days_worked,
+                        a.overtime_hours,
+                        e.salary AS monthly_salary,
+                        a.start_date,
+                        a.end_date
+                    FROM attendance a
+                    INNER JOIN employee e ON e.employee_id = a.employee_id
+                    INNER JOIN department d ON e.department_id = d.department_id
+                    WHERE a.attendance_id = @attid;";
 
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -481,45 +481,80 @@ namespace Payroll_System
 
 
         public void SaveOrUpdatePayslip(
-        int employeeID,
-        DateTimePicker startDatePicker,
-        DateTimePicker endDatePicker,
-        double grossPay,
-        double netPay,
-        double taxWithheld,
-        double sss,
-        double pagibig,
-        double philhealth,
-        string lastGeneratedFilePath)
+            int employeeID,
+            DateTimePicker startDatePicker,
+            DateTimePicker endDatePicker,
+            double grossPay,
+            double netPay,
+            double taxWithheld,
+            double sss,
+            double pagibig,
+            double philhealth,
+            string lastGeneratedFilePath)
+        {
+            connection();
+
+            try
             {
-                connection();
+                //Load pay period dates and categorize all assigned benefits into main categories and "other"
+                DateTime payPeriodStart = startDatePicker.Value;
+                DateTime payPeriodEnd = endDatePicker.Value;
 
-                try
+                double foodAllowance = 0;
+                double transportAllowance = 0;
+                double leavePay = 0;
+                double otherBenefits = 0;
+
+                //get all benefits for the employee, with their type from benefitcatalog table
+                string benefitQuery = @"
+                SELECT bc.benefit_type, ab.amount
+                FROM AssignedBenefits ab
+                INNER JOIN BenefitCatalog bc ON ab.benefit_id = bc.benefit_id
+                WHERE ab.employee_id = @empID";
+
+                using (SqlCommand benefitCmd = new SqlCommand(benefitQuery, con))
                 {
-                    // Get values from DateTimePickers
-                    DateTime payPeriodStart = startDatePicker.Value;
-                    DateTime payPeriodEnd = endDatePicker.Value;
+                    benefitCmd.Parameters.AddWithValue("@empID", employeeID);
 
-                    // Check if a payslip already exists for this employee & period
-                    string checkQuery = @"
+                    using (SqlDataReader reader = benefitCmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string type = reader["benefit_type"].ToString().Trim().ToLower();
+                            double amount = Convert.ToDouble(reader["amount"]);
+
+                            if (type.Contains("food"))
+                                foodAllowance += amount;
+                            else if (type.Contains("transport"))
+                                transportAllowance += amount;
+                            else if (type.Contains("leave") || type.Contains("holiday"))
+                                leavePay += amount;
+                            else
+                                otherBenefits += amount;
+                        }
+                    }
+                }
+
+                //Insert or update the payslip record depending on whether it already exists
+                string checkQuery = @"
                 SELECT COUNT(*) 
                 FROM Payslip
                 WHERE employee_id = @employee_id
                   AND pay_period_start = @start
                   AND pay_period_end = @end";
 
-                    int count = 0;
-                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
-                    {
-                        checkCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                        checkCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                        checkCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-                        count = (int)checkCmd.ExecuteScalar();
-                    }
+                int count = 0;
 
-                    if (count > 0)
-                    {
-                    // Update existing record
+                using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                    checkCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                    checkCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+                    count = (int)checkCmd.ExecuteScalar();
+                }
+
+                if (count > 0)
+                {
                     string updateQuery = @"
                     UPDATE Payslip
                     SET gross_pay = @gross,
@@ -532,46 +567,42 @@ namespace Payroll_System
                       AND pay_period_end = @end";
 
                     using (SqlCommand updateCmd = new SqlCommand(updateQuery, con))
-                        {
-                            updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
-                            updateCmd.Parameters.AddWithValue("@net", (float)netPay);
-                            updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
-                            updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
-                            updateCmd.Parameters.AddWithValue("@file_path", lastGeneratedFilePath);
-                            updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                            updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                            updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-
-                            updateCmd.ExecuteNonQuery();
-                            MessageBox.Show("Payslip updated successfully!");
-                        }
-                    }
-                    else
                     {
-                        // Insert new record
-                        string insertQuery = @"
+                        updateCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                        updateCmd.Parameters.AddWithValue("@net", (float)netPay);
+                        updateCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
+                        updateCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                        updateCmd.Parameters.AddWithValue("@file_path", lastGeneratedFilePath);
+                        updateCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                        updateCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                        updateCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+
+                        updateCmd.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    string insertQuery = @"
                     INSERT INTO Payslip 
                     (employee_id, pay_period_start, pay_period_end, gross_pay, net_pay, tax_withheld, created_at, file_path)
                     VALUES (@employee_id, @start, @end, @gross, @net, @tax, @created, @filepath)";
 
-                        using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
-                        {
-                            insertCmd.Parameters.AddWithValue("@employee_id", employeeID);
-                            insertCmd.Parameters.AddWithValue("@start", payPeriodStart);
-                            insertCmd.Parameters.AddWithValue("@end", payPeriodEnd);
-                            insertCmd.Parameters.AddWithValue("@gross", (float)grossPay);
-                            insertCmd.Parameters.AddWithValue("@net", (float)netPay);
-                            insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
-                            insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
-                            insertCmd.Parameters.AddWithValue("@filepath", lastGeneratedFilePath);
+                    using (SqlCommand insertCmd = new SqlCommand(insertQuery, con))
+                    {
+                        insertCmd.Parameters.AddWithValue("@employee_id", employeeID);
+                        insertCmd.Parameters.AddWithValue("@start", payPeriodStart);
+                        insertCmd.Parameters.AddWithValue("@end", payPeriodEnd);
+                        insertCmd.Parameters.AddWithValue("@gross", (float)grossPay);
+                        insertCmd.Parameters.AddWithValue("@net", (float)netPay);
+                        insertCmd.Parameters.AddWithValue("@tax", (float)taxWithheld);
+                        insertCmd.Parameters.AddWithValue("@created", DateTime.Now);
+                        insertCmd.Parameters.AddWithValue("@filepath", lastGeneratedFilePath);
 
                         insertCmd.ExecuteNonQuery();
-                            MessageBox.Show("Payslip added successfully!");
-                        }
                     }
-                // Insert into Reports table
-                // might change this later
+                }
 
+                //Insert or update the reports table with deductions and categorized benefits
                 string reportCheckQuery = "SELECT COUNT(*) FROM Reports";
                 int reportCount = 0;
 
@@ -582,40 +613,59 @@ namespace Payroll_System
 
                 if (reportCount > 0)
                 {
-                    string reportUpdateQuery = "UPDATE Reports SET sss = sss + @sss, pagibig = pagibig + @pagibig, philhealth = philhealth + @philhealth";
+                    string reportUpdateQuery = @"
+                    UPDATE Reports SET 
+                        sss = sss + @sss, 
+                        pagibig = pagibig + @pagibig, 
+                        philhealth = philhealth + @philhealth,
+                        food_allowance = ISNULL(food_allowance, 0) + @food,
+                        transportation_allowance = ISNULL(transportation_allowance, 0) + @transport,
+                        leave_pay = ISNULL(leave_pay, 0) + @leave,
+                        other_benefits = ISNULL(other_benefits, 0) + @other";
 
                     using (SqlCommand updateReportCmd = new SqlCommand(reportUpdateQuery, con))
                     {
                         updateReportCmd.Parameters.AddWithValue("@sss", (float)sss);
                         updateReportCmd.Parameters.AddWithValue("@pagibig", (float)pagibig);
                         updateReportCmd.Parameters.AddWithValue("@philhealth", (float)philhealth);
+                        updateReportCmd.Parameters.AddWithValue("@food", (float)foodAllowance);
+                        updateReportCmd.Parameters.AddWithValue("@transport", (float)transportAllowance);
+                        updateReportCmd.Parameters.AddWithValue("@leave", (float)leavePay);
+                        updateReportCmd.Parameters.AddWithValue("@other", (float)otherBenefits);
 
                         updateReportCmd.ExecuteNonQuery();
                     }
                 }
                 else
                 {
-                    string reportInsertQuery = "INSERT INTO Reports (sss, pagibig, philhealth) VALUES (@sss, @pagibig, @philhealth)";
+                    string reportInsertQuery = @"
+                    INSERT INTO Reports 
+                    (sss, pagibig, philhealth, food_allowance, transportation_allowance, leave_pay, other_benefits)
+                    VALUES (@sss, @pagibig, @philhealth, @food, @transport, @leave, @other)";
 
                     using (SqlCommand reportCmd = new SqlCommand(reportInsertQuery, con))
                     {
                         reportCmd.Parameters.AddWithValue("@sss", (float)sss);
                         reportCmd.Parameters.AddWithValue("@pagibig", (float)pagibig);
                         reportCmd.Parameters.AddWithValue("@philhealth", (float)philhealth);
+                        reportCmd.Parameters.AddWithValue("@food", (float)foodAllowance);
+                        reportCmd.Parameters.AddWithValue("@transport", (float)transportAllowance);
+                        reportCmd.Parameters.AddWithValue("@leave", (float)leavePay);
+                        reportCmd.Parameters.AddWithValue("@other", (float)otherBenefits);
 
                         reportCmd.ExecuteNonQuery();
                     }
                 }
             }
             catch (Exception ex)
-                {
-                    MessageBox.Show("Error saving/updating payslip: " + ex.Message);
-                }
-                finally
-                {
-                    con.Close();
-                }
+            {
+                MessageBox.Show("Error saving/updating payslip: " + ex.Message);
             }
+            finally
+            {
+                con.Close();
+            }
+        }
 
 
 

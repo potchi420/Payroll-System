@@ -110,19 +110,36 @@ namespace Payroll_System
                                 decimal sss = Convert.ToDecimal(reader["sss"]);
                                 decimal philhealth = Convert.ToDecimal(reader["philhealth"]);
                                 decimal pagibig = Convert.ToDecimal(reader["pagibig"]);
-                                decimal total = sss + philhealth + pagibig;
+                                decimal food = Convert.ToDecimal(reader["food_allowance"]);
+                                decimal transport = Convert.ToDecimal(reader["transportation_allowance"]);
+                                decimal leave = Convert.ToDecimal(reader["leave_pay"]);
+                                decimal other = Convert.ToDecimal(reader["other_benefits"]);
+
+                                decimal totalDeductions = sss + philhealth + pagibig;
+                                decimal totalBenefits = food + transport + leave + other;
+                                decimal total = totalDeductions + totalBenefits;
 
                                 sss_value.Text = $"₱{sss:N2}";
                                 philhealth_value.Text = $"₱{philhealth:N2}";
                                 pagibig_value.Text = $"₱{pagibig:N2}";
-                                total_tax_value.Text = $"₱{total:N0}";
+                                food_allowance_value.Text = $"₱{food:N2}";
+                                transportation_allowance_value.Text = $"₱{transport:N2}";
+                                leave_pay_value.Text = $"₱{leave:N2}";
+                                other_benefits_value.Text = $"₱{other:N2}";
+                                total_tax_value.Text = $"₱{total:N2}";
+                                total_benefits_value.Text = $"₱{totalBenefits:N2}";
                             }
                             else
                             {
                                 sss_value.Text = "₱0.00";
                                 philhealth_value.Text = "₱0.00";
                                 pagibig_value.Text = "₱0.00";
+                                food_allowance_value.Text = "₱0.00";
+                                transportation_allowance_value.Text = "₱0.00";
+                                leave_pay_value.Text = "₱0.00";
+                                other_benefits_value.Text = "₱0.00";
                                 total_tax_value.Text = "₱0.00";
+                                total_benefits_value.Text = "₱0.00";
                             }
                         }
                     }
@@ -133,7 +150,6 @@ namespace Payroll_System
                 }
             }
         }
-
         private void save_btn_Click(object sender, EventArgs e)
         {
             try
@@ -149,21 +165,31 @@ namespace Payroll_System
                 PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
                 doc.Open();
 
-                // Fonts
                 var titleFont = FontFactory.GetFont("Arial", 14f, iTextSharp.text.Font.BOLD);
+                var headerFont = FontFactory.GetFont("Arial", 12f, iTextSharp.text.Font.BOLD);
                 var labelFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.BOLD);
                 var valueFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.NORMAL);
 
-                // Header
-                doc.Add(new Paragraph("PCU Payroll System – Tax Report", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc.Add(new Paragraph("PCU Payroll System – Tax & Benefits Report", titleFont) { Alignment = Element.ALIGN_CENTER });
                 doc.Add(new Paragraph($"Generated on: {DateTime.Now:MMMM dd, yyyy hh:mm tt}", valueFont) { Alignment = Element.ALIGN_CENTER });
                 doc.Add(new Paragraph("\n"));
 
-                // Table
                 PdfPTable table = new PdfPTable(2);
                 table.WidthPercentage = 80;
                 table.SetWidths(new float[] { 40f, 60f });
                 table.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                void AddHeader(string text)
+                {
+                    PdfPCell headerCell = new PdfPCell(new Phrase(text, headerFont))
+                    {
+                        Border = iTextSharp.text.Rectangle.NO_BORDER,
+                        Colspan = 2,
+                        PaddingTop = 10,
+                        PaddingBottom = 5
+                    };
+                    table.AddCell(headerCell);
+                }
 
                 void AddRow(string label, string value)
                 {
@@ -171,10 +197,28 @@ namespace Payroll_System
                     table.AddCell(new PdfPCell(new Phrase(value, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
                 }
 
+                //TAX / DEDUCTIONS SECTION
+                AddHeader("TAX / DEDUCTIONS");
                 AddRow("SSS:", sss_value.Text);
                 AddRow("PhilHealth:", philhealth_value.Text);
                 AddRow("Pag-IBIG:", pagibig_value.Text);
                 AddRow("Total Tax Withheld:", total_tax_value.Text);
+
+
+                table.AddCell(new PdfPCell(new Phrase(" "))
+                {
+                    Border = iTextSharp.text.Rectangle.NO_BORDER,
+                    Colspan = 2,
+                    FixedHeight = 15
+                });
+
+                // BENEFITS SECTION
+                AddHeader("BENEFITS");
+                AddRow("Food Allowance:", food_allowance_value.Text);
+                AddRow("Transportation Allowance:", transportation_allowance_value.Text);
+                AddRow("Leave Pay:", leave_pay_value.Text);
+                AddRow("Other Benefits:", other_benefits_value.Text);
+                AddRow("Total Benefits:", total_benefits_value.Text);
 
                 doc.Add(table);
                 doc.Add(new Paragraph("\nThis is a system-generated report.", valueFont) { Alignment = Element.ALIGN_CENTER });
