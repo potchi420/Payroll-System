@@ -20,10 +20,13 @@ namespace Payroll_System
             {
                 conn.Open();
                 string query = @"
-                SELECT l.user_id
+                SELECT TOP 1 l.user_id
                 FROM login l
-                INNER JOIN Employee e ON l.employee_id = e.employee_id
-                WHERE e.email = @email AND e.is_active = 1";
+                    LEFT JOIN Employee e ON l.employee_id = e.employee_id
+                    LEFT JOIN UserContact uc ON l.user_id = uc.user_id
+                WHERE 
+                    (e.email = @email AND e.is_active = 1)
+                    OR (uc.email = @email)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {

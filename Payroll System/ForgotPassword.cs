@@ -132,7 +132,14 @@ namespace Payroll_System
             using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Employee WHERE email = @email AND is_active = 1";
+                string query = @"
+                SELECT COUNT(*)
+                FROM login l
+                    LEFT JOIN Employee e ON l.employee_id = e.employee_id
+                    LEFT JOIN UserContact uc ON l.user_id = uc.user_id
+                WHERE 
+                    (e.email = @email AND e.is_active = 1)
+                    OR (uc.email = @email)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
