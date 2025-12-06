@@ -133,7 +133,7 @@ using System.Net.Mail;
 
             using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
             {
-                smtp.EnableSsl = true;                  
+                smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;     // force custom credentials
                 smtp.Credentials = new NetworkCredential(
                     "payrollsystemm@gmail.com",
@@ -191,6 +191,31 @@ using System.Net.Mail;
             parentForm.new_password_value.Text = string.Empty;
 
             this.Close();
+        }
+
+        private void resendbtn_Click(object sender, EventArgs e)
+        {
+            if (remainingSeconds > 0)
+            {
+                MessageBox.Show("You can only resend the code once the timer expires.");
+                return;
+            }
+
+
+            StartOtpTimer();
+            verifybtn.Enabled = true;
+
+
+            string recipientEmail = GetUserEmail();
+            if (!string.IsNullOrEmpty(recipientEmail))
+            {
+                SendOtpEmail(recipientEmail);
+                MessageBox.Show("A new OTP has been sent to your email.");
+            }
+            else
+            {
+                MessageBox.Show("No email address found.");
+            }
         }
     }
 }

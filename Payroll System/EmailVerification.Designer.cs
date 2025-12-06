@@ -142,6 +142,7 @@
             resendbtn.TabIndex = 10;
             resendbtn.Text = "Resend Code";
             resendbtn.UseVisualStyleBackColor = false;
+            resendbtn.Click += resendbtn_Click;
             // 
             // timerOTP
             // 
