@@ -523,7 +523,7 @@ namespace Payroll_System
 
         private void logoutbtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         private void label3_Click(object sender, EventArgs e)

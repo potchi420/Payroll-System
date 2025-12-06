@@ -48,7 +48,7 @@ namespace Payroll_System
 
         private void logout1_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         private void logo1_Click(object sender, EventArgs e)

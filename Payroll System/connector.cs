@@ -18,7 +18,12 @@ namespace Payroll_System
         public static class SessionData
         {
             public static int? EmployeeID { get; set; }
-            public static int UserID { get; set; }
+            public static int? UserID { get; set; }
+            public static void Clear()
+            {
+                EmployeeID = null;
+                UserID = null;
+            }
         }
 
 

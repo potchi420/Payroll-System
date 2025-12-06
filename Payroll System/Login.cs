@@ -10,6 +10,8 @@ namespace Payroll_System
         public Login()
         {
             InitializeComponent();
+            this.FormClosing += Login_FormClosing;
+
         }
         private void Login_Load(object sender, EventArgs e)
         {
@@ -38,12 +40,12 @@ namespace Payroll_System
 
             if (loginResult.isValid)
             {
-                SessionData.EmployeeID = loginResult.employeeId;
+                SessionData.EmployeeID = loginResult.employeeId;    
 
                 if (loginResult.employeeId.HasValue)
                 {
                     // Employee login
-                    EmployeePayslips ed = new EmployeePayslips();
+                    EmployeeHome ed = new EmployeeHome();
                     ed.Show();
                 }
                 else
@@ -67,5 +69,12 @@ namespace Payroll_System
             f.Show();
             this.Hide();
         }
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+
     }
+
 }

@@ -89,7 +89,7 @@ namespace Payroll_System
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         public void Reports_Load()

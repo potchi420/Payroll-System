@@ -101,7 +101,7 @@ namespace Payroll_System
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         private bool ValidateEmployeeBeforeUpdate()

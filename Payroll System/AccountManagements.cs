@@ -42,7 +42,7 @@ namespace Payroll_System
 
         private void logout_btn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         private void home_btn_Click_1(object sender, EventArgs e)

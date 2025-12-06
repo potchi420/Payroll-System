@@ -76,7 +76,7 @@ namespace Payroll_System
 
         private void logout_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         private void btnsettings_Click(object sender, EventArgs e)

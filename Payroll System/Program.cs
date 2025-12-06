@@ -2,11 +2,7 @@ namespace Payroll_System
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
-        
         static void Main()
         {
             ApplicationConfiguration.Initialize();
@@ -20,6 +16,5 @@ namespace Payroll_System
                 MessageBox.Show("Startup error: " + ex.Message);
             }
         }
-
     }
 }

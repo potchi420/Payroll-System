@@ -38,21 +38,21 @@ namespace Payroll_System
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-            EmployeePayslips ep = new EmployeePayslips();
+            EmployeeHome eh = new EmployeeHome();
+            eh.Show();
             this.Hide();
-            ep.Show();
         }
 
         private void logo_btn_Click(object sender, EventArgs e)
         {
-            EmployeePayslips ep = new EmployeePayslips();
+            EmployeeHome eh = new EmployeeHome();
+            eh.Show();
             this.Hide();
-            ep.Show();
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Logout.Execute(this);
         }
 
         public void greetUser(int empID)
@@ -371,13 +371,6 @@ namespace Payroll_System
             {
                 payslipGrid.Columns["View"].DisplayIndex = payslipGrid.Columns.Count - 1;
             }
-        }
-
-        private void acc_management_btn_Click(object sender, EventArgs e)
-        {
-            AccountManagements am = new AccountManagements();
-            am.Show();
-            this.Hide();
         }
     }
 }
