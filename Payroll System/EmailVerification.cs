@@ -90,7 +90,7 @@ using System.Net.Mail;
 
         private string GetUserEmail()
         {
-            using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
+            using (SqlConnection conn = dbConnector.GetConnection())
             {
                 conn.Open();
 
@@ -169,7 +169,7 @@ using System.Net.Mail;
 
         private void ApplyChanges()
         {
-            using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
+            using (SqlConnection conn = dbConnector.GetConnection())
             {
                 conn.Open();
                 string query = "UPDATE Login SET username=@newUsername, password=@newPassword WHERE user_id=@userId";

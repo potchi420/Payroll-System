@@ -18,20 +18,6 @@ namespace Payroll_System
 
         }
 
-        private void username_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void password_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void register_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
 
         private void btnblogin_Click(object sender, EventArgs e)
         {

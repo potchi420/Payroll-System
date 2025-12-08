@@ -15,20 +15,8 @@ namespace Payroll_System
             searchbox.KeyDown += Searchbox_KeyDown;
         }
 
-        public static class dbConnector
-        {
-            private static readonly string connectionString =
-                "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
-
         private void home_btn_Click(object sender, EventArgs e)
         {
-            // Admin-only navigation
             dashboard db = new dashboard();
             db.Show();
             this.Hide();
@@ -36,7 +24,7 @@ namespace Payroll_System
 
         private void logo_btn_Click(object sender, EventArgs e)
         {
-            home_btn_Click(sender, e); // same as Home
+            home_btn_Click(sender, e); 
         }
 
         private void logout_btn_Click(object sender, EventArgs e)

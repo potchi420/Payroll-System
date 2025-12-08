@@ -31,15 +31,6 @@ namespace Payroll_System
 
         }
         private bool isLoadingFilters = false;
-        public static class dbConnector
-        {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
 
         private void home_btn_Click(object sender, EventArgs e)
         {
@@ -87,7 +78,6 @@ namespace Payroll_System
             }
         }
 
-        // todo add the deductions
         public void loadPayslips(int empID)
         {
             using (SqlConnection con = dbConnector.GetConnection())
@@ -182,7 +172,7 @@ namespace Payroll_System
             {
                 if (e.Value != null && DateTime.TryParse(e.Value.ToString(), out DateTime date))
                 {
-                    e.Value = date.ToString("yyyy-MM-dd"); // or "dd/MM/yyyy"
+                    e.Value = date.ToString("yyyy-MM-dd"); // or "dd/MM/yyyy" ewan kung ano yung tamang format
                     e.FormattingApplied = true;
                 }
             }

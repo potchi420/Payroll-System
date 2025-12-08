@@ -24,15 +24,6 @@ namespace Payroll_System
         }
 
         //change the connection string as per your sql server
-        public static class dbConnector
-        {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
 
         private void btnemployee_Click(object sender, EventArgs e)
         {

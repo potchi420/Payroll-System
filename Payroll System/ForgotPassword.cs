@@ -129,7 +129,7 @@ namespace Payroll_System
 
         private bool EmailExists(string email)
         {
-            using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
+            using (SqlConnection conn = dbConnector.GetConnection())
             {
                 conn.Open();
                 string query = @"

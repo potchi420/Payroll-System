@@ -11,17 +11,6 @@ namespace Payroll_System
 
         bool isEmployee = Connector.SessionData.EmployeeID.HasValue;
 
-        //change the connection string as per your sql server
-        public static class dbConnector
-        {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
-
         private bool ValidateCurrentCredentials(string username, string password)
         {
             using (SqlConnection conn = dbConnector.GetConnection())

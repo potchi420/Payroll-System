@@ -24,16 +24,6 @@ namespace Payroll_System
             focus_remover();
         }
 
-        public static class dbConnector
-        {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
-
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
-
         public void LoadEmployeeData()
         {
             string query = "SELECT * FROM employee WHERE employee_id = @employee_id";

@@ -16,7 +16,7 @@ namespace Payroll_System
 
         private int GetUserIdByEmail(string email)
         {
-            using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
+            using (SqlConnection conn = dbConnector.GetConnection())
             {
                 conn.Open();
                 string query = @"
@@ -60,14 +60,14 @@ namespace Payroll_System
                 return;
             }
 
-            using (SqlConnection conn = AccountManagements.dbConnector.GetConnection())
+            using (SqlConnection conn = dbConnector.GetConnection())
             {
                 conn.Open();
                 string query = "UPDATE login SET password = @password WHERE user_id = @userId";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@password", newPassword); // optionally hash this
+                    cmd.Parameters.AddWithValue("@password", newPassword); 
                     cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.ExecuteNonQuery();
                 }

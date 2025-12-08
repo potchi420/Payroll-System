@@ -15,15 +15,7 @@ namespace Payroll_System
             empList.KeyDown += searchbox_KeyDown;
 
         }
-        public static class dbConnector
-        {
-            private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
 
-            public static SqlConnection GetConnection()
-            {
-                return new SqlConnection(connectionString);
-            }
-        }
         public void LoadEmployeeBenefits(DataGridView dgv)
         {
             dgv.Rows.Clear();
