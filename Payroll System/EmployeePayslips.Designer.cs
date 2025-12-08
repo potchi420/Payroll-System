@@ -43,7 +43,7 @@
             label1 = new Label();
             label2 = new Label();
             year_fiter = new ComboBox();
-            filter = new Button();
+            label3 = new Label();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logo_btn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)payslipGrid).BeginInit();
@@ -141,7 +141,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             payslipGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            payslipGrid.Size = new Size(667, 335);
+            payslipGrid.Size = new Size(675, 335);
             payslipGrid.TabIndex = 33;
             // 
             // linkLabel1
@@ -171,7 +171,7 @@
             // 
             month_filter.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             month_filter.FormattingEnabled = true;
-            month_filter.Location = new Point(791, 254);
+            month_filter.Location = new Point(791, 293);
             month_filter.Name = "month_filter";
             month_filter.Size = new Size(114, 26);
             month_filter.TabIndex = 36;
@@ -180,7 +180,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(791, 224);
+            label1.Location = new Point(791, 263);
             label1.Name = "label1";
             label1.Size = new Size(54, 18);
             label1.TabIndex = 37;
@@ -190,7 +190,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(953, 224);
+            label2.Location = new Point(791, 333);
             label2.Name = "label2";
             label2.Size = new Size(43, 18);
             label2.TabIndex = 39;
@@ -200,31 +200,27 @@
             // 
             year_fiter.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             year_fiter.FormattingEnabled = true;
-            year_fiter.Location = new Point(953, 254);
+            year_fiter.Location = new Point(791, 363);
             year_fiter.Name = "year_fiter";
-            year_fiter.Size = new Size(101, 26);
+            year_fiter.Size = new Size(114, 26);
             year_fiter.TabIndex = 38;
             // 
-            // filter
+            // label3
             // 
-            filter.BackColor = Color.FromArgb(33, 145, 245);
-            filter.Cursor = Cursors.Hand;
-            filter.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            filter.ForeColor = SystemColors.HighlightText;
-            filter.Location = new Point(791, 317);
-            filter.Name = "filter";
-            filter.Size = new Size(131, 43);
-            filter.TabIndex = 40;
-            filter.Text = "Filter";
-            filter.UseVisualStyleBackColor = false;
-            filter.Click += filter_Click;
+            label3.AutoSize = true;
+            label3.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(791, 224);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 18);
+            label3.TabIndex = 40;
+            label3.Text = "Filter By:";
             // 
             // EmployeePayslips
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 651);
-            Controls.Add(filter);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(year_fiter);
             Controls.Add(label1);
@@ -257,6 +253,6 @@
         private Label label1;
         private Label label2;
         private ComboBox year_fiter;
-        private Button filter;
+        private Label label3;
     }
 }

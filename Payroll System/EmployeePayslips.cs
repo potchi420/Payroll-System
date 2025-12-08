@@ -24,8 +24,13 @@ namespace Payroll_System
             payslipGrid.CellFormatting += PayslipGrid_CellFormatting;
             payslipGrid.CellMouseMove += payslipGrid_CellMouseMove;
             payslipGrid.DataBindingComplete += payslipGrid_DataBindingComplete;
-        }
+            month_filter.SelectedIndexChanged += month_filter_SelectedIndexChanged;
+            year_fiter.SelectedIndexChanged += year_fiter_SelectedIndexChanged;
+            month_filter.TextChanged += month_filter_TextChanged;
+            year_fiter.TextChanged += year_fiter_TextChanged;
 
+        }
+        private bool isLoadingFilters = false;
         public static class dbConnector
         {
             private static readonly string connectionString = "Data Source=LAPTOP-KL72FBTC\\SQLEXPRESS;Initial Catalog=payroll;Integrated Security=True;TrustServerCertificate=True";
@@ -185,6 +190,8 @@ namespace Payroll_System
 
         public void LoadMonthFilter(ComboBox monthCombo)
         {
+            isLoadingFilters = true;
+
             monthCombo.Items.Clear();
 
             string query = "SELECT DISTINCT MONTH(pay_period_start) AS MonthNum FROM payslip WHERE employee_id = @empID ORDER BY MonthNum";
@@ -212,10 +219,15 @@ namespace Payroll_System
                     MessageBox.Show("Error loading month filters: " + ex.Message);
                 }
             }
+
+            monthCombo.SelectedIndex = -1;
+            isLoadingFilters = false;
         }
 
         public void LoadYearFilter(ComboBox yearCombo)
         {
+            isLoadingFilters = true;
+
             yearCombo.Items.Clear();
 
             string query = "SELECT DISTINCT YEAR(pay_period_start) AS YearNum FROM payslip WHERE employee_id = @empID ORDER BY YearNum DESC";
@@ -242,10 +254,12 @@ namespace Payroll_System
                     MessageBox.Show("Error loading year filter: " + ex.Message);
                 }
             }
+
+            yearCombo.SelectedIndex = -1;
+            isLoadingFilters = false;
         }
 
-
-        private void filter_Click(object sender, EventArgs e)
+        private void ApplyFilters()
         {
             bool hasMonth = month_filter.SelectedItem != null;
             bool hasYear = year_fiter.SelectedItem != null;
@@ -264,6 +278,7 @@ namespace Payroll_System
                 yearNumber = int.Parse(year_fiter.SelectedItem.ToString());
             }
 
+            // If no filters selected, load all payslips
             if (!hasMonth && !hasYear)
             {
                 loadPayslips(Connector.SessionData.EmployeeID ?? 0);
@@ -272,7 +287,9 @@ namespace Payroll_System
 
             using (SqlConnection con = dbConnector.GetConnection())
             {
-                StringBuilder queryBuilder = new StringBuilder("SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID");
+                StringBuilder queryBuilder = new StringBuilder(
+                    "SELECT pay_period_start AS [Payslip Start], pay_period_end AS [Payslip End], gross_pay, net_pay FROM payslip WHERE employee_id = @empID"
+                );
 
                 if (monthNumber.HasValue)
                     queryBuilder.Append(" AND MONTH(pay_period_start) = @month");
@@ -301,7 +318,6 @@ namespace Payroll_System
 
                         payslipGrid.DataSource = dt;
 
-                        // Reapply formatting
                         payslipGrid.Columns["gross_pay"].HeaderText = "Gross Pay";
                         payslipGrid.Columns["net_pay"].HeaderText = "Net Pay";
                         payslipGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -313,6 +329,30 @@ namespace Payroll_System
                     }
                 }
             }
+        }
+
+        private void month_filter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoadingFilters)
+                ApplyFilters();
+        }
+
+        private void year_fiter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isLoadingFilters)
+                ApplyFilters();
+        }
+
+        private void month_filter_TextChanged(object sender, EventArgs e)
+        {
+            if (!isLoadingFilters && string.IsNullOrWhiteSpace(month_filter.Text))
+                ApplyFilters();
+        }
+
+        private void year_fiter_TextChanged(object sender, EventArgs e)
+        {
+            if (!isLoadingFilters && string.IsNullOrWhiteSpace(year_fiter.Text))
+                ApplyFilters();
         }
 
         private string GetFilePathFromDB(int payslipID)

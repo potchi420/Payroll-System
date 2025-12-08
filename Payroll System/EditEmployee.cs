@@ -130,10 +130,10 @@ namespace Payroll_System
                 return false;
             }
 
-            // 2️⃣ First & last name validation (letters only)
-            if (!firstName.All(char.IsLetter))
+            // 2️⃣ First & last name validation (letters + spaces only)
+            if (!firstName.All(c => char.IsLetter(c) || c == ' '))
             {
-                MessageBox.Show("First name should contain letters only.",
+                MessageBox.Show("First name should contain letters and spaces only.",
                                 "Invalid Input",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -141,9 +141,9 @@ namespace Payroll_System
                 return false;
             }
 
-            if (!lastName.All(char.IsLetter))
+            if (!lastName.All(c => char.IsLetter(c) || c == ' '))
             {
-                MessageBox.Show("Last name should contain letters only.",
+                MessageBox.Show("Last name should contain letters and spaces only.",
                                 "Invalid Input",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -195,7 +195,7 @@ namespace Payroll_System
                 return false;
             }
 
-            // ✅ Passed all checks
+            //Passed all checks
             return true;
         }
 
@@ -254,17 +254,37 @@ namespace Payroll_System
 
         private void first_name_TextChanged(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            TextBox tb = sender as TextBox;
+
+            // Allow letters, space, and control keys (Backspace, Delete)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Ignore the input
+                e.Handled = true;
+                return;
+            }
+
+            // Limit length to 50 characters
+            if (!char.IsControl(e.KeyChar) && tb.Text.Length >= 50)
+            {
+                e.Handled = true;
             }
         }
 
         private void last_name_TextChanged(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            TextBox tb = sender as TextBox;
+
+            // Allow letters, space, and control keys
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
             {
-                e.Handled = true; // Ignore the input
+                e.Handled = true;
+                return;
+            }
+
+            // Limit length to 50 characters
+            if (!char.IsControl(e.KeyChar) && tb.Text.Length >= 50)
+            {
+                e.Handled = true;
             }
         }
 

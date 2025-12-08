@@ -49,8 +49,8 @@ namespace Payroll_System
         {
             if (isEmployee)
             {
-                EmployeePayslips payslips = new EmployeePayslips();
-                payslips.Show();
+                EmployeeHome eh = new EmployeeHome();
+                eh.Show();
             }
             else
             {
@@ -65,8 +65,8 @@ namespace Payroll_System
         {
             if (isEmployee)
             {
-                EmployeePayslips payslips = new EmployeePayslips();
-                payslips.Show();
+                EmployeeHome eh = new EmployeeHome();
+                eh.Show();
             }
             else
             {
@@ -81,8 +81,8 @@ namespace Payroll_System
         {
             if (isEmployee)
             {
-                EmployeePayslips payslips = new EmployeePayslips();
-                payslips.Show();
+                EmployeeHome home = new EmployeeHome();
+                home.Show();
             }
             else
             {

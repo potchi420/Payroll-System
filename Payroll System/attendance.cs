@@ -126,8 +126,7 @@ namespace Payroll_System
             DateTime startDate = start_date.Value.Date;
             DateTime endDate = end_date.Value.Date;
 
-            if (daysWorked < 0 || daysWorked > 15
-                )
+            if (daysWorked < 0 || daysWorked > 15)
             {
                 MessageBox.Show("Days worked must be between 0 and 15.");
                 return;
@@ -142,6 +141,14 @@ namespace Payroll_System
             if (endDate < startDate)
             {
                 MessageBox.Show("End date cannot be earlier than start date.");
+                return;
+            }
+
+            TimeSpan diff = endDate - startDate;
+
+            if (diff.TotalDays > 15)
+            {
+                MessageBox.Show("Start date and end date must be within a 15‑day payroll period.");
                 return;
             }
 

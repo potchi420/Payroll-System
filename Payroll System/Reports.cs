@@ -167,7 +167,7 @@ namespace Payroll_System
 
                 var titleFont = FontFactory.GetFont("Arial", 14f, iTextSharp.text.Font.BOLD);
                 var headerFont = FontFactory.GetFont("Arial", 12f, iTextSharp.text.Font.BOLD);
-                var labelFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.BOLD);
+                var labelFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.NORMAL); 
                 var valueFont = FontFactory.GetFont("Arial", 11f, iTextSharp.text.Font.NORMAL);
 
                 doc.Add(new Paragraph("PCU Payroll System – Tax & Benefits Report", titleFont) { Alignment = Element.ALIGN_CENTER });
@@ -193,8 +193,16 @@ namespace Payroll_System
 
                 void AddRow(string label, string value)
                 {
-                    table.AddCell(new PdfPCell(new Phrase(label, labelFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER });
-                    table.AddCell(new PdfPCell(new Phrase(value, valueFont)) { Border = iTextSharp.text.Rectangle.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT });
+                    table.AddCell(new PdfPCell(new Phrase(label, labelFont))
+                    {
+                        Border = iTextSharp.text.Rectangle.NO_BORDER
+                    });
+
+                    table.AddCell(new PdfPCell(new Phrase(value, valueFont))
+                    {
+                        Border = iTextSharp.text.Rectangle.NO_BORDER,
+                        HorizontalAlignment = Element.ALIGN_RIGHT
+                    });
                 }
 
                 //TAX / DEDUCTIONS SECTION

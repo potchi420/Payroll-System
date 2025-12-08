@@ -12,6 +12,7 @@ namespace Payroll_System
             InitializeComponent();
             LoadUserTable();
             LoadUsernames(searchbox);
+            searchbox.KeyDown += Searchbox_KeyDown;
         }
 
         public static class dbConnector
@@ -104,6 +105,37 @@ namespace Payroll_System
                     MessageBox.Show("Error loading usernames: " + ex.Message);
                 }
             }
+        }
+        private void Searchbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                HighlightUserInTable();
+                e.SuppressKeyPress = true; // prevents ding sound
+            }
+        }
+        private void HighlightUserInTable()
+        {
+            if (userAccounts.DataSource == null)
+                return;
+
+            string selectedUsername = searchbox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(selectedUsername))
+                return;
+
+            foreach (DataGridViewRow row in userAccounts.Rows)
+            {
+                if (row.Cells["username"].Value != null &&
+                    row.Cells["username"].Value.ToString().Equals(selectedUsername, StringComparison.OrdinalIgnoreCase))
+                {
+                    row.Selected = true;
+                    userAccounts.FirstDisplayedScrollingRowIndex = row.Index;
+                    return;
+                }
+            }
+
+            MessageBox.Show("User not found in the table.");
         }
     }
 }
