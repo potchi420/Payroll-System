@@ -44,6 +44,7 @@
             gradientPanel3 = new GradientPanel();
             email = new TextBox();
             label1 = new Label();
+            back = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             gradientPanel3.SuspendLayout();
@@ -105,7 +106,7 @@
             register_btn.Location = new Point(735, 381);
             register_btn.Name = "register_btn";
             register_btn.Size = new Size(75, 26);
-            register_btn.TabIndex = 14;
+            register_btn.TabIndex = 22;
             register_btn.Text = "Create";
             register_btn.UseVisualStyleBackColor = true;
             register_btn.Click += register_btn_Click;
@@ -223,12 +224,27 @@
             label1.TabIndex = 20;
             label1.Text = "Email";
             // 
+            // back
+            // 
+            back.ActiveLinkColor = Color.Navy;
+            back.AutoSize = true;
+            back.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            back.LinkColor = SystemColors.Highlight;
+            back.Location = new Point(700, 419);
+            back.Name = "back";
+            back.Size = new Size(152, 15);
+            back.TabIndex = 23;
+            back.TabStop = true;
+            back.Text = "Back to User Management";
+            back.LinkClicked += back_LinkClicked;
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1014, 611);
+            Controls.Add(back);
             Controls.Add(email);
             Controls.Add(label1);
             Controls.Add(gradientPanel3);
@@ -265,5 +281,6 @@
         private GradientPanel gradientPanel3;
         private TextBox email;
         private Label label1;
+        private LinkLabel back;
     }
 }

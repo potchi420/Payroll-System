@@ -48,5 +48,12 @@ namespace Payroll_System
         {
 
         }
+
+        private void back_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            UserManagement um = new UserManagement();
+            um.Show();
+            this.Hide();
+        }
     }
 }

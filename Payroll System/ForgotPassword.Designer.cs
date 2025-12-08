@@ -58,7 +58,7 @@
             back.Location = new Point(191, 286);
             back.Name = "back";
             back.Size = new Size(96, 17);
-            back.TabIndex = 1;
+            back.TabIndex = 9;
             back.TabStop = true;
             back.Text = "Back to Login";
             back.LinkClicked += back_LinkClicked;
